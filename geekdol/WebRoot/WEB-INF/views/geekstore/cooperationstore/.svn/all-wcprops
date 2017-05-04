@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/cooperationstore
+END
+cooperationstoreEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/Geekdol/!svn/ver/3721/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/cooperationstore/cooperationstoreEdit.jsp
+END
+cooperationstoreAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/Geekdol/!svn/ver/3721/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/cooperationstore/cooperationstoreAdd.jsp
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/cooperationstore/list.jsp
+END
+cooperationstoreShow.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/cooperationstore/cooperationstoreShow.jsp
+END
+villageSelect.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/3721/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/cooperationstore/villageSelect.jsp
+END

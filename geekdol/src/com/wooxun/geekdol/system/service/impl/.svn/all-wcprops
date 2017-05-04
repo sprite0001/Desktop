@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/Geekdol/!svn/ver/5331/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl
+END
+AppUserServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/5260/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/AppUserServiceImpl.java
+END
+UserRoleServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/3734/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/UserRoleServiceImpl.java
+END
+CountyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Geekdol/!svn/ver/5161/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/CountyServiceImpl.java
+END
+VillageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/5331/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/VillageServiceImpl.java
+END
+MessageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/3717/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/MessageServiceImpl.java
+END
+AttachServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Geekdol/!svn/ver/4346/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/AttachServiceImpl.java
+END
+CommunityServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/Geekdol/!svn/ver/5163/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/CommunityServiceImpl.java
+END
+ProvinceServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/5155/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/ProvinceServiceImpl.java
+END
+KeywordsServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/3890/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/KeywordsServiceImpl.java
+END
+UserAreaServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/4717/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/UserAreaServiceImpl.java
+END
+SysDataServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/4812/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/SysDataServiceImpl.java
+END
+CityServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/5159/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/impl/CityServiceImpl.java
+END

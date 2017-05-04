@@ -1,0 +1,1321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.IntimateNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.IntimateNews" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="report_time" property="reportTime" jdbcType="TIMESTAMP" />
+    <result column="reply_flag" property="replyFlag" jdbcType="CHAR" />
+    <result column="top_flag" property="topFlag" jdbcType="CHAR" />
+    <result column="top_start" property="topStart" jdbcType="TIMESTAMP" />
+    <result column="top_end" property="topEnd" jdbcType="TIMESTAMP" />
+    <result column="verify_status" property="verifyStatus" jdbcType="CHAR" />
+    <result column="verify_opinion" property="verifyOpinion" jdbcType="VARCHAR" />
+    <result column="verify_id" property="verifyId" jdbcType="BIGINT" />
+    <result column="verify_time" property="verifyTime" jdbcType="TIMESTAMP" />
+    <result column="publish_status" property="publishStatus" jdbcType="CHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="publish_personid" property="publishPersonid" jdbcType="BIGINT" />
+    <result column="likes_number" property="likesNumber" jdbcType="INTEGER" />
+    <result column="hate_number" property="hateNumber" jdbcType="INTEGER" />
+    <result column="view_number" property="viewNumber" jdbcType="INTEGER" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="illegal_number" property="illegalNumber" jdbcType="INTEGER" />
+    <result column="is_quick" property="isQuick" jdbcType="CHAR" />
+    <result column="repeat_flag" property="repeatFlag" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <!-- 贴心报与小区关系表 -->
+    <collection property="intimateVillageList" column="id" select="com.wooxun.geekdol.hmedia.mapper.IntimateVillageMapper.selectIntimateVillageByIntimateNewsId"></collection>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.hmedia.model.IntimateNews" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, summary, source, icon, type, report_time, reply_flag, top_flag, top_start, 
+    top_end, verify_status, verify_opinion, verify_id, verify_time, publish_status, publish_time, 
+    publish_personid, likes_number, hate_number, view_number, reply_number, illegal_number, 
+    is_quick, repeat_flag, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from m_intimate_new
+    where id = #{id,jdbcType=BIGINT}
+     and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_intimate_new
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNews" >
+    insert into m_intimate_new (id, title, summary, 
+      source, icon, type, report_time, 
+      reply_flag, top_flag, top_start, 
+      top_end, verify_status, verify_opinion, 
+      verify_id, verify_time, publish_status, 
+      publish_time, publish_personid, likes_number, 
+      hate_number, view_number, reply_number, 
+      illegal_number, is_quick, repeat_flag, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{reportTime,jdbcType=TIMESTAMP}, 
+      #{replyFlag,jdbcType=CHAR}, #{topFlag,jdbcType=CHAR}, #{topStart,jdbcType=TIMESTAMP}, 
+      #{topEnd,jdbcType=TIMESTAMP}, #{verifyStatus,jdbcType=CHAR}, #{verifyOpinion,jdbcType=VARCHAR}, 
+      #{verifyId,jdbcType=BIGINT}, #{verifyTime,jdbcType=TIMESTAMP}, #{publishStatus,jdbcType=CHAR}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{publishPersonid,jdbcType=BIGINT}, #{likesNumber,jdbcType=INTEGER}, 
+      #{hateNumber,jdbcType=INTEGER}, #{viewNumber,jdbcType=INTEGER}, #{replyNumber,jdbcType=INTEGER}, 
+      #{illegalNumber,jdbcType=INTEGER}, #{isQuick,jdbcType=CHAR}, #{repeatFlag,jdbcType=CHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"  parameterType="com.wooxun.geekdol.hmedia.model.IntimateNews" >
+    insert into m_intimate_new
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="reportTime != null" >
+        report_time,
+      </if>
+      <if test="replyFlag != null" >
+        reply_flag,
+      </if>
+      <if test="topFlag != null" >
+        top_flag,
+      </if>
+      <if test="topStart != null" >
+        top_start,
+      </if>
+      <if test="topEnd != null" >
+        top_end,
+      </if>
+      <if test="verifyStatus != null" >
+        verify_status,
+      </if>
+      <if test="verifyOpinion != null" >
+        verify_opinion,
+      </if>
+      <if test="verifyId != null" >
+        verify_id,
+      </if>
+      <if test="verifyTime != null" >
+        verify_time,
+      </if>
+      <if test="publishStatus != null" >
+        publish_status,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="publishPersonid != null" >
+        publish_personid,
+      </if>
+      <if test="likesNumber != null" >
+        likes_number,
+      </if>
+      <if test="hateNumber != null" >
+        hate_number,
+      </if>
+      <if test="viewNumber != null" >
+        view_number,
+      </if>
+      <if test="replyNumber != null" >
+        reply_number,
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number,
+      </if>
+      <if test="isQuick != null" >
+        is_quick,
+      </if>
+      <if test="repeatFlag != null" >
+        repeat_flag,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="reportTime != null" >
+        #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyFlag != null" >
+        #{replyFlag,jdbcType=CHAR},
+      </if>
+      <if test="topFlag != null" >
+        #{topFlag,jdbcType=CHAR},
+      </if>
+      <if test="topStart != null" >
+        #{topStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topEnd != null" >
+        #{topEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyStatus != null" >
+        #{verifyStatus,jdbcType=CHAR},
+      </if>
+      <if test="verifyOpinion != null" >
+        #{verifyOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyId != null" >
+        #{verifyId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyTime != null" >
+        #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishPersonid != null" >
+        #{publishPersonid,jdbcType=BIGINT},
+      </if>
+      <if test="likesNumber != null" >
+        #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isQuick != null" >
+        #{isQuick,jdbcType=CHAR},
+      </if>
+      <if test="repeatFlag != null" >
+        #{repeatFlag,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNews" >
+    update m_intimate_new
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="reportTime != null" >
+        report_time = #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyFlag != null" >
+        reply_flag = #{replyFlag,jdbcType=CHAR},
+      </if>
+      <if test="topFlag != null" >
+        top_flag = #{topFlag,jdbcType=CHAR},
+      </if>
+      <if test="topStart != null" >
+        top_start = #{topStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topEnd != null" >
+        top_end = #{topEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyStatus != null" >
+        verify_status = #{verifyStatus,jdbcType=CHAR},
+      </if>
+      <if test="verifyOpinion != null" >
+        verify_opinion = #{verifyOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyId != null" >
+        verify_id = #{verifyId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        publish_status = #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishPersonid != null" >
+        publish_personid = #{publishPersonid,jdbcType=BIGINT},
+      </if>
+      <if test="likesNumber != null" >
+        likes_number = #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        hate_number = #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        view_number = #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        reply_number = #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isQuick != null" >
+        is_quick = #{isQuick,jdbcType=CHAR},
+      </if>
+      <if test="repeatFlag != null" >
+        repeat_flag = #{repeatFlag,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNews" >
+    update m_intimate_new
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      report_time = #{reportTime,jdbcType=TIMESTAMP},
+      reply_flag = #{replyFlag,jdbcType=CHAR},
+      top_flag = #{topFlag,jdbcType=CHAR},
+      top_start = #{topStart,jdbcType=TIMESTAMP},
+      top_end = #{topEnd,jdbcType=TIMESTAMP},
+      verify_status = #{verifyStatus,jdbcType=CHAR},
+      verify_opinion = #{verifyOpinion,jdbcType=VARCHAR},
+      verify_id = #{verifyId,jdbcType=BIGINT},
+      verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_personid = #{publishPersonid,jdbcType=BIGINT},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      hate_number = #{hateNumber,jdbcType=INTEGER},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      is_quick = #{isQuick,jdbcType=CHAR},
+      repeat_flag = #{repeatFlag,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNews" >
+    update m_intimate_new
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      report_time = #{reportTime,jdbcType=TIMESTAMP},
+      reply_flag = #{replyFlag,jdbcType=CHAR},
+      top_flag = #{topFlag,jdbcType=CHAR},
+      top_start = #{topStart,jdbcType=TIMESTAMP},
+      top_end = #{topEnd,jdbcType=TIMESTAMP},
+      verify_status = #{verifyStatus,jdbcType=CHAR},
+      verify_opinion = #{verifyOpinion,jdbcType=VARCHAR},
+      verify_id = #{verifyId,jdbcType=BIGINT},
+      verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_personid = #{publishPersonid,jdbcType=BIGINT},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      hate_number = #{hateNumber,jdbcType=INTEGER},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      is_quick = #{isQuick,jdbcType=CHAR},
+      repeat_flag = #{repeatFlag,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+                                   <!-- 自定义查询 -->
+  <!-- 根据当前登录用户判断其所管辖范围下的小区的贴心报  -->                              
+  <select id="queryIntimateNewsByParams" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo">
+  select * from (
+     SELECT
+     m.id as id,
+     m.publish_status as publishStatus,
+     m.title as title,
+     m.report_time as reportTime,
+     m.verify_status as verifyStatus,
+     m.verify_time as verifyTime,
+     m.reply_flag as replyFlag,
+     m.top_flag as topFlag,
+     group_concat(v.village_name) as villageName,
+     concat_ws('/',m.view_number,m.reply_number,m.illegal_number) AS hotnumber,
+     m.source,
+     m.publish_time as publishTime,
+     m.repeat_flag as repeatFlag,
+     group_concat(v.village_id) as villageIds,
+     m.view_number as viewNumber,
+     m.upd_ymdhms updYmdhms
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     (
+    SELECT village.village_id,village.village_name from s_village
+    village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+        and ua.area_id = village.province_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+        and ua.area_id = village.city_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+        and ua.area_id = village.county_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+        and ua.area_id = village.community_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+        and ua.area_id = village.village_id
+    </if>
+     and village.del_flag= '0'
+     and village.status='0'
+    ) v
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    GROUP BY m.id
+    ) r where 1=1
+    
+     <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+    </if>
+    
+    <if test="verifyStatus != null and verifyStatus.trim() != ''">
+        and r.verifyStatus = #{verifyStatus,jdbcType=CHAR}
+    </if>
+    
+    <if test="publishStatus != null and publishStatus.trim() != ''">
+        and r.publishStatus = #{publishStatus,jdbcType=CHAR}
+    </if>
+    
+    
+    <if test="villageId != null and villageId != 0">
+        and FIND_IN_SET(#{villageId,jdbcType=BIGINT},r.villageIds)
+    </if>
+     <!-- 0为最新  默认也用这个-->
+    <if test="(newOrHot != null and newOrHot.trim() != '' and newOrHot.trim() == 0) or (newOrHot == null or newOrHot.trim() == '')">
+         order by r.updYmdhms desc
+    </if>
+     <!-- 1为最热-->
+    <if test="newOrHot != null and newOrHot.trim() != '' and newOrHot.trim() ==1">
+         order by r.viewNumber desc
+    </if>
+    
+    <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+    </if>
+    
+  </select>
+  
+  <!-- 根据当前登录用户判断其所管辖范围下的小区的贴心报数量  -->    
+  <select id="queryCountByParams" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="java.lang.Long">
+     SELECT COUNT(r.id) from (
+     SELECT
+     m.id,
+     m.title,
+     m.report_time,
+     m.verify_status,
+     m.publish_status,
+     m.verify_time,
+     m.reply_flag,
+     m.top_flag,
+     group_concat(v.village_name) AS villageName,
+     group_concat(v.village_id) as villageIds,
+     m.view_number as viewNumber,
+     m.upd_ymdhms updYmdhms
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     (
+    SELECT village.village_id,village.village_name from s_village
+    village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+        and ua.area_id = village.province_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+        and ua.area_id = village.city_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+        and ua.area_id = village.county_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+        and ua.area_id = village.community_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+        and ua.area_id = village.village_id
+    </if>
+     AND village.del_flag= '0'
+     and village.status='0'
+    ) v
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    GROUP BY m.id
+    ) r where 1=1
+    
+    <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+     </if>
+     
+     <if test="verifyStatus != null and verifyStatus.trim() != ''">
+        and r.verify_status = #{verifyStatus,jdbcType=CHAR}
+    </if>
+    
+     <if test="publishStatus != null and publishStatus.trim() != ''">
+        and r.publish_status = #{publishStatus,jdbcType=CHAR}
+    </if>
+    
+    <if test="villageId != null and villageId != 0">
+        and FIND_IN_SET(#{villageId,jdbcType=BIGINT},r.villageIds)
+    </if>
+    
+    <!-- 0为最新  默认也用这个-->
+    <if test="(newOrHot != null and newOrHot.trim() != '' and newOrHot.trim() == 0) or (newOrHot == null or newOrHot.trim() == '')">
+         order by r.updYmdhms desc
+    </if>
+     <!-- 1为最热-->
+    <if test="newOrHot != null and newOrHot.trim() != '' and newOrHot.trim() == 1">
+         order by r.viewNumber desc
+    </if>
+     
+  </select>
+  
+  <!-- 找到已提交的贴心报总列表(verifyStatus>0 并且不是快捷发布 is_quick=0) -->
+  <select id="queryYitijiaoList" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo">
+     select * from(
+     SELECT
+     m.id as id,
+     m.title as title,
+     m.report_time as reportTime,
+     m.verify_status as verifyStatus,
+     m.verify_time as verifyTime,
+     m.reply_flag as replyFlag,
+     m.top_flag as topFlag,
+     group_concat(v.village_name) as villageName,
+     group_concat(v.village_id) as villageIds,
+     concat_ws('/',m.view_number,m.reply_number,m.illegal_number) AS hotnumber,
+     m.upd_ymdhms AS tijiaoShijian,
+     (select a.real_name from security_user a where a.id=m.verify_id) as shenheName,
+     (select a.real_name from security_user a where a.id=m.upd_id) as tijiaoName
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     (
+    SELECT village.village_id,village.village_name from s_village
+    village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+        and ua.area_id = village.province_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+        and ua.area_id = village.city_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+        and ua.area_id = village.county_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+        and ua.area_id = village.community_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+        and ua.area_id = village.village_id
+    </if>
+     AND village.del_flag= '0'
+     and village.status='0'
+    ) v
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and m.verify_status>'0'
+    and m.is_quick='0'
+    GROUP BY m.id
+    order by m.top_flag desc,m.upd_ymdhms desc
+    ) r where 1=1
+    
+    <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+    </if>
+    
+    <if test="verifyStatus != null and verifyStatus.trim() != ''">
+        and r.verifyStatus = #{verifyStatus,jdbcType=CHAR}
+    </if>
+    
+    <if test="villageId != null and villageId != 0">
+          and FIND_IN_SET(#{villageId,jdbcType=BIGINT},r.villageIds)
+    </if>
+    
+    <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+    </if>
+    </select>
+   <!--  找到已提交的贴心报总数量(verifyStatus>0 并且不是快捷发布 is_quick=0) -->
+    <select id="queryYitijiaoCount" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="java.lang.Long">
+     SELECT COUNT(r.id) from (
+     SELECT
+     m.id,
+     m.title,
+     m.report_time,
+     m.verify_status,
+     m.verify_time,
+     m.reply_flag,
+     m.top_flag,
+     group_concat(v.village_name) AS villageName,
+     group_concat(v.village_id) as villageIds
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     (
+    SELECT village.village_id,village.village_name from s_village
+    village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+        and ua.area_id = village.province_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+        and ua.area_id = village.city_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+        and ua.area_id = village.county_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+        and ua.area_id = village.community_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+        and ua.area_id = village.village_id
+    </if>
+     AND village.del_flag= '0'
+     and village.status='0'
+    ) v
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and m.verify_status>'0'
+    and m.is_quick='0'
+    GROUP BY m.id
+    ) r where 1=1
+     <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+     </if>
+     
+     <if test="verifyStatus != null and verifyStatus.trim() != ''">
+        and r.verify_status = #{verifyStatus,jdbcType=CHAR}
+    </if>
+    
+    <if test="villageId != null and villageId != 0">
+          and FIND_IN_SET(#{villageId,jdbcType=BIGINT},r.villageIds)
+    </if>
+    </select>
+    
+     <!-- 找到已提交的贴心报总列表(verifyStatus>0) 自媒体专用 -->
+  <select id="querySelfYitijiaoList" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo">
+   select * from(
+     SELECT
+     m.id as id,
+     m.title as title,
+     m.report_time as reportTime,
+     m.verify_status as verifyStatus,
+     m.verify_time as verifyTime,
+     m.reply_flag as replyFlag,
+     m.top_flag as topFlag,
+     group_concat(v.village_name) as villageName,
+     group_concat(v.village_id) as villageIds,
+     concat_ws('/',m.view_number,m.reply_number,m.illegal_number) AS hotnumber,
+     m.upd_ymdhms AS tijiaoShijian,
+     (select a.real_name from security_user a where a.id=m.verify_id) as shenheName,
+     (select a.real_name from security_user a where a.id=m.upd_id) as tijiaoName
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     s_village s
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and m.verify_status>'0'
+    and s.status='0'
+    and s.del_flag='0'
+    GROUP BY m.id
+    order by m.top_flag desc,m.upd_ymdhms desc
+    ) r where 1=1
+    
+    <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+    </if>
+    
+    <if test="verifyStatus != null and verifyStatus.trim() != ''">
+        and r.verifyStatus = #{verifyStatus,jdbcType=CHAR}
+    </if>
+    
+    <if test="villageId != null and villageId != 0">
+          and FIND_IN_SET(#{villageId,jdbcType=BIGINT},r.villageIds)
+    </if>
+    
+    <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+    </if>
+    </select>
+    
+     <!--  找到已提交的贴心报总数量(verifyStatus>0)  自媒体专用-->
+    <select id="querySelfYitijiaoCount" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="java.lang.Long">
+     SELECT COUNT(r.id) from (
+     SELECT
+     m.id,
+     m.title,
+     m.report_time,
+     m.verify_status,
+     m.verify_time,
+     m.reply_flag,
+     m.top_flag,
+     group_concat(v.village_name) AS villageName,
+     group_concat(v.village_id) as villageIds
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     s_village s
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and m.verify_status>'0'
+    and s.status='0'
+    and s.del_flag='0'
+    GROUP BY m.id
+    ) r where 1=1
+     <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+     </if>
+     
+     <if test="verifyStatus != null and verifyStatus.trim() != ''">
+        and r.verify_status = #{verifyStatus,jdbcType=CHAR}
+    </if>
+    
+    <if test="villageId != null and villageId != 0">
+          and FIND_IN_SET(#{villageId,jdbcType=BIGINT},r.villageIds)
+    </if>
+    </select>
+    
+    
+      <!-- 找到已审核的贴心报总列表(verifyStatus=2) -->
+  <select id="querYishenheList" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo">
+     select * from(
+     SELECT
+     m.id as id,
+     m.publish_time as publishTime,
+     m.publish_status as publishStatus,
+     m.title as title,
+     m.report_time as reportTime,
+     m.verify_status as verifyStatus,
+     m.verify_time as verifyTime,
+     m.reply_flag as replyFlag,
+     m.top_flag as topFlag,
+     group_concat(v.village_name) as villageName,
+     concat_ws('/',m.view_number,m.reply_number,m.illegal_number) AS hotnumber,
+     m.repeat_flag as repeatFlag,
+     group_concat(v.village_id) as villageIds
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     (
+    SELECT village.village_id,village.village_name from s_village
+    village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+        and ua.area_id = village.province_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+        and ua.area_id = village.city_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+        and ua.area_id = village.county_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+        and ua.area_id = village.community_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+        and ua.area_id = village.village_id
+    </if>
+    AND village.del_flag= '0'
+    and village.status='0'
+    ) v
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and m.verify_status='2'
+    GROUP BY m.id
+    order by m.verify_time desc
+    ) r where 1=1
+    
+     <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+    </if>
+    
+    <if test="publishStatus != null and publishStatus.trim() != ''">
+        and r.publishStatus = #{publishStatus,jdbcType=CHAR}
+    </if>
+    
+    
+     <if test="villageId != null and villageId != 0">
+            and FIND_IN_SET(#{villageId,jdbcType=BIGINT},r.villageIds)
+    </if>
+    
+    <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+    </if>
+    
+    </select>
+   <!--  找到已审核的贴心报总数量(verifyStatus=2) -->
+    <select id="queryYishenheCount" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="java.lang.Long">
+     SELECT COUNT(r.id) from (
+     SELECT
+     m.id,
+     m.title,
+     m.report_time,
+     m.verify_status,
+     m.publish_status,
+     m.verify_time,
+     m.reply_flag,
+     m.top_flag,
+     group_concat(v.village_name) AS villageName,
+     group_concat(v.village_id) as villageIds
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     (
+    SELECT village.village_id,village.village_name from s_village
+    village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+        and ua.area_id = village.province_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+        and ua.area_id = village.city_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+        and ua.area_id = village.county_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+        and ua.area_id = village.community_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+        and ua.area_id = village.village_id
+    </if>
+    AND village.del_flag= '0'
+    and village.status='0'
+    ) v
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and m.verify_status='2'
+    GROUP BY m.id
+    ) r where 1=1
+     <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+     </if>
+     
+     <if test="publishStatus != null and publishStatus.trim() != ''">
+        and r.publish_status = #{publishStatus,jdbcType=CHAR}
+    </if>
+    
+     <if test="villageId != null and villageId != 0">
+         and FIND_IN_SET(#{villageId,jdbcType=BIGINT},r.villageIds)
+    </if>
+    </select>
+    
+     <!-- 找到不是当前登录用户所管辖的贴心报列表并且发布状态为已发布的贴心报(publishStatus=1) -->
+  <select id="querotherpersonList" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo">
+  
+  select * from (
+  
+     SELECT
+     m.id as id,
+     m.publish_time as publishTime,
+     m.publish_status as publishStatus,
+     m.title as title,
+     m.report_time as reportTime,
+     m.verify_status as verifyStatus,
+     m.verify_time as verifyTime,
+     m.reply_flag as replyFlag,
+     m.top_flag as topFlag,
+     group_concat(v.village_name) as villageName,
+     concat_ws('/',m.view_number,m.reply_number,m.illegal_number) AS hotnumber,
+     m.repeat_flag as repeatFlag
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     (
+    select c.village_id,c.village_name from s_village c where c.village_id not IN(
+    SELECT village.village_id from s_village
+    village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+        and ua.area_id = village.province_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+        and ua.area_id = village.city_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+        and ua.area_id = village.county_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+        and ua.area_id = village.community_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+        and ua.area_id = village.village_id
+    </if>
+    and village.del_flag= '0'
+    and village.status='0'
+    )) v
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and m.verify_status='2'
+    and m.publish_status='1'
+    GROUP BY m.id
+    order by m.top_flag desc,m.upd_ymdhms desc
+  
+  ) r  where 1=1
+  
+    <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+    </if>
+    
+    <if test="publishStatus != null and publishStatus.trim() != ''">
+        and r.publishStatus = #{publishStatus,jdbcType=CHAR}
+    </if>
+    
+     <if test="villageName != null and villageName.trim() != ''">
+        and r.villageName LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+     </if>
+  
+    <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+    </if>
+    </select>
+    
+    
+  <!-- 找到不是当前登录用户所管辖的贴心报列表并且发布状态为已发布的贴心报总量(publishStatus=1) -->
+  <select id="querotherpersonListCount" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="java.lang.Long">
+  select count(r.id) from (
+     SELECT
+     m.id as id,
+     m.publish_time as publishTime,
+     m.publish_status as publishStatus,
+     m.title as title,
+     m.report_time as reportTime,
+     m.verify_status as verifyStatus,
+     m.verify_time as verifyTime,
+     m.reply_flag as replyFlag,
+     m.top_flag as topFlag,
+     group_concat(v.village_name) as villageName,
+     concat_ws('/',m.view_number,m.reply_number,m.illegal_number) AS hotnumber,
+     m.repeat_flag as repeatFlag
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     (
+    select c.village_id,c.village_name from s_village c where c.village_id not IN(
+    SELECT village.village_id from s_village
+    village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+        and ua.area_id = village.province_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+        and ua.area_id = village.city_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+        and ua.area_id = village.county_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+        and ua.area_id = village.community_id
+    </if>
+    <if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+        and ua.area_id = village.village_id
+    </if>
+    and village.del_flag= '0'
+    and village.status='0'
+    )) v
+    WHERE
+    1 = 1
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and m.verify_status='2'
+    and m.publish_status='1'
+    GROUP BY m.id
+    order by m.top_flag desc,m.upd_ymdhms desc
+  
+  ) r  where 1=1
+  
+    <if test="title != null and title.trim() != ''">
+        and r.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+    </if>
+    
+    <if test="publishStatus != null and publishStatus.trim() != ''">
+        and r.verifyStatus = #{publishStatus,jdbcType=CHAR}
+    </if>
+    
+     <if test="villageName != null and villageName.trim() != ''">
+        and r.villageName LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+     </if>
+    </select>
+    <!-- app查询贴心报列表  (3部分数据拼接而成  1：置顶的数据  2：置顶状态为置顶但不在置顶范围内的数据 3：从未置顶过的数据 ) -->
+    <select id="appQueryIntimateNewsByParams" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultType="com.wooxun.geekdol.hmedia.vo.AppIntimateNewsVo">
+     select * from (
+     select * from (
+     SELECT
+     m.id as id,
+     m.title as title,
+     m.source as source,
+     m.icon as icon,
+     m.type as type,
+     m.upd_ymdhms,
+     m.view_number,
+     (SELECT
+            count(minc.id)
+        FROM
+            m_intimate_new_comment minc,
+            m_intimate_new min
+        WHERE
+            minc.in_id = min.id
+        AND min.del_flag = '0'
+        AND minc.del_flag = '0'
+     and min.id=m.id)  as commentNum
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     s_village v
+     WHERE
+     1 = 1
+    <if test="villageId != null and villageId != 0">
+        and v.village_id =#{villageId,jdbcType=BIGINT}
+    </if>
+    <if test="title != null and title.trim() != ''" >
+	  AND m.title LIKE CONCAT('%',#{title},'%')
+    </if>
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and v.del_flag='0'
+    and v.status='0'
+    <if test="publishStatus != null and publishStatus.trim()!=''" >
+       and m.publish_status = #{publishStatus,jdbcType=CHAR}
+    </if>
+    <![CDATA[ and now() >= top_start ]]>
+    <![CDATA[ and now() <= top_end   ]]>
+    and m.top_flag='1'
+    GROUP BY m.id
+     <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 0">
+      order by m.upd_ymdhms desc
+     </if>
+     
+     <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 1">
+      order by m.upd_ymdhms desc
+     </if>
+     
+     <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 2">
+      order by m.view_number desc
+     </if>
+     ) b 
+     union
+     select * from (
+     SELECT
+     m.id as id,
+     m.title as title,
+     m.source as source,
+     m.icon as icon,
+     m.type as type,
+     m.upd_ymdhms,
+     m.view_number,
+     (SELECT
+            count(minc.id)
+        FROM
+            m_intimate_new_comment minc,
+            m_intimate_new min
+        WHERE
+            minc.in_id = min.id
+        AND min.del_flag = '0'
+        AND minc.del_flag = '0'
+     and min.id=m.id)  as commentNum
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     s_village v
+     WHERE
+     1 = 1
+    <if test="villageId != null and villageId != 0">
+        and v.village_id =#{villageId,jdbcType=BIGINT}
+    </if>
+    <if test="title != null and title.trim() != ''" >
+      AND m.title LIKE CONCAT('%',#{title},'%')
+    </if>
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and v.del_flag='0'
+    and v.status='0'
+    <if test="publishStatus != null and publishStatus.trim()!=''" >
+       and m.publish_status = #{publishStatus,jdbcType=CHAR}
+    </if>
+    and m.top_flag='0'
+    GROUP BY m.id
+    <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 0">
+      order by m.upd_ymdhms desc
+     </if>
+     
+     <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 1">
+      order by m.upd_ymdhms desc
+     </if>
+     
+     <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 2">
+      order by m.view_number desc
+     </if>
+     ) c union
+     
+          select * from (
+     SELECT
+     m.id as id,
+     m.title as title,
+     m.source as source,
+     m.icon as icon,
+     m.type as type,
+     m.upd_ymdhms,
+     m.view_number,
+     (SELECT
+            count(minc.id)
+        FROM
+            m_intimate_new_comment minc,
+            m_intimate_new min
+        WHERE
+            minc.in_id = min.id
+        AND min.del_flag = '0'
+        AND minc.del_flag = '0'
+     and min.id=m.id)  as commentNum
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     s_village v
+     WHERE
+     1 = 1
+    <if test="villageId != null and villageId != 0">
+        and v.village_id =#{villageId,jdbcType=BIGINT}
+    </if>
+    <if test="title != null and title.trim() != ''" >
+      AND m.title LIKE CONCAT('%',#{title},'%')
+    </if>
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and v.del_flag='0'
+    and v.status='0'
+    <if test="publishStatus != null and publishStatus.trim()!=''" >
+       and m.publish_status = #{publishStatus,jdbcType=CHAR}
+    </if>
+    and m.top_flag='1'
+   <![CDATA[  and (now() > m.top_end or now() < m.top_start) ]]>
+    GROUP BY m.id
+     <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 0">
+      order by m.upd_ymdhms desc
+     </if>
+     
+     <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 1">
+      order by m.upd_ymdhms desc
+     </if>
+     
+     <if test="appFlag !=null and appFlag.trim() != '' and appFlag.trim() == 2">
+      order by m.view_number desc
+     </if>
+     ) d
+     ) a where 1=1
+     <if test="pageFlag==true">
+              LIMIT #{startPage}, #{endPage}
+     </if>
+     
+  </select>
+  
+  <!-- 贴心报推荐列表  条件查询,按浏览量倒序排列 -->
+  <select id="queryListByParamOrder" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsVo" resultMap="BaseResultMap">
+  
+  SELECT
+     m.*
+     FROM
+     m_intimate_new m,
+     m_intimate_new_village sv,
+     s_village v
+     WHERE
+     1 = 1
+    <if test="villageId != null and villageId != 0">
+        and v.village_id =#{villageId,jdbcType=BIGINT}
+    </if>
+    <if test="publishStatus != null and publishStatus.trim()!=''" >
+       and m.publish_status = #{publishStatus,jdbcType=CHAR}
+    </if>
+    AND m.id = sv.intimate_new_id
+    AND sv.village_id = v.village_id
+    and m.del_flag= '0'
+    and v.del_flag='0'
+    and m.publish_status='1'
+    and v.status='0'
+    <if test="id != null and id != 0">
+        and m.id != #{id,jdbcType=BIGINT}
+    </if>
+    GROUP BY m.id
+    order by m.view_number desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  
+  <!-- app查找用户当天是否对贴心报进行过点赞或者倒赞 -->
+  <select id="selectIntimateNewsByDay" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_intimate_new
+    where id = #{intimateNewsId}
+    and del_flag = '0'
+    and upd_id = #{appUserId}
+    and #{startTime} &lt;= date_format(upd_ymdhms,'%Y-%m-%d %H:%i:%s')
+    and date_format(upd_ymdhms,'%Y-%m-%d %H:%i:%s') &lt;= #{endTime}
+  </select>
+  
+</mapper>

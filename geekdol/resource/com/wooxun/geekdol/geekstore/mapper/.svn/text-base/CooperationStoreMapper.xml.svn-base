@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.CooperationStoreMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.CooperationStore" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="street_id" property="streetId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="CHAR" />
+    <result column="min_deliver_price" property="minDeliverPrice" jdbcType="DECIMAL" />
+    <result column="delivery_number" property="deliveryNumber" jdbcType="VARCHAR" />
+    <result column="contcat_name" property="contcatName" jdbcType="VARCHAR" />
+    <result column="contcat_number" property="contcatNumber" jdbcType="VARCHAR" />
+    <result column="opening_time" property="openingTime" jdbcType="TIME" />
+    <result column="closing_time" property="closingTime" jdbcType="TIME" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="legal_person_id" property="legalPersonId" jdbcType="VARCHAR" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="store_adress" property="storeAdress" jdbcType="VARCHAR" />
+    <result column="liking_base_value" property="likingBaseValue" jdbcType="INTEGER" />
+    <result column="thumbnail" property="thumbnail" jdbcType="VARCHAR" />
+    <result column="business_license" property="businessLicense" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    
+    <collection property="cooperationStoreVillage" column="id" select="com.wooxun.geekdol.geekstore.mapper.CooperationStoreVillageMapper.selectCooperationStoreVillageByStoreId"></collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, city_id, country_id, street_id, user_id, store_name, type_id, min_deliver_price, 
+    delivery_number, contcat_name, contcat_number, opening_time, closing_time, legal_person, 
+    legal_person_id, organization_code, store_adress, liking_base_value, thumbnail, business_license, 
+    remark, status, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_cooperation_store
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_cooperation_store
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStore" >
+    insert into j_cooperation_store (id, city_id, country_id, 
+      street_id, user_id, store_name, 
+      type_id, min_deliver_price, delivery_number, 
+      contcat_name, contcat_number, opening_time, 
+      closing_time, legal_person, legal_person_id, 
+      organization_code, store_adress, liking_base_value, 
+      thumbnail, business_license, remark, 
+      status, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{cityId,jdbcType=BIGINT}, #{countryId,jdbcType=BIGINT}, 
+      #{streetId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, 
+      #{typeId,jdbcType=CHAR}, #{minDeliverPrice,jdbcType=DECIMAL}, #{deliveryNumber,jdbcType=VARCHAR}, 
+      #{contcatName,jdbcType=VARCHAR}, #{contcatNumber,jdbcType=VARCHAR}, #{openingTime,jdbcType=TIME}, 
+      #{closingTime,jdbcType=TIME}, #{legalPerson,jdbcType=VARCHAR}, #{legalPersonId,jdbcType=VARCHAR}, 
+      #{organizationCode,jdbcType=VARCHAR}, #{storeAdress,jdbcType=VARCHAR}, #{likingBaseValue,jdbcType=INTEGER}, 
+      #{thumbnail,jdbcType=VARCHAR}, #{businessLicense,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStore" useGeneratedKeys="true" keyProperty="id">
+    insert into j_cooperation_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="streetId != null" >
+        street_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="minDeliverPrice != null" >
+        min_deliver_price,
+      </if>
+      <if test="deliveryNumber != null" >
+        delivery_number,
+      </if>
+      <if test="contcatName != null" >
+        contcat_name,
+      </if>
+      <if test="contcatNumber != null" >
+        contcat_number,
+      </if>
+      <if test="openingTime != null" >
+        opening_time,
+      </if>
+      <if test="closingTime != null" >
+        closing_time,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="legalPersonId != null" >
+        legal_person_id,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="storeAdress != null" >
+        store_adress,
+      </if>
+      <if test="likingBaseValue != null" >
+        liking_base_value,
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail,
+      </if>
+      <if test="businessLicense != null" >
+        business_license,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="streetId != null" >
+        #{streetId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=CHAR},
+      </if>
+      <if test="minDeliverPrice != null" >
+        #{minDeliverPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryNumber != null" >
+        #{deliveryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contcatName != null" >
+        #{contcatName,jdbcType=VARCHAR},
+      </if>
+      <if test="contcatNumber != null" >
+        #{contcatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openingTime != null" >
+        #{openingTime,jdbcType=TIME},
+      </if>
+      <if test="closingTime != null" >
+        #{closingTime,jdbcType=TIME},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonId != null" >
+        #{legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAdress != null" >
+        #{storeAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="likingBaseValue != null" >
+        #{likingBaseValue,jdbcType=INTEGER},
+      </if>
+      <if test="thumbnail != null" >
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStore" >
+    update j_cooperation_store
+    <set >
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="streetId != null" >
+        street_id = #{streetId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=CHAR},
+      </if>
+      <if test="minDeliverPrice != null" >
+        min_deliver_price = #{minDeliverPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryNumber != null" >
+        delivery_number = #{deliveryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contcatName != null" >
+        contcat_name = #{contcatName,jdbcType=VARCHAR},
+      </if>
+      <if test="contcatNumber != null" >
+        contcat_number = #{contcatNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="openingTime != null" >
+        opening_time = #{openingTime,jdbcType=TIME},
+      </if>
+      <if test="closingTime != null" >
+        closing_time = #{closingTime,jdbcType=TIME},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonId != null" >
+        legal_person_id = #{legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAdress != null" >
+        store_adress = #{storeAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="likingBaseValue != null" >
+        liking_base_value = #{likingBaseValue,jdbcType=INTEGER},
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null" >
+        business_license = #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStore" >
+    update j_cooperation_store
+    set city_id = #{cityId,jdbcType=BIGINT},
+      country_id = #{countryId,jdbcType=BIGINT},
+      street_id = #{streetId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=CHAR},
+      min_deliver_price = #{minDeliverPrice,jdbcType=DECIMAL},
+      delivery_number = #{deliveryNumber,jdbcType=VARCHAR},
+      contcat_name = #{contcatName,jdbcType=VARCHAR},
+      contcat_number = #{contcatNumber,jdbcType=VARCHAR},
+      opening_time = #{openingTime,jdbcType=TIME},
+      closing_time = #{closingTime,jdbcType=TIME},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      legal_person_id = #{legalPersonId,jdbcType=VARCHAR},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      store_adress = #{storeAdress,jdbcType=VARCHAR},
+      liking_base_value = #{likingBaseValue,jdbcType=INTEGER},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      business_license = #{businessLicense,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 吉客店后台：合作店列表查询 begin -->
+  <select id="findCooperationStore" parameterType="com.wooxun.geekdol.geekstore.vo.CooperationStoreVo" resultType="com.wooxun.geekdol.geekstore.vo.CooperationStoreVo">
+  	SELECT d.*, ssd.lable AS openType FROM
+			(
+				SELECT
+					a.*, sd.lable storeType
+				FROM
+					(
+						SELECT
+							store.id AS id,
+							store.store_name AS storeName,
+							group_concat(v.village_name) AS villageName,
+							store.contcat_name AS contcatName,
+							store.contcat_number AS contcatNumber,
+							store.type_id,
+							store.`status`,
+							store.store_adress,
+							store.ins_ymdhms as insYmdhms
+						FROM
+							j_cooperation_store store,
+							j_cooperation_store_village sv,
+							(
+							SELECT village.village_id,village.village_name from s_village
+							village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+							AND ua.del_flag = '0'
+							<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+								and ua.area_id = village.province_id
+							</if>
+							<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+								and ua.area_id = village.city_id
+							</if>
+							<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+								and ua.area_id = village.county_id
+							</if>
+							<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+								and ua.area_id = village.community_id
+							</if>
+							<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+								and ua.area_id = village.village_id
+							</if>
+							) v
+						WHERE 1 = 1
+						AND store.id = sv.store_id
+						AND sv.village_id = v.village_id
+						AND store.del_flag = '0'
+						GROUP BY store.id
+					) a,
+					(SELECT `value`,lable FROM s_sys_data WHERE type = #{storeTypeType }) sd
+				WHERE
+					a.type_id = sd.`value`
+			) d,
+			(SELECT `value`, lable FROM s_sys_data WHERE type = #{openTypeType} ) ssd
+		WHERE d. STATUS = ssd.`value`
+		<if test=" villageName != null and villageName.trim() != ''">
+			and d.villageName LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+		</if>
+		<if test="storeName != null and storeName.trim() != ''">
+			and d.storeName LIKE CONCAT(CONCAT('%', #{storeName}),'%')
+		</if>
+		<if test="status != null and status.trim() != ''">
+			and d.status = #{status,jdbcType=CHAR}
+		</if>
+		<if test="contcatName != null and contcatName.trim() != ''">
+			and d.contcatName LIKE CONCAT(CONCAT('%', #{contcatName}),'%')
+		</if>
+		<if test="contcatNumber != null and contcatNumber.trim() != ''">
+			and d.contcatNumber LIKE CONCAT(CONCAT('%', #{contcatNumber}),'%')
+		</if>
+		<if test="storeAdress != null and storeAdress.trim() != ''">
+			and d.store_adress LIKE CONCAT(CONCAT('%', #{storeAdress}),'%')
+		</if>
+		<if test="typeId != null and typeId.trim() !=''">
+			and d.type_id = #{typeId,jdbcType=CHAR}
+		</if>
+		<if test="pageFlag==true">
+		   LIMIT #{startPage}, #{endPage}
+		 </if>
+  </select>
+  <select id="findCooperationStoreCount" parameterType="com.wooxun.geekdol.geekstore.vo.CooperationStoreVo" resultType="java.lang.Long">
+	SELECT COUNT(r.id) from (
+	SELECT
+	store.id,
+	store.city_id,
+	store.store_name,
+	store.store_adress,
+	group_concat(v.village_name) AS village_name,
+	store.contcat_name,
+	store.contcat_number,
+	store.type_id,
+	store.`status`
+	FROM
+	j_cooperation_store store,
+	j_cooperation_store_village sv,
+	(
+	SELECT village.village_id,village.village_name from s_village
+	village,s_user_area ua WHERE ua.user_id = #{currentUserId,jdbcType=BIGINT}
+	AND ua.del_flag = '0'
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+		and ua.area_id = village.province_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+		and ua.area_id = village.city_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+		and ua.area_id = village.county_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+		and ua.area_id = village.community_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+		and ua.area_id = village.village_id
+	</if>
+	) v
+	WHERE
+	1 = 1
+	AND store.id = sv.store_id
+	AND sv.village_id = v.village_id
+	and store.del_flag= '0'
+	GROUP BY store.id
+	) r where 1=1
+	<if test=" villageName != null and villageName.trim() != ''">
+		and r.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+	</if>
+	<if test="cityId != null and cityId != 0">
+		and r.city_id = #{cityId,jdbcType=BIGINT}
+	</if>
+	<if test="storeName != null and storeName.trim() != ''">
+		and r.store_name LIKE CONCAT(CONCAT('%', #{storeName}),'%')
+	</if>
+	<if test="status != null and status.trim() != ''">
+		and r.status = #{status,jdbcType=CHAR}
+	</if>
+	<if test="contcatName != null and contcatName.trim() != ''">
+		and r.contcat_name LIKE CONCAT(CONCAT('%', #{contcatName}),'%')
+	</if>
+	<if test="contcatNumber != null and contcatNumber.trim() != ''">
+		and r.contcat_number LIKE CONCAT(CONCAT('%', #{contcatName}),'%')
+	</if>
+	<if test="storeAdress != null and storeAdress.trim() != ''">
+		and r.store_adress LIKE CONCAT(CONCAT('%', #{storeAdress}),'%')
+	</if>
+	<if test="typeId != null and typeId.trim() !=''">
+		and r.type_id = #{typeId,jdbcType=CHAR}
+	</if>
+  </select>
+  <!-- 吉客店后台：合作店列表查询 end -->
+  <!-- 查询合作店  app用 -->
+  <select id="selectStore" resultMap="BaseResultMap">
+     select 
+     <include refid="Base_Column_List"></include>
+     from j_cooperation_store
+     where j_cooperation_store.del_flag='0'  
+  
+  </select>
+  
+</mapper>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.ServiceClassificMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.ServiceClassific" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="classific_code" property="classificCode" jdbcType="VARCHAR" />
+    <result column="classific_name" property="classificName" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, classific_code, classific_name, remarks, pic, ins_id, ins_ymdhms, upd_id, upd_ymdhms, 
+    upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_service_classific
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_service_classific
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.ServiceClassific" >
+    insert into j_service_classific (id, classific_code, classific_name, 
+      remarks, pic, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{classificCode,jdbcType=VARCHAR}, #{classificName,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.ServiceClassific" >
+    insert into j_service_classific
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="classificCode != null" >
+        classific_code,
+      </if>
+      <if test="classificName != null" >
+        classific_name,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="classificCode != null" >
+        #{classificCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classificName != null" >
+        #{classificName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.ServiceClassific" >
+    update j_service_classific
+    <set >
+      <if test="classificCode != null" >
+        classific_code = #{classificCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classificName != null" >
+        classific_name = #{classificName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.ServiceClassific" >
+    update j_service_classific
+    set classific_ode = #{classificCode,jdbcType=VARCHAR},
+      classific_name = #{classificName,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 服务社分类初始化 begin -->
+  <select id="queryServiceClassificByType" parameterType="com.wooxun.geekdol.geekstore.model.ServiceClassific" resultMap="BaseResultMap">
+	select
+	<include refid="Base_Column_List" />
+	from j_service_classific where del_flag = '0'
+  </select>
+  <!-- 服务社分类初始化 end -->
+</mapper>

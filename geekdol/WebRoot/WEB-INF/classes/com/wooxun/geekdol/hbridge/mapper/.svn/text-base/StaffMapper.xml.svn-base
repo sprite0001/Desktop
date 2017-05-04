@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.StaffMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.Staff" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="staff_level" property="staffLevel" jdbcType="CHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="publish_status" property="publishStatus" jdbcType="CHAR" />
+    <result column="scanned_number" property="scannedNumber" jdbcType="BIGINT" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.hbridge.model.Staff" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, summary, staff_level, source, type, publish_time, publish_status, scanned_number, 
+    ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_staff
+    where id = #{id,jdbcType=BIGINT} AND del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_staff
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.Staff" >
+    insert into t_staff (id, title, summary, 
+      staff_level, source, type, 
+      publish_time, publish_status, scanned_number, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{staffLevel,jdbcType=CHAR}, #{source,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{publishStatus,jdbcType=CHAR}, #{scannedNumber,jdbcType=BIGINT}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.Staff" >
+    insert into t_staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="staffLevel != null" >
+        staff_level,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="publishStatus != null" >
+        publish_status,
+      </if>
+      <if test="scannedNumber != null" >
+        scanned_number,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="staffLevel != null" >
+        #{staffLevel,jdbcType=CHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="scannedNumber != null" >
+        #{scannedNumber,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.Staff" >
+    update t_staff
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="staffLevel != null" >
+        staff_level = #{staffLevel,jdbcType=CHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        publish_status = #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="scannedNumber != null" >
+        scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.hbridge.model.Staff" >
+    update t_staff
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      staff_level = #{staffLevel,jdbcType=CHAR},
+      source = #{source,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.Staff" >
+    update t_staff
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      staff_level = #{staffLevel,jdbcType=CHAR},
+      source = #{source,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 自定义查询语句开始 -->
+  <!-- 自定义搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="title != null and title.trim()!=''" >
+                AND title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="staffLevel != null and staffLevel.trim()!=''" >
+                AND staff_level = #{staffLevel,jdbcType=CHAR}
+            </if>
+            <if test="type != null and type.trim()!=''" >
+                AND type = #{type,jdbcType=CHAR}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   <!-- 条件查询 -->
+  <select id="queryListByParam" parameterType="com.wooxun.geekdol.hbridge.vo.StaffVo" resultMap="BaseResultMap">
+    select * from t_staff
+    <include refid="searchWhere" />
+        order by id
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 查询总数 -->
+  <select id="queryCountByParam" parameterType="com.wooxun.geekdol.hbridge.vo.StaffLevelVo" resultType="java.lang.Long">
+    select count(*) from t_staff
+    <include refid="searchWhere" />
+        order by id
+  </select>
+   <!-- 条件查询,按浏览量倒序排列 -->
+  <select id="queryListByParamOrder" parameterType="com.wooxun.geekdol.hbridge.vo.StaffVo" resultMap="BaseResultMap">
+    select * from t_staff
+    <include refid="searchWhere" />
+        order by scanned_number desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+</mapper>

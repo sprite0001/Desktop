@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GrouponDemandMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.GrouponDemand" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="classific_id" property="classificId" jdbcType="BIGINT" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="contacts" property="contacts" jdbcType="BIGINT" />
+    <result column="contacts_phone" property="contactsPhone" jdbcType="VARCHAR" />
+    <result column="likes_number" property="likesNumber" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="collect_flag" property="collectFlag" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, village_id, title, goods_name, details, number, classific_id, end_date, contacts, 
+    contacts_phone, likes_number, status, collect_flag, ins_id, ins_ymdhms, upd_id, upd_ymdhms, 
+    upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_groupon_demand
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag ='0' 
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_groupon_demand
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag ='0' 
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.GrouponDemand" >
+    insert into j_groupon_demand (id, village_id, title, 
+      goods_name, details, number, 
+      classific_id, end_date, contacts, 
+      contacts_phone, likes_number, status, 
+      collect_flag, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{details,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{classificId,jdbcType=BIGINT}, #{endDate,jdbcType=TIMESTAMP}, #{contacts,jdbcType=BIGINT}, 
+      #{contactsPhone,jdbcType=VARCHAR}, #{likesNumber,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, 
+      #{collectFlag,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.GrouponDemand" >
+    insert into j_groupon_demand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="classificId != null" >
+        classific_id,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone,
+      </if>
+      <if test="likesNumber != null" >
+        likes_number,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="collectFlag != null" >
+        collect_flag,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="classificId != null" >
+        #{classificId,jdbcType=BIGINT},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=BIGINT},
+      </if>
+      <if test="contactsPhone != null" >
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="likesNumber != null" >
+        #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="collectFlag != null" >
+        #{collectFlag,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.GrouponDemand" >
+    update j_groupon_demand
+    <set >
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null" >
+        details = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="classificId != null" >
+        classific_id = #{classificId,jdbcType=BIGINT},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=BIGINT},
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="likesNumber != null" >
+        likes_number = #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="collectFlag != null" >
+        collect_flag = #{collectFlag,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1)
+     and del_flag ='0' 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.GrouponDemand" >
+    update j_groupon_demand
+    set village_id = #{villageId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      details = #{details,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      classific_id = #{classificId,jdbcType=BIGINT},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      contacts = #{contacts,jdbcType=BIGINT},
+      contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      collect_flag = #{collectFlag,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+      and del_flag ='0' 
+  </update>
+  
+  <!-- 自定义 -->
+  <!-- 根据条件查询列表 -->
+  <select id="findAllGrouponDemand" parameterType="com.wooxun.geekdol.geekstore.vo.GrouponDemandVo" resultType="com.wooxun.geekdol.geekstore.vo.GrouponDemandVo">
+    select 
+    j.id as id,j.title as title,j.goods_name as goodsName,j.classific_id as classificId,
+    d.lable as classificName,s.real_name as contactsName,j.end_date as endDate,j.contacts_phone as contactsPhone,
+    j.ins_ymdhms as insYmdhms,j.status as status,j.collect_flag as collectFlag
+    from j_groupon_demand j,s_sys_data d,s_app_user s,
+    (
+	SELECT
+	village.village_id
+	FROM
+	s_village village,
+	s_user_area ua
+	WHERE
+	 ua.user_id = #{currentUserId,jdbcType=BIGINT}
+	 and village.del_flag = '0' and  ua.del_flag = '0'
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+		and ua.area_id = village.province_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+		and ua.area_id = village.city_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+		and ua.area_id = village.county_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+		and ua.area_id = village.community_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+		and ua.area_id = village.village_id
+	</if>
+	) svua
+    where s.id = j.contacts 
+    and d.type = #{classificType}
+	 and d.value = j.classific_id 
+    AND j.village_id IN (svua.village_id)
+    <if test="title != null and title.trim()!=''" >
+        and j.title like CONCAT('%',CONCAT(#{title},'%'))
+      </if>
+      <if test="classificName != null and classificName.trim()!=''" >
+        and d.lable like CONCAT('%',CONCAT(#{classificName},'%'))
+      </if>
+      <if test="startDate != null and startDate.trim()!=''" >
+        <![CDATA[   and DATE_FORMAT(j.end_date, '%Y-%m-%d')>=  DATE_FORMAT(#{startDate}, '%Y-%m-%d')   ]]>
+      </if>
+      <if test="endDateStr != null and endDateStr.trim()!=''" >
+        <![CDATA[   and DATE_FORMAT(j.end_date, '%Y-%m-%d')<=  DATE_FORMAT(#{endDateStr}, '%Y-%m-%d')   ]]>
+      </if>
+    and j.del_flag ='0' order by j.ins_ymdhms desc
+    <if test="pageFlag==true">
+		   LIMIT #{startPage}, #{endPage}
+	 </if>
+  </select>
+  <select id="findAllGrouponDemandCount" parameterType="com.wooxun.geekdol.geekstore.vo.GrouponDemandVo" resultType="java.lang.Long">
+    select 
+    count(*)
+    from j_groupon_demand j,s_sys_data d,
+    (
+	SELECT
+	village.village_id
+	FROM
+	s_village village,
+	s_user_area ua
+	WHERE
+	 ua.user_id = #{currentUserId,jdbcType=BIGINT}
+	 and village.del_flag = '0' and  ua.del_flag = '0'
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+		and ua.area_id = village.province_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+		and ua.area_id = village.city_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+		and ua.area_id = village.county_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+		and ua.area_id = village.community_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+		and ua.area_id = village.village_id
+	</if>
+	) svua
+    where   j.del_flag ='0'
+    and d.type = #{classificType}
+	 and d.value = j.classific_id 
+    AND j.village_id IN (svua.village_id)
+    <if test="title != null and title.trim()!=''" >
+        and j.title like CONCAT('%',CONCAT(#{title},'%'))
+      </if>
+      <if test="classificName != null and classificName.trim()!=''" >
+        and d.lable like CONCAT('%',CONCAT(#{classificName},'%'))
+      </if> 
+      <if test="startDate != null and startDate.trim()!=''" >
+        <![CDATA[   and DATE_FORMAT(j.end_date, '%Y-%m-%d')>=  DATE_FORMAT(#{startDate}, '%Y-%m-%d')   ]]>
+      </if>
+      <if test="endDateStr != null and endDateStr.trim()!=''" >
+        <![CDATA[   and DATE_FORMAT(j.end_date, '%Y-%m-%d')<=  DATE_FORMAT(#{endDateStr}, '%Y-%m-%d')   ]]>
+      </if>  
+  </select>
+  
+   <!-- 根据条件查询详情 -->
+  <select id="findGrouponDemand" parameterType="com.wooxun.geekdol.geekstore.vo.GrouponDemandVo" resultType="com.wooxun.geekdol.geekstore.vo.GrouponDemandVo">
+    select 
+    j.id as id,j.title as title,j.goods_name as goodsName,j.classific_id as classificId,
+    (select da.lable from s_sys_data da where j.classific_id = da.value and da.type = #{classificType}  ) as classificName,s.real_name as contactsName,DATE_FORMAT(j.end_date,"%Y-%m-%d %T") as endDate,j.contacts_phone as contactsPhone,
+    j.ins_ymdhms as insYmdhms,(case j.status when #{releaseNumber} then #{releaseStatus} when #{unReleaseNumber} then #{unReleaseStatus} end) as status,j.collect_flag as collectFlag,j.details as details,j.number as number
+    from j_groupon_demand j,j_goods_classific c,s_app_user s
+    where j.classific_id = c.id and s.id = j.contacts 
+      <if test="id != null" >
+      and j.id = #{id,jdbcType=BIGINT}
+      </if>
+    and j.del_flag ='0' 
+  </select>
+  <!--统计  -->
+  <select id="census" parameterType="com.wooxun.geekdol.geekstore.vo.GrouponDemandVo" resultType="com.wooxun.geekdol.geekstore.vo.GrouponDemandVo">
+    SELECT
+	d.lable AS classificName,
+	IFNULL(t.number, 0) AS number
+FROM
+	(
+		SELECT
+			lable,
+			`value`
+		FROM
+			s_sys_data
+		WHERE
+			type = #{classificType}
+	) d
+LEFT JOIN (
+	SELECT
+		sum(j.number) AS number,
+		j.classific_id
+	FROM
+		j_groupon_demand j
+	GROUP BY
+		j.classific_id
+) AS t ON t.classific_id = d.`value`
+  </select>
+</mapper>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.OrderReturnInforMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.OrderReturnInfor" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_return_reason" property="orderReturnReason" jdbcType="VARCHAR" />
+    <result column="detail_result" property="detailResult" jdbcType="CHAR" />
+    <result column="return_adress" property="returnAdress" jdbcType="VARCHAR" />
+    <result column="detail_result_reason" property="detailResultReason" jdbcType="VARCHAR" />
+    <result column="return_money" property="returnMoney" jdbcType="DECIMAL" />
+    <result column="return_money_mark" property="returnMoneyMark" jdbcType="VARCHAR" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, order_return_reason, detail_result, return_adress, detail_result_reason, 
+    return_money, return_money_mark, ins_ymdhms, ins_id, upd_id, upd_ymdhms, upd_eac, 
+    del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_order_return_infor
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag ='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_order_return_infor
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag ='0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.OrderReturnInfor" >
+    insert into j_order_return_infor (id, order_id, order_return_reason, 
+      detail_result, return_adress, detail_result_reason, 
+      return_money, return_money_mark, ins_ymdhms, 
+      ins_id, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderReturnReason,jdbcType=VARCHAR}, 
+      #{detailResult,jdbcType=CHAR}, #{returnAdress,jdbcType=VARCHAR}, #{detailResultReason,jdbcType=VARCHAR}, 
+      #{returnMoney,jdbcType=DECIMAL}, #{returnMoneyMark,jdbcType=VARCHAR}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{insId,jdbcType=BIGINT}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.OrderReturnInfor" >
+    insert into j_order_return_infor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderReturnReason != null" >
+        order_return_reason,
+      </if>
+      <if test="detailResult != null" >
+        detail_result,
+      </if>
+      <if test="returnAdress != null" >
+        return_adress,
+      </if>
+      <if test="detailResultReason != null" >
+        detail_result_reason,
+      </if>
+      <if test="returnMoney != null" >
+        return_money,
+      </if>
+      <if test="returnMoneyMark != null" >
+        return_money_mark,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderReturnReason != null" >
+        #{orderReturnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="detailResult != null" >
+        #{detailResult,jdbcType=CHAR},
+      </if>
+      <if test="returnAdress != null" >
+        #{returnAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailResultReason != null" >
+        #{detailResultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMoney != null" >
+        #{returnMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMoneyMark != null" >
+        #{returnMoneyMark,jdbcType=VARCHAR},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.OrderReturnInfor" >
+    update j_order_return_infor
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderReturnReason != null" >
+        order_return_reason = #{orderReturnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="detailResult != null" >
+        detail_result = #{detailResult,jdbcType=CHAR},
+      </if>
+      <if test="returnAdress != null" >
+        return_adress = #{returnAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailResultReason != null" >
+        detail_result_reason = #{detailResultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMoney != null" >
+        return_money = #{returnMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMoneyMark != null" >
+        return_money_mark = #{returnMoneyMark,jdbcType=VARCHAR},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+      and del_flag ='0'
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.OrderReturnInfor" >
+    update j_order_return_infor
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_return_reason = #{orderReturnReason,jdbcType=VARCHAR},
+      detail_result = #{detailResult,jdbcType=CHAR},
+      return_adress = #{returnAdress,jdbcType=VARCHAR},
+      detail_result_reason = #{detailResultReason,jdbcType=VARCHAR},
+      return_money = #{returnMoney,jdbcType=DECIMAL},
+      return_money_mark = #{returnMoneyMark,jdbcType=VARCHAR},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1)
+      and del_flag ='0' 
+  </update>
+  
+  
+  <!-- 自定义方法 -->
+  <!--修改退货信息-->
+  <update id="updateByOrderIdSelective" parameterType="com.wooxun.geekdol.geekstore.model.OrderReturnInfor" >
+    update j_order_return_infor
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderReturnReason != null" >
+        order_return_reason = #{orderReturnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="detailResult != null" >
+        detail_result = #{detailResult,jdbcType=INTEGER},
+      </if>
+      <if test="returnAdress != null" >
+        return_adress = #{returnAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="detailResultReason != null" >
+        detail_result_reason = #{detailResultReason,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMoney != null" >
+        return_money = #{returnMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMoneyMark != null" >
+        return_money_mark = #{returnMoneyMark,jdbcType=VARCHAR},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where  upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    and del_flag ='0' 
+    <if test="orderId != null" >
+        and order_id = #{orderId,jdbcType=BIGINT}
+      </if>
+  </update>
+  <!-- 根据订单ID查找退货信息 -->
+  <select id="findOrderReturnInfor" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_order_return_infor
+    where order_id = #{orderId,jdbcType=BIGINT}
+    and del_flag ='0' 
+  </select>
+</mapper>

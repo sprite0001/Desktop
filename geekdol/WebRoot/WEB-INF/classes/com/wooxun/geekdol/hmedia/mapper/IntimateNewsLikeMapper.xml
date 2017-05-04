@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.IntimateNewsLikeMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.IntimateNewsLike" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="hear_id" property="hearId" jdbcType="BIGINT" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, hear_id, opreater_ip, ins_id, ins_ymdhms
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_intimate_new_like
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_intimate_new_like
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsLike" >
+    insert into m_intimate_new_like (id, hear_id, opreater_ip, 
+      ins_id, ins_ymdhms)
+    values (#{id,jdbcType=BIGINT}, #{hearId,jdbcType=BIGINT}, #{opreaterIp,jdbcType=VARCHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsLike" >
+    insert into m_intimate_new_like
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="hearId != null" >
+        hear_id,
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hearId != null" >
+        #{hearId,jdbcType=BIGINT},
+      </if>
+      <if test="opreaterIp != null" >
+        #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsLike" >
+    update m_intimate_new_like
+    <set >
+      <if test="hearId != null" >
+        hear_id = #{hearId,jdbcType=BIGINT},
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsLike" >
+    update m_intimate_new_like
+    set hear_id = #{hearId,jdbcType=BIGINT},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 检索条件 -->
+    <sql id="searchWhere">
+        <where>
+            <if test="hearId != null">
+                and hear_id = #{hearId}
+            </if>
+            <if test="opreaterIp != null and opreaterIp.trim()!=''">
+                and opreater_ip like CONCAT(CONCAT('%',#{opreaterIp}),'%') 
+            </if>
+            <if test="insId != null">
+                and ins_id = #{insId}
+            </if>
+        </where>
+    </sql>
+  <!-- 条件查询 -->
+  <select id="queryListByParam" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsLike" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_intimate_new_like
+    <include refid="searchWhere" />
+  </select>
+</mapper>

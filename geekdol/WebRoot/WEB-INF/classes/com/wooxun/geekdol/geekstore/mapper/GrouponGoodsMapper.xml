@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GrouponGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.GrouponGoods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="serial_code" property="serialCode" jdbcType="VARCHAR" />
+    <result column="groupon_classific" property="grouponClassific" jdbcType="INTEGER" />
+    <result column="groupon_name" property="grouponName" jdbcType="VARCHAR" />
+    <result column="subtitle" property="subtitle" jdbcType="VARCHAR" />
+    <result column="max_quantity" property="maxQuantity" jdbcType="INTEGER" />
+    <result column="min_quantity" property="minQuantity" jdbcType="INTEGER" />
+    <result column="groupon_price" property="grouponPrice" jdbcType="DECIMAL" />
+    <result column="store_price" property="storePrice" jdbcType="DECIMAL" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+    <result column="detail_model" property="detailModel" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="seller" property="seller" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="reject_reason" property="rejectReason" jdbcType="VARCHAR" />
+    <result column="groupon_view" property="grouponView" jdbcType="INTEGER" />
+    <result column="one_star" property="oneStar" jdbcType="INTEGER" />
+    <result column="tow_star" property="towStar" jdbcType="INTEGER" />
+    <result column="three_star" property="threeStar" jdbcType="INTEGER" />
+    <result column="four_star" property="fourStar" jdbcType="INTEGER" />
+    <result column="five_star" property="fiveStar" jdbcType="INTEGER" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />    
+    <!-- 扩展属性 -->
+    <collection property="grouponGoodsExtendInfos" column="id" select="com.wooxun.geekdol.geekstore.mapper.GrouponGoodsExtendInfoMapper.selectByGoodsId"></collection>
+    <!-- 团购商品与小区关系表 -->
+    <collection property="grouponVillage" column="id" select="com.wooxun.geekdol.geekstore.mapper.GrouponVillageMapper.selectByGoodsId"></collection>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.geekstore.model.GrouponGoods" extends="BaseResultMap" >
+    <result column="details" property="details" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serial_code, groupon_classific, groupon_name, subtitle, max_quantity, min_quantity, 
+    groupon_price, store_price, cost_price, detail_model, start_time, end_time, seller, 
+    status, reject_reason, groupon_view, one_star, tow_star, three_star, four_star, five_star, 
+    ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    details
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from j_groupon_goods
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_groupon_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.GrouponGoods" >
+    insert into j_groupon_goods (id, serial_code, groupon_classific, 
+      groupon_name, subtitle, max_quantity, 
+      min_quantity, groupon_price, store_price, 
+      cost_price, detail_model, start_time, 
+      end_time, seller, status, 
+      reject_reason, groupon_view, one_star, 
+      tow_star, three_star, four_star, 
+      five_star, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag, details)
+    values (#{id,jdbcType=BIGINT}, #{serialCode,jdbcType=VARCHAR}, #{grouponClassific,jdbcType=INTEGER}, 
+      #{grouponName,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, #{maxQuantity,jdbcType=INTEGER}, 
+      #{minQuantity,jdbcType=INTEGER}, #{grouponPrice,jdbcType=DECIMAL}, #{storePrice,jdbcType=DECIMAL}, 
+      #{costPrice,jdbcType=DECIMAL}, #{detailModel,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{seller,jdbcType=BIGINT}, #{status,jdbcType=CHAR}, 
+      #{rejectReason,jdbcType=VARCHAR}, #{grouponView,jdbcType=INTEGER}, #{oneStar,jdbcType=INTEGER}, 
+      #{towStar,jdbcType=INTEGER}, #{threeStar,jdbcType=INTEGER}, #{fourStar,jdbcType=INTEGER}, 
+      #{fiveStar,jdbcType=INTEGER}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR}, #{details,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.GrouponGoods" useGeneratedKeys="true" keyProperty="id">
+    insert into j_groupon_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serialCode != null" >
+        serial_code,
+      </if>
+      <if test="grouponClassific != null" >
+        groupon_classific,
+      </if>
+      <if test="grouponName != null" >
+        groupon_name,
+      </if>
+      <if test="subtitle != null" >
+        subtitle,
+      </if>
+      <if test="maxQuantity != null" >
+        max_quantity,
+      </if>
+      <if test="minQuantity != null" >
+        min_quantity,
+      </if>
+      <if test="grouponPrice != null" >
+        groupon_price,
+      </if>
+      <if test="storePrice != null" >
+        store_price,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="detailModel != null" >
+        detail_model,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="seller != null" >
+        seller,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="rejectReason != null" >
+        reject_reason,
+      </if>
+      <if test="grouponView != null" >
+        groupon_view,
+      </if>
+      <if test="oneStar != null" >
+        one_star,
+      </if>
+      <if test="towStar != null" >
+        tow_star,
+      </if>
+      <if test="threeStar != null" >
+        three_star,
+      </if>
+      <if test="fourStar != null" >
+        four_star,
+      </if>
+      <if test="fiveStar != null" >
+        five_star,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serialCode != null" >
+        #{serialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="grouponClassific != null" >
+        #{grouponClassific,jdbcType=INTEGER},
+      </if>
+      <if test="grouponName != null" >
+        #{grouponName,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="maxQuantity != null" >
+        #{maxQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="minQuantity != null" >
+        #{minQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="grouponPrice != null" >
+        #{grouponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="storePrice != null" >
+        #{storePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="detailModel != null" >
+        #{detailModel,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seller != null" >
+        #{seller,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="rejectReason != null" >
+        #{rejectReason,jdbcType=VARCHAR},
+      </if>
+      <if test="grouponView != null" >
+        #{grouponView,jdbcType=INTEGER},
+      </if>
+      <if test="oneStar != null" >
+        #{oneStar,jdbcType=INTEGER},
+      </if>
+      <if test="towStar != null" >
+        #{towStar,jdbcType=INTEGER},
+      </if>
+      <if test="threeStar != null" >
+        #{threeStar,jdbcType=INTEGER},
+      </if>
+      <if test="fourStar != null" >
+        #{fourStar,jdbcType=INTEGER},
+      </if>
+      <if test="fiveStar != null" >
+        #{fiveStar,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.GrouponGoods" >
+    update j_groupon_goods
+    <set >
+      <if test="serialCode != null" >
+        serial_code = #{serialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="grouponClassific != null" >
+        groupon_classific = #{grouponClassific,jdbcType=INTEGER},
+      </if>
+      <if test="grouponName != null" >
+        groupon_name = #{grouponName,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        subtitle = #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="maxQuantity != null" >
+        max_quantity = #{maxQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="minQuantity != null" >
+        min_quantity = #{minQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="grouponPrice != null" >
+        groupon_price = #{grouponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="storePrice != null" >
+        store_price = #{storePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="detailModel != null" >
+        detail_model = #{detailModel,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="seller != null" >
+        seller = #{seller,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="rejectReason != null" >
+        reject_reason = #{rejectReason,jdbcType=VARCHAR},
+      </if>
+      <if test="grouponView != null" >
+        groupon_view = #{grouponView,jdbcType=INTEGER},
+      </if>
+      <if test="oneStar != null" >
+        one_star = #{oneStar,jdbcType=INTEGER},
+      </if>
+      <if test="towStar != null" >
+        tow_star = #{towStar,jdbcType=INTEGER},
+      </if>
+      <if test="threeStar != null" >
+        three_star = #{threeStar,jdbcType=INTEGER},
+      </if>
+      <if test="fourStar != null" >
+        four_star = #{fourStar,jdbcType=INTEGER},
+      </if>
+      <if test="fiveStar != null" >
+        five_star = #{fiveStar,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="details != null" >
+        details = #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.geekstore.model.GrouponGoods" >
+    update j_groupon_goods
+    set serial_code = #{serialCode,jdbcType=VARCHAR},
+      groupon_classific = #{grouponClassific,jdbcType=INTEGER},
+      groupon_name = #{grouponName,jdbcType=VARCHAR},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
+      max_quantity = #{maxQuantity,jdbcType=INTEGER},
+      min_quantity = #{minQuantity,jdbcType=INTEGER},
+      groupon_price = #{grouponPrice,jdbcType=DECIMAL},
+      store_price = #{storePrice,jdbcType=DECIMAL},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      detail_model = #{detailModel,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      seller = #{seller,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      reject_reason = #{rejectReason,jdbcType=VARCHAR},
+      groupon_view = #{grouponView,jdbcType=INTEGER},
+      one_star = #{oneStar,jdbcType=INTEGER},
+      tow_star = #{towStar,jdbcType=INTEGER},
+      three_star = #{threeStar,jdbcType=INTEGER},
+      four_star = #{fourStar,jdbcType=INTEGER},
+      five_star = #{fiveStar,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      details = #{details,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.GrouponGoods" >
+    update j_groupon_goods
+    set serial_code = #{serialCode,jdbcType=VARCHAR},
+      groupon_classific = #{grouponClassific,jdbcType=INTEGER},
+      groupon_name = #{grouponName,jdbcType=VARCHAR},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
+      max_quantity = #{maxQuantity,jdbcType=INTEGER},
+      min_quantity = #{minQuantity,jdbcType=INTEGER},
+      groupon_price = #{grouponPrice,jdbcType=DECIMAL},
+      store_price = #{storePrice,jdbcType=DECIMAL},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      detail_model = #{detailModel,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      seller = #{seller,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      reject_reason = #{rejectReason,jdbcType=VARCHAR},
+      groupon_view = #{grouponView,jdbcType=INTEGER},
+      one_star = #{oneStar,jdbcType=INTEGER},
+      tow_star = #{towStar,jdbcType=INTEGER},
+      three_star = #{threeStar,jdbcType=INTEGER},
+      four_star = #{fourStar,jdbcType=INTEGER},
+      five_star = #{fiveStar,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 后台团购管理：团购商品列表查询 -->
+  <select id="queryGrouponGoods" parameterType="com.wooxun.geekdol.geekstore.vo.GrouponGoodsVo" 
+  		resultType="com.wooxun.geekdol.geekstore.vo.GrouponGoodsVo">
+  	SELECT
+		gg.id as id,
+		gg.serial_code as serialCode,
+		gg.groupon_classific as grouponClassific,
+		gg.groupon_name as grouponName,
+		gg.subtitle as subtitle,
+		gg.start_time as startTime,
+		gg.end_time as endTime,
+		gg.max_quantity as maxQuantity,
+		gg.groupon_price as grouponPrice,
+		gg.`status` as status,
+		sd.lable as statusStr
+	FROM
+		j_groupon_goods gg,
+		s_sys_data sd
+	WHERE gg.del_flag = '0'
+	AND	gg.`status` = sd.`value`
+	AND sd.type = #{statusType}
+	<if test="seller != null and seller != 0">
+		AND gg.seller = #{seller,jdbcType=BIGINT}
+	</if>
+	<if test="serialCode != null and serialCode.trim() != ''">
+		AND	gg.serial_code LIKE CONCAT(CONCAT('%', #{serialCode}),'%')
+	</if>
+	<if test="grouponName != null and grouponName.trim() != ''">
+		AND	gg.groupon_name LIKE CONCAT(CONCAT('%', #{grouponName}),'%')
+	</if>
+	<if test="subtitle != null and subtitle.trim() != ''">
+		AND	gg.subtitle LIKE CONCAT(CONCAT('%', #{subtitle}),'%')
+	</if>
+	<if test="status != null and status.trim() != ''">
+		AND	gg.`status` = #{status}
+	</if>
+	<if test="startTime != null">
+		AND gg.start_time <![CDATA[ >= ]]> #{startTime,jdbcType=DATE}
+	</if>
+	<if test="endTime != null">
+		AND gg.end_time <![CDATA[ <= ]]> #{endTime,jdbcType=DATE}
+	</if>
+	<if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 后台团购管理：团购商品列表总数查询 -->
+  <select id="queryGrouponGoodsCount" parameterType="com.wooxun.geekdol.geekstore.vo.GrouponGoodsVo" resultType="java.lang.Long">
+  	SELECT count(gg.id) FROM j_groupon_goods gg
+	WHERE gg.del_flag = '0' 
+	<if test="seller != null and seller != 0">
+		AND gg.seller = #{seller,jdbcType=BIGINT}
+	</if>
+	<if test="serialCode != null and serialCode.trim() != ''">
+		AND	gg.serial_code LIKE CONCAT(CONCAT('%', #{serialCode}),'%')
+	</if>
+	<if test="grouponName != null and grouponName.trim() != ''">
+		AND	gg.groupon_name LIKE CONCAT(CONCAT('%', #{grouponName}),'%')
+	</if>
+	<if test="subtitle != null and subtitle.trim() != ''">
+		AND	gg.subtitle LIKE CONCAT(CONCAT('%', #{subtitle}),'%')
+	</if>
+	<if test="status != null and status.trim() != ''">
+		AND	gg.`status` = #{status}
+	</if>
+	<if test="startTime != null">
+		AND gg.start_time <![CDATA[ >= ]]> #{startTime,jdbcType=DATE}
+	</if>
+	<if test="endTime != null">
+		AND gg.end_time <![CDATA[ <= ]]> #{endTime,jdbcType=DATE}
+	</if>
+  </select>
+  <!-- 查找团购code和总评论/好评/中评/差评 begin -->
+  <select id="findCodeAndStar" parameterType="java.lang.Long" resultType="com.wooxun.geekdol.geekstore.vo.GrouponGoodsVo">
+  	SELECT id as id,
+		SERIAL_CODE AS SERIALCODE,
+		GROUPON_NAME AS GROUPONNAME,
+		IFNULL(ONE_STAR, 0) + IFNULL(TOW_STAR, 0) +IFNULL(THREE_STAR, 0) 
+		+ IFNULL(FOUR_STAR, 0) + IFNULL(FIVE_STAR, 0) AS countStar,
+		IFNULL(FOUR_STAR, 0) + IFNULL(FIVE_STAR, 0) AS GOODSTAR,
+		THREE_STAR AS COMMONSTAR,
+		IFNULL(ONE_STAR, 0) + IFNULL(TOW_STAR, 0) AS BADSTAR,
+		IFNULL(groupon_view, 0) AS grouponView 
+	FROM
+		J_GROUPON_GOODS WHERE ID = #{id,jdbcType=BIGINT} and del_flag = '0' 
+  </select>
+  <!-- 查找团购code和总评论/好评/中评/差评 end --> 
+  <!-- 定时查找符合状态的团购商品 -->
+  <select id="queryGrouponGoodsByStatus" parameterType="com.wooxun.geekdol.geekstore.model.GrouponGoods" 
+  		resultType="com.wooxun.geekdol.geekstore.model.GrouponGoods">
+	select id, start_time as startTime, end_time as endTime, status,upd_eac
+	as updEac from J_GROUPON_GOODS where
+	status = #{status,jdbcType=CHAR}
+	and del_flag = '0'
+  </select>
+</mapper>

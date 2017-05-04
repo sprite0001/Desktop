@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/hbridge/staffLevel
+END
+add.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/Geekdol/!svn/ver/3790/source/backstage/geekdol/WebRoot/WEB-INF/views/hbridge/staffLevel/add.jsp
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/hbridge/staffLevel/list.jsp
+END
+update.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/Geekdol/!svn/ver/4200/source/backstage/geekdol/WebRoot/WEB-INF/views/hbridge/staffLevel/update.jsp
+END

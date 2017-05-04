@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.KeywordsMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.Keywords" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="keywords_content" property="keywordsContent" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, keywords_content, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_keywords
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_keywords
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.Keywords" >
+    insert into s_keywords (id, keywords_content, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{keywordsContent,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.Keywords" useGeneratedKeys="true" keyProperty="id">
+    insert into s_keywords
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="keywordsContent != null" >
+        keywords_content,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="keywordsContent != null" >
+        #{keywordsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.Keywords" >
+    update s_keywords
+    <set >
+      <if test="keywordsContent != null" >
+        keywords_content = #{keywordsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.Keywords" >
+    update s_keywords
+    set keywords_content = #{keywordsContent,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+    <!-- 根据页面查询条件显示列表 -->
+    <select id="findAll" resultType="com.wooxun.geekdol.system.vo.KeywordsVo" parameterType="com.wooxun.geekdol.system.vo.KeywordsVo">
+      SELECT
+        id AS id, keywords_content AS keywordsContent,ins_ymdhms as insYmdhms
+      FROM s_keywords
+      <where>
+            <!-- 关键字的模糊查询条件 -->
+            <if test="keywordsContent!=null and keywordsContent.trim()!=''">
+                and keywords_content like CONCAT(CONCAT('%',#{keywordsContent}),'%')
+            </if>
+                AND del_flag='0'
+                 order by ins_ymdhms desc
+            <if test="pageFlag==true">
+              LIMIT #{startPage}, #{endPage}
+            </if>
+       </where>
+      
+     </select>
+     
+    <!-- 根据页面查询条件显示列表分页计数 -->
+    <select id="findAllCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.system.vo.KeywordsVo">
+     SELECT
+     COUNT(id)
+     FROM s_keywords
+      <where>              
+            <!-- 关键字的模糊查询条件 -->
+            <if test="keywordsContent!=null and keywordsContent.trim()!=''">
+                and keywords_content like CONCAT(CONCAT('%',#{keywordsContent}),'%')
+            </if>
+                and del_flag='0'
+      </where>
+    </select> 
+    
+    <!-- 新增操作时判断是否已有该关键字 返回新增关键字查询数量 -->
+    <select id="findCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.system.model.Keywords">
+     SELECT
+     COUNT(id)
+     FROM s_keywords
+      <where>              
+            <!-- 关键字的模糊查询条件 -->
+            <if test="keywordsContent!=null and keywordsContent.trim()!=''">
+                and keywords_content =#{keywordsContent} 
+            </if>
+                and del_flag='0'
+      </where>
+    </select>
+  <!-- 批量插入关键词 -->
+  <insert id="insertList" useGeneratedKeys="true" parameterType="java.util.List">
+  <![CDATA[
+    insert into s_keywords (keywords_content,ins_id,ins_ymdhms,upd_eac,upd_id,upd_ymdhms,del_flag)   
+    values
+    ]]>
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (
+          #{item.keywordsContent,jdbcType=BIGINT}, #{item.insId,jdbcType=BIGINT}, 
+          #{item.insYmdhms,jdbcType=TIMESTAMP}, #{item.updEac,jdbcType=BIGINT}, 
+          #{item.updId,jdbcType=BIGINT}, #{item.updYmdhms,jdbcType=TIMESTAMP}, #{item.delFlag,jdbcType=CHAR}
+        )
+    </foreach>  
+  </insert> 
+</mapper>

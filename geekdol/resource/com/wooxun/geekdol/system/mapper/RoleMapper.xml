@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wooxun.geekdol.system.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.soft863.dolphin.model.Role">
+        <id column="ROLE_ID" property="roleId" />
+        <result column="NAME" property="name"/>
+        <result column="DESCRIPTION" property="description" />
+        <result column="ORDERING" property="ordering"/>
+        <result column="INS_YMDHMS" property="insYmdhms"/>
+        <result column="INS_ID" property="insId"/>
+        <result column="UPD_EAC" property="updEac"/>
+        <result column="UPD_YMDHMS" property="updYmdhms"/>
+        <result column="UPD_ID" property="updId"/>
+        <result column="DEL_FLAG" property="delFlag"/>
+        <association column="ROLE_ID" property="permissions" select="selectPermission" />
+    </resultMap>
+    <resultMap id="ResultMapNoPrem" type="com.soft863.dolphin.model.Role">
+        <id column="ROLE_ID" property="roleId" />
+        <result column="NAME" property="name"/>
+        <result column="DESCRIPTION" property="description" />
+        <result column="ORDERING" property="ordering"/>
+        <result column="INS_YMDHMS" property="insYmdhms"/>
+        <result column="INS_ID" property="insId"/>
+        <result column="UPD_EAC" property="updEac"/>
+        <result column="UPD_YMDHMS" property="updYmdhms"/>
+        <result column="UPD_ID" property="updId"/>
+        <result column="DEL_FLAG" property="delFlag"/>
+    </resultMap>
+    
+    <resultMap id="RoleResultMap" type="com.wooxun.geekdol.system.vo.RoleUser">
+        <result column="ROLE_ID" property="roleId" />
+        <result column="ROLE_NAME" property="roleName"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="USER_INFO_ID" property="userInfoId"/>
+        <result column="USERNAME" property="userName"/>
+        <result column="REALNAME" property="realName"/>
+    </resultMap>
+    
+    <!-- 查询角色信息返回的结果，没有查询角色的权限 -->
+    <resultMap id="BaseResultMapTwo" type="com.soft863.dolphin.model.Role">
+        <id column="ROLE_ID" property="roleId" />
+        <result column="NAME" property="name"/>
+        <result column="DESCRIPTION" property="description" />
+        <result column="ORDERING" property="ordering"/>
+        <result column="INS_YMDHMS" property="insYmdhms"/>
+        <result column="INS_ID" property="insId"/>
+        <result column="UPD_EAC" property="updEac"/>
+        <result column="UPD_YMDHMS" property="updYmdhms"/>
+        <result column="UPD_ID" property="updId"/>
+        <result column="DEL_FLAG" property="delFlag"/>
+    </resultMap>
+    
+    <!-- 表字段列表 -->
+    <sql id="Base_Column_List" >
+        ROLE_ID,NAME,DESCRIPTION,ORDERING,INS_YMDHMS,INS_ID,UPD_EAC,UPD_YMDHMS,UPD_ID,DEL_FLAG
+    </sql>
+    <!-- 检索条件 -->
+    <sql id="searchWhere">
+        <where>
+            AND DEL_FLAG = '0'
+            <!-- 部门表的模糊查询条件 -->
+            <if test="roleId!=null and roleId!=''">
+                and ROLE_ID = #{roleId}
+            </if>
+            <if test="name!=null and name!=''">
+                and NAME like CONCAT('%',CONCAT(#{name},'%'))
+            </if>
+        </where>
+    </sql>
+    <select id="selectRoleById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT 
+            <include refid="Base_Column_List" />
+        FROM security_role
+        WHERE ROLE_ID = #{roleId}
+        AND DEL_FLAG = '0'
+    </select>
+    
+    <!-- 查询角色列表  -->
+    <select id="selectRoleList" parameterType="com.wooxun.geekdol.system.vo.RoleVo" resultMap="ResultMapNoPrem">
+        SELECT 
+            <include refid="Base_Column_List" />
+        FROM security_role
+        
+        <where>
+            <if test="name!=null and name!=''">
+                and NAME like CONCAT('%',CONCAT(#{name},'%'))
+            </if>
+            
+            <if test="description!=null and description!=''">
+                and description like CONCAT('%',CONCAT(#{description},'%'))
+            </if>
+             AND DEL_FLAG = '0'
+        </where>
+        order by ordering ,ins_ymdhms desc
+        <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+        </if>
+        
+    </select>
+    
+    <select id="selectRoleListTwo" parameterType="com.soft863.dolphin.model.Role" resultMap="BaseResultMapTwo">
+        SELECT 
+            <include refid="Base_Column_List" />
+        FROM security_role
+        <include refid="searchWhere"/>
+        <if test="pageFlag==1">
+            LIMIT #{lowNum}, #{numPerPage}
+        </if>
+    </select>
+    
+    <select id="findRoleList" resultMap="BaseResultMap">
+        SELECT 
+            <include refid="Base_Column_List" />
+        FROM security_role order by ROLE_ID
+    </select>
+    
+    <select id="selectCount" parameterType="com.wooxun.geekdol.system.vo.RoleVo" resultType="java.lang.Long">
+        SELECT 
+            count(*)
+        FROM security_role
+        <where>
+            <if test="name!=null and name!=''">
+                and NAME like CONCAT('%',CONCAT(#{name},'%'))
+            </if>
+            
+            <if test="description!=null and description!=''">
+                and description like CONCAT('%',CONCAT(#{description},'%'))
+            </if>
+             AND DEL_FLAG = '0'
+        </where>
+    </select>
+    
+    <insert id="insert" useGeneratedKeys="true" keyProperty="roleId" parameterType="com.soft863.dolphin.model.Role">
+        INSERT INTO security_role
+        (
+            ROLE_ID, 
+            NAME,
+            DESCRIPTION,
+            ORDERING,
+            INS_YMDHMS, 
+            INS_ID,
+            UPD_EAC,
+            UPD_YMDHMS,
+            UPD_ID,
+            DEL_FLAG
+        )
+        VALUES(
+            #{roleId,jdbcType=BIGINT},
+            #{name,jdbcType=VARCHAR},
+            #{description,jdbcType=VARCHAR},
+            #{ordering,jdbcType=BIGINT},
+            #{insYmdhms,jdbcType=TIMESTAMP},
+            #{insId,jdbcType=BIGINT},
+            #{updEac,jdbcType=BIGINT},
+            #{updYmdhms,jdbcType=TIMESTAMP},
+            #{updId,jdbcType=BIGINT},
+            #{delFlag,jdbcType=CHAR}
+        )
+    </insert>
+    
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM security_role WHERE ROLE_ID = #{roleId}
+    </delete>
+    
+    <update id="update" parameterType="com.soft863.dolphin.model.Role">
+        UPDATE security_role 
+             <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+     where role_id = #{roleId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+
+    <!-- ================================== 子查询 ====================================== -->
+    <select id="selectPermission" parameterType="java.lang.Long" resultMap="com.wooxun.geekdol.system.mapper.PermissionMapper.BaseResultMap">
+        SELECT 
+            <include refid="com.wooxun.geekdol.system.mapper.PermissionMapper.Base_Column_List" />
+        FROM security_permission
+        WHERE PER_ID IN (
+            SELECT PER_ID FROM security_role_permission WHERE ROLE_ID = #{roleId,jdbcType=BIGINT}
+        ) 
+    </select>
+    <!-- ================================== 扩展查询 开始 ====================================== -->
+    <select id="selectRoleByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT 
+            <include refid="Base_Column_List" />
+        FROM security_role
+        WHERE name = #{name}
+    </select>
+    
+        <select id="checkRoleByName" parameterType="com.soft863.dolphin.model.Role" resultMap="BaseResultMap">
+        SELECT 
+            <include refid="Base_Column_List" />
+        FROM security_role
+        WHERE name = #{name} and ROLE_ID != #{roleId}
+    </select>
+    <!-- ================================== 扩展查询 结束 ====================================== -->
+    
+    <!-- ================================= 扩展查询 对应角色下面的人员====================================== -->
+    <select id="selectRoleUserByRoleId" parameterType="com.wooxun.geekdol.system.vo.RoleUser" resultMap="RoleResultMap">
+        SELECT ur.role_id, r.name AS role_name, ur.user_id, u.user_info_id, u.username, u.realname
+        FROM  security_user_role ur 
+        INNER JOIN security_role r ON ur.role_id = r.role_id
+        INNER JOIN security_user u ON ur.user_id = u.user_id
+        <if test="roleId!=null">
+            WHERE ur.role_id=#{roleId}          
+        </if>
+        ORDER BY ur.role_id, ur.user_id
+        <if test="pageFlag==1">
+            LIMIT #{lowNum}, #{numPerPage}
+        </if>
+    </select> 
+    <select id="selectRoleUserCount" parameterType="com.wooxun.geekdol.system.vo.RoleUser" resultType="java.lang.Long">
+        SELECT count(*)
+        FROM  security_user_role ur 
+        INNER JOIN security_role r ON ur.role_id = r.role_id
+        INNER JOIN security_user u ON ur.user_id = u.user_id
+        <if test="roleId!=null">
+            WHERE ur.role_id=#{roleId}          
+        </if>
+    </select>
+    
+    <select id="findRole"  parameterType="com.soft863.dolphin.model.Role" resultMap="BaseResultMap">
+        SELECT 
+            <include refid="Base_Column_List" />
+        FROM security_role
+        <include refid="searchWhere"/>
+    </select>
+    
+    <!-- 根据角色名字查到角色 -->
+    <select id="findRoleByName" parameterType="com.soft863.dolphin.model.Role" resultType="java.lang.Long">
+        SELECT 
+            count(*)
+        FROM security_role
+        <where>
+            <if test="name!=null and name!=''">
+                AND name = #{name}
+            </if>
+             AND DEL_FLAG = '0'
+        </where>
+    </select>
+    
+    <!-- 根据主键id查到角色 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from security_role
+    where role_id = #{roleid,jdbcType=BIGINT}
+    AND DEL_FLAG = '0'
+  </select>
+    
+</mapper>

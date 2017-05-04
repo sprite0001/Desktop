@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.AppPositionMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.AppPosition" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="ordering" property="ordering" jdbcType="INTEGER" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.system.model.AppPosition" extends="BaseResultMap" >
+    <result column="name" property="name" jdbcType="VARBINARY" />
+    <result column="remark" property="remark" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ordering, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    name, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from s_app_position
+    where id = #{id,jdbcType=BIGINT} AND del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_app_position
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.AppPosition" >
+    insert into s_app_position (id, ordering, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag, name, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{ordering,jdbcType=INTEGER}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, #{name,jdbcType=VARBINARY}, 
+      #{remark,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.AppPosition" >
+    insert into s_app_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARBINARY},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.AppPosition" >
+    update s_app_position
+    <set >
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARBINARY},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.system.model.AppPosition" >
+    update s_app_position
+    set ordering = #{ordering,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      name = #{name,jdbcType=VARBINARY},
+      remark = #{remark,jdbcType=VARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.AppPosition" >
+    update s_app_position
+    set ordering = #{ordering,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  
+  <!-- 自定义sql -->
+  <!-- 通用查询条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="name != null and name.trim()!=''" >
+                AND name LIKE CONCAT(CONCAT('%', #{name}),'%')
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   <!-- 条件查询 -->
+  <select id="queryListByParam" parameterType="com.wooxun.geekdol.system.vo.AppPositionVo" resultMap="BaseResultMap">
+    select * from s_app_position
+    <include refid="searchWhere" />
+        order by ordering
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+</mapper>

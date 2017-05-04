@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.IncorruptGovernmentCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.IncorruptGovernmentComment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="incorrupt_government_id" property="incorruptGovernmentId" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="illegal_status" property="illegalStatus" jdbcType="CHAR" />
+    <result column="likes_number" property="likesNumber" jdbcType="INTEGER" />
+    <result column="hate_number" property="hateNumber" jdbcType="INTEGER" />
+    <result column="view_number" property="viewNumber" jdbcType="INTEGER" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="illegal_number" property="illegalNumber" jdbcType="INTEGER" />
+    <result column="opreater_id" property="opreaterId" jdbcType="BIGINT" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="opreater_time" property="opreaterTime" jdbcType="TIMESTAMP" />
+    <result column="opreater_add" property="opreaterAdd" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, incorrupt_government_id, content, illegal_status, likes_number, hate_number, 
+    view_number, reply_number, illegal_number, opreater_id, opreater_ip, opreater_time, 
+    opreater_add, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_incorrupt_government_comment
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_incorrupt_government_comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernmentComment" >
+    insert into m_incorrupt_government_comment (id, incorrupt_government_id, content, 
+      illegal_status, likes_number, hate_number, 
+      view_number, reply_number, illegal_number, 
+      opreater_id, opreater_ip, opreater_time, 
+      opreater_add, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{incorruptGovernmentId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{illegalStatus,jdbcType=CHAR}, #{likesNumber,jdbcType=INTEGER}, #{hateNumber,jdbcType=INTEGER}, 
+      #{viewNumber,jdbcType=INTEGER}, #{replyNumber,jdbcType=INTEGER}, #{illegalNumber,jdbcType=INTEGER}, 
+      #{opreaterId,jdbcType=BIGINT}, #{opreaterIp,jdbcType=VARCHAR}, #{opreaterTime,jdbcType=TIMESTAMP}, 
+      #{opreaterAdd,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernmentComment" >
+    insert into m_incorrupt_government_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="incorruptGovernmentId != null" >
+        incorrupt_government_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="illegalStatus != null" >
+        illegal_status,
+      </if>
+      <if test="likesNumber != null" >
+        likes_number,
+      </if>
+      <if test="hateNumber != null" >
+        hate_number,
+      </if>
+      <if test="viewNumber != null" >
+        view_number,
+      </if>
+      <if test="replyNumber != null" >
+        reply_number,
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number,
+      </if>
+      <if test="opreaterId != null" >
+        opreater_id,
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip,
+      </if>
+      <if test="opreaterTime != null" >
+        opreater_time,
+      </if>
+      <if test="opreaterAdd != null" >
+        opreater_add,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="incorruptGovernmentId != null" >
+        #{incorruptGovernmentId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalStatus != null" >
+        #{illegalStatus,jdbcType=CHAR},
+      </if>
+      <if test="likesNumber != null" >
+        #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="opreaterId != null" >
+        #{opreaterId,jdbcType=BIGINT},
+      </if>
+      <if test="opreaterIp != null" >
+        #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="opreaterTime != null" >
+        #{opreaterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opreaterAdd != null" >
+        #{opreaterAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernmentComment" >
+    update m_incorrupt_government_comment
+    <set >
+      <if test="incorruptGovernmentId != null" >
+        incorrupt_government_id = #{incorruptGovernmentId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalStatus != null" >
+        illegal_status = #{illegalStatus,jdbcType=CHAR},
+      </if>
+      <if test="likesNumber != null" >
+        likes_number = #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        hate_number = #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        view_number = #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        reply_number = #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="opreaterId != null" >
+        opreater_id = #{opreaterId,jdbcType=BIGINT},
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="opreaterTime != null" >
+        opreater_time = #{opreaterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opreaterAdd != null" >
+        opreater_add = #{opreaterAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernmentComment" >
+    update m_incorrupt_government_comment
+    set incorrupt_government_id = #{incorruptGovernmentId,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      illegal_status = #{illegalStatus,jdbcType=CHAR},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      hate_number = #{hateNumber,jdbcType=INTEGER},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      opreater_id = #{opreaterId,jdbcType=BIGINT},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      opreater_time = #{opreaterTime,jdbcType=TIMESTAMP},
+      opreater_add = #{opreaterAdd,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <select id="selectCountByIncorruptGovernmentId" resultType="java.lang.Long"
+  		parameterType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentCommentVo">
+  	SELECT
+		COUNT(gc.id)
+	FROM
+		m_incorrupt_government_comment gc , s_app_user app
+	<where>
+		<if test="nickName != null and nickName.trim() != ''">
+			and app.nick_name LIKE CONCAT(CONCAT('%', #{nickName}),'%')
+		</if>
+		<if test="content != null and content.trim() != ''">
+			and gc.content LIKE CONCAT(CONCAT('%', #{content}),'%')
+		</if>
+		<if test="illegalStatus != null and illegalStatus.trim() != ''">
+			and gc.illegal_status = #{illegalStatus,jdbcType=CHAR}
+		</if>
+		AND gc.opreater_id = app.id AND gc.del_flag = '0'
+		AND gc.incorrupt_government_id = #{incorruptGovernmentId,jdbcType=BIGINT}
+	</where>
+  </select>
+  
+  <!-- 评论列表查询  -->
+  <select id="selectByIncorruptGovernmentId" parameterType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentCommentVo"
+  	resultType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentCommentVo">
+  	SELECT
+		gc.id,
+		gc.incorrupt_government_id as incorruptGovernmentId,
+		gc.content,
+		gc.illegal_status as illegalStatus,
+		gc.likes_number as likesNumber,
+		gc.hate_number as hateNumber,
+		gc.view_number as viewNumber,
+		gc.reply_number as replyNumber,
+		gc.illegal_number as illegalNumber,
+		gc.opreater_id as opreaterId,
+		gc.opreater_ip as opreaterIp,
+		gc.opreater_time as opreaterTime,
+		gc.opreater_add as opreaterAdd,
+		app.nick_name as nickName,
+		app.head_portrait as headPortrait
+	FROM
+		m_incorrupt_government_comment gc , s_app_user app
+	<where>
+		<if test="nickName != null and nickName.trim() != ''">
+			and app.nick_name LIKE CONCAT(CONCAT('%', #{nickName}),'%')
+		</if>
+		<if test="content != null and content.trim() != ''">
+			and gc.content LIKE CONCAT(CONCAT('%', #{content}),'%')
+		</if>
+		<if test="illegalStatus != null and illegalStatus.trim() != ''">
+			and gc.illegal_status = #{illegalStatus,jdbcType=CHAR}
+		</if>
+		AND gc.opreater_id = app.id AND gc.del_flag = '0'
+		AND gc.incorrupt_government_id = #{incorruptGovernmentId,jdbcType=BIGINT}
+	</where>
+	order by gc.ins_ymdhms desc
+	<if test="pageFlag==true">
+	   LIMIT #{startPage}, #{endPage}
+	</if>
+  </select>
+  
+  <select id="findCommentVoById" parameterType="java.lang.Long" 
+  		resultType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentCommentVo">
+  	SELECT
+		gc.id,
+		gc.incorrupt_government_id as incorruptGovernmentId,
+		gc.content,
+		gc.illegal_status as illegalStatus,
+		gc.likes_number as likesNumber,
+		gc.hate_number as hateNumber,
+		gc.view_number as viewNumber,
+		gc.reply_number as replyNumber,
+		gc.illegal_number as illegalNumber,
+		gc.opreater_id as opreaterId,
+		gc.opreater_ip as opreaterIp,
+		gc.opreater_time as opreaterTime,
+		gc.opreater_add as opreaterAdd,
+		app.nick_name as nickName,
+		app.head_portrait as headPortrait
+	FROM
+		m_incorrupt_government_comment gc , s_app_user app
+	<where>
+		AND gc.id = #{id,jdbcType=BIGINT}
+		AND gc.opreater_id = app.id AND gc.del_flag = '0'
+	</where>
+  </select>
+</mapper>

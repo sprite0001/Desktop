@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GroupBuyOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.GroupBuyOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="buyer_id" property="buyerId" jdbcType="BIGINT" />
+    <result column="seller_id" property="sellerId" jdbcType="BIGINT" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="payment_record_id" property="paymentRecordId" jdbcType="BIGINT" />
+    <result column="payment_amount" property="paymentAmount" jdbcType="DECIMAL" />
+    <result column="actual_payment" property="actualPayment" jdbcType="DECIMAL" />
+    <result column="pay_mode" property="payMode" jdbcType="CHAR" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="receiver_province" property="receiverProvince" jdbcType="BIGINT" />
+    <result column="reciver_city" property="reciverCity" jdbcType="BIGINT" />
+    <result column="reciver_country" property="reciverCountry" jdbcType="BIGINT" />
+    <result column="receiver_village" property="receiverVillage" jdbcType="VARCHAR" />
+    <result column="receiver_adress" property="receiverAdress" jdbcType="VARCHAR" />
+    <result column="delivery_mode" property="deliveryMode" jdbcType="VARCHAR" />
+    <result column="logistics_number" property="logisticsNumber" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="freight" property="freight" jdbcType="DECIMAL" />
+    <result column="order_close_reasons" property="orderCloseReasons" jdbcType="VARCHAR" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+        <association column="id" property="groupOrderReturnInfor" select="com.wooxun.geekdol.geekstore.mapper.GroupOrderReturnInforMapper.findGroupBuyOrderReturnInfor"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, goods_id, buyer_id, seller_id, order_time, village_id, payment_record_id, 
+    payment_amount, actual_payment, pay_mode, pay_time, status, receiver_name, receiver_phone, 
+    receiver_province, reciver_city, reciver_country, receiver_village, receiver_adress, 
+    delivery_mode, logistics_number, phone, freight, order_close_reasons, ins_ymdhms, 
+    ins_id, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_group_buy_order
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag ='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_group_buy_order
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag ='0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.GroupBuyOrder" >
+    insert into j_group_buy_order (id, code, goods_id, 
+      buyer_id, seller_id, order_time, 
+      village_id, payment_record_id, payment_amount, 
+      actual_payment, pay_mode, pay_time, 
+      status, receiver_name, receiver_phone, 
+      receiver_province, reciver_city, reciver_country, 
+      receiver_village, receiver_adress, delivery_mode, 
+      logistics_number, phone, freight, 
+      order_close_reasons, ins_ymdhms, ins_id, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, 
+      #{buyerId,jdbcType=BIGINT}, #{sellerId,jdbcType=BIGINT}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{villageId,jdbcType=BIGINT}, #{paymentRecordId,jdbcType=BIGINT}, #{paymentAmount,jdbcType=DECIMAL}, 
+      #{actualPayment,jdbcType=DECIMAL}, #{payMode,jdbcType=CHAR}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=CHAR}, #{receiverName,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, 
+      #{receiverProvince,jdbcType=BIGINT}, #{reciverCity,jdbcType=BIGINT}, #{reciverCountry,jdbcType=BIGINT}, 
+      #{receiverVillage,jdbcType=VARCHAR}, #{receiverAdress,jdbcType=VARCHAR}, #{deliveryMode,jdbcType=VARCHAR}, 
+      #{logisticsNumber,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{freight,jdbcType=DECIMAL}, 
+      #{orderCloseReasons,jdbcType=VARCHAR}, #{insYmdhms,jdbcType=TIMESTAMP}, #{insId,jdbcType=BIGINT}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.GroupBuyOrder" >
+    insert into j_group_buy_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="sellerId != null" >
+        seller_id,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="paymentRecordId != null" >
+        payment_record_id,
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount,
+      </if>
+      <if test="actualPayment != null" >
+        actual_payment,
+      </if>
+      <if test="payMode != null" >
+        pay_mode,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone,
+      </if>
+      <if test="receiverProvince != null" >
+        receiver_province,
+      </if>
+      <if test="reciverCity != null" >
+        reciver_city,
+      </if>
+      <if test="reciverCountry != null" >
+        reciver_country,
+      </if>
+      <if test="receiverVillage != null" >
+        receiver_village,
+      </if>
+      <if test="receiverAdress != null" >
+        receiver_adress,
+      </if>
+      <if test="deliveryMode != null" >
+        delivery_mode,
+      </if>
+      <if test="logisticsNumber != null" >
+        logistics_number,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="freight != null" >
+        freight,
+      </if>
+      <if test="orderCloseReasons != null" >
+        order_close_reasons,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="paymentRecordId != null" >
+        #{paymentRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="paymentAmount != null" >
+        #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="actualPayment != null" >
+        #{actualPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="payMode != null" >
+        #{payMode,jdbcType=CHAR},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverProvince != null" >
+        #{receiverProvince,jdbcType=BIGINT},
+      </if>
+      <if test="reciverCity != null" >
+        #{reciverCity,jdbcType=BIGINT},
+      </if>
+      <if test="reciverCountry != null" >
+        #{reciverCountry,jdbcType=BIGINT},
+      </if>
+      <if test="receiverVillage != null" >
+        #{receiverVillage,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAdress != null" >
+        #{receiverAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMode != null" >
+        #{deliveryMode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsNumber != null" >
+        #{logisticsNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null" >
+        #{freight,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCloseReasons != null" >
+        #{orderCloseReasons,jdbcType=VARCHAR},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.GroupBuyOrder" >
+    update j_group_buy_order
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null" >
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="paymentRecordId != null" >
+        payment_record_id = #{paymentRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="actualPayment != null" >
+        actual_payment = #{actualPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="payMode != null" >
+        pay_mode = #{payMode,jdbcType=CHAR},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="receiverName != null" >
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverProvince != null" >
+        receiver_province = #{receiverProvince,jdbcType=BIGINT},
+      </if>
+      <if test="reciverCity != null" >
+        reciver_city = #{reciverCity,jdbcType=BIGINT},
+      </if>
+      <if test="reciverCountry != null" >
+        reciver_country = #{reciverCountry,jdbcType=BIGINT},
+      </if>
+      <if test="receiverVillage != null" >
+        receiver_village = #{receiverVillage,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAdress != null" >
+        receiver_adress = #{receiverAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryMode != null" >
+        delivery_mode = #{deliveryMode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsNumber != null" >
+        logistics_number = #{logisticsNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null" >
+        freight = #{freight,jdbcType=DECIMAL},
+      </if>
+      <if test="orderCloseReasons != null" >
+        order_close_reasons = #{orderCloseReasons,jdbcType=VARCHAR},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+      and del_flag ='0'
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.GroupBuyOrder" >
+    update j_group_buy_order
+    set code = #{code,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      buyer_id = #{buyerId,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      village_id = #{villageId,jdbcType=BIGINT},
+      payment_record_id = #{paymentRecordId,jdbcType=BIGINT},
+      payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      actual_payment = #{actualPayment,jdbcType=DECIMAL},
+      pay_mode = #{payMode,jdbcType=CHAR},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      receiver_province = #{receiverProvince,jdbcType=BIGINT},
+      reciver_city = #{reciverCity,jdbcType=BIGINT},
+      reciver_country = #{reciverCountry,jdbcType=BIGINT},
+      receiver_village = #{receiverVillage,jdbcType=VARCHAR},
+      receiver_adress = #{receiverAdress,jdbcType=VARCHAR},
+      delivery_mode = #{deliveryMode,jdbcType=VARCHAR},
+      logistics_number = #{logisticsNumber,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      freight = #{freight,jdbcType=DECIMAL},
+      order_close_reasons = #{orderCloseReasons,jdbcType=VARCHAR},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+      and del_flag ='0'
+  </update>
+  
+  <!-- 自定义 -->
+  <!-- 订单管理的查询列表 -->
+ <!--   <select id="findAllGroupBuyOrder" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo" resultType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo">
+  		SELECT
+  	o.id as id,
+  	o.code as code,
+	o.buyer_id as buyerId,
+	g.serial_code as serialCode,
+	o.seller_id as sellerId,
+	o.order_time as orderTime,
+	o.village_id as villageId,
+	g.cost_price as price,
+	o.status as status
+FROM
+	j_group_buy_order o,
+	j_groupon_order_goods og,
+	j_groupon_goods g
+WHERE
+	o.id = og.order_id
+AND og.goods_id = g.id
+  </select>
+  
+   订单管理的查询列表总数
+  <select id="findAllGroupBuyOrderCount" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo" resultType="java.lang.Long">
+  	SELECT
+	count(*)
+FROM
+	j_group_buy_order o,
+	j_groupon_order_goods og,
+	j_groupon_goods g
+WHERE
+	o.id = og.order_id
+AND og.goods_id = g.id
+  </select> -->
+  
+  <!-- 订单管理的查询列表(根据卖方查) -->
+   <select id="findAllGroupBuyOrder" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo" resultType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo">
+	SELECT
+		o.id AS id,
+		o.`status` AS `status`,
+		o.`code` AS code,
+		o.goods_id AS goodsId,
+		o.buyer_id AS buyerId,
+		us.nick_name AS buyerName,
+		o.seller_id AS sellerId,
+		su.real_name AS sellerName,
+		o.order_time AS orderTime,
+		pc.code AS purchaseCode,
+		gg.groupon_classific AS grouponClassific,
+		gg.serial_code AS serialCode,
+		o.payment_amount AS price,
+		(
+			SELECT
+				s.lable
+			FROM
+				s_sys_data s
+			WHERE
+				o. STATUS = s.
+			VALUE
+	
+			AND s.type = #{orderStatusType}
+		) AS orderStatus,
+		(
+			SELECT
+				sv.village_name
+			FROM
+				s_village sv
+			WHERE
+				sv.village_id = o.village_id
+		) AS villageName
+	FROM
+		j_group_buy_order o,
+		j_groupon_order_goods og,
+		j_groupon_goods gg,
+		security_user su,
+		s_app_user us,
+		j_group_purchase_code pc
+	WHERE
+		o.id = og.order_id
+	AND o.buyer_id = us.id
+	AND og.goods_id = gg.id
+	AND o.seller_id = su.id
+	AND pc.order_id = o.id
+	and o.del_flag ='0'
+	<if test="code != null and code.trim()!=''" >
+    		and o.code like CONCAT('%',CONCAT(#{code},'%'))
+   	</if>
+	<if test="serialCode != null and serialCode.trim()!=''" >
+    		and gg.serial_code like CONCAT('%',CONCAT(#{serialCode},'%'))
+   	</if>
+	<if test="buyerName != null and buyerName.trim()!=''" >
+		and us.nick_name like CONCAT('%',CONCAT(#{buyerName},'%'))
+	</if>
+	<if test="sellerName != null and sellerName.trim()!=''" >
+		and su.real_name like CONCAT('%',CONCAT(#{sellerName},'%'))
+	</if>
+	<if test="status != null and status.trim()!=''" >
+	    and o.status = #{status,jdbcType=CHAR}
+    </if>
+	<if test="sellerId != null" >
+		and o.seller_id = #{sellerId,jdbcType=BIGINT}
+	</if>
+	order by o.order_time DESC  
+	<if test="pageFlag==true">
+   		LIMIT #{startPage}, #{endPage}
+   	</if>	      
+  </select>
+  
+   <!-- 订单管理的查询列表总数(根据卖方查) -->
+  <select id="findAllGroupBuyOrderCount" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo" resultType="java.lang.Long">
+	SELECT
+		count(*)
+	FROM
+		j_group_buy_order o,
+		j_groupon_order_goods og,
+		j_groupon_goods gg,
+		security_user su,
+		s_app_user us,
+		j_group_purchase_code pc
+	WHERE
+		o.id = og.order_id
+	AND o.buyer_id = us.id
+	and o.del_flag ='0' 
+	AND og.goods_id = gg.id
+	AND pc.order_id = o.id
+	AND o.seller_id = su.id
+	<if test="code != null and code.trim()!=''" >
+    	and o.code like CONCAT('%',CONCAT(#{code},'%'))
+   	</if>
+	<if test="serialCode != null and serialCode.trim()!=''" >
+    	and gg.serial_code like CONCAT('%',CONCAT(#{serialCode},'%'))
+    </if>
+	<if test="buyerName != null and buyerName.trim()!=''" >
+		and us.nick_name like CONCAT('%',CONCAT(#{buyerName},'%'))
+	</if>
+	<if test="sellerName != null and sellerName.trim()!=''" >
+		and su.real_name like CONCAT('%',CONCAT(#{sellerName},'%'))
+	</if>
+	<if test="status != null and status.trim()!=''" >
+	    and o.status = #{status,jdbcType=CHAR}
+	</if>
+	<if test="sellerId != null" >
+        and o.seller_id = #{sellerId,jdbcType=BIGINT}
+    </if>
+  </select>
+  
+  <!-- 订单管理的查询列表(根据小区查) -->
+   <select id="findAllGroupBuyOrderVillage" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo" resultType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo">
+  	SELECT
+	  	o.id as id,
+	  	o.status as status,
+		o.code as code,
+		o.goods_id as goodsId,
+		o.buyer_id as buyerId,
+		pc.code AS purchaseCode,
+		us.nick_name AS buyerName,
+		o.seller_id as sellerId,
+		su.real_name as sellerName,
+		o.order_time as orderTime,
+		gg.groupon_classific as grouponClassific,
+		gg.serial_code as serialCode,
+		o.payment_amount as price,
+		(select s.lable from s_sys_data s where o.status = s.value and s.type =#{orderStatusType}) as orderStatus,
+		(select sv.village_name from s_village sv where sv.village_id = o.village_id ) as villageName
+	FROM
+		j_group_buy_order o,
+		j_groupon_order_goods og,
+		j_groupon_goods gg,
+		security_user su,
+		s_app_user us,
+		j_group_purchase_code pc,
+		(
+		SELECT
+			village_id
+		FROM
+			J_Cooperation_Store_Village
+		WHERE
+			store_id IN (
+				SELECT
+					id
+				FROM
+					J_Cooperation_Store
+				WHERE
+					user_id = #{currentUserId,jdbcType=BIGINT}
+					and del_flag ='0'
+			)
+		) svua
+	WHERE
+		o.id = og.order_id
+	and	o.buyer_id = us.id
+	AND og.goods_id = gg.id
+	AND o.seller_id = su.id
+	AND pc.order_id = o.id
+	and o.del_flag ='0' 
+	AND o.village_id IN (svua.village_id)
+	<if test="deliveryModeList != null" >
+		AND o.delivery_mode IN 
+        <foreach item="item" collection="deliveryModeList"
+        	index="index" open="(" separator="," close=")">
+			#{item} 
+        </foreach>
+    </if>
+	<if test="code != null and code.trim()!=''" >
+    	and o.code like CONCAT('%',CONCAT(#{code},'%'))
+    </if>
+	<if test="serialCode != null and serialCode.trim()!=''" >
+    	and gg.serial_code like CONCAT('%',CONCAT(#{serialCode},'%'))
+   	</if>
+	<if test="buyerName != null and buyerName.trim()!=''" >
+		and us.nick_name like CONCAT('%',CONCAT(#{buyerName},'%'))
+	</if>
+	<if test="sellerName != null and sellerName.trim()!=''" >
+		and su.real_name like CONCAT('%',CONCAT(#{sellerName},'%'))
+	</if>
+	<if test="status != null and status.trim()!=''" >
+	    and o.status = #{status,jdbcType=CHAR}
+	</if>
+	    order by o.order_time DESC  
+	<if test="pageFlag==true">
+    	LIMIT #{startPage}, #{endPage}
+    </if>    
+  </select>
+  
+   <!-- 订单管理的查询列表总数(根据小区查) -->
+  <select id="findAllGroupBuyOrderVillageCount" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo" resultType="java.lang.Long">
+  		SELECT
+		  	count(o.id)
+		FROM
+			j_group_buy_order o,
+			j_groupon_order_goods og,
+			j_groupon_goods gg,
+			security_user su,
+			s_app_user us,
+			j_group_purchase_code pc,
+			(
+			SELECT
+				village_id
+			FROM
+				J_Cooperation_Store_Village
+			WHERE
+				store_id IN (
+					SELECT
+						id
+					FROM
+						J_Cooperation_Store
+					WHERE
+						user_id = #{currentUserId,jdbcType=BIGINT}
+						and del_flag ='0'
+				)
+			) svua
+		WHERE
+			o.id = og.order_id
+		and	o.buyer_id = us.id
+		AND og.goods_id = gg.id
+		AND o.seller_id = su.id
+		AND pc.order_id = o.id
+		and o.del_flag ='0' 
+		AND o.village_id IN (svua.village_id)
+		<if test="deliveryModeList != null" >
+			AND o.delivery_mode IN 
+        	<foreach item="item" collection="deliveryModeList"
+        		index="index" open="(" separator="," close=")">
+            	#{item}                
+            </foreach>
+		</if>
+		<if test="code != null and code.trim()!=''" >
+      		and o.code like CONCAT('%',CONCAT(#{code},'%'))
+		</if>
+		<if test="serialCode != null and serialCode.trim()!=''" >
+     		and gg.serial_code like CONCAT('%',CONCAT(#{serialCode},'%'))
+    	</if>
+		<if test="buyerName != null and buyerName.trim()!=''" >
+			and us.nick_name like CONCAT('%',CONCAT(#{buyerName},'%'))
+		</if>
+		<if test="sellerName != null and sellerName.trim()!=''" >
+			and su.real_name like CONCAT('%',CONCAT(#{sellerName},'%'))
+		</if>
+		<if test="status != null and status.trim()!=''" >
+	       and o.status = #{status,jdbcType=CHAR}
+	    </if>	
+  </select>
+  
+  <!-- 订单详情查看 -->
+   <select id="findGroupBuyOrderInit" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo"  resultType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo">
+  	SELECT 
+  	o.code as code,(
+		SELECT
+			y1.lable
+		FROM
+			J_Group_Buy_Order o1,
+			s_sys_data y1
+		WHERE
+			o1.`pay_mode` = y1.`value`
+		AND y1.type = #{payModel}
+		AND o1.id = o.id
+	) AS payMode,DATE_FORMAT(o.pay_time,"%Y-%m-%d %T") as payTime,o.payment_amount as paymentAmount,
+	o.receiver_name as receiverName,o.receiver_phone as receiverPhone,
+  	o.receiver_adress as receiverAdress,
+	(
+		SELECT
+			y1.lable
+		FROM
+			J_Group_Buy_Order o1,
+			s_sys_data y1
+		WHERE
+			o1.`delivery_mode` = y1.`value`
+		AND y1.type = #{express}
+		AND o1.id = o.id
+	) as deliveryMode,o.phone as phone,
+  	o.freight as freight,y.lable as orderStatus,o.logistics_number as logisticsNumber
+  	 FROM J_Group_Buy_Order o, s_sys_data y
+	WHERE
+		o.`status` = y.`value`
+	AND y.type = #{orderStatusType} and o.del_flag ='0' 
+      <if test="id != null" >
+       and o.id = #{id,jdbcType=BIGINT}
+      </if>            
+  </select>
+  <!-- 订单详情查看 -->
+  <select id="findGroupBuyOrder" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_group_buy_order
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag ='0'
+  </select>
+  <!--找到所有的订单  -->
+  <select id="findAllOrder" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.geekstore.vo.GroupBuyOrderVo" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_group_buy_order
+    where  del_flag ='0'
+    <if test="status != null and status.trim()!=''" >
+	       and status = #{status,jdbcType=CHAR}
+	      </if>
+  </select>
+</mapper>

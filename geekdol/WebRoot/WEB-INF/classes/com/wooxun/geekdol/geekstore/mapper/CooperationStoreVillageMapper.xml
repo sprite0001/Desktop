@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.CooperationStoreVillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.CooperationStoreVillage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="store_id" property="storeId" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    
+    <association property="village" column="village_id" select="com.wooxun.geekdol.system.mapper.VillageMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, store_id, village_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_cooperation_store_village
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_cooperation_store_village
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStoreVillage" >
+    insert into j_cooperation_store_village (id, store_id, village_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{storeId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStoreVillage" >
+    insert into j_cooperation_store_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <!-- 批量插入数据 begin -->
+  <insert id="insertBatch" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStoreVillage">
+  	insert into j_cooperation_store_village (store_id,village_id) values 
+  	<foreach collection="list" item="item" index="index" separator="," >
+  		( #{item.storeId,jdbcType=BIGINT}, #{item.villageId,jdbcType=BIGINT})
+  	</foreach>
+  </insert>
+  <!-- 批量插入数据 end -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStoreVillage" >
+    update j_cooperation_store_village
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.CooperationStoreVillage" >
+    update j_cooperation_store_village
+    set store_id = #{storeId,jdbcType=BIGINT},
+      village_id = #{villageId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 根据合作店id查找小区 -->
+  <select id="selectCooperationStoreVillageByStoreId" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+    from j_cooperation_store_village
+    where store_id = #{id,jdbcType=BIGINT}
+  </select>
+  <!-- 修改合作店铺时候,根据店铺id删除关系表所有相关的数据 -->
+  <delete id="deleteByStoreId" parameterType="java.lang.Long">
+    delete from j_cooperation_store_village
+    where store_id = #{storeId,jdbcType=BIGINT}
+  </delete>
+</mapper>

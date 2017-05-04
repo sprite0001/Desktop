@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.AttachMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.Attach" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="media_type" property="mediaType" jdbcType="CHAR" />
+    <result column="owner_id" property="ownerId" jdbcType="BIGINT" />
+    <result column="owner_tb_type" property="ownerTbType" jdbcType="VARCHAR" />
+    <result column="ordering" property="ordering" jdbcType="INTEGER" />
+    <result column="opreator" property="opreator" jdbcType="BIGINT" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, url, media_type, owner_id, owner_tb_type, ordering, opreator, ins_id, ins_ymdhms, 
+    upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from attach
+    where id = #{id,jdbcType=BIGINT} and del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from attach
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.Attach" >
+    insert into attach (id, url, media_type, 
+      owner_id, owner_tb_type, ordering, 
+      opreator, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, #{mediaType,jdbcType=CHAR}, 
+      #{ownerId,jdbcType=BIGINT}, #{ownerTbType,jdbcType=VARCHAR}, #{ordering,jdbcType=INTEGER}, 
+      #{opreator,jdbcType=BIGINT}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.Attach" >
+    insert into attach
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="mediaType != null" >
+        media_type,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="ownerTbType != null" >
+        owner_tb_type,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="opreator != null" >
+        opreator,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaType != null" >
+        #{mediaType,jdbcType=CHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerTbType != null" >
+        #{ownerTbType,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="opreator != null" >
+        #{opreator,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.Attach" >
+    update attach
+    <set >
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaType != null" >
+        media_type = #{mediaType,jdbcType=CHAR},
+      </if>
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerTbType != null" >
+        owner_tb_type = #{ownerTbType,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="opreator != null" >
+        opreator = #{opreator,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.Attach" >
+    update attach
+    set url = #{url,jdbcType=VARCHAR},
+      media_type = #{mediaType,jdbcType=CHAR},
+      owner_id = #{ownerId,jdbcType=BIGINT},
+      owner_tb_type = #{ownerTbType,jdbcType=VARCHAR},
+      ordering = #{ordering,jdbcType=INTEGER},
+      opreator = #{opreator,jdbcType=BIGINT},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 批量保存附件 -->
+  <insert id="insertBatch" parameterType="com.wooxun.geekdol.system.model.Attach" >
+      insert into attach (url, media_type, 
+      owner_id, owner_tb_type, ordering, 
+      opreator, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+      values 
+      <foreach collection="list" item="item" index="index" separator="," >  
+      ( #{item.url,jdbcType=VARCHAR}, #{item.mediaType,jdbcType=CHAR}, 
+      #{item.ownerId,jdbcType=BIGINT}, #{item.ownerTbType,jdbcType=VARCHAR}, #{item.ordering,jdbcType=INTEGER}, 
+      #{item.opreator,jdbcType=BIGINT}, #{item.insId,jdbcType=BIGINT}, #{item.insYmdhms,jdbcType=TIMESTAMP}, 
+      #{item.updId,jdbcType=BIGINT}, #{item.updYmdhms,jdbcType=TIMESTAMP}, #{item.updEac,jdbcType=BIGINT}, 
+      #{item.delFlag,jdbcType=CHAR})
+        </foreach>
+    </insert>
+  <!--根据贴心报id和贴心报表名找到对应的附件  -->
+  <select id="selectAttachByIntimateNewsId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+     from attach
+     where owner_id = #{id,jdbcType=BIGINT}
+     and owner_tb_type = "04"
+  </select>
+  
+  <!-- 根据主表id和主表表明删除所对应的附件-->
+  <delete id="deleteByIdAndName" >
+    delete from attach
+    where owner_id = #{0}
+    and owner_tb_type = #{1}
+  </delete>
+  
+  <!-- 批量插入附件表信息 -->
+  <insert id="insertBatchByMap" parameterType="map">
+	insert into attach (url, media_type, 
+      owner_id, owner_tb_type, ordering, 
+      opreator, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag) 
+	values
+	<foreach collection="fileNameList" item="item" index="index" separator="," >
+	( #{item},  #{attach.mediaType,jdbcType=CHAR}, 
+      #{attach.ownerId,jdbcType=BIGINT}, #{attach.ownerTbType,jdbcType=VARCHAR}, #{index+1}, 
+      #{attach.opreator,jdbcType=BIGINT}, #{attach.insId,jdbcType=BIGINT}, #{attach.insYmdhms,jdbcType=TIMESTAMP}, 
+      #{attach.updId,jdbcType=BIGINT}, #{attach.updYmdhms,jdbcType=TIMESTAMP}, #{attach.updEac,jdbcType=BIGINT}, 
+      #{attach.delFlag,jdbcType=CHAR})
+	</foreach>
+  </insert>
+  <delete id="deleteByParam" parameterType="com.wooxun.geekdol.system.model.Attach" >
+    delete from attach
+    where owner_id = #{ownerId,jdbcType=BIGINT}
+    and owner_tb_type = #{ownerTbType,jdbcType=VARCHAR}
+  </delete>
+  
+  <select id="selectAttachByParam" parameterType="com.wooxun.geekdol.system.model.Attach" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from attach
+     where media_type = #{mediaType,jdbcType=CHAR}
+     and owner_id = #{ownerId,jdbcType=BIGINT}
+     and owner_tb_type = #{ownerTbType,jdbcType=VARCHAR}
+     order by ordering asc
+  </select>
+  <!-- 根据归属id查找附件信息 -->
+  <select id="getByOwnerIdAndOwnerTbType" parameterType="map" resultType="map">
+  	select url from attach where
+     owner_id = #{ownerId,jdbcType=BIGINT}
+     and owner_tb_type = #{ownerTbType,jdbcType=VARCHAR}
+     order by ordering asc
+  </select>
+</mapper>

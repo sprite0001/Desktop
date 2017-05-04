@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.HeartBeatReportMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.HeartBeatReport" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="hear_id" property="hearId" jdbcType="BIGINT" />
+    <result column="report_content" property="reportContent" jdbcType="VARCHAR" />
+    <result column="report_type" property="reportType" jdbcType="CHAR" />
+    <result column="effective_state" property="effectiveState" jdbcType="CHAR" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.wooxun.geekdol.hmedia.vo.HeartBeatReportVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="hear_id" property="hearId" jdbcType="BIGINT" />
+    <result column="report_content" property="reportContent" jdbcType="VARCHAR" />
+    <result column="report_type" property="reportType" jdbcType="CHAR" />
+    <result column="effective_state" property="effectiveState" jdbcType="CHAR" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="insName" property="insName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, hear_id, report_content, report_type, effective_state, opreater_ip, ins_id, ins_ymdhms, 
+    upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_heart_beat_report
+    where id = #{id,jdbcType=BIGINT} and del_flag = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_heart_beat_report
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.HeartBeatReport" >
+    insert into m_heart_beat_report (id, hear_id, report_content, 
+      report_type, effective_state, opreater_ip, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{hearId,jdbcType=BIGINT}, #{reportContent,jdbcType=VARCHAR}, 
+      #{reportType,jdbcType=CHAR}, #{effectiveState,jdbcType=CHAR}, #{opreaterIp,jdbcType=VARCHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.HeartBeatReport" useGeneratedKeys="true" keyProperty="id">
+    insert into m_heart_beat_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="hearId != null" >
+        hear_id,
+      </if>
+      <if test="reportContent != null" >
+        report_content,
+      </if>
+      <if test="reportType != null" >
+        report_type,
+      </if>
+      <if test="effectiveState != null" >
+        effective_state,
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hearId != null" >
+        #{hearId,jdbcType=BIGINT},
+      </if>
+      <if test="reportContent != null" >
+        #{reportContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null" >
+        #{reportType,jdbcType=CHAR},
+      </if>
+      <if test="effectiveState != null" >
+        #{effectiveState,jdbcType=CHAR},
+      </if>
+      <if test="opreaterIp != null" >
+        #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.HeartBeatReport" >
+    update m_heart_beat_report
+    <set >
+      <if test="hearId != null" >
+        hear_id = #{hearId,jdbcType=BIGINT},
+      </if>
+      <if test="reportContent != null" >
+        report_content = #{reportContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null" >
+        report_type = #{reportType,jdbcType=CHAR},
+      </if>
+      <if test="effectiveState != null" >
+        effective_state = #{effectiveState,jdbcType=CHAR},
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.HeartBeatReport" >
+    update m_heart_beat_report
+    set hear_id = #{hearId,jdbcType=BIGINT},
+      report_content = #{reportContent,jdbcType=VARCHAR},
+      report_type = #{reportType,jdbcType=CHAR},
+      effective_state = #{effectiveState,jdbcType=CHAR},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 自定义查询语句开始 -->
+  <!-- 自定义搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="hearId != null" >
+                AND hear_id = #{hearId,jdbcType=BIGINT}
+            </if>
+            <if test="reportType != null and contentType.trim()!=''" >
+                AND report_type = #{reportType,jdbcType=CHAR}
+            </if>
+            <if test="effectiveState != null and contentType.trim()!=''" >
+                AND effective_state = #{effectiveState,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   <!-- 条件查询,返回举报人员的手机号等信息 -->
+   <select id="queryListAndUser" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatReportVo" resultMap="BaseResultMapVo">
+    SELECT hb.*,su.moblie mobile,su.nick_name reportName FROM m_heart_beat_report hb,s_app_user su
+        WHERE hb.ins_id = su.id and su.del_flag = 0 
+            <if test="hearId != null" >
+                AND hb.hear_id = #{hearId,jdbcType=BIGINT}
+            </if>
+            <if test="reportType != null and contentType.trim()!=''" >
+                AND hb.report_type = #{reportType,jdbcType=CHAR}
+            </if>
+            <if test="effectiveState != null and contentType.trim()!=''" >
+                AND hb.effective_state = #{effectiveState,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND hb.del_flag='0'
+        order by hb.id desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询总数量，用户被删除则不计数 -->
+   <select id="queryCountAndUser" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatReportVo" resultType="java.lang.Long">
+    SELECT count(*) FROM m_heart_beat_report hb,s_app_user su
+        WHERE hb.ins_id = su.id and su.del_flag = 0 
+            <if test="hearId != null" >
+                AND hb.hear_id = #{hearId,jdbcType=BIGINT}
+            </if>
+            <if test="reportType != null and contentType.trim()!=''" >
+                AND hb.report_type = #{reportType,jdbcType=CHAR}
+            </if>
+            <if test="effectiveState != null and contentType.trim()!=''" >
+                AND hb.effective_state = #{effectiveState,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND hb.del_flag='0'
+        order by hb.id desc
+  </select>
+</mapper>

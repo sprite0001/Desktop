@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.CommunityMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.Community" >
+    <id column="community_id" property="communityId" jdbcType="BIGINT" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="county_id" property="countyId" jdbcType="BIGINT" />
+    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+    <result column="community_code" property="communityCode" jdbcType="VARCHAR" />
+    <result column="ordering" property="ordering" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    
+    <!-- 省份 -->
+    <association column="province_id" property="province" select="com.wooxun.geekdol.system.mapper.ProvinceMapper.selectByPrimaryKey"></association>
+    <!-- 市 -->
+    <association column="city_id" property="city" select="com.wooxun.geekdol.system.mapper.CityMapper.selectByPrimaryKey"></association>
+    <!-- 区\县 -->
+    <association column="county_id" property="county" select="com.wooxun.geekdol.system.mapper.CountyMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    community_id, province_id, city_id, county_id, community_name, community_code, ordering, 
+    status, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_community
+    where community_id = #{communityId,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <select id="haEffectCommunity" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_community
+    where community_id = #{communityId,jdbcType=BIGINT} and status = #{status,jdbcType=CHAR} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_community
+    where community_id = #{communityId,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.Community" useGeneratedKeys="true" keyProperty="communityId">
+    insert into s_community (community_id, province_id, city_id, 
+      county_id, community_name, community_code, 
+      ordering, status, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{communityId,jdbcType=BIGINT}, #{provinceId,jdbcType=BIGINT}, #{cityId,jdbcType=BIGINT}, 
+      #{countyId,jdbcType=BIGINT}, #{communityName,jdbcType=VARCHAR}, #{communityCode,jdbcType=VARCHAR}, 
+      #{ordering,jdbcType=BIGINT}, #{status,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.Community" >
+    insert into s_community
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="communityId != null" >
+        community_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="communityName != null" >
+        community_name,
+      </if>
+      <if test="communityCode != null" >
+        community_code,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="communityId != null" >
+        #{communityId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="communityName != null" >
+        #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null" >
+        #{communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.Community" >
+    update s_community
+    <set >
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="communityName != null and communityName.trim()!=''" >
+        community_name = #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="communityCode != null and communityCode.trim()!=''" >
+        community_code = #{communityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="status != null and status.trim()!=''" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null and delFlag.trim() != ''" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where community_id = #{communityId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.Community" >
+    update s_community
+    set province_id = #{provinceId,jdbcType=BIGINT},
+      city_id = #{cityId,jdbcType=BIGINT},
+      county_id = #{countyId,jdbcType=BIGINT},
+      community_name = #{communityName,jdbcType=VARCHAR},
+      community_code = #{communityCode,jdbcType=VARCHAR},
+      ordering = #{ordering,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where community_id = #{communityId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+           <if test="provinceId != null and provinceId != 0" >
+		    	AND province_id = #{provinceId,jdbcType=BIGINT}
+		    </if>
+		    <if test="cityId != null and cityId != 0" >
+		    	AND city_id = #{cityId,jdbcType=BIGINT}
+		    </if>
+		    <if test="countyId != null and countyId != 0" >
+		    	AND county_id = #{countyId,jdbcType=BIGINT}
+		    </if>
+		    <if test="communityName != null and communityName.trim()!=''" >
+		    	AND community_name LIKE CONCAT(CONCAT('%', #{communityName}),'%')
+		    </if>
+		    <if test="communityCode != null and communityCode.trim() != ''" >
+		    	AND community_code = #{communityCode,jdbcType=VARCHAR}
+		    </if>	
+		     <if test="status != null and status !=''" >
+                and status = #{status,jdbcType=CHAR}
+              </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+  
+  <!-- 后台: 社区管理列表查询 begin -->
+  <select id="queryCommunityByParams" parameterType="com.wooxun.geekdol.system.vo.CommunityVo" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from s_community
+    <include refid="searchWhere" />
+    order by ordering ASC, ins_ymdhms DESC
+    <if test="pageFlag==true">
+	  LIMIT #{startPage}, #{endPage}
+	</if>
+  </select>
+  <select id="queryCountByParams" parameterType="com.wooxun.geekdol.system.vo.CommunityVo" resultType="java.lang.Long">
+    select 
+  	  count(community_id)
+    from s_community
+   	<include refid="searchWhere" />
+  </select>
+  <!-- 后台: 社区管理列表查询 end -->
+  <!-- 校验同一行政区下是否有相同的code或相同名称的社区 -->
+  <select id="querySameCountByParams" resultType="java.lang.Long"
+  		parameterType="com.wooxun.geekdol.system.vo.CommunityVo">
+  	select 
+  		count(community_id)
+    from s_community
+    where
+    	county_id = #{countyId,jdbcType=BIGINT}
+    	AND (community_name = #{communityName,jdbcType=VARCHAR}
+    		or community_code = #{communityCode,jdbcType=VARCHAR}
+    	)
+        AND del_flag='0'
+  </select>
+  
+  <!-- 根据区县id查找下的所有社区 begin -->
+  <select id="queryCommunityByCountry" parameterType="com.wooxun.geekdol.system.vo.CommunityVo" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from s_community
+    where county_id = #{countyId,jdbcType=BIGINT} and del_flag = '0'
+    <if test="status != null and status.trim()!=''" >
+       AND status = #{status,jdbcType=CHAR}
+      </if>
+    	order by ordering
+  </select>
+  <!-- 根据区县id查找下的所有社区 end -->
+  <!-- 查询可用社区数量 -->
+  <select id="queryCount" parameterType="com.wooxun.geekdol.system.vo.CommunityVo" resultType="java.lang.Long">
+    select 
+      count(community_id)
+    from s_community
+    <include refid="searchWhere" />
+    and status='0'
+  </select>
+  
+  <!-- 根据县区ID查询所有未分配的可用的社区/街道/办事处 -->
+  <select id="selectByCountyIdNoUser" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    	<include refid="Base_Column_List" />
+    from s_community
+    <where>
+    	<if test="countyId != null" >
+        	AND county_id = #{countyId,jdbcType=BIGINT}
+     	</if>
+        <if test="communityId != null" >
+            AND community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+        <if test="provinceId != null" >
+            AND province_id = #{provinceId,jdbcType=BIGINT}
+        </if>
+        <if test="cityId != null" >
+            AND city_id = #{cityId,jdbcType=BIGINT}
+        </if>
+	    AND del_flag = '0' and status = '0' and community_id not in (SELECT sua.area_id FROM s_user_area sua where sua.user_id = #{userId,jdbcType=BIGINT})
+    </where>
+  
+  </select>
+  <!-- 根据县区ID查询所有社区/街道/办事处 -->
+  <select id="selectByCountyId" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+    from s_community
+    <where>
+        <if test="countyId != null" >
+            AND county_id = #{countyId,jdbcType=BIGINT}
+        </if>
+        <if test="communityId != null" >
+            AND community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+        <if test="status != null and status !=''" >
+            and status = #{status,jdbcType=CHAR}
+        </if>
+        AND del_flag = '0'
+    </where>
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  
+  </select>
+  <!-- 根据用户id查找分配给此用户的所有数据 -->
+  <select id="findByUserId" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select 
+    	*
+    from s_community sc where 
+    <if test="communityId != null" >
+        sc.community_id = #{communityId}
+    </if>
+    <if test="communityId == null" >
+        sc.community_id in (SELECT sua.area_id FROM s_user_area sua WHERE sua.user_id = #{userId,jdbcType=BIGINT} and sua.del_flag =0 and sua.area_level = '04') 
+    </if>
+    <if test="countyId != null" >
+        AND sc.county_id = #{countyId}
+    </if>
+    and sc.del_flag='0'
+  </select>
+  <!-- 根据省市区id查找区下的所有社区的的条数-->
+  <select id="findCount" parameterType="com.wooxun.geekdol.system.model.County" resultType="java.lang.Long">
+    select 
+        count(community_id)
+    from s_community
+    <where>
+        <if test="provinceId!=null and provinceId!=0">
+             and province_id != #{provinceId,jdbcType=BIGINT} 
+        </if>
+        <if test="cityId!=null and cityId!=0">
+             and city_id = #{cityId,jdbcType=BIGINT} 
+        </if>
+        <if test="countyId!=null and countyId!=0">
+             and county_id = #{countyId,jdbcType=BIGINT} 
+        </if>
+             AND del_flag='0'
+        </where>
+  </select>
+<!-- 根据多个社区id查找所有社区,排除删除和禁用的 -->
+<select id="selectCommunityByIds" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_community
+    where community_id in(${queryIds}) and del_flag = '0' and status = '0'
+</select>
+</mapper>

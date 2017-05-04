@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.VillageLikeRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.VillageLikeRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="liking_date" property="likingDate" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, village_id, phone, content, liking_date, ins_id, ins_ymdhms, upd_id, upd_ymdhms, 
+    upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_village_like_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_village_like_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.VillageLikeRecord" >
+    insert into j_village_like_record (id, village_id, phone, 
+      content, liking_date, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{likingDate,jdbcType=TIMESTAMP}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.VillageLikeRecord" >
+    insert into j_village_like_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="likingDate != null" >
+        liking_date,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="likingDate != null" >
+        #{likingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.VillageLikeRecord" >
+    update j_village_like_record
+    <set >
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="likingDate != null" >
+        liking_date = #{likingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.VillageLikeRecord" >
+    update j_village_like_record
+    set village_id = #{villageId,jdbcType=BIGINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      liking_date = #{likingDate,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 系统设置-小区查询:点赞记录查询 begin -->
+  <select id="findAllVillageLikeRecord" parameterType="com.wooxun.geekdol.geekstore.vo.VillageLikeRecordVo"
+  	resultType="com.wooxun.geekdol.geekstore.vo.VillageLikeRecordVo">
+	SELECT phone,content,liking_date AS likingDate FROM
+	j_village_like_record 
+	<where>
+		<if test="villageId != null and villageId != 0">
+			AND village_id = #{villageId,jdbcType=BIGINT}
+		</if>
+		<if test="phone != null and phone.trim() != ''">
+			AND phone like CONCAT(CONCAT('%',#{phone}),'%')
+		</if>
+		AND DEL_FLAG = '0'
+	</where>
+  </select>
+  <select id="findAllVillageLikeRecordCount" resultType="java.lang.Long"
+  	parameterType="com.wooxun.geekdol.geekstore.vo.VillageLikeRecordVo">
+	SELECT COUNT(ID) FROM j_village_like_record 
+	<where>
+		<if test="villageId != null and villageId != 0">
+			AND village_id = #{villageId,jdbcType=BIGINT}
+		</if>
+		<if test="phone != null and phone.trim() != ''">
+			AND phone like CONCAT(CONCAT('%',#{phone}),'%')
+		</if>
+		AND DEL_FLAG = '0'
+	</where>
+  </select>
+  <!-- 系统设置-小区查询:点赞记录查询 begin -->
+  
+  <!--吉客店管理-点赞记录管理:点赞记录查询begin  -->
+  <select id="findVillageLikeRecord" parameterType="com.wooxun.geekdol.geekstore.vo.VillageLikeRecordVo" resultType="com.wooxun.geekdol.geekstore.vo.VillageLikeRecordVo">
+  	SELECT j.id AS id,j.phone AS phone,j.content AS content,j.liking_date AS likingDate,v.village_name as villageName FROM j_village_like_record j,s_village v,
+  	(
+	SELECT
+	village.village_id
+	FROM
+	s_village village,
+	s_user_area ua
+	WHERE
+	 ua.user_id = #{currentUserId,jdbcType=BIGINT}
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+		and ua.area_id = village.province_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+		and ua.area_id = village.city_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+		and ua.area_id = village.county_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+		and ua.area_id = village.community_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+		and ua.area_id = village.village_id
+	</if>
+	) svua
+  	WHERE j.village_id = v.village_id and j.DEL_FLAG = '0'
+  	AND j.village_id IN (svua.village_id)
+  	<if test="phone != null and phone.trim() != ''">
+		AND j.phone like CONCAT(CONCAT('%',#{phone}),'%')
+	</if>
+	<if test="villageName != null and villageName.trim() != ''">
+		AND v.village_name like CONCAT(CONCAT('%',#{villageName}),'%')
+	</if>
+	order by j.liking_date desc
+	<if test="pageFlag==true">
+		   LIMIT #{startPage}, #{endPage}
+		 </if>
+  </select>
+  <select id="findVillageLikeRecordCount" parameterType="com.wooxun.geekdol.geekstore.vo.VillageLikeRecordVo" resultType="java.lang.Long">
+  	SELECT count(j.id) FROM j_village_like_record j,s_village v,
+  	(
+	SELECT
+	village.village_id
+	FROM
+	s_village village,
+	s_user_area ua
+	WHERE
+	 ua.user_id = #{currentUserId,jdbcType=BIGINT}
+	 and village.del_flag = '0' and  ua.del_flag = '0'
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+		and ua.area_id = village.province_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+		and ua.area_id = village.city_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+		and ua.area_id = village.county_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+		and ua.area_id = village.community_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+		and ua.area_id = village.village_id
+	</if>
+	) svua
+  	WHERE j.village_id = v.village_id and j.DEL_FLAG = '0'
+  	AND j.village_id IN (svua.village_id)
+  	<if test="phone != null and phone.trim() != ''">
+		AND j.phone like CONCAT(CONCAT('%',#{phone}),'%')
+	</if>
+	<if test="villageName != null and villageName.trim() != ''">
+		AND v.village_name like CONCAT(CONCAT('%',#{villageName}),'%')
+	</if>
+  </select>
+</mapper>

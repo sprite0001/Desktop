@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.JServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.JService" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="classific_id" property="classificId" jdbcType="BIGINT" />
+    <result column="service_name" property="serviceName" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="contacts_phone" property="contactsPhone" jdbcType="VARCHAR" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.geekstore.model.JService" extends="BaseResultMap" >
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, service_code, classific_id, service_name, contacts, contacts_phone, views, ins_id, 
+    ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from j_service
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_service
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.JService" >
+    insert into j_service (id, service_code, classific_id, 
+      service_name, contacts, contacts_phone, 
+      views, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag, detail)
+    values (#{id,jdbcType=BIGINT}, #{serviceCode,jdbcType=VARCHAR}, #{classificId,jdbcType=BIGINT}, 
+      #{serviceName,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, 
+      #{views,jdbcType=INTEGER}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR}, #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.JService" >
+    insert into j_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serviceCode != null" >
+        service_code,
+      </if>
+      <if test="classificId != null" >
+        classific_id,
+      </if>
+      <if test="serviceName != null" >
+        service_name,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="serviceCode != null" >
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classificId != null" >
+        #{classificId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceName != null" >
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.JService" >
+    update j_service
+    <set >
+      <if test="serviceCode != null" >
+        service_code = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classificId != null" >
+        classific_id = #{classificId,jdbcType=BIGINT},
+      </if>
+      <if test="serviceName != null" >
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.geekstore.model.JService" >
+    update j_service
+    set service_code = #{serviceCode,jdbcType=VARCHAR},
+      classific_id = #{classificId,jdbcType=BIGINT},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.JService" >
+    update j_service
+    set service_code = #{serviceCode,jdbcType=VARCHAR},
+      classific_id = #{classificId,jdbcType=BIGINT},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      views = #{views,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 系统设置-小区查询:服务社列表查询 begin -->
+  <select id="findAllJService" parameterType="com.wooxun.geekdol.geekstore.vo.JServiceVo" resultType="com.wooxun.geekdol.geekstore.vo.JServiceVo">
+	SELECT
+	s.service_code as serviceCode, s.service_name as serviceName, s.contacts as contacts, s.contacts_phone as contactsPhone,
+	s.ins_ymdhms as insYmdhms,sc.classific_name as classificName
+	FROM
+	j_service s,
+	j_service_village sv,
+	j_service_classific sc
+	WHERE
+	s.id =
+	sv.service_id
+	and s.classific_id = sc.id
+	AND s.del_flag = '0'
+	<if test="villageId != null and villageId != 0">
+		AND sv.village_id = #{villageId,jdbcType=BIGINT}
+	</if>
+	<if test="serviceCode != null and serviceCode.trim() != ''">
+		AND s.service_code LIKE CONCAT(CONCAT('%', #{serviceCode}),'%')
+	</if>
+	<if test="serviceName != null and serviceName.trim() != ''">
+		AND s.service_name LIKE CONCAT(CONCAT('%', #{serviceName}),'%')
+	</if>
+	<if test="classificId != null and classificId != 0">
+		AND s.classific_id = #{classificId,jdbcType=BIGINT}
+	</if>
+  </select>
+  <select id="findAllJServiceCount" parameterType="com.wooxun.geekdol.geekstore.vo.JServiceVo" resultType="java.lang.Long">
+  	SELECT
+		COUNT(s.id)
+	FROM
+		j_service s,
+		j_service_village sv
+	WHERE
+		s.id = sv.service_id
+	AND s.del_flag = '0'
+	<if test="villageId != null and villageId != 0">
+		AND sv.village_id = #{villageId,jdbcType=BIGINT}
+	</if>
+	<if test="serviceCode != null and serviceCode.trim() != ''">
+		AND s.service_code LIKE CONCAT(CONCAT('%', #{serviceCode}),'%')
+	</if>
+	<if test="serviceName != null and serviceName.trim() != ''">
+		AND s.service_name LIKE CONCAT(CONCAT('%', #{serviceName}),'%')
+	</if>
+	<if test="classificId != null and classificId != 0">
+		AND s.classific_id = #{classificId,jdbcType=BIGINT}
+	</if>
+  </select>
+  <!-- 系统设置-小区查询:服务社列表查询 end -->
+</mapper>

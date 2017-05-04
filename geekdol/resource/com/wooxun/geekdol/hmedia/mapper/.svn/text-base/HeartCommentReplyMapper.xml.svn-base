@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.HeartCommentReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.HeartCommentReply" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="heart_comment_id" property="heartCommentId" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="illegal_status" property="illegalStatus" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.wooxun.geekdol.hmedia.vo.HeartCommentReplyVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="heart_comment_id" property="heartCommentId" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="illegal_status" property="illegalStatus" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, heart_comment_id, content, opreater_ip, longitude, latitude, ins_id, ins_ymdhms, 
+    upd_id, upd_ymdhms, upd_eac, del_flag, illegal_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_heart_comment_reply
+    where id = #{id,jdbcType=BIGINT} and del_flag = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_heart_comment_reply
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.HeartCommentReply" >
+    insert into m_heart_comment_reply (id, heart_comment_id, content, 
+      opreater_ip, longitude, latitude, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag, 
+      illegal_status)
+    values (#{id,jdbcType=BIGINT}, #{heartCommentId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{opreaterIp,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, 
+      #{illegalStatus,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.HeartCommentReply" >
+    insert into m_heart_comment_reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="heartCommentId != null" >
+        heart_comment_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="illegalStatus != null" >
+        illegal_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="heartCommentId != null" >
+        #{heartCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="opreaterIp != null" >
+        #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="illegalStatus != null" >
+        #{illegalStatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.HeartCommentReply" >
+    update m_heart_comment_reply
+    <set >
+      <if test="heartCommentId != null" >
+        heart_comment_id = #{heartCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="illegalStatus != null" >
+        illegal_status = #{illegalStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.HeartCommentReply" >
+    update m_heart_comment_reply
+    set heart_comment_id = #{heartCommentId,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DECIMAL},
+      latitude = #{latitude,jdbcType=DECIMAL},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      illegal_status = #{illegalStatus,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 条件查询，关联用户 -->
+  <select id="queryListByUser" parameterType="com.wooxun.geekdol.hmedia.vo.HeartCommentReplyVo" resultMap="BaseResultMapVo">
+    select hbc.*,su.nick_name insName from m_heart_comment_reply hbc,s_app_user su where hbc.ins_id = su.id and su.del_flag='0'
+            <if test="heartCommentId != null" >
+                AND hbc.heart_comment_id = #{heartCommentId,jdbcType=BIGINT}
+            </if>
+            <if test="illegalStatus != null and illegalStatus.trim()!=''" >
+                AND hbc.illegal_status = #{illegalStatus,jdbcType=CHAR}
+            </if>
+            <if test="opreaterIp != null" >
+                AND hbc.opreater_ip = #{opreaterIp,jdbcType=VARCHAR}
+            </if>
+            <if test="insId != null" >
+                AND hbc.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="content != null and content.trim() != ''">
+                and hbc.content LIKE CONCAT(CONCAT('%', #{content}),'%')
+            </if>
+            <if test="insName != null and insName.trim() != ''">
+                and su.nick_name LIKE CONCAT(CONCAT('%', #{insName}),'%')
+            </if>
+            AND hbc.del_flag='0'
+        order by hbc.id desc
+        <if test="pageFlag==true">
+          LIMIT #{startPage}, #{endPage}
+        </if>
+  </select>
+   <!-- 条件查询总数量，关联用户 -->
+  <select id="queryCountByUser" parameterType="com.wooxun.geekdol.hmedia.vo.HeartCommentReplyVo" resultType="java.lang.Long">
+    select count(*) from m_heart_comment_reply hbc,s_app_user su where hbc.ins_id = su.id and su.del_flag='0'
+            <if test="heartCommentId != null" >
+                AND hbc.heart_comment_id = #{heartCommentId,jdbcType=BIGINT}
+            </if>
+            <if test="illegalStatus != null and illegalStatus.trim()!=''" >
+                AND hbc.illegal_status = #{illegalStatus,jdbcType=CHAR}
+            </if>
+            <if test="opreaterIp != null" >
+                AND hbc.opreater_ip = #{opreaterIp,jdbcType=VARCHAR}
+            </if>
+            <if test="insId != null" >
+                AND hbc.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="content != null and content.trim() != ''">
+                and hbc.content LIKE CONCAT(CONCAT('%', #{content}),'%')
+            </if>
+            <if test="insName != null and insName.trim() != ''">
+                and su.nick_name LIKE CONCAT(CONCAT('%', #{insName}),'%')
+            </if>
+            AND hbc.del_flag='0'
+        order by hbc.id desc
+  </select>
+  <!-- 根据随心拍评论id查出所有二级评论，关联用户,app用，查出头像 -->
+  <select id="queryListByUserApp" parameterType="com.wooxun.geekdol.hmedia.vo.HeartCommentReplyVo" resultMap="BaseResultMapVo">
+    select hbc.*,su.nick_name insName,su.head_portrait headPortrait from m_heart_comment_reply hbc,s_app_user su where hbc.ins_id = su.id and su.del_flag='0'
+            <if test="heartCommentId != null" >
+                AND hbc.heart_comment_id = #{heartCommentId,jdbcType=BIGINT}
+            </if>
+            AND hbc.del_flag='0' and hbc.illegal_status = '0'
+        order by hbc.id desc
+        <if test="pageFlag==true">
+          LIMIT #{startPage}, #{endPage}
+        </if>
+  </select>
+</mapper>

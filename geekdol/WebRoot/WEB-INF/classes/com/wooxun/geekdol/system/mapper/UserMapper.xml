@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="moblie" property="moblie" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="user_type" property="userType" jdbcType="CHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="push_id" property="pushId" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    
+    <!-- 自定义 -->
+    <result column="role_name" property="roleName" />
+    
+    <association column="id" property="userRoles" select="selectRoles" />
+  </resultMap>
+  <resultMap id="BaseResultMapNoRole" type="com.wooxun.geekdol.system.model.User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="moblie" property="moblie" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="user_type" property="userType" jdbcType="CHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="push_id" property="pushId" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <!-- 自定义 -->
+    <result column="role_name" property="roleName" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, password, real_name, email, moblie, status, user_type, province_id, 
+    city_id, push_id, ins_id, ins_ymdhms, remarks, upd_eac, upd_ymdhms, upd_id, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from security_user
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from security_user
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.User" >
+    insert into security_user (id, user_name, password, 
+      real_name, email, moblie, 
+      status, user_type, province_id, 
+      city_id, push_id, ins_id, 
+      ins_ymdhms, remarks, upd_eac, 
+      upd_ymdhms, upd_id, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{moblie,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{userType,jdbcType=CHAR}, #{provinceId,jdbcType=BIGINT}, 
+      #{cityId,jdbcType=BIGINT}, #{pushId,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{updEac,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.User" >
+    insert into security_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="moblie != null" >
+        moblie,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="pushId != null" >
+        push_id,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="moblie != null" >
+        #{moblie,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=CHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="pushId != null" >
+        #{pushId,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.User" >
+    update security_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="moblie != null" >
+        moblie = #{moblie,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=CHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="pushId != null" >
+        push_id = #{pushId,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.User" >
+    update security_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      moblie = #{moblie,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      user_type = #{userType,jdbcType=CHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      city_id = #{cityId,jdbcType=BIGINT},
+      push_id = #{pushId,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+   <!-- 自定义 -->
+   <select id="getByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select 
+      <include refid="Base_Column_List" />
+      from security_user
+      where user_name = #{userName} AND del_flag='0' and status = '0'
+   </select>
+   <!-- 根据用户名查询未被删除的用户 -->
+   <select id="getByUserNameAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select 
+      <include refid="Base_Column_List" />
+      from security_user
+      where user_name = #{userName} AND del_flag='0'
+   </select>
+   <!-- 根据手机号查询未被删除的用户 -->
+   <select id="getByMobileAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select 
+      <include refid="Base_Column_List" />
+      from security_user
+      where moblie = #{mobile} AND del_flag='0'
+   </select>
+   
+   <!-- 根据页面参数查询用户列表，关联的角色可以为空 -->
+   <select id="selectListNoRole" parameterType="com.wooxun.geekdol.system.vo.UserVo" resultMap="BaseResultMapNoRole">
+    select u.*,r.name role_name FROM security_user_role ur LEFT JOIN security_role r ON ur.role_id = r.role_id and r.del_flag='0'
+    RIGHT JOIN security_user u ON u.id = ur.user_id 
+    <where>
+      <if test="userName != null and userName.trim()!=''" >
+          AND u.user_name LIKE CONCAT(CONCAT('%', #{userName}),'%')
+      </if>
+       <if test="realName != null and realName.trim()!=''" >
+          AND u.real_name LIKE CONCAT(CONCAT('%', #{realName}),'%')
+      </if>
+      <if test="moblie != null and moblie.trim()!=''" >
+          AND u.moblie LIKE CONCAT('%',CONCAT(#{moblie,jdbcType=VARCHAR},'%'))
+      </if>
+       <if test="userType != null and userType.trim()!=''" >
+          AND u.user_type = #{userType,jdbcType=CHAR}
+      </if>
+      <if test="status != null and status.trim()!=''" >
+          AND u.status = #{status,jdbcType=CHAR}
+      </if>
+       <if test="email != null and email.trim()!=''" >
+          AND u.email LIKE CONCAT(CONCAT('%', #{email}),'%')
+      </if>
+        AND u.del_flag='0'
+    </where> 
+        order by u.ins_ymdhms DESC
+        <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+        </if>
+  </select>
+   
+   <select id="selectRoles" parameterType="java.lang.Long" resultMap="com.wooxun.geekdol.system.mapper.RoleMapper.BaseResultMap">
+        SELECT 
+        <include refid="com.wooxun.geekdol.system.mapper.RoleMapper.Base_Column_List" />
+        FROM security_role
+        WHERE ROLE_ID IN (
+            SELECT ROLE_ID FROM security_user_role WHERE USER_ID = #{userId,jdbcType=BIGINT}
+        ) 
+    </select>
+    
+    <select id="selectList" parameterType="com.wooxun.geekdol.system.vo.UserVo" resultMap="BaseResultMap">
+    select 
+    u.*,r.name role_name
+    from security_user u,
+    	 security_user_role ur,
+    	 security_role r
+    <where>
+    	
+      <if test="userName != null and userName.trim()!=''" >
+          AND u.user_name LIKE CONCAT('%',CONCAT(#{userName,jdbcType=VARCHAR},'%'))
+      </if>
+       <if test="realName != null and realName.trim()!=''" >
+          AND u.real_name LIKE CONCAT('%',CONCAT(#{realName,jdbcType=VARCHAR},'%'))
+      </if>
+      <if test="moblie != null and moblie.trim()!=''" >
+          AND u.moblie = #{moblie,jdbcType=VARCHAR}
+      </if>
+       <if test="userType != null and userType.trim()!=''" >
+          AND u.user_type = #{userType,jdbcType=CHAR}
+      </if>
+      <if test="status != null and status.trim()!=''" >
+          AND u.status = #{status,jdbcType=CHAR}
+      </if>
+       <if test="email != null and email.trim()!=''" >
+          AND u.email LIKE CONCAT(CONCAT('%', #{email}),'%')
+      </if>
+        AND u.id = ur.user_id
+        AND ur.role_id = r.role_id
+     	AND u.del_flag='0'
+     	AND r.del_flag='0'
+    </where> 
+    	order by u.ins_ymdhms DESC
+	    <if test="pageFlag==true">
+			LIMIT #{startPage}, #{endPage}
+		</if>
+  </select>
+  
+   <select id="selectListCount" parameterType="com.wooxun.geekdol.system.vo.UserVo" resultType="java.lang.Long">
+    select count(*) FROM security_user_role ur LEFT JOIN security_role r ON ur.role_id = r.role_id and r.del_flag='0'
+    RIGHT JOIN security_user u ON u.id = ur.user_id 
+    <where>
+      <if test="userName != null and userName.trim()!=''" >
+          AND u.user_name LIKE CONCAT(CONCAT('%', #{userName}),'%')
+      </if>
+       <if test="realName != null and realName.trim()!=''" >
+          AND u.real_name LIKE CONCAT(CONCAT('%', #{realName}),'%')
+      </if>
+      <if test="moblie != null and moblie.trim()!=''" >
+          AND u.moblie LIKE CONCAT('%',CONCAT(#{moblie,jdbcType=VARCHAR},'%'))
+      </if>
+       <if test="userType != null and userType.trim()!=''" >
+          AND u.user_type = #{userType,jdbcType=CHAR}
+      </if>
+      <if test="status != null and status.trim()!=''" >
+          AND u.status = #{status,jdbcType=CHAR}
+      </if>
+       <if test="email != null and email.trim()!=''" >
+          AND u.email LIKE CONCAT(CONCAT('%', #{email}),'%')
+      </if>
+        AND u.del_flag='0'
+    </where> 
+        order by u.ins_ymdhms DESC
+  </select>
+            <!-- 查询出要发送信息给哪些用户 -->
+    <select id="selectListByMessage" parameterType="com.wooxun.geekdol.system.model.SendMessage" resultMap="BaseResultMap">
+    select  * from security_user 
+    <where>
+       <if test="cityId != null and cityId!=0" >
+          AND city_id = #{cityId!=0,jdbcType=bigint}
+      </if>
+      
+       <choose>  
+            <when test="receiverType !=null and receiverType.trim()!='' and receiverType == '88'">  
+              AND user_type = '01' or user_type ='05'
+            </when >  
+            <otherwise>  
+            AND user_type = #{receiverType,jdbcType=CHAR}
+            </otherwise>  
+        </choose>  
+        
+        AND del_flag='0'
+    </where> 
+  </select>
+  <!-- 根据用户类型查找用户 -->
+  <select id="selectUserByUserType" parameterType="java.lang.String" resultMap="BaseResultMap">
+	select * from security_user
+	where user_type = #{type,jdbcType=CHAR}
+	AND del_flag='0'
+  </select>
+  <!-- 合作店新增、修改，店主用户列表查询 -->
+  <select id="selectShopkeeperByUserType" parameterType="map" resultMap="BaseResultMap">
+	select u.* from security_user u
+	where u.user_type = #{type,jdbcType=CHAR}
+	AND u.id NOT in(
+		SELECT user_id from j_cooperation_store
+		<where>
+			<if test="storeId != null and storeId != 0">
+				and id != #{storeId,jdbcType=BIGINT}
+			</if>
+			and del_flag = '0'
+		</where>
+	)
+	AND u.del_flag='0'
+  </select>
+  <!-- 插入新数据，并返回ID -->
+  <insert id="insertBackId" parameterType="com.wooxun.geekdol.system.model.User" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">  
+          SELECT LAST_INSERT_ID() AS ID  
+    </selectKey>  
+    insert into security_user (id, user_name, password, 
+      real_name, email, moblie, 
+      status, user_type, province_id, 
+      city_id, push_id, ins_id, 
+      ins_ymdhms, remarks, upd_eac, 
+      upd_ymdhms, upd_id, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{moblie,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{userType,jdbcType=CHAR}, #{provinceId,jdbcType=BIGINT}, 
+      #{cityId,jdbcType=BIGINT}, #{pushId,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{updEac,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <!-- 根据合作店id查找店家的推送id -->
+  <select id="selectByPushId" parameterType="java.util.List" resultType="java.lang.String">
+  	SELECT push_id FROM security_user
+	WHERE id IN (
+		SELECT DISTINCT(user_id)
+		FROM
+			j_cooperation_store
+			<where>
+				del_flag = '0' and id in
+				<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+					   #{item,jdbcType=BIGINT}
+				</foreach>
+			</where>
+	) AND del_flag = '0'
+  </select>
+  <!-- 根据ID返回用户对象，直接返回user对象，不进行关联查询 -->
+  <select id="selectById" resultType="com.wooxun.geekdol.system.model.User" parameterType="java.lang.Long" >
+    select 
+    id id, user_name userName, password password, real_name realName, email email, moblie moblie, status status,
+    user_type userType, province_id provinceId,city_id cityId, push_id pushId, ins_id insId,
+    ins_ymdhms insYmdhms, remarks remarks, upd_eac updEac, upd_ymdhms updYmdhms, upd_id updId, del_flag delFlag
+    from security_user
+    where id = #{id,jdbcType=BIGINT} AND del_flag='0'
+  </select>
+</mapper>

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/Geekdol/!svn/ver/5392/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper
+END
+IntimateNewsCommentMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/5392/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/IntimateNewsCommentMapper.java
+END
+HeartBeatReportMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/4374/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/HeartBeatReportMapper.java
+END
+IntimateNewsLikeMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Geekdol/!svn/ver/5367/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/IntimateNewsLikeMapper.java
+END
+HeartBeatMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/Geekdol/!svn/ver/4437/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/HeartBeatMapper.java
+END
+HeartCommentReplyMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Geekdol/!svn/ver/4606/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/HeartCommentReplyMapper.java
+END
+HeartBeatCommentMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Geekdol/!svn/ver/4606/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/HeartBeatCommentMapper.java
+END
+HeartBeatUserVillageMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/Geekdol/!svn/ver/4681/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/HeartBeatUserVillageMapper.java
+END
+HeartBeatLikeMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/Geekdol/!svn/ver/4606/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/HeartBeatLikeMapper.java
+END
+PositionMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/4915/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/PositionMapper.java
+END
+IntimateNewsCommentRecommendMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/Geekdol/!svn/ver/5392/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/IntimateNewsCommentRecommendMapper.java
+END
+AdvertMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/Geekdol/!svn/ver/4915/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/mapper/AdvertMapper.java
+END

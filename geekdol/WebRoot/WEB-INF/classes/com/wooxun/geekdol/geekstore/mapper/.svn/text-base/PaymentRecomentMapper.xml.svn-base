@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.PaymentRecomentMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.PaymentRecoment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="order_code" property="orderCode" jdbcType="VARCHAR" />
+    <result column="transaction_number" property="transactionNumber" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="transaction_date" property="transactionDate" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone, order_code, transaction_number, platform, amount, transaction_date, ins_id, 
+    ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_payment_recoment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_payment_recoment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.PaymentRecoment" >
+    insert into j_payment_recoment (id, phone, order_code, 
+      transaction_number, platform, amount, 
+      transaction_date, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, 
+      #{transactionNumber,jdbcType=VARCHAR}, #{platform,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{transactionDate,jdbcType=TIMESTAMP}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.PaymentRecoment" >
+    insert into j_payment_recoment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="transactionNumber != null" >
+        transaction_number,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="transactionDate != null" >
+        transaction_date,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionNumber != null" >
+        #{transactionNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="transactionDate != null" >
+        #{transactionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.PaymentRecoment" >
+    update j_payment_recoment
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionNumber != null" >
+        transaction_number = #{transactionNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="transactionDate != null" >
+        transaction_date = #{transactionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.PaymentRecoment" >
+    update j_payment_recoment
+    set phone = #{phone,jdbcType=VARCHAR},
+      order_code = #{orderCode,jdbcType=VARCHAR},
+      transaction_number = #{transactionNumber,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      transaction_date = #{transactionDate,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 自定义 -->
+  <!-- 根据条件查询所有的支付流水 --> 
+   <select id="findAll" resultType="com.wooxun.geekdol.geekstore.vo.PaymentRecomentVo" parameterType="com.wooxun.geekdol.geekstore.vo.PaymentRecomentVo">
+    select r.id as id,
+    r.phone as phone,r.order_code as orderCode,r.transaction_number as transactionNumber,
+    r.amount as amount,r.transaction_date as transactionDate,s.lable as platformName
+    from j_payment_recoment r,s_sys_data s
+    <where> 
+    r.platform = s.value and s.type = #{payModel}  
+    <if test="orderCode != null and orderCode.trim()!=''" >
+     and r.order_code LIKE concat('%',concat(#{orderCode},'%'))
+    </if>
+    <if test="transactionNumber != null and transactionNumber.trim()!=''" >
+     and r.transaction_number LIKE concat('%',concat(#{transactionNumber},'%'))
+    </if>
+    <if test="platform != null and platform.trim()!=''" >
+     and r.platform =  #{platform,jdbcType=VARCHAR} 
+    </if>    
+     and r.del_flag ='0' order by r.transaction_date desc
+     </where>
+     <if test="pageFlag==true">
+		   LIMIT #{startPage}, #{endPage}
+		 </if>
+  </select>
+  <!-- 根据条件查询所有的列表条数 -->
+   <select id="findAllCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.geekstore.vo.PaymentRecomentVo">
+    select 
+    count(*)
+    from j_payment_recoment r,s_sys_data s
+    <where> 
+    r.platform = s.value and s.type = #{payModel}   
+    <if test="orderCode != null and orderCode.trim()!=''" >
+     and r.order_code LIKE concat('%',concat(#{orderCode},'%'))
+    </if>
+    <if test="transactionNumber != null and transactionNumber.trim()!=''" >
+     and r.transaction_number LIKE concat('%',concat(#{transactionNumber},'%'))
+    </if>
+    <if test="platform != null and platform.trim()!=''" >
+     and r.platform =  #{platform,jdbcType=VARCHAR} 
+    </if>    
+     and r.del_flag ='0' order by r.transaction_date desc
+     </where>
+  </select>
+</mapper>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.Goods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="goods_code" property="goodsCode" jdbcType="VARCHAR" />
+    <result column="short_topic" property="shortTopic" jdbcType="VARCHAR" />
+    <result column="brand" property="brand" jdbcType="VARCHAR" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+    <result column="original_price" property="originalPrice" jdbcType="DECIMAL" />
+    <result column="model_number" property="modelNumber" jdbcType="VARCHAR" />
+    <result column="launch_date" property="launchDate" jdbcType="TIMESTAMP" />
+    <result column="thumbnail" property="thumbnail" jdbcType="VARCHAR" />
+    <result column="seller" property="seller" jdbcType="CHAR" />
+    <result column="goods_view" property="goodsView" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.geekstore.model.Goods" extends="BaseResultMap" >
+    <result column="details" property="details" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_name, goods_code, short_topic, brand, cost_price, original_price, model_number, 
+    launch_date, thumbnail, seller, goods_view, status, ins_id, ins_ymdhms, upd_id, upd_ymdhms, 
+    upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    details
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from j_goods
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.Goods" >
+    insert into j_goods (id, goods_name, goods_code, 
+      short_topic, brand, cost_price, 
+      original_price, model_number, launch_date, 
+      thumbnail, seller, goods_view, 
+      status, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag, details)
+    values (#{id,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR}, 
+      #{shortTopic,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{costPrice,jdbcType=DECIMAL}, 
+      #{originalPrice,jdbcType=DECIMAL}, #{modelNumber,jdbcType=VARCHAR}, #{launchDate,jdbcType=TIMESTAMP}, 
+      #{thumbnail,jdbcType=VARCHAR}, #{seller,jdbcType=CHAR}, #{goodsView,jdbcType=INTEGER}, 
+      #{status,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR}, #{details,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.Goods" useGeneratedKeys="true" keyProperty="id">
+    insert into j_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsCode != null" >
+        goods_code,
+      </if>
+      <if test="shortTopic != null" >
+        short_topic,
+      </if>
+      <if test="brand != null" >
+        brand,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="originalPrice != null" >
+        original_price,
+      </if>
+      <if test="modelNumber != null" >
+        model_number,
+      </if>
+      <if test="launchDate != null" >
+        launch_date,
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail,
+      </if>
+      <if test="seller != null" >
+        seller,
+      </if>
+      <if test="goodsView != null" >
+        goods_view,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="details != null" >
+        details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shortTopic != null" >
+        #{shortTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="originalPrice != null" >
+        #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="modelNumber != null" >
+        #{modelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="launchDate != null" >
+        #{launchDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thumbnail != null" >
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="seller != null" >
+        #{seller,jdbcType=CHAR},
+      </if>
+      <if test="goodsView != null" >
+        #{goodsView,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="details != null" >
+        #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.Goods" >
+    update j_goods
+    <set >
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null" >
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shortTopic != null" >
+        short_topic = #{shortTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null" >
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="originalPrice != null" >
+        original_price = #{originalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="modelNumber != null" >
+        model_number = #{modelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="launchDate != null" >
+        launch_date = #{launchDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="seller != null" >
+        seller = #{seller,jdbcType=CHAR},
+      </if>
+      <if test="goodsView != null" >
+        goods_view = #{goodsView,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="details != null" >
+        details = #{details,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.geekstore.model.Goods" >
+    update j_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      short_topic = #{shortTopic,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      original_price = #{originalPrice,jdbcType=DECIMAL},
+      model_number = #{modelNumber,jdbcType=VARCHAR},
+      launch_date = #{launchDate,jdbcType=TIMESTAMP},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      seller = #{seller,jdbcType=CHAR},
+      goods_view = #{goodsView,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      details = #{details,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.Goods" >
+    update j_goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_code = #{goodsCode,jdbcType=VARCHAR},
+      short_topic = #{shortTopic,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      original_price = #{originalPrice,jdbcType=DECIMAL},
+      model_number = #{modelNumber,jdbcType=VARCHAR},
+      launch_date = #{launchDate,jdbcType=TIMESTAMP},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      seller = #{seller,jdbcType=CHAR},
+      goods_view = #{goodsView,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+ 
+  <!-- 根据条件查找数量 -->
+  <select id="queryGoodsCountByParams" parameterType="com.wooxun.geekdol.geekstore.vo.GoodsVo" resultType="java.lang.Long">
+  	SELECT COUNT(ID) FROM J_GOODS GOODS
+  	<where>
+  		<if test="goodsCode != null and goodsCode.trim() !=''">
+  			AND GOODS.goods_code LIKE CONCAT(CONCAT('%', #{goodsCode}),'%')
+  		</if>
+  		<if test="goodsName != null and goodsName.trim() !=''">
+  			AND GOODS.goods_name LIKE CONCAT(CONCAT('%', #{goodsName}),'%')
+  		</if>
+  		<if test="shortTopic != null and shortTopic.trim() !=''">
+  			AND GOODS.short_topic LIKE CONCAT(CONCAT('%', #{shortTopic}),'%')
+  		</if>
+  		<if test="modelNumber != null and modelNumber.trim() !=''">
+  			AND GOODS.model_number LIKE CONCAT(CONCAT('%', #{modelNumber}),'%')
+  		</if>
+  		<if test="status != null and status.trim() !=''">
+  			AND GOODS.status = #{status,jdbcType=CHAR}
+  		</if>
+  		and GOODS.seller = #{seller,jdbcType=CHAR}
+  		and GOODS.del_flag = '0'
+  	</where>
+  </select>
+  <!-- 列表数据查询 -->
+  <select id="queryGoodsByParams" parameterType="com.wooxun.geekdol.geekstore.vo.GoodsVo" 
+  		resultType="com.wooxun.geekdol.geekstore.vo.GoodsVo">
+	  SELECT
+		goods.ID,
+		goods.GOODS_CODE AS goodsCode,
+		goods.GOODS_NAME as goodsName,
+		goods.BRAND as brand,
+		goods.short_topic as shortTopic,
+		goods.LAUNCH_DATE as launchDate,
+		goods.model_number as modelNumber,
+		goods.cost_price as costPrice,
+		goods.ins_ymdhms as insYmdhms,
+		goods.`status`,
+		IFNULL(goods.goods_view,0) as goodsView,
+		sd.lable AS statusStr
+	FROM
+		j_goods goods,s_sys_data sd
+  	<where>
+  		<if test="goodsCode != null and goodsCode.trim() !=''">
+  			AND GOODS.goods_code LIKE CONCAT(CONCAT('%', #{goodsCode}),'%')
+  		</if>
+  		<if test="goodsName != null and goodsName.trim() !=''">
+  			AND GOODS.goods_name LIKE CONCAT(CONCAT('%', #{goodsName}),'%')
+  		</if>
+  		<if test="shortTopic != null and shortTopic.trim() !=''">
+  			AND GOODS.short_topic LIKE CONCAT(CONCAT('%', #{shortTopic}),'%')
+  		</if>
+  		<if test="modelNumber != null and modelNumber.trim() !=''">
+  			AND GOODS.model_number LIKE CONCAT(CONCAT('%', #{modelNumber}),'%')
+  		</if>
+  		<if test="status != null and status.trim() !=''">
+  			AND GOODS.status = #{status,jdbcType=CHAR}
+  		</if>
+  		and GOODS.seller = #{seller,jdbcType=CHAR}
+  		and GOODS.`status` = sd.`value` 
+  		and sd.type = #{statusType}
+  		and GOODS.del_flag = '0'
+  	</where>
+	<if test="pageFlag==true">
+		LIMIT #{startPage}, #{endPage}
+	</if>
+  </select>
+  <!-- 查找可以铺货的商品 -->
+  <select id="findSelectGoods" parameterType="com.wooxun.geekdol.geekstore.vo.GoodsVo" 
+  		resultType="com.wooxun.geekdol.geekstore.vo.GoodsVo">
+	  SELECT
+		goods.ID,
+		goods.GOODS_CODE AS goodsCode,
+		goods.GOODS_NAME as goodsName,
+		goods.BRAND as brand,
+		goods.short_topic as shortTopic,
+		goods.LAUNCH_DATE as launchDate,
+		goods.model_number as modelNumber,
+		goods.cost_price as costPrice,
+		goods.ins_ymdhms as insYmdhms,
+		goods.`status`,
+		sd.lable AS statusStr
+	FROM
+		j_goods goods,s_sys_data sd
+  	<where>
+  		<if test="goodsCode != null and goodsCode.trim() !=''">
+  			AND GOODS.goods_code LIKE CONCAT(CONCAT('%', #{goodsCode}),'%')
+  		</if>
+  		<if test="goodsName != null and goodsName.trim() !=''">
+  			AND GOODS.goods_name LIKE CONCAT(CONCAT('%', #{goodsName}),'%')
+  		</if>
+  		<if test="shortTopic != null and shortTopic.trim() !=''">
+  			AND GOODS.short_topic LIKE CONCAT(CONCAT('%', #{shortTopic}),'%')
+  		</if>
+  		<if test="modelNumber != null and modelNumber.trim() !=''">
+  			AND GOODS.model_number LIKE CONCAT(CONCAT('%', #{modelNumber}),'%')
+  		</if>
+  		AND (GOODS.status = #{status_02} or GOODS.status = #{status_03} or GOODS.status = #{status_04})
+  		and GOODS.`status` = sd.`value` and sd.type = #{statusType}
+  		and GOODS.del_flag = '0'
+  	</where>
+  </select>
+  <!-- 铺货的时候，批量更新商品主数据状态 -->
+  <update id="batchUpdateStatus" parameterType="java.util.List">
+      <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update j_goods 
+			<set>
+			  status = #{item.status,jdbcType=CHAR},
+			  upd_id = #{item.updId,jdbcType=BIGINT},
+      		  upd_ymdhms = #{item.updYmdhms,jdbcType=TIMESTAMP},
+      		  upd_eac = #{item.updEac,jdbcType=BIGINT}
+			</set>
+			where id = ${item.id} and upd_eac = ( #{item.updEac,jdbcType=BIGINT} -1) 
+	 </foreach>
+   </update>
+</mapper>

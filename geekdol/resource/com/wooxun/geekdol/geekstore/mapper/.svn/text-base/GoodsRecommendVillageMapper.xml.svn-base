@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GoodsRecommendVillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.GoodsRecommendVillage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="recommend_id" property="recommendId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, village_id, recommend_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_goods_recommend_village
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_goods_recommend_village
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendVillage" >
+    insert into j_goods_recommend_village (id, village_id, recommend_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, #{recommendId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendVillage" >
+    insert into j_goods_recommend_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="recommendId != null" >
+        recommend_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="recommendId != null" >
+        #{recommendId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendVillage" >
+    update j_goods_recommend_village
+    <set >
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="recommendId != null" >
+        recommend_id = #{recommendId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendVillage" >
+    update j_goods_recommend_village
+    set village_id = #{villageId,jdbcType=BIGINT},
+      recommend_id = #{recommendId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 批量插入 -->
+  <insert id="insBatch" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendVillage">
+  	insert into j_goods_recommend_village (village_id, recommend_id)
+    values 
+    <foreach collection="list" item="item" index="index" separator=",">
+    	(#{item.villageId,jdbcType=BIGINT}, #{item.recommendId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+</mapper>

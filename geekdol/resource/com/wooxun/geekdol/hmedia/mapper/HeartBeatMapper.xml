@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.HeartBeatMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.HeartBeat" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="content_type" property="contentType" jdbcType="CHAR" />
+    <result column="likes_number" property="likesNumber" jdbcType="INTEGER" />
+    <result column="view_number" property="viewNumber" jdbcType="INTEGER" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="treatment_status" property="treatmentStatus" jdbcType="CHAR" />
+    <result column="current_location" property="currentLocation" jdbcType="VARCHAR" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="publish_person_id" property="publishPersonId" jdbcType="BIGINT" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="verify_id" property="verifyId" jdbcType="BIGINT" />
+    <result column="verify_ymdhms" property="verifyYmdhms" jdbcType="TIMESTAMP" />
+    <result column="verrify_content" property="verrifyContent" jdbcType="VARCHAR" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="content_type" property="contentType" jdbcType="CHAR" />
+    <result column="likes_number" property="likesNumber" jdbcType="INTEGER" />
+    <result column="view_number" property="viewNumber" jdbcType="INTEGER" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="treatment_status" property="treatmentStatus" jdbcType="CHAR" />
+    <result column="current_location" property="currentLocation" jdbcType="VARCHAR" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="publish_person_id" property="publishPersonId" jdbcType="BIGINT" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="verify_id" property="verifyId" jdbcType="BIGINT" />
+    <result column="verify_ymdhms" property="verifyYmdhms" jdbcType="TIMESTAMP" />
+    <result column="verrify_content" property="verrifyContent" jdbcType="VARCHAR" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="village_name" property="villageName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, content, content_type, likes_number, view_number, reply_number, treatment_status, 
+    current_location, village_id, longitude, latitude, publish_person_id, publish_time, 
+    ins_id, ins_ymdhms, verify_id, verify_ymdhms, verrify_content, upd_id, upd_ymdhms, 
+    upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_heart_beat
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_heart_beat
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.HeartBeat" >
+    insert into m_heart_beat (id, content, content_type, 
+      likes_number, view_number, reply_number, 
+      treatment_status, current_location, village_id, 
+      longitude, latitude, publish_person_id, 
+      publish_time, ins_id, ins_ymdhms, 
+      verify_id, verify_ymdhms, verrify_content, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, #{contentType,jdbcType=CHAR}, 
+      #{likesNumber,jdbcType=INTEGER}, #{viewNumber,jdbcType=INTEGER}, #{replyNumber,jdbcType=INTEGER}, 
+      #{treatmentStatus,jdbcType=CHAR}, #{currentLocation,jdbcType=VARCHAR}, #{villageId,jdbcType=BIGINT}, 
+      #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL}, #{publishPersonId,jdbcType=BIGINT}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{verifyId,jdbcType=BIGINT}, #{verifyYmdhms,jdbcType=TIMESTAMP}, #{verrifyContent,jdbcType=VARCHAR}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.HeartBeat" useGeneratedKeys="true" keyProperty="id">
+    insert into m_heart_beat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+      <if test="likesNumber != null" >
+        likes_number,
+      </if>
+      <if test="viewNumber != null" >
+        view_number,
+      </if>
+      <if test="replyNumber != null" >
+        reply_number,
+      </if>
+      <if test="treatmentStatus != null" >
+        treatment_status,
+      </if>
+      <if test="currentLocation != null" >
+        current_location,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="publishPersonId != null" >
+        publish_person_id,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="verifyId != null" >
+        verify_id,
+      </if>
+      <if test="verifyYmdhms != null" >
+        verify_ymdhms,
+      </if>
+      <if test="verrifyContent != null" >
+        verrify_content,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=CHAR},
+      </if>
+      <if test="likesNumber != null" >
+        #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="treatmentStatus != null" >
+        #{treatmentStatus,jdbcType=CHAR},
+      </if>
+      <if test="currentLocation != null" >
+        #{currentLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="publishPersonId != null" >
+        #{publishPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyId != null" >
+        #{verifyId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyYmdhms != null" >
+        #{verifyYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verrifyContent != null" >
+        #{verrifyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.HeartBeat" >
+    update m_heart_beat
+    <set >
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=CHAR},
+      </if>
+      <if test="likesNumber != null" >
+        likes_number = #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        view_number = #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        reply_number = #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="treatmentStatus != null" >
+        treatment_status = #{treatmentStatus,jdbcType=CHAR},
+      </if>
+      <if test="currentLocation != null" >
+        current_location = #{currentLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="publishPersonId != null" >
+        publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyId != null" >
+        verify_id = #{verifyId,jdbcType=BIGINT},
+      </if>
+      <if test="verifyYmdhms != null" >
+        verify_ymdhms = #{verifyYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verrifyContent != null" >
+        verrify_content = #{verrifyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.HeartBeat" >
+    update m_heart_beat
+    set content = #{content,jdbcType=VARCHAR},
+      content_type = #{contentType,jdbcType=CHAR},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      treatment_status = #{treatmentStatus,jdbcType=CHAR},
+      current_location = #{currentLocation,jdbcType=VARCHAR},
+      village_id = #{villageId,jdbcType=BIGINT},
+      longitude = #{longitude,jdbcType=DECIMAL},
+      latitude = #{latitude,jdbcType=DECIMAL},
+      publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      verify_id = #{verifyId,jdbcType=BIGINT},
+      verify_ymdhms = #{verifyYmdhms,jdbcType=TIMESTAMP},
+      verrify_content = #{verrifyContent,jdbcType=VARCHAR},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+    
+  <!-- 自定义查询语句开始 -->
+  <!-- 自定义搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishPersonId != null" >
+                AND publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   <!-- 条件查询 -->
+  <select id="queryListByParam" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultMap="BaseResultMap">
+    select * from m_heart_beat
+    <include refid="searchWhere" />
+        order by id desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询，关联查询app用户的手机号和小区id，用户或小区被删除则不查出 -->
+  <select id="queryListAndUser" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultMap="BaseResultMapVo">
+    SELECT hb.*,sv.village_name villageName,su.moblie mobile ,
+	(select COUNT(id) FROM m_heart_beat_report WHERE del_flag = '0' AND hear_id = hb.id) as reportNumber
+    FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            AND hb.del_flag='0'
+        order by hb.id desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询，关联查询app用户的手机号和小区id，用户或小区被删除则不查出，查出省下所有小区的数据 -->
+  <select id="queryListAndUserPro" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultMap="BaseResultMapVo">
+    SELECT hb.*,sv.village_name villageName,su.moblie mobile,
+    (select COUNT(id) FROM m_heart_beat_report WHERE del_flag = '0' AND hear_id = hb.id) as reportNumber
+    FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            <if test="provinceId != null" >
+                AND hb.village_id in (select village_id from s_village where province_id = #{provinceId,jdbcType=BIGINT})
+            </if>
+            AND hb.del_flag='0'
+        order by hb.id desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询，关联查询app用户的手机号和小区id，用户或小区被删除则不查出，查出市下所有小区的数据 -->
+  <select id="queryListAndUserCity" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultMap="BaseResultMapVo">
+    SELECT hb.*,sv.village_name villageName,su.moblie mobile,
+    (select COUNT(id) FROM m_heart_beat_report WHERE del_flag = '0' AND hear_id = hb.id) as reportNumber
+    FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            <if test="cityId != null" >
+                AND hb.village_id in (select village_id from s_village where city_id = #{cityId,jdbcType=BIGINT})
+            </if>
+            AND hb.del_flag='0'
+        order by hb.id desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询，关联查询app用户的手机号和小区id，用户或小区被删除则不查出，查出区县下所有小区的数据 -->
+  <select id="queryListAndUserCounty" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultMap="BaseResultMapVo">
+    SELECT hb.*,sv.village_name villageName,su.moblie mobile,
+    (select COUNT(id) FROM m_heart_beat_report WHERE del_flag = '0' AND hear_id = hb.id) as reportNumber
+    FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            <if test="countyId != null" >
+                AND hb.village_id in (select village_id from s_village where county_id = #{countyId,jdbcType=BIGINT})
+            </if>
+            AND hb.del_flag='0'
+        order by hb.id desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询，关联查询app用户的手机号和小区id，用户或小区被删除则不查出，查出社区下所有小区的数据 -->
+  <select id="queryListAndUserCommunity" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultMap="BaseResultMapVo">
+    SELECT hb.*,sv.village_name villageName,su.moblie mobile,
+    (select COUNT(id) FROM m_heart_beat_report WHERE del_flag = '0' AND hear_id = hb.id) as reportNumber
+    FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            <if test="communityId != null" >
+                AND hb.village_id in (select village_id from s_village where community_id = #{communityId,jdbcType=BIGINT})
+            </if>
+            AND hb.del_flag='0'
+        order by hb.id desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询总数量，关联查询app用户的手机号和小区id，用户或小区被删除则不查出  -->
+  <select id="queryCountAndUser" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultType="java.lang.Long">
+    SELECT count(*) FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            AND hb.del_flag='0'
+  </select>
+  <!-- 条件查询总数量，关联查询app用户的手机号和小区id，用户或小区被删除则不查出 ，查出省下所有小区的数据 -->
+  <select id="queryCountAndUserPro" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultType="java.lang.Long">
+    SELECT count(*) FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            <if test="provinceId != null" >
+                AND hb.village_id in (select village_id from s_village where province_id = #{provinceId,jdbcType=BIGINT})
+            </if>
+            AND hb.del_flag='0'
+  </select>
+  <!-- 条件查询总数量，关联查询app用户的手机号和小区id，用户或小区被删除则不查出 ，查出市下所有小区的数据 -->
+  <select id="queryCountAndUserCity" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultType="java.lang.Long">
+    SELECT count(*) FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            <if test="cityId != null" >
+                AND hb.village_id in (select village_id from s_village where city_id = #{cityId,jdbcType=BIGINT})
+            </if>
+            AND hb.del_flag='0'
+  </select>
+  <!-- 条件查询总数量，关联查询app用户的手机号和小区id，用户或小区被删除则不查出 ，查出区县下所有小区的数据 -->
+  <select id="queryCountAndUserCounty" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultType="java.lang.Long">
+    SELECT count(*) FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            <if test="countyId != null" >
+                AND hb.village_id in (select village_id from s_village where county_id = #{countyId,jdbcType=BIGINT})
+            </if>
+            AND hb.del_flag='0'
+  </select>
+  <!-- 条件查询总数量，关联查询app用户的手机号和小区id，用户或小区被删除则不查出 ，查出社区下所有小区的数据 -->
+  <select id="queryCountAndUserCommunity" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultType="java.lang.Long">
+    SELECT count(*) FROM m_heart_beat hb,s_app_user su,s_village sv
+        WHERE hb.publish_person_id = su.id and su.del_flag = 0 and hb.village_id = sv.village_id and sv.del_flag = 0
+            <if test="mobile != null and mobile.trim()!=''" >
+                AND su.moblie LIKE CONCAT(CONCAT('%', #{mobile}),'%')
+            </if>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND sv.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="contentType != null and contentType.trim()!=''" >
+                AND hb.content_type = #{contentType,jdbcType=CHAR}
+            </if>
+            <if test="treatmentStatus != null and treatmentStatus.trim()!=''" >
+                AND hb.treatment_status = #{treatmentStatus,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND hb.village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            <if test="publishPersonId != null" >
+                AND hb.publish_person_id = #{publishPersonId,jdbcType=BIGINT}
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="insId != null" >
+                AND hb.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyId != null" >
+                AND hb.verify_id = #{verifyId,jdbcType=BIGINT}
+            </if>
+            <if test="updId != null" >
+                AND hb.upd_id = #{updId,jdbcType=BIGINT}
+            </if>
+            <if test="communityId != null" >
+                AND hb.village_id in (select village_id from s_village where community_id = #{communityId,jdbcType=BIGINT})
+            </if>
+            AND hb.del_flag='0'
+  </select>
+   <!-- 条件查询总数量 -->
+  <select id="queryCountByParam" parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo" resultType="java.lang.Long">
+    select count(*) from m_heart_beat
+    <include refid="searchWhere" />
+  </select>
+  <!-- 手机端获取随性拍列表 -->
+  <select id="queryHeartBeatList" resultType="java.util.Map"
+  		parameterType="com.wooxun.geekdol.hmedia.vo.HeartBeatVo">
+  		SELECT
+			a.id, a.content, a.likes_number as likesNumber, a.view_number as viewNumber,
+			a.publish_person_id as publishPersonId, DATE_FORMAT(a.publish_time,"%Y-%m-%d %T") as publishTime,
+			a.village_id as villageId, a.current_location as currentLocation, a.reply_number as replyNumber,
+			a.longitude, a.latitude, u.nick_name as nickName,
+			IFNULL(u.head_portrait,'null') as headPortrait, v.village_name as villageName
+		FROM
+			(
+				SELECT id, content, likes_number, view_number,
+					publish_person_id, publish_time,
+					village_id, current_location,
+					longitude, latitude,reply_number
+				FROM
+					m_heart_beat
+				WHERE
+					del_flag = '0'
+				AND treatment_status != #{treatmentStatus,jdbcType=CHAR}
+				<if test="villageIds != null and villageIds.trim() != ''">
+					AND village_id in ${villageIds}
+				</if>
+				<if test="content != null and content.trim() != ''">
+					AND content LIKE CONCAT(CONCAT('%', #{content}),'%')
+				</if>
+				<choose>
+					<when test="orderBy == '01'">
+						ORDER BY view_number DESC
+					</when>
+					<when test="orderBy == '02'">
+						ORDER BY likes_number DESC
+					</when>
+					<otherwise>
+						ORDER BY publish_time DESC
+					</otherwise>
+				</choose>
+			) a,
+			s_app_user u,
+		s_village v
+		WHERE
+			a.publish_person_id = u.id
+			AND a.village_id = v.village_id
+		<if test="pageFlag==true">
+		   LIMIT #{startPage}, #{endPage}
+		</if>
+  </select>
+</mapper>

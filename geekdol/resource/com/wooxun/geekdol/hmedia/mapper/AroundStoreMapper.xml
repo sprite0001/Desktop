@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.AroundStoreMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.AroundStore" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="adress" property="adress" jdbcType="VARCHAR" />
+    <result column="store_type" property="storeType" jdbcType="CHAR" />
+    <result column="concat" property="concat" jdbcType="VARCHAR" />
+    <result column="concat_phone" property="concatPhone" jdbcType="VARCHAR" />
+    <result column="hours_start" property="hoursStart" jdbcType="VARCHAR" />
+    <result column="hours_end" property="hoursEnd" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="use_status" property="useStatus" jdbcType="CHAR" />
+    <result column="one_count" property="oneCount" jdbcType="INTEGER" />
+    <result column="two_count" property="twoCount" jdbcType="INTEGER" />
+    <result column="three_count" property="threeCount" jdbcType="INTEGER" />
+    <result column="four_count" property="fourCount" jdbcType="INTEGER" />
+    <result column="five_count" property="fiveCount" jdbcType="INTEGER" />
+    <result column="view_number" property="viewNumber" jdbcType="INTEGER" />
+    <result column="likes_number" property="likesNumber" jdbcType="INTEGER" />
+    <result column="hate_number" property="hateNumber" jdbcType="INTEGER" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="illegal_number" property="illegalNumber" jdbcType="INTEGER" />
+    <result column="dial_count" property="dialCount" jdbcType="INTEGER" />
+    <result column="legal_person" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="person_card" property="personCard" jdbcType="VARCHAR" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="store_image" property="storeImage" jdbcType="VARCHAR" />
+    <result column="license_image" property="licenseImage" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="suggest_flag" property="suggestFlag" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <collection property="aroundStoreVillage" column="id" select="com.wooxun.geekdol.hmedia.mapper.AroundStoreVillageMapper.selectAroundStoreVillageByAroundStoreId"></collection>
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, adress, store_type, concat, concat_phone, hours_start, hours_end, introduce, 
+    use_status, one_count, two_count, three_count, four_count, five_count, view_number, 
+    likes_number, hate_number, reply_number, illegal_number, dial_count, legal_person, 
+    person_card, organization_code, icon, store_image, license_image, longitude, latitude, 
+    suggest_flag, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_around_store
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_around_store
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.AroundStore" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_around_store (id, name, adress, 
+      store_type, concat, concat_phone, 
+      hours_start, hours_end, introduce, 
+      use_status, one_count, two_count, 
+      three_count, four_count, five_count, 
+      view_number, likes_number, hate_number, 
+      reply_number, illegal_number, dial_count, 
+      legal_person, person_card, organization_code, 
+      icon, store_image, license_image, 
+      longitude, latitude, suggest_flag, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{adress,jdbcType=VARCHAR}, 
+      #{storeType,jdbcType=CHAR}, #{concat,jdbcType=VARCHAR}, #{concatPhone,jdbcType=VARCHAR}, 
+      #{hoursStart,jdbcType=VARCHAR}, #{hoursEnd,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, 
+      #{useStatus,jdbcType=CHAR}, #{oneCount,jdbcType=INTEGER}, #{twoCount,jdbcType=INTEGER}, 
+      #{threeCount,jdbcType=INTEGER}, #{fourCount,jdbcType=INTEGER}, #{fiveCount,jdbcType=INTEGER}, 
+      #{viewNumber,jdbcType=INTEGER}, #{likesNumber,jdbcType=INTEGER}, #{hateNumber,jdbcType=INTEGER}, 
+      #{replyNumber,jdbcType=INTEGER}, #{illegalNumber,jdbcType=INTEGER}, #{dialCount,jdbcType=INTEGER}, 
+      #{legalPerson,jdbcType=VARCHAR}, #{personCard,jdbcType=VARCHAR}, #{organizationCode,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{storeImage,jdbcType=VARCHAR}, #{licenseImage,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{suggestFlag,jdbcType=CHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.AroundStore" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_around_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="adress != null" >
+        adress,
+      </if>
+      <if test="storeType != null" >
+        store_type,
+      </if>
+      <if test="concat != null" >
+        concat,
+      </if>
+      <if test="concatPhone != null" >
+        concat_phone,
+      </if>
+      <if test="hoursStart != null" >
+        hours_start,
+      </if>
+      <if test="hoursEnd != null" >
+        hours_end,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="useStatus != null" >
+        use_status,
+      </if>
+      <if test="oneCount != null" >
+        one_count,
+      </if>
+      <if test="twoCount != null" >
+        two_count,
+      </if>
+      <if test="threeCount != null" >
+        three_count,
+      </if>
+      <if test="fourCount != null" >
+        four_count,
+      </if>
+      <if test="fiveCount != null" >
+        five_count,
+      </if>
+      <if test="viewNumber != null" >
+        view_number,
+      </if>
+      <if test="likesNumber != null" >
+        likes_number,
+      </if>
+      <if test="hateNumber != null" >
+        hate_number,
+      </if>
+      <if test="replyNumber != null" >
+        reply_number,
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number,
+      </if>
+      <if test="dialCount != null" >
+        dial_count,
+      </if>
+      <if test="legalPerson != null" >
+        legal_person,
+      </if>
+      <if test="personCard != null" >
+        person_card,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="storeImage != null" >
+        store_image,
+      </if>
+      <if test="licenseImage != null" >
+        license_image,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="suggestFlag != null" >
+        suggest_flag,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeType != null" >
+        #{storeType,jdbcType=CHAR},
+      </if>
+      <if test="concat != null" >
+        #{concat,jdbcType=VARCHAR},
+      </if>
+      <if test="concatPhone != null" >
+        #{concatPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursStart != null" >
+        #{hoursStart,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursEnd != null" >
+        #{hoursEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="useStatus != null" >
+        #{useStatus,jdbcType=CHAR},
+      </if>
+      <if test="oneCount != null" >
+        #{oneCount,jdbcType=INTEGER},
+      </if>
+      <if test="twoCount != null" >
+        #{twoCount,jdbcType=INTEGER},
+      </if>
+      <if test="threeCount != null" >
+        #{threeCount,jdbcType=INTEGER},
+      </if>
+      <if test="fourCount != null" >
+        #{fourCount,jdbcType=INTEGER},
+      </if>
+      <if test="fiveCount != null" >
+        #{fiveCount,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="likesNumber != null" >
+        #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="dialCount != null" >
+        #{dialCount,jdbcType=INTEGER},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="personCard != null" >
+        #{personCard,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="storeImage != null" >
+        #{storeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null" >
+        #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestFlag != null" >
+        #{suggestFlag,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.AroundStore" >
+    update m_around_store
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        adress = #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeType != null" >
+        store_type = #{storeType,jdbcType=CHAR},
+      </if>
+      <if test="concat != null" >
+        concat = #{concat,jdbcType=VARCHAR},
+      </if>
+      <if test="concatPhone != null" >
+        concat_phone = #{concatPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursStart != null" >
+        hours_start = #{hoursStart,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursEnd != null" >
+        hours_end = #{hoursEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="useStatus != null" >
+        use_status = #{useStatus,jdbcType=CHAR},
+      </if>
+      <if test="oneCount != null" >
+        one_count = #{oneCount,jdbcType=INTEGER},
+      </if>
+      <if test="twoCount != null" >
+        two_count = #{twoCount,jdbcType=INTEGER},
+      </if>
+      <if test="threeCount != null" >
+        three_count = #{threeCount,jdbcType=INTEGER},
+      </if>
+      <if test="fourCount != null" >
+        four_count = #{fourCount,jdbcType=INTEGER},
+      </if>
+      <if test="fiveCount != null" >
+        five_count = #{fiveCount,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        view_number = #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="likesNumber != null" >
+        likes_number = #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        hate_number = #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        reply_number = #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="dialCount != null" >
+        dial_count = #{dialCount,jdbcType=INTEGER},
+      </if>
+      <if test="legalPerson != null" >
+        legal_person = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="personCard != null" >
+        person_card = #{personCard,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="storeImage != null" >
+        store_image = #{storeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null" >
+        license_image = #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestFlag != null" >
+        suggest_flag = #{suggestFlag,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.AroundStore" >
+    update m_around_store
+    set name = #{name,jdbcType=VARCHAR},
+      adress = #{adress,jdbcType=VARCHAR},
+      store_type = #{storeType,jdbcType=CHAR},
+      concat = #{concat,jdbcType=VARCHAR},
+      concat_phone = #{concatPhone,jdbcType=VARCHAR},
+      hours_start = #{hoursStart,jdbcType=VARCHAR},
+      hours_end = #{hoursEnd,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      use_status = #{useStatus,jdbcType=CHAR},
+      one_count = #{oneCount,jdbcType=INTEGER},
+      two_count = #{twoCount,jdbcType=INTEGER},
+      three_count = #{threeCount,jdbcType=INTEGER},
+      four_count = #{fourCount,jdbcType=INTEGER},
+      five_count = #{fiveCount,jdbcType=INTEGER},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      hate_number = #{hateNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      dial_count = #{dialCount,jdbcType=INTEGER},
+      legal_person = #{legalPerson,jdbcType=VARCHAR},
+      person_card = #{personCard,jdbcType=VARCHAR},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      store_image = #{storeImage,jdbcType=VARCHAR},
+      license_image = #{licenseImage,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      suggest_flag = #{suggestFlag,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 系统设置:小区查询中的周边店查询 begin -->
+  <select id="findAllAroundStore" parameterType="com.wooxun.geekdol.hmedia.vo.AroundStoreVo"
+  	resultType="com.wooxun.geekdol.hmedia.vo.AroundStoreVo">
+	SELECT a.id as id, a.name as name, a.adress as adress, a.store_type as
+	storeType, a.concat as concat, a.concat_phone as concatPhone,
+	a.hours_start as hoursStart, a.hours_end as hoursEnd, a.introduce as
+	introduce,
+	a.use_status as useStatus, a.view_number as viewNumber,
+	concat_ws('/',a.likes_number, a.hate_number) as likesOrhate, a.reply_number as
+	replyNumber, a.illegal_number as illegalNumber, a.dial_count as
+	dialCount, a.ins_id as insId, a.ins_ymdhms as insYmdhms,
+	a.upd_id as updId, a.upd_ymdhms as updYmdhms, a.upd_eac as updEac, a.del_flag
+	as delFlag,a.lable as storeTypeName, concat_ws('/',a.five_count,a.four_count,a.three_count,a.two_count,a.one_count) as startNumber FROM(
+	SELECT
+	store.*,sd.lable
+	FROM (
+	SELECT store.*,sv.around_store_id,sv.village_id FROM m_around_store store,m_around_store_village sv
+	where 1=1
+  	<if test="name != null and name.trim() != ''" >
+      and store.name LIKE concat('%',concat(#{name},'%'))
+    </if>
+    <if test="storeType != null and storeType.trim() != ''" >
+      and store.store_type = #{storeType,jdbcType=CHAR}
+    </if>
+    <if test="concat != null and concat.trim() != ''" >
+      and store.concat LIKE concat('%',concat(#{concat},'%'))
+    </if>
+    <if test="concatPhone != null and concatPhone.trim() != ''" >
+      and store.concat_phone LIKE concat('%',concat(#{concatPhone},'%'))
+    </if>
+    <if test="useStatus != null and useStatus.trim() != ''" >
+	  and store.use_status = #{useStatus,jdbcType=CHAR}
+    </if>
+		and  store.id = sv.around_store_id  and store.del_flag = '0' and sv.village_id = #{villageId,jdbcType=BIGINT}
+  	) store left join s_sys_data sd on store.store_type = sd.value 
+  		<if test="storeTypeType != null and storeTypeType.trim()!=''">
+  	  		and sd.type = #{storeTypeType}
+  	  	</if>) A
+	<if test="pageFlag==true">
+		LIMIT #{startPage}, #{endPage}
+	</if>
+  </select>
+  <select id="findAllAroundStoreCount" resultType="java.lang.Long"
+  	 parameterType="com.wooxun.geekdol.hmedia.vo.AroundStoreVo">
+  	SELECT COUNT(store.id) FROM
+	m_around_store_village sv,
+	m_around_store store where store.id = sv.around_store_id and sv.village_id = #{villageId,jdbcType=BIGINT}
+	<if test="name != null and name.trim() != ''" >
+      and store.name LIKE concat('%',concat(#{name},'%'))
+    </if>
+    <if test="storeType != null and storeType.trim() != ''" >
+      and store.store_type = #{storeType,jdbcType=CHAR}
+    </if>
+    <if test="concat != null and concat.trim() != ''" >
+      and store.concat LIKE concat('%',concat(#{concat},'%'))
+    </if>
+    <if test="concatPhone != null and concatPhone.trim() != ''" >
+      and store.concat_phone LIKE concat('%',concat(#{concatPhone},'%'))
+    </if>
+    <if test="useStatus != null and useStatus.trim() != ''" >
+	  and store.use_status = #{useStatus,jdbcType=CHAR}
+    </if>
+    and store.del_flag = '0'
+  </select>
+  <!-- 系统设置:小区查询中的周边店查询 end -->
+  
+  <!-- 周边店管理：列表查询 begin -->
+  <select id="selectAroundStoreList" parameterType="map" resultType="com.wooxun.geekdol.hmedia.vo.AroundStoreVo">
+	SELECT t.*, d.lable AS storeTypeName FROM (SELECT a.id AS id, a.name AS name, a.adress AS adress, a.store_type AS storeType, 
+		a.concat AS concat, a.concat_phone AS concatPhone, a.hours_start AS hoursStart, 
+		a.hours_end AS hoursEnd, a.introduce AS introduce, a.use_status AS useStatus, 
+		a.view_number AS viewNumber, concat_ws('/',a.likes_number, a.hate_number) AS likesOrhate, 
+		a.reply_number AS replyNumber, a.illegal_number AS illegalNumber, a.dial_count AS dialCount, 
+		a.ins_id AS insId, a.ins_ymdhms AS insYmdhms, a.upd_id AS updId, a.upd_ymdhms AS updYmdhms, 
+		a.upd_eac AS updEac, a.del_flag AS delFlag, a.suggest_flag AS suggestFlag,
+		concat_ws('/',a.five_count,a.four_count,a.three_count,a.two_count,a.one_count) AS startNumber,
+		(select group_concat(c.village_name) from m_around_store_village b, s_village c WHERE c.del_flag = '0' AND b.village_id = c.village_id AND b.around_store_id = a.id group by b.around_store_id)  AS villageName
+	FROM m_around_store a 
+		WHERE a.del_flag = '0' 
+		<if test="asvList != null and asvList.size()>0">
+			AND a.id IN 
+			<foreach item="item" index="index" collection="asvList" 
+		             open="(" separator="," close=")">
+		            #{item.aroundStoreId}
+		    </foreach>
+	    </if>
+		<if test="aroundStoreVo.name != null and aroundStoreVo.name.trim() != ''" >
+	      AND a.name LIKE CONCAT('%',CONCAT(#{aroundStoreVo.name},'%'))
+	    </if>
+	    <if test="aroundStoreVo.storeType != null and aroundStoreVo.storeType.trim() != ''" >
+	      AND a.store_type = #{aroundStoreVo.storeType,jdbcType=CHAR}
+	    </if>
+	    <if test="aroundStoreVo.concat != null and aroundStoreVo.concat.trim() != ''" >
+	      AND a.concat LIKE CONCAT('%',CONCAT(#{aroundStoreVo.concat},'%'))
+	    </if>
+	    <if test="aroundStoreVo.concatPhone != null and aroundStoreVo.concatPhone.trim() != ''" >
+	      AND a.concat_phone LIKE CONCAT('%',CONCAT(#{aroundStoreVo.concatPhone},'%'))
+	    </if>
+	    <if test="aroundStoreVo.useStatus != null and aroundStoreVo.useStatus.trim() != ''" >
+		  AND a.use_status = #{aroundStoreVo.useStatus,jdbcType=CHAR}
+	    </if>
+	    ORDER BY a.upd_ymdhms DESC
+		<if test="aroundStoreVo.pageFlag==true">
+			LIMIT #{aroundStoreVo.startPage}, #{aroundStoreVo.endPage}
+		</if>
+	) t 
+	LEFT JOIN s_sys_data d on t.storeType = d.value AND d.type = #{storeType} AND d.del_flag = '0'
+	<where>
+		<if test="aroundStoreVo.villageName != null and aroundStoreVo.villageName.trim() != ''" >
+		  AND t.villageName LIKE CONCAT('%',CONCAT(#{aroundStoreVo.villageName},'%'))
+	    </if>
+	</where>
+  </select>
+  <select id="selectAroundStoreListCount" parameterType="map" resultType="java.lang.Long">
+	SELECT COUNT(t.villageName) FROM (SELECT 
+		(select group_concat(c.village_name) from m_around_store_village b, s_village c WHERE c.del_flag = '0' AND b.village_id = c.village_id AND b.around_store_id = a.id group by b.around_store_id)  AS villageName
+	FROM m_around_store a
+		WHERE a.del_flag = '0' 
+		<if test="asvList != null and asvList.size()>0">
+			AND a.id IN 
+			<foreach item="item" index="index" collection="asvList" 
+		             open="(" separator="," close=")">
+		            #{item.aroundStoreId}
+		    </foreach>
+	    </if>
+			<if test="aroundStoreVo.name != null and aroundStoreVo.name.trim() != ''" >
+		      AND a.name LIKE CONCAT('%',CONCAT(#{aroundStoreVo.name},'%'))
+		    </if>
+		    <if test="aroundStoreVo.storeType != null and aroundStoreVo.storeType.trim() != ''" >
+		      AND a.store_type = #{aroundStoreVo.storeType,jdbcType=CHAR}
+		    </if>
+		    <if test="aroundStoreVo.concat != null and aroundStoreVo.concat.trim() != ''" >
+		      AND a.concat LIKE CONCAT('%',CONCAT(#{aroundStoreVo.concat},'%'))
+		    </if>
+		    <if test="aroundStoreVo.concatPhone != null and aroundStoreVo.concatPhone.trim() != ''" >
+		      AND a.concat_phone LIKE CONCAT('%',CONCAT(#{aroundStoreVo.concatPhone},'%'))
+		    </if>
+		    <if test="aroundStoreVo.useStatus != null and aroundStoreVo.useStatus.trim() != ''" >
+			  AND a.use_status = #{aroundStoreVo.useStatus,jdbcType=CHAR}
+		    </if>
+		) t
+		<where>
+			<if test="aroundStoreVo.villageName != null and aroundStoreVo.villageName.trim() != ''" >
+			  AND t.villageName LIKE CONCAT('%',CONCAT(#{aroundStoreVo.villageName},'%'))
+		    </if>
+		</where>
+  </select>
+  <!-- 周边店管理：列表查询end -->
+  
+  <!-- 周边店管理：周边店详情查询begin -->
+  <select id="selectAroundStore" parameterType="java.lang.Long" resultType="com.wooxun.geekdol.hmedia.vo.AroundStoreVo">
+	SELECT a.id AS id, a.name AS name, a.adress AS adress, a.store_type AS storeType, 
+		a.concat AS concat, a.concat_phone AS concatPhone, a.hours_start AS hoursStart, 
+		a.hours_end AS hoursEnd, a.introduce AS introduce, a.use_status AS useStatus, 
+		a.ins_id AS insId, a.ins_ymdhms AS insYmdhms, a.upd_id AS updId, a.upd_ymdhms AS updYmdhms, 
+		a.upd_eac AS updEac, a.del_flag AS delFlag, a.likes_number AS likesNumber, a.hate_number AS hateNumber, 
+		a.five_count AS fiveCount, a.four_count AS fourCount, a.three_count AS threeCount, a.two_count AS twoCount, 
+		a.one_count AS oneCount, a.view_number AS viewNumber, a.reply_number AS replyNumber, a.illegal_number AS illegalNumber, 
+		a.dial_count AS dialCount, a.suggest_flag AS suggestFlag, a.legal_person AS legalPerson, 
+    	a.person_card AS personCard, a.organization_code AS organizationCode, a.license_image AS licenseImage, 
+    	a.icon AS icon, a.store_image AS storeImage, 
+		concat_ws('/',a.likes_number, a.hate_number) AS likesOrhate, 
+		concat_ws('/',a.five_count,a.four_count,a.three_count,a.two_count,a.one_count) AS startNumber, 
+		concat_ws('/',a.view_number,a.reply_number,a.illegal_number) AS viewReplyIllegalNumber,
+		(select group_concat(c.village_name) from m_around_store_village b, s_village c WHERE c.del_flag = '0' AND b.village_id = c.village_id AND b.around_store_id = a.id group by b.around_store_id)  AS villageName, 
+		(select group_concat(b.village_id) from m_around_store_village b WHERE b.around_store_id = a.id group by b.around_store_id)  AS villageId
+	FROM m_around_store a
+		WHERE a.del_flag = '0' and a.id = #{id,jdbcType=BIGINT}
+  </select>
+  <!-- 周边店管理：周边店详情查询end -->
+  
+  <!-- 周边店管理：根据主键id列表查询周边店信息 -->
+  <select id="selectAroundStoreByIdList" parameterType="map" resultMap="BaseResultMap">
+	SELECT a.id, a.name, a.store_image, a.dial_count, a.concat_phone 
+	FROM m_around_store a 
+		WHERE a.del_flag = '0' 
+		AND a.use_status = '0' 
+		<if test="storeName != null and storeName.trim() != ''" >
+		  AND a.name LIKE CONCAT('%',#{storeName},'%')
+	    </if>
+		<if test="asvList != null and asvList.size()>0">
+			AND a.id IN 
+			<foreach item="item" index="index" collection="asvList" 
+		             open="(" separator="," close=")">
+		            #{item.aroundStoreId}
+		    </foreach>
+	    </if>
+	    ORDER BY a.upd_ymdhms DESC
+		<if test="aroundStoreVo.pageFlag==true">
+			LIMIT #{aroundStoreVo.startPage}, #{aroundStoreVo.endPage}
+		</if>
+  </select>
+  
+  <!-- 查找组织代码证是否存在 -->
+  <select id="findCountOrganizationCode" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select 
+    count(1)
+    from m_around_store
+    where organization_code = #{organizationCode,jdbcType=VARCHAR}
+    and del_flag = '0'
+  </select>
+  
+    <!-- app查找用户当天是否进行过点赞或者倒赞 -->
+  <select id="selectAroundStoreByDay" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_around_store
+    where id = #{aroundStoreId}
+    and del_flag = '0'
+    and upd_id = #{appUserId}
+    and #{startTime} &lt;= date_format(upd_ymdhms,'%Y-%m-%d %H:%i:%s')
+    and date_format(upd_ymdhms,'%Y-%m-%d %H:%i:%s') &lt;= #{endTime}
+  </select>
+  
+  <select id="selectStatus" parameterType="java.lang.Long" resultType="java.lang.Integer">
+    select 
+    count(1)
+    from m_around_store
+    where id = #{storeId}
+    and del_flag = '0'
+    and use_status = '0'
+  </select>
+  
+</mapper>

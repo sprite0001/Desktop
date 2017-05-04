@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.IncorruptCommentRecommendMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.IncorruptCommentRecommend" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="incorrupt_Comment_Id" property="incorruptCommentId" jdbcType="BIGINT" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="operator_time" property="operatorTime" jdbcType="TIMESTAMP" />
+    <result column="operator_type" property="operatorType" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, incorrupt_Comment_Id, operator_id, operator_time, operator_type, ins_id, ins_ymdhms, 
+    upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_incorrupt_comment_recommend
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_incorrupt_comment_recommend
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deteByCommentIdAndUserId" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptCommentRecommend" >
+    delete from m_incorrupt_comment_recommend
+    where incorrupt_Comment_Id = #{incorruptCommentId,jdbcType=BIGINT} and operator_id = #{operatorId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptCommentRecommend" >
+    insert into m_incorrupt_comment_recommend (id, incorrupt_Comment_Id, operator_id, 
+      operator_time, operator_type, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{incorruptCommentId,jdbcType=BIGINT}, #{operatorId,jdbcType=BIGINT}, 
+      #{operatorTime,jdbcType=TIMESTAMP}, #{operatorType,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptCommentRecommend" useGeneratedKeys="true" keyProperty="id">
+    insert into m_incorrupt_comment_recommend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="incorruptCommentId != null" >
+        incorrupt_Comment_Id,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="operatorTime != null" >
+        operator_time,
+      </if>
+      <if test="operatorType != null" >
+        operator_type,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="incorruptCommentId != null" >
+        #{incorruptCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorTime != null" >
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorType != null" >
+        #{operatorType,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptCommentRecommend" >
+    update m_incorrupt_comment_recommend
+    <set >
+      <if test="incorruptCommentId != null" >
+        incorrupt_Comment_Id = #{incorruptCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorTime != null" >
+        operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorType != null" >
+        operator_type = #{operatorType,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptCommentRecommend" >
+    update m_incorrupt_comment_recommend
+    set incorrupt_Comment_Id = #{incorruptCommentId,jdbcType=BIGINT},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      operator_type = #{operatorType,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <select id="queryIncorruptCommentRecommend" parameterType="java.util.Map"
+  	resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from m_incorrupt_comment_recommend
+    <where>
+    	<if test="commentId != null and commentId != 0">
+    		and incorrupt_Comment_Id = #{commentId,jdbcType=BIGINT}
+    	</if>
+    	<if test="operatorId != null and operatorId != 0">
+    		and operator_id = #{operatorId,jdbcType=BIGINT}
+    	</if>
+    	<if test="operatorType != null and operatorType.trim() != ''">
+    		and operator_type = #{operatorType,jdbcType=VARCHAR}
+    	</if>
+    	and del_flag = '0'
+    </where>
+  </select>
+</mapper>

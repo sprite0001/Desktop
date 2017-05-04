@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GoodsRecommendCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.GoodsRecommendComment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="start_number" property="startNumber" jdbcType="INTEGER" />
+    <result column="opreater" property="opreater" jdbcType="BIGINT" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="discuss_time" property="discussTime" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.geekstore.model.GoodsRecommendComment" extends="BaseResultMap" >
+    <result column="comment" property="comment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, status, start_number, opreater, opreater_ip, discuss_time, ins_id, 
+    ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    comment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from j_goods_recommend_comment
+    where id = #{id,jdbcType=BIGINT} and del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_goods_recommend_comment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendComment" >
+    insert into j_goods_recommend_comment (id, goods_id, status, 
+      start_number, opreater, opreater_ip, 
+      discuss_time, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag, comment)
+    values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{status,jdbcType=CHAR}, 
+      #{startNumber,jdbcType=INTEGER}, #{opreater,jdbcType=BIGINT}, #{opreaterIp,jdbcType=VARCHAR}, 
+      #{discussTime,jdbcType=TIMESTAMP}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR}, #{comment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendComment" >
+    insert into j_goods_recommend_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="startNumber != null" >
+        start_number,
+      </if>
+      <if test="opreater != null" >
+        opreater,
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip,
+      </if>
+      <if test="discussTime != null" >
+        discuss_time,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="startNumber != null" >
+        #{startNumber,jdbcType=INTEGER},
+      </if>
+      <if test="opreater != null" >
+        #{opreater,jdbcType=BIGINT},
+      </if>
+      <if test="opreaterIp != null" >
+        #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="discussTime != null" >
+        #{discussTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendComment" >
+    update j_goods_recommend_comment
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="startNumber != null" >
+        start_number = #{startNumber,jdbcType=INTEGER},
+      </if>
+      <if test="opreater != null" >
+        opreater = #{opreater,jdbcType=BIGINT},
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="discussTime != null" >
+        discuss_time = #{discussTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendComment" >
+    update j_goods_recommend_comment
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      start_number = #{startNumber,jdbcType=INTEGER},
+      opreater = #{opreater,jdbcType=BIGINT},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      discuss_time = #{discussTime,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      comment = #{comment,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommendComment" >
+    update j_goods_recommend_comment
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      start_number = #{startNumber,jdbcType=INTEGER},
+      opreater = #{opreater,jdbcType=BIGINT},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      discuss_time = #{discussTime,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 根据商品ID查找所有的评论信息 -->
+   <select id="findgoodsCommment" parameterType="com.wooxun.geekdol.geekstore.vo.GoodsRecommendCommentVo" resultType="com.wooxun.geekdol.geekstore.vo.GoodsRecommendCommentVo" >
+    SELECT
+		res.classificId AS classificId,
+		res.opreaterName AS opreaterName,
+		res.`COMMENT` AS COMMENT,
+		res.opreaterIp AS opreaterIp,
+		res.discussTime AS discussTime,
+		res.`STATUS` AS STATUS,
+		res.id AS id
+	FROM
+		(
+			SELECT
+				c.classific_id AS classificId,
+				s.real_name AS opreaterName,
+				c. COMMENT AS COMMENT,
+				c.opreater_ip AS opreaterIp,
+				c.discuss_time AS discussTime,
+				c.`status` AS STATUS,
+				c.id AS id
+			FROM
+				j_distribution_goods_comment c,
+				s_app_user s
+			WHERE
+				c.goods_id in
+				(SELECT id FROM j_distribution_goods
+				WHERE goods_id = #{goodsId,jdbcType=BIGINT})
+			AND c.opreater = s.id
+			AND c.del_flag = '0'
+			UNION ALL
+				SELECT
+					#{classificId} AS classificId,
+					s.real_name AS opreaterName,
+					c. COMMENT AS COMMENT,
+					c.opreater_ip AS opreaterIp,
+					c.discuss_time AS discussTime,
+					c.`status` AS STATUS,
+					c.id AS id
+				FROM
+					j_goods_recommend_comment c,
+					s_app_user s
+				WHERE
+					c.goods_id in
+					(SELECT id from j_goods_recommend WHERE 
+					goods_id = #{goodsId,jdbcType=BIGINT})
+				AND c.opreater = s.id
+				AND c.del_flag = '0'
+		) res
+	<where>
+		<if test="comment != null and comment.trim()!=''" >
+      and  res.comment like CONCAT('%',CONCAT(#{comment},'%'))
+      </if>
+      <if test="status != null and status !=''" >
+       and res.status = #{status,jdbcType=CHAR}
+      </if>
+      <if test="opreaterName != null and opreaterName.trim()!=''" >
+      and  res.opreaterName like CONCAT('%',CONCAT(#{opreaterName},'%'))
+      </if>
+	</where>
+	order by res.discussTime DESC
+  </select>
+  
+  <!-- 根据评论ID查找评论人的评论信息 -->
+   <select id="findOneComments" parameterType="com.wooxun.geekdol.geekstore.vo.GoodsRecommendCommentVo"  resultType="com.wooxun.geekdol.geekstore.vo.GoodsRecommendCommentVo" >
+    select 
+    s.real_name as opreaterName,c.comment as comment,c.opreater_ip as opreaterIp,DATE_FORMAT(c.discuss_time,"%Y-%m-%d %T") as discussTimeStr,
+    c.status as status,c.id as id
+    from j_goods_recommend_comment c,s_app_user s
+    where c.opreater = s.id 
+    
+   and c.id = #{id,jdbcType=BIGINT} and c.del_flag = '0'
+  </select>
+  
+  <select id="findAllCount" resultType="java.lang.Long" 
+   		parameterType="com.wooxun.geekdol.geekstore.vo.GoodsRecommendCommentVo">
+    	SELECT
+			sum(res.number)
+		FROM (
+			SELECT
+				count(c.id) as number
+			FROM
+				j_distribution_goods_comment c
+			WHERE
+			c.goods_id in (
+				SELECT dg.id from j_distribution_goods dg where dg.goods_id = #{goodsId,jdbcType=BIGINT}
+			)
+			AND c.del_flag = '0'
+			<if test="sumList != null" >
+				and c.start_number in
+		        <foreach item="item" index="index" collection="sumList" 
+		        	open="(" separator="," close=")">
+		        	#{item}                
+                   </foreach>
+	      	</if>
+			UNION ALL
+			SELECT
+				count(c.id) as number
+			FROM
+				j_goods_recommend_comment c
+			WHERE
+			c.goods_id in(
+				SELECT GR.ID FROM j_goods_recommend gr WHERE gr.goods_id = #{goodsId,jdbcType=BIGINT}
+			)
+			AND c.del_flag = '0'
+			<if test="sumList != null" >
+				and c.start_number in
+        		<foreach item="item" index="index" collection="sumList" 
+        			open="(" separator="," close=")">
+                	#{item}                
+                </foreach>
+      		</if>
+		   ) res
+  </select>
+</mapper>

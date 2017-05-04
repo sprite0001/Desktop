@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wooxun.geekdol.system.mapper.UserRoleMapper">
+	<resultMap id="BaseResultMap" type="com.soft863.dolphin.model.UserRole">
+		<result column="USER_ID" property="userId"/>
+		<result column="ROLE_ID" property="roleId" />
+	</resultMap>
+	<!-- 表字段列表 -->
+	<sql id="Base_Column_List" >
+		USER_ID,ROLE_ID
+  	</sql>
+  	<!-- 检索条件 -->
+  	<sql id="searchWhere">
+	    <where>
+	    	<!-- 部门表的模糊查询条件 -->
+		    <if test="userId!=null and userId!=''">
+		        and USER_ID = #{userId}
+		    </if>
+		    <if test="roleId!=null and roleId!=''">
+		        and ROLE_ID = #{roleId}
+		    </if>
+	    </where>
+  	</sql>
+	
+	<insert id="insert" parameterType="com.soft863.dolphin.model.UserRole">
+  		INSERT INTO security_user_role
+  		(
+  			USER_ID, 
+			ROLE_ID
+		)
+  		VALUES(
+  			#{userId,jdbcType=BIGINT},
+  			#{roleId,jdbcType=BIGINT}
+  		)
+  	</insert>
+  	
+  	<delete id="delete" parameterType="com.soft863.dolphin.model.UserRole">
+		DELETE FROM security_user_role 
+		 WHERE USER_ID = #{userId,jdbcType=BIGINT} 
+		   AND ROLE_ID = #{roleId,jdbcType=BIGINT}
+	</delete>
+  	
+  	<select id="selectRoleIdByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+	SELECT 
+		<include refid="Base_Column_List" />
+	FROM security_user_role
+	WHERE USER_ID = #{userId}
+   </select>
+   
+   <!-- 根据角色id查询出中间表数据  -->
+   <select id="selectUserRoleByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT 
+        <include refid="Base_Column_List" />
+    FROM security_user_role
+    WHERE role_id = #{roleId}
+   </select>
+
+</mapper>

@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.AdmNewsflashMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.AdmNewsflash" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="newsflash_time" property="newsflashTime" jdbcType="TIMESTAMP" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="publish_status" property="publishStatus" jdbcType="CHAR" />
+    <result column="scanned_number" property="scannedNumber" jdbcType="BIGINT" />
+    <result column="verify_status" property="verifyStatus" jdbcType="CHAR" />
+    <result column="verify_sug" property="verifySug" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="publish_user" property="publishUser" jdbcType="BIGINT" />
+    <result column="verify_time" property="verifyTime" jdbcType="TIMESTAMP" />
+    <result column="verify_user" property="verifyUser" jdbcType="BIGINT" />
+    <result column="submit_time" property="submitTime" jdbcType="TIMESTAMP" />
+    <result column="submit_user" property="submitUser" jdbcType="BIGINT" />
+    
+    <!-- 提交人 -->
+    <association column="submit_user" property="submiter" select="com.wooxun.geekdol.system.mapper.UserMapper.selectById"></association>
+    <!-- 审核人人 -->
+    <association column="verify_user" property="verifyer" select="com.wooxun.geekdol.system.mapper.UserMapper.selectById"></association>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.hbridge.model.AdmNewsflash" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, summary, source, newsflash_time, publish_time, publish_status, scanned_number, 
+    verify_status, verify_sug, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag, 
+    publish_user, verify_time, verify_user, submit_time, submit_user
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_adm_newsflash
+    where id = #{id,jdbcType=BIGINT} AND del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_adm_newsflash
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.AdmNewsflash" >
+    insert into t_adm_newsflash (id, title, summary, 
+      source, newsflash_time, publish_time, 
+      publish_status, scanned_number, verify_status, 
+      verify_sug, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag, publish_user, verify_time, 
+      verify_user, submit_time, submit_user, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{newsflashTime,jdbcType=TIMESTAMP}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{publishStatus,jdbcType=CHAR}, #{scannedNumber,jdbcType=BIGINT}, #{verifyStatus,jdbcType=CHAR}, 
+      #{verifySug,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR}, #{publishUser,jdbcType=BIGINT}, #{verifyTime,jdbcType=TIMESTAMP}, 
+      #{verifyUser,jdbcType=BIGINT}, #{submitTime,jdbcType=TIMESTAMP}, #{submitUser,jdbcType=BIGINT}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.AdmNewsflash" >
+    insert into t_adm_newsflash
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="newsflashTime != null" >
+        newsflash_time,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="publishStatus != null" >
+        publish_status,
+      </if>
+      <if test="scannedNumber != null" >
+        scanned_number,
+      </if>
+      <if test="verifyStatus != null" >
+        verify_status,
+      </if>
+      <if test="verifySug != null" >
+        verify_sug,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="publishUser != null" >
+        publish_user,
+      </if>
+      <if test="verifyTime != null" >
+        verify_time,
+      </if>
+      <if test="verifyUser != null" >
+        verify_user,
+      </if>
+      <if test="submitTime != null" >
+        submit_time,
+      </if>
+      <if test="submitUser != null" >
+        submit_user,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="newsflashTime != null" >
+        #{newsflashTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="scannedNumber != null" >
+        #{scannedNumber,jdbcType=BIGINT},
+      </if>
+      <if test="verifyStatus != null" >
+        #{verifyStatus,jdbcType=CHAR},
+      </if>
+      <if test="verifySug != null" >
+        #{verifySug,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="publishUser != null" >
+        #{publishUser,jdbcType=BIGINT},
+      </if>
+      <if test="verifyTime != null" >
+        #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyUser != null" >
+        #{verifyUser,jdbcType=BIGINT},
+      </if>
+      <if test="submitTime != null" >
+        #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitUser != null" >
+        #{submitUser,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.AdmNewsflash" >
+    update t_adm_newsflash
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="newsflashTime != null" >
+        newsflash_time = #{newsflashTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        publish_status = #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="scannedNumber != null" >
+        scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      </if>
+      <if test="verifyStatus != null" >
+        verify_status = #{verifyStatus,jdbcType=CHAR},
+      </if>
+      <if test="verifySug != null" >
+        verify_sug = #{verifySug,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="publishUser != null" >
+        publish_user = #{publishUser,jdbcType=BIGINT},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verifyUser != null" >
+        verify_user = #{verifyUser,jdbcType=BIGINT},
+      </if>
+      <if test="submitTime != null" >
+        submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitUser != null" >
+        submit_user = #{submitUser,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.hbridge.model.AdmNewsflash" >
+    update t_adm_newsflash
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      newsflash_time = #{newsflashTime,jdbcType=TIMESTAMP},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      verify_status = #{verifyStatus,jdbcType=CHAR},
+      verify_sug = #{verifySug,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      publish_user = #{publishUser,jdbcType=BIGINT},
+      verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      verify_user = #{verifyUser,jdbcType=BIGINT},
+      submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      submit_user = #{submitUser,jdbcType=BIGINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.AdmNewsflash" >
+    update t_adm_newsflash
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      newsflash_time = #{newsflashTime,jdbcType=TIMESTAMP},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      verify_status = #{verifyStatus,jdbcType=CHAR},
+      verify_sug = #{verifySug,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      publish_user = #{publishUser,jdbcType=BIGINT},
+      verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      verify_user = #{verifyUser,jdbcType=BIGINT},
+      submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      submit_user = #{submitUser,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 自定义查询语句开始 -->
+  <!-- 自定义搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="title != null and title.trim()!=''" >
+                AND title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="newsflashTimeBegin != null" >
+                AND newsflash_time &gt;= #{newsflashTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="newsflashTimeEnd != null" >
+                AND newsflash_time &lt;= #{newsflashTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="verifyStatusLs != null and verifyStatusLs.trim()!=''" >
+                AND verify_status in (${verifyStatusLs})
+            </if>
+            <if test="publishUser != null" >
+                AND publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="submitUser != null" >
+                AND submit_user = #{submitUser,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyStatus != null and verifyStatus.trim()!=''" >
+                AND verify_status = #{verifyStatus,jdbcType=CHAR}
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   <!-- 条件查询 -->
+   <select id="queryListByParam" parameterType="com.wooxun.geekdol.hbridge.vo.AdmNewsflashVo" resultMap="BaseResultMap">
+	    select * from t_adm_newsflash
+	    <include refid="searchWhere" />
+	        order by id desc
+	    <if test="pageFlag==true">
+	      LIMIT #{startPage}, #{endPage}
+	    </if>
+   </select>
+   <!-- 条件查询 ,提交人被删除的话，则不显示-->
+   <select id="queryListNotDel" parameterType="com.wooxun.geekdol.hbridge.vo.AdmNewsflashVo" resultType="com.wooxun.geekdol.hbridge.vo.AdmNewsflashVo">
+        select t.*,(SELECT u.real_name FROM security_user u WHERE u.id = t.submit_user and t.del_flag = 0) submitUserName from t_adm_newsflash t
+        <where>
+            <if test="title != null and title.trim()!=''" >
+                AND t.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND t.summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="newsflashTimeBegin != null" >
+                AND t.newsflash_time &gt;= #{newsflashTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="newsflashTimeEnd != null" >
+                AND t.newsflash_time &lt;= #{newsflashTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND t.publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="verifyStatusLs != null and verifyStatusLs.trim()!=''" >
+                AND t.verify_status in (${verifyStatusLs})
+            </if>
+            <if test="publishUser != null" >
+                AND t.publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="submitUser != null" >
+                AND t.submit_user = #{submitUser,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND t.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyStatus != null and verifyStatus.trim()!=''" >
+                AND t.verify_status = #{verifyStatus,jdbcType=CHAR}
+            </if>
+            AND t.del_flag='0'
+       </where>
+            order by t.id
+        <if test="pageFlag==true">
+          LIMIT #{startPage}, #{endPage}
+        </if>
+   </select>
+   <!-- 条件查询，查询出全部数量 -->
+   <select id="queryCountByParam" parameterType="com.wooxun.geekdol.hbridge.vo.AdmNewsflashVo" resultType="java.lang.Long">
+        select count(*) from t_adm_newsflash
+        <include refid="searchWhere" />
+            order by id
+   </select>
+   <!-- 条件查询，查询出全部数量,提交人被删除的话，则不计数 -->
+   <select id="queryCountNotDel" parameterType="com.wooxun.geekdol.hbridge.vo.AdmNewsflashVo" resultType="java.lang.Long">
+        select count(*) from t_adm_newsflash t
+        <where>
+            <if test="title != null and title.trim()!=''" >
+                AND t.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND t.summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="newsflashTimeBegin != null" >
+                AND t.newsflash_time &gt;= #{newsflashTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="newsflashTimeEnd != null" >
+                AND t.newsflash_time &lt;= #{newsflashTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND t.publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="verifyStatusLs != null and verifyStatusLs.trim()!=''" >
+                AND t.verify_status in (${verifyStatusLs})
+            </if>
+            <if test="publishUser != null" >
+                AND t.publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="submitUser != null" >
+                AND t.submit_user = #{submitUser,jdbcType=BIGINT}
+            </if>
+            <if test="insId != null" >
+                AND t.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            <if test="verifyStatus != null and verifyStatus.trim()!=''" >
+                AND t.verify_status = #{verifyStatus,jdbcType=CHAR}
+            </if>
+            AND t.del_flag='0'
+            and (t.submit_user is null or (SELECT u.del_flag FROM security_user u WHERE u.id = t.submit_user) != 1)
+       </where>
+            order by t.id
+   </select>
+   
+   <!-- 条件查询,按浏览量倒序排列 -->
+   <select id="queryListByParamOrder" parameterType="com.wooxun.geekdol.hbridge.vo.AdmNewsflashVo" resultMap="BaseResultMap">
+        select * from t_adm_newsflash
+        <include refid="searchWhere" />
+            <if test="outId != null" >
+                AND id != #{outId,jdbcType=BIGINT}
+            </if>
+            order by scanned_number desc
+        <if test="pageFlag==true">
+          LIMIT #{startPage}, #{endPage}
+        </if>
+   </select>
+</mapper>

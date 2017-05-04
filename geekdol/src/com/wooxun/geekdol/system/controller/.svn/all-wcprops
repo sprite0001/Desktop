@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/Geekdol/!svn/ver/5364/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller
+END
+UserController.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Geekdol/!svn/ver/3877/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/UserController.java
+END
+AppUserController.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/5272/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/AppUserController.java
+END
+RoleController.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Geekdol/!svn/ver/4842/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/RoleController.java
+END
+CountyController.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/Geekdol/!svn/ver/5159/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/CountyController.java
+END
+CooperationController.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/4504/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/CooperationController.java
+END
+VillageController.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/5163/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/VillageController.java
+END
+AppVersionControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/4808/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/AppVersionControl.java
+END
+CommunityController.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Geekdol/!svn/ver/5161/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/CommunityController.java
+END
+ProvinceController.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Geekdol/!svn/ver/4613/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/ProvinceController.java
+END
+KeyWordsController.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Geekdol/!svn/ver/3890/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/KeyWordsController.java
+END
+MemberController.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/Geekdol/!svn/ver/5364/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/MemberController.java
+END
+SuggestionController.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/4504/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/SuggestionController.java
+END
+UserAreaController.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Geekdol/!svn/ver/5160/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/UserAreaController.java
+END
+CityController.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Geekdol/!svn/ver/5155/source/backstage/geekdol/src/com/wooxun/geekdol/system/controller/CityController.java
+END

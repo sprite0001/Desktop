@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/Geekdol/!svn/ver/5192/source/backstage/geekdol/WebRoot/WEB-INF/views/system/message
+END
+messageEditor.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/Geekdol/!svn/ver/4198/source/backstage/geekdol/WebRoot/WEB-INF/views/system/message/messageEditor.jsp
+END
+messageAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/Geekdol/!svn/ver/5192/source/backstage/geekdol/WebRoot/WEB-INF/views/system/message/messageAdd.jsp
+END
+messageList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/Geekdol/!svn/ver/5008/source/backstage/geekdol/WebRoot/WEB-INF/views/system/message/messageList.jsp
+END

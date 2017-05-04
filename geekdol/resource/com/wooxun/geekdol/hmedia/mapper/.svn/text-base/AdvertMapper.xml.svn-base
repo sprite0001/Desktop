@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.AdvertMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.Advert" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="advert_title" property="advertTitle" jdbcType="VARCHAR" />
+    <result column="advert_code" property="advertCode" jdbcType="VARCHAR" />
+    <result column="advert_owner" property="advertOwner" jdbcType="VARCHAR" />
+    <result column="advert_money" property="advertMoney" jdbcType="BIGINT" />
+    <result column="advert_contacts" property="advertContacts" jdbcType="VARCHAR" />
+    <result column="contact_number" property="contactNumber" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="adver_type" property="adverType" jdbcType="CHAR" />
+    <result column="adver_pic" property="adverPic" jdbcType="VARCHAR" />
+    <result column="adver_content" property="adverContent" jdbcType="VARCHAR" />
+    <result column="scroll_type" property="scrollType" jdbcType="CHAR" />
+    <result column="link_type" property="linkType" jdbcType="CHAR" />
+    <result column="link_contenturl" property="linkContenturl" jdbcType="VARCHAR" />
+    <result column="ordering" property="ordering" jdbcType="BIGINT" />
+    <result column="begin_flag" property="beginFlag" jdbcType="CHAR" />
+    <result column="scann_number" property="scannNumber" jdbcType="INTEGER" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+     <!-- 广告与小区关系表 -->
+    <collection property="listAdvertVillage" column="id" select="com.wooxun.geekdol.hmedia.mapper.AdvertVillageMapper.selectAdvertVillageById"></collection>
+     
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, advert_title, advert_code, advert_owner, advert_money, advert_contacts, contact_number, 
+    start_time, end_time, adver_type, adver_pic, adver_content, scroll_type, link_type, 
+    link_contenturl, ordering, begin_flag, scann_number, ins_id, ins_ymdhms, upd_id, 
+    upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from g_advert
+    where id = #{id,jdbcType=BIGINT}
+     and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from g_advert
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.Advert" >
+    insert into g_advert (id, advert_title, advert_code, 
+      advert_owner, advert_money, advert_contacts, 
+      contact_number, start_time, end_time, 
+      adver_type, adver_pic, adver_content, 
+      scroll_type, link_type, link_contenturl, 
+      ordering, begin_flag, scann_number, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{advertTitle,jdbcType=VARCHAR}, #{advertCode,jdbcType=VARCHAR}, 
+      #{advertOwner,jdbcType=VARCHAR}, #{advertMoney,jdbcType=BIGINT}, #{advertContacts,jdbcType=VARCHAR}, 
+      #{contactNumber,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{adverType,jdbcType=CHAR}, #{adverPic,jdbcType=VARCHAR}, #{adverContent,jdbcType=VARCHAR}, 
+      #{scrollType,jdbcType=CHAR}, #{linkType,jdbcType=CHAR}, #{linkContenturl,jdbcType=VARCHAR}, 
+      #{ordering,jdbcType=BIGINT}, #{beginFlag,jdbcType=CHAR}, #{scannNumber,jdbcType=INTEGER}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.Advert" useGeneratedKeys="true" keyProperty="id">
+    insert into g_advert
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="advertTitle != null" >
+        advert_title,
+      </if>
+      <if test="advertCode != null" >
+        advert_code,
+      </if>
+      <if test="advertOwner != null" >
+        advert_owner,
+      </if>
+      <if test="advertMoney != null" >
+        advert_money,
+      </if>
+      <if test="advertContacts != null" >
+        advert_contacts,
+      </if>
+      <if test="contactNumber != null" >
+        contact_number,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="adverType != null" >
+        adver_type,
+      </if>
+      <if test="adverPic != null" >
+        adver_pic,
+      </if>
+      <if test="adverContent != null" >
+        adver_content,
+      </if>
+      <if test="scrollType != null" >
+        scroll_type,
+      </if>
+      <if test="linkType != null" >
+        link_type,
+      </if>
+      <if test="linkContenturl != null" >
+        link_contenturl,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="beginFlag != null" >
+        begin_flag,
+      </if>
+      <if test="scannNumber != null" >
+        scann_number,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="advertTitle != null" >
+        #{advertTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="advertCode != null" >
+        #{advertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="advertOwner != null" >
+        #{advertOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="advertMoney != null" >
+        #{advertMoney,jdbcType=BIGINT},
+      </if>
+      <if test="advertContacts != null" >
+        #{advertContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null" >
+        #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adverType != null" >
+        #{adverType,jdbcType=CHAR},
+      </if>
+      <if test="adverPic != null" >
+        #{adverPic,jdbcType=VARCHAR},
+      </if>
+      <if test="adverContent != null" >
+        #{adverContent,jdbcType=VARCHAR},
+      </if>
+      <if test="scrollType != null" >
+        #{scrollType,jdbcType=CHAR},
+      </if>
+      <if test="linkType != null" >
+        #{linkType,jdbcType=CHAR},
+      </if>
+      <if test="linkContenturl != null" >
+        #{linkContenturl,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="beginFlag != null" >
+        #{beginFlag,jdbcType=CHAR},
+      </if>
+      <if test="scannNumber != null" >
+        #{scannNumber,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.Advert" >
+    update g_advert
+    <set >
+      <if test="advertTitle != null" >
+        advert_title = #{advertTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="advertCode != null" >
+        advert_code = #{advertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="advertOwner != null" >
+        advert_owner = #{advertOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="advertMoney != null" >
+        advert_money = #{advertMoney,jdbcType=BIGINT},
+      </if>
+      <if test="advertContacts != null" >
+        advert_contacts = #{advertContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null" >
+        contact_number = #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adverType != null" >
+        adver_type = #{adverType,jdbcType=CHAR},
+      </if>
+      <if test="adverPic != null" >
+        adver_pic = #{adverPic,jdbcType=VARCHAR},
+      </if>
+      <if test="adverContent != null" >
+        adver_content = #{adverContent,jdbcType=VARCHAR},
+      </if>
+      <if test="scrollType != null" >
+        scroll_type = #{scrollType,jdbcType=CHAR},
+      </if>
+      <if test="linkType != null" >
+        link_type = #{linkType,jdbcType=CHAR},
+      </if>
+      <if test="linkContenturl != null" >
+        link_contenturl = #{linkContenturl,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="beginFlag != null" >
+        begin_flag = #{beginFlag,jdbcType=CHAR},
+      </if>
+      <if test="scannNumber != null" >
+        scann_number = #{scannNumber,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.Advert" >
+    update g_advert
+    set advert_title = #{advertTitle,jdbcType=VARCHAR},
+      advert_code = #{advertCode,jdbcType=VARCHAR},
+      advert_owner = #{advertOwner,jdbcType=VARCHAR},
+      advert_money = #{advertMoney,jdbcType=BIGINT},
+      advert_contacts = #{advertContacts,jdbcType=VARCHAR},
+      contact_number = #{contactNumber,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      adver_type = #{adverType,jdbcType=CHAR},
+      adver_pic = #{adverPic,jdbcType=VARCHAR},
+      adver_content = #{adverContent,jdbcType=VARCHAR},
+      scroll_type = #{scrollType,jdbcType=CHAR},
+      link_type = #{linkType,jdbcType=CHAR},
+      link_contenturl = #{linkContenturl,jdbcType=VARCHAR},
+      ordering = #{ordering,jdbcType=BIGINT},
+      begin_flag = #{beginFlag,jdbcType=CHAR},
+      scann_number = #{scannNumber,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+   <!-- app根据条件查询轮播图片 --> 
+  <select id="selectPic" parameterType="com.wooxun.geekdol.system.vo.AppLunboVo" resultMap="BaseResultMap">
+  SELECT
+     a.adver_pic,a.link_contenturl, a.advert_title
+   FROM
+     g_advert a ,
+     g_advert_position b,
+     g_position c,
+     g_advert_village d
+   <where>
+         and a.id = b.advert_id
+         and b.position_id=c.position_id
+        <if test="moduleCode != null" >
+            AND c.module_code = #{moduleCode,jdbcType=CHAR}
+        </if>
+        <if test="adverType != null" >
+            AND a.adver_type = #{adverType,jdbcType=CHAR}
+        </if>
+        <if test="linkType != null" >
+            AND a.link_type = #{linkType,jdbcType=CHAR}
+        </if>
+        <if test="beginFlag != null" >
+            AND a.begin_flag = #{beginFlag,jdbcType=CHAR}
+        </if>
+        <if test="villageId != null" >
+            and d.village_id=#{villageId,jdbcType=BIGINT}
+            and a.id=d.advert_id
+        </if>
+        <![CDATA[   and now() >= a.start_time  ]]>
+        <![CDATA[   and now() <= a.end_time  ]]>
+        and a.del_flag='0'
+        and c.del_flag='0'
+   </where>
+  </select>
+  <!-- 条件查询 -->
+  <select id="selectByParm" parameterType="com.wooxun.geekdol.hmedia.model.Advert" resultMap="BaseResultMap">
+   SELECT
+     *
+   FROM
+     g_advert
+   <where>
+        <if test="adverType != null" >
+            AND adver_type = #{adverType,jdbcType=CHAR}
+        </if>
+        <if test="scrollType != null" >
+            AND scroll_type = #{scrollType,jdbcType=CHAR}
+        </if>
+        <if test="linkType != null" >
+            AND link_type = #{linkType,jdbcType=CHAR}
+        </if>
+        <if test="beginFlag != null" >
+            AND begin_flag = #{beginFlag,jdbcType=CHAR}
+        </if>
+        AND del_flag='0'
+   </where>
+  </select>
+  
+   <!-- 根据页面查询条件显示列表 -->
+    <select id="findAll" resultType="com.wooxun.geekdol.hmedia.vo.AdvertVo" parameterType="com.wooxun.geekdol.hmedia.vo.AdvertVo">
+      SELECT
+		DISTINCT(a.id),
+		a.advert_code AS advertCode,
+		a.advert_owner AS advertOwner,
+		a.advert_money AS advertMoney,
+		a.advert_contacts AS advertContacts,
+		a.contact_number AS contactNumber,
+		a.start_time AS startTime,
+		a.end_time AS endTime,
+		a.adver_type AS adverType,
+		a.adver_pic AS adverPic,
+		a.adver_content AS adverContent,
+		a.scroll_type AS scrollType,
+		a.link_type AS linkType,
+		a.link_contenturl AS linkContenturl,
+		a.ordering,
+		a.begin_flag AS beginFlag,
+		a.scann_number AS scannNumber,
+		a.ins_id AS insId,
+		a.ins_ymdhms AS insYmdhms,
+		a.upd_id AS updId,
+		a.upd_ymdhms AS updYmdhms,
+		a.upd_eac AS updEac,
+		a.del_flag AS delFlag,
+		(
+			SELECT
+				group_concat(c.village_name)
+			FROM
+				g_advert_village b,
+				s_village c
+			WHERE
+				c.del_flag = '0'
+			AND b.del_flag = '0'
+			AND b.village_id = c.village_id
+			AND b.advert_id = a.id
+			GROUP BY
+				b.advert_id
+		) AS villageName,
+		(
+			SELECT
+				group_concat(e.position_name)
+			FROM
+				g_advert_position d,
+				g_position e
+			WHERE
+				d.del_flag = '0'
+			AND e.del_flag = '0'
+			AND d.position_id = e.position_id
+			AND d.advert_id = a.id
+			GROUP BY
+				d.advert_id
+		) AS positionName
+	FROM
+	g_advert a,
+	g_advert_village f,
+	s_village g,
+	g_advert_position h,
+	g_position i
+      <where>
+      		a.del_flag = '0'
+			AND f.del_flag = '0'
+			AND g.del_flag = '0'
+			AND h.del_flag = '0'
+			AND i.del_flag = '0'
+			AND g.status = '0'
+			AND f.village_id = g.village_id
+			AND f.advert_id = a.id
+			AND h.position_id = i.position_id
+			AND h.advert_id = a.id
+            <if test="advertCode!=null and advertCode.trim()!=''">
+                and a.advert_code like CONCAT(CONCAT('%',#{advertCode}),'%')
+            </if>
+            <if test="advertOwner!=null and advertOwner.trim()!=''">
+                and a.advert_owner like CONCAT(CONCAT('%',#{advertOwner}),'%')
+            </if>
+            <if test="beginFlag!=null and beginFlag.trim()!=''">
+                and a.begin_flag =#{beginFlag}
+            </if>
+                order by a.ordering ASC, a.upd_ymdhms DESC
+            <if test="pageFlag==true">
+              LIMIT #{startPage}, #{endPage}
+            </if>
+       </where>
+     </select>
+     
+    <!-- 根据页面查询条件显示列表分页计数 -->
+    <select id="findAllCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.hmedia.vo.AdvertVo">
+     SELECT
+     	COUNT(DISTINCT(a.id))
+	    FROM
+		g_advert a,
+		g_advert_village f,
+		s_village g,
+		g_advert_position h,
+		g_position i
+       <where>
+       		a.del_flag = '0'
+			AND f.del_flag = '0'
+			AND g.del_flag = '0'
+			AND h.del_flag = '0'
+			AND i.del_flag = '0'
+			AND g.status = '0'
+			AND f.village_id = g.village_id
+			AND f.advert_id = a.id
+			AND h.position_id = i.position_id
+			AND h.advert_id = a.id
+            <if test="advertCode!=null and advertCode.trim()!=''">
+                and a.advert_code like CONCAT(CONCAT('%',#{advertCode}),'%')
+            </if>
+            <if test="advertOwner!=null and advertOwner.trim()!=''">
+                and a.advert_owner like CONCAT(CONCAT('%',#{advertOwner}),'%')
+            </if>
+            <if test="beginFlag!=null and beginFlag.trim()!=''">
+                and a.begin_flag =#{beginFlag}
+            </if>
+       </where>
+    </select> 
+  
+       <!-- 逻辑删除广告管理信息-->
+    <update id="deleteAdvert" parameterType="com.wooxun.geekdol.hmedia.model.Advert">
+     UPDATE 
+     g_advert
+     SET
+     <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+     del_flag='1'
+     where
+     id = #{id,jdbcType=BIGINT}
+     and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+     
+       <!-- 广告管理开始-->
+    <update id="start" parameterType="com.wooxun.geekdol.hmedia.model.Advert">
+     UPDATE 
+     g_advert
+     SET
+     <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+     begin_flag='2'
+     where
+     id = #{id,jdbcType=BIGINT}
+     and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+    
+      <!-- 广告管理结束-->
+    <update id="end" parameterType="com.wooxun.geekdol.hmedia.model.Advert">
+     UPDATE 
+     g_advert
+     SET
+     <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+     begin_flag='3'
+     where
+     id = #{id,jdbcType=BIGINT}
+     and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+   
+   
+  <!-- 定时查找符合状态的广告 -->
+  <select id="queryAdvertByBeignflag" parameterType="com.wooxun.geekdol.hmedia.model.Advert" 
+        resultType="com.wooxun.geekdol.hmedia.model.Advert">
+    select 
+       id, start_time as startTime, end_time as endTime, begin_flag as beginFlag,upd_eac
+    as updEac from g_advert where
+    begin_flag = #{beginFlag,jdbcType=CHAR}
+    and del_flag = '0'
+  </select>
+    
+    <!-- 查找广告编码是否存在 -->
+  <select id="findAdvertCode" resultType="java.lang.Integer" parameterType="map" >
+    select 
+    count(1)
+    from g_advert
+    where advert_code = #{advertCode}
+    <if test="id != null" >
+        AND id != #{id,jdbcType=BIGINT}
+     </if>
+    and del_flag = '0'
+  </select>
+</mapper>

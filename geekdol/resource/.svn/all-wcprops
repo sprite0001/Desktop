@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/Geekdol/!svn/ver/5392/source/backstage/geekdol/resource
+END
+config.properties
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/Geekdol/!svn/ver/3829/source/backstage/geekdol/resource/config.properties
+END
+spring.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/Geekdol/!svn/ver/4982/source/backstage/geekdol/resource/spring.xml
+END
+ComDefine.properties
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/Geekdol/!svn/ver/5292/source/backstage/geekdol/resource/ComDefine.properties
+END
+spring-mybatis.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/Geekdol/!svn/ver/5305/source/backstage/geekdol/resource/spring-mybatis.xml
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/Geekdol/!svn/ver/5324/source/backstage/geekdol/resource/log4j.properties
+END

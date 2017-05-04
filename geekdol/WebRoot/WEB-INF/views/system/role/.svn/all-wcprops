@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/Geekdol/!svn/ver/5008/source/backstage/geekdol/WebRoot/WEB-INF/views/system/role
+END
+roleEditor.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/Geekdol/!svn/ver/4976/source/backstage/geekdol/WebRoot/WEB-INF/views/system/role/roleEditor.jsp
+END
+roleAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Geekdol/!svn/ver/4976/source/backstage/geekdol/WebRoot/WEB-INF/views/system/role/roleAdd.jsp
+END
+roleList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/Geekdol/!svn/ver/5008/source/backstage/geekdol/WebRoot/WEB-INF/views/system/role/roleList.jsp
+END

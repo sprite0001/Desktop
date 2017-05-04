@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/Geekdol/!svn/ver/5331/source/backstage/geekdol/src/com/wooxun/geekdol/system/service
+END
+AppUserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/Geekdol/!svn/ver/5260/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/AppUserService.java
+END
+UserRoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/3734/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/UserRoleService.java
+END
+CountyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/5161/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/CountyService.java
+END
+VillageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/Geekdol/!svn/ver/5249/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/VillageService.java
+END
+CommunityService.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/5163/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/CommunityService.java
+END
+AttachService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/4346/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/AttachService.java
+END
+ProvinceService.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/5155/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/ProvinceService.java
+END
+KeywordsService.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/3890/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/KeywordsService.java
+END
+UserAreaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/4717/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/UserAreaService.java
+END
+SysDataService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/Geekdol/!svn/ver/4812/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/SysDataService.java
+END
+CityService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/Geekdol/!svn/ver/5159/source/backstage/geekdol/src/com/wooxun/geekdol/system/service/CityService.java
+END

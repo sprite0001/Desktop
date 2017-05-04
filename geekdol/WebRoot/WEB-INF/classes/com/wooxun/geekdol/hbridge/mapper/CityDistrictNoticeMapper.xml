@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.CityDistrictNoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.CityDistrictNotice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="notice_time" property="noticeTime" jdbcType="TIMESTAMP" />
+    <result column="publish_user" property="publishUser" jdbcType="BIGINT" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="publish_status" property="publishStatus" jdbcType="CHAR" />
+    <result column="scanned_number" property="scannedNumber" jdbcType="BIGINT" />
+    <result column="top_flag" property="topFlag" jdbcType="CHAR" />
+    <result column="top_start" property="topStart" jdbcType="TIMESTAMP" />
+    <result column="top_end" property="topEnd" jdbcType="TIMESTAMP" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="area_level" property="areaLevel" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.hbridge.model.CityDistrictNotice" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, summary, notice_time, publish_user, source,publish_time, publish_status, scanned_number, 
+    top_flag, top_start, top_end, area_id, area_level, ins_id, ins_ymdhms, upd_id, upd_ymdhms, 
+    upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_city_district_notice
+    where id = #{id,jdbcType=BIGINT} AND del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_city_district_notice
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.CityDistrictNotice" >
+    insert into t_city_district_notice (id, title, summary, source,
+      notice_time, publish_user, publish_time, 
+      publish_status, scanned_number, top_flag, 
+      top_start, top_end, area_id, 
+      area_level, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag, content)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{noticeTime,jdbcType=TIMESTAMP}, #{publishUser,jdbcType=BIGINT}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{publishStatus,jdbcType=CHAR}, #{scannedNumber,jdbcType=BIGINT}, #{topFlag,jdbcType=CHAR}, 
+      #{topStart,jdbcType=TIMESTAMP}, #{topEnd,jdbcType=TIMESTAMP}, #{areaId,jdbcType=BIGINT}, 
+      #{areaLevel,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.CityDistrictNotice" >
+    insert into t_city_district_notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="noticeTime != null" >
+        notice_time,
+      </if>
+      <if test="publishUser != null" >
+        publish_user,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="publishStatus != null" >
+        publish_status,
+      </if>
+      <if test="scannedNumber != null" >
+        scanned_number,
+      </if>
+      <if test="topFlag != null" >
+        top_flag,
+      </if>
+      <if test="topStart != null" >
+        top_start,
+      </if>
+      <if test="topEnd != null" >
+        top_end,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaLevel != null" >
+        area_level,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeTime != null" >
+        #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishUser != null" >
+        #{publishUser,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="scannedNumber != null" >
+        #{scannedNumber,jdbcType=BIGINT},
+      </if>
+      <if test="topFlag != null" >
+        #{topFlag,jdbcType=CHAR},
+      </if>
+      <if test="topStart != null" >
+        #{topStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topEnd != null" >
+        #{topEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaLevel != null" >
+        #{areaLevel,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.CityDistrictNotice" >
+    update t_city_district_notice
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeTime != null" >
+        notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishUser != null" >
+        publish_user = #{publishUser,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        publish_status = #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="scannedNumber != null" >
+        scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      </if>
+      <if test="topFlag != null" >
+        top_flag = #{topFlag,jdbcType=CHAR},
+      </if>
+      <if test="topStart != null" >
+        top_start = #{topStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topEnd != null" >
+        top_end = #{topEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaLevel != null" >
+        area_level = #{areaLevel,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.hbridge.model.CityDistrictNotice" >
+    update t_city_district_notice
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      publish_user = #{publishUser,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      top_flag = #{topFlag,jdbcType=CHAR},
+      top_start = #{topStart,jdbcType=TIMESTAMP},
+      top_end = #{topEnd,jdbcType=TIMESTAMP},
+      area_id = #{areaId,jdbcType=BIGINT},
+      area_level = #{areaLevel,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.CityDistrictNotice" >
+    update t_city_district_notice
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      publish_user = #{publishUser,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      top_flag = #{topFlag,jdbcType=CHAR},
+      top_start = #{topStart,jdbcType=TIMESTAMP},
+      top_end = #{topEnd,jdbcType=TIMESTAMP},
+      area_id = #{areaId,jdbcType=BIGINT},
+      area_level = #{areaLevel,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 自定义查询语句开始 -->
+  <!-- 自定义搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="title != null and title.trim()!=''" >
+                AND title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="source != null and source.trim()!=''" >
+                AND source LIKE CONCAT(CONCAT('%', #{source}),'%')
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishUser != null" >
+                AND publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="topFlag != null and topFlag.trim()!=''" >
+                AND top_flag = #{topFlag,jdbcType=CHAR}
+            </if>
+            <if test="areaId != null" >
+                AND area_id = #{areaId,jdbcType=BIGINT}
+            </if>
+            <if test="areaId == null" >
+                AND t.area_id in (SELECT area_id FROM s_user_area WHERE user_id = #{userId,jdbcType=BIGINT} and area_level = #{areaLevel,jdbcType=CHAR})
+            </if>
+            <if test="areaLevel != null and areaLevel.trim()!=''" >
+                AND area_level = #{areaLevel,jdbcType=CHAR}
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   <!-- 条件查询 -->
+  <select id="queryListByParam" parameterType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo" resultMap="BaseResultMap">
+    select * from t_city_district_notice
+    <include refid="searchWhere" />
+        order by top_flag desc, publish_time desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+   <!-- 条件查询,按浏览量倒序排列 -->
+  <select id="queryListByParamOrder" parameterType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo" resultMap="BaseResultMap">
+    select * from t_city_district_notice
+    <include refid="searchWhere" />
+        <if test="outId != null" >
+            AND id != #{outId,jdbcType=BIGINT}
+        </if>
+        order by scanned_number desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询,查询出所有市的名字 -->
+  <select id="queryListCityByParam" parameterType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo" resultType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo">
+    select t.id as id, t.title as title,t.summary as summary,t.source as source,t.content as content,t.notice_time as noticeTime,
+    t.publish_time as publishTime,t.publish_status as publishStatus,t.publish_user as publishUser,t.scanned_number as scannedNumber,t.top_flag as topFlag,
+    t.top_start as topStart,t.top_end as topEnd,t.area_id as areaId,t.area_level as areaLevel,
+    s.city_name as areaName from t_city_district_notice as t LEFT JOIN s_city as s on t.area_id = s.city_id
+	    <where>
+            <if test="title != null and title.trim()!=''" >
+                AND t.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND t.summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="source != null and source.trim()!=''" >
+                AND t.source LIKE CONCAT(CONCAT('%', #{source}),'%')
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND t.publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND t.publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND t.publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishUser != null" >
+                AND t.publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="topFlag != null and topFlag.trim()!=''" >
+                AND t.top_flag = #{topFlag,jdbcType=CHAR}
+            </if>
+            <if test="areaId != null" >
+                AND t.area_id = #{areaId,jdbcType=BIGINT}
+            </if>
+            <if test="areaId == null" >
+                AND t.area_id in (SELECT area_id FROM s_user_area WHERE user_id = #{userId,jdbcType=BIGINT} and area_level = #{areaLevel,jdbcType=CHAR})
+            </if>
+            <if test="areaLevel != null and areaLevel.trim()!=''" >
+                AND t.area_level = #{areaLevel,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND t.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND t.del_flag='0'
+       </where>
+        order by t.top_flag desc, t.id
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询,统计出所有市公告 -->
+  <select id="queryCountCityByParam" parameterType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo" resultType="java.lang.Long">
+    select count(*) from t_city_district_notice as t 
+        <where>
+            <if test="title != null and title.trim()!=''" >
+                AND t.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND t.summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="source != null and source.trim()!=''" >
+                AND t.source LIKE CONCAT(CONCAT('%', #{source}),'%')
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND t.publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND t.publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND t.publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishUser != null" >
+                AND t.publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="topFlag != null and topFlag.trim()!=''" >
+                AND t.top_flag = #{topFlag,jdbcType=CHAR}
+            </if>
+            <if test="areaId != null" >
+                AND t.area_id = #{areaId,jdbcType=BIGINT}
+            </if>
+            <if test="areaId == null" >
+                AND t.area_id in (SELECT area_id FROM s_user_area WHERE user_id = #{userId,jdbcType=BIGINT} and area_level = #{areaLevel,jdbcType=CHAR})
+            </if>
+            <if test="areaLevel != null and areaLevel.trim()!=''" >
+                AND t.area_level = #{areaLevel,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND t.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND t.del_flag='0'
+       </where>
+        order by t.id
+  </select>
+  <!-- 条件查询,查询出所有县区的名字 -->
+  <select id="queryListCountyByParam" parameterType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo" resultType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo">
+    select t.id as id, t.title as title,t.summary as summary,t.source as source,t.content as content,t.notice_time as noticeTime,
+    t.publish_time as publishTime,t.publish_status as publishStatus,t.publish_user as publishUser,t.scanned_number as scannedNumber,t.top_flag as topFlag,
+    t.top_start as topStart,t.top_end as topEnd,t.area_id as areaId,t.area_level as areaLevel,
+    s.county_name as areaName from t_city_district_notice as t LEFT JOIN s_county as s on t.area_id = s.county_id
+        <where>
+            <if test="title != null and title.trim()!=''" >
+                AND t.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND t.summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="source != null and source.trim()!=''" >
+                AND t.source LIKE CONCAT(CONCAT('%', #{source}),'%')
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND t.publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND t.publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND t.publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishUser != null" >
+                AND t.publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="topFlag != null and topFlag.trim()!=''" >
+                AND t.top_flag = #{topFlag,jdbcType=CHAR}
+            </if>
+            <if test="areaId != null" >
+                AND t.area_id = #{areaId,jdbcType=BIGINT}
+            </if>
+            <if test="areaId == null" >
+                AND t.area_id in (SELECT area_id FROM s_user_area WHERE user_id = #{userId,jdbcType=BIGINT} and area_level = #{areaLevel,jdbcType=CHAR})
+            </if>
+            <if test="areaLevel != null and areaLevel.trim()!=''" >
+                AND t.area_level = #{areaLevel,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND t.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND t.del_flag='0'
+       </where>
+        order by t.top_flag desc, t.id
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询,查询出所有县区数量 -->
+  <select id="queryCountCountyByParam" parameterType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo" resultType="java.lang.Long">
+    select count(*) from t_city_district_notice as t
+        <where>
+            <if test="title != null and title.trim()!=''" >
+                AND t.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND t.summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="source != null and source.trim()!=''" >
+                AND t.source LIKE CONCAT(CONCAT('%', #{source}),'%')
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND t.publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND t.publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND t.publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishUser != null" >
+                AND t.publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="topFlag != null and topFlag.trim()!=''" >
+                AND t.top_flag = #{topFlag,jdbcType=CHAR}
+            </if>
+            <if test="areaId != null" >
+                AND t.area_id = #{areaId,jdbcType=BIGINT}
+            </if>
+            <if test="areaId == null" >
+                AND t.area_id in (SELECT area_id FROM s_user_area WHERE user_id = #{userId,jdbcType=BIGINT} and area_level = #{areaLevel,jdbcType=CHAR})
+            </if>
+            <if test="areaLevel != null and areaLevel.trim()!=''" >
+                AND t.area_level = #{areaLevel,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND t.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND t.del_flag='0'
+       </where>
+        order by t.id
+  </select>
+  <!-- 条件查询,查询出所有办事处的名字 -->
+  <select id="queryListCommunityByParam" parameterType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo" resultType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo">
+    select t.id as id, t.title as title,t.summary as summary,t.source as source,t.content as content,t.notice_time as noticeTime,
+    t.publish_time as publishTime,t.publish_status as publishStatus,t.publish_user as publishUser,t.scanned_number as scannedNumber,t.top_flag as topFlag,
+    t.top_start as topStart,t.top_end as topEnd,t.area_id as areaId,t.area_level as areaLevel,
+    s.community_name as areaName from t_city_district_notice as t LEFT JOIN s_community as s on t.area_id = s.community_id
+        <where>
+            <if test="title != null and title.trim()!=''" >
+                AND t.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND t.summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="source != null and source.trim()!=''" >
+                AND t.source LIKE CONCAT(CONCAT('%', #{source}),'%')
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND t.publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND t.publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND t.publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishUser != null" >
+                AND t.publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="topFlag != null and topFlag.trim()!=''" >
+                AND t.top_flag = #{topFlag,jdbcType=CHAR}
+            </if>
+            <if test="areaId != null" >
+                AND t.area_id = #{areaId,jdbcType=BIGINT}
+            </if>
+            <if test="areaId == null" >
+                AND t.area_id in (SELECT area_id FROM s_user_area WHERE user_id = #{userId,jdbcType=BIGINT} and area_level = #{areaLevel,jdbcType=CHAR})
+            </if>
+            <if test="areaLevel != null and areaLevel.trim()!=''" >
+                AND t.area_level = #{areaLevel,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND t.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND t.del_flag='0'
+       </where>
+        order by t.top_flag desc, t.id
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询,查询出所有办事处的数量 -->
+  <select id="queryCountCommunityByParam" parameterType="com.wooxun.geekdol.hbridge.vo.CityDistrictNoticeVo" resultType="java.lang.Long">
+    select count(*) from t_city_district_notice as t
+        <where>
+            <if test="title != null and title.trim()!=''" >
+                AND t.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND t.summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="source != null and source.trim()!=''" >
+                AND t.source LIKE CONCAT(CONCAT('%', #{source}),'%')
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND t.publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND t.publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND t.publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishUser != null" >
+                AND t.publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="topFlag != null and topFlag.trim()!=''" >
+                AND t.top_flag = #{topFlag,jdbcType=CHAR}
+            </if>
+            <if test="areaId != null" >
+                AND t.area_id = #{areaId,jdbcType=BIGINT}
+            </if>
+            <if test="areaId == null" >
+                AND t.area_id in (SELECT area_id FROM s_user_area WHERE user_id = #{userId,jdbcType=BIGINT} and area_level = #{areaLevel,jdbcType=CHAR})
+            </if>
+            <if test="areaLevel != null and areaLevel.trim()!=''" >
+                AND t.area_level = #{areaLevel,jdbcType=CHAR}
+            </if>
+            <if test="insId != null" >
+                AND t.ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND t.del_flag='0'
+       </where>
+        order by t.id
+  </select>
+</mapper>

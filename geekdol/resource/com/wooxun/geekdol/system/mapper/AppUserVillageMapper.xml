@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.AppUserVillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.AppUserVillage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="village_type" property="villageType" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="push_id" property="pushId" jdbcType="VARCHAR" />
+    <association property="village" column="village_id" select="com.wooxun.geekdol.system.mapper.VillageMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, village_id, village_type, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, 
+    del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_app_user_village
+    where id = #{id,jdbcType=BIGINT} AND del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_app_user_village
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.AppUserVillage" >
+    insert into s_app_user_village (id, user_id, village_id, 
+      village_type, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, 
+      #{villageType,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.AppUserVillage" >
+    insert into s_app_user_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="villageType != null" >
+        village_type,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="villageType != null" >
+        #{villageType,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.AppUserVillage" >
+    update s_app_user_village
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="villageType != null" >
+        village_type = #{villageType,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.AppUserVillage" >
+    update s_app_user_village
+    set user_id = #{userId,jdbcType=BIGINT},
+      village_id = #{villageId,jdbcType=BIGINT},
+      village_type = #{villageType,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 根据参数查询用户和小区 -->
+  <select id="selectAppUserVillageByParam" resultType="com.wooxun.geekdol.system.model.AppUserVillage" parameterType="map" >
+    select 
+    <!-- <include refid="Base_Column_List" /> -->
+    appUser.user_id as userId, appUser.village_id as villageId, appUser.village_type as villageType,v.village_name as villageName
+    from s_app_user_village appUser,s_village v
+    where appUser.user_id = #{appUserId} 
+    	AND appUser.village_type = #{villageType} 
+    	AND appUser.village_id = v.village_id
+    	AND appUser.del_flag='0'
+    	AND v.del_flag = '0'
+  </select>
+  <!-- 根据小区ID查找对应关系 -->
+  <select id="selectByVillageId" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    sauv.id, sauv.user_id, sauv.village_id, sauv.village_type, sauv.ins_id, 
+    sauv.ins_ymdhms, sauv.upd_id, sauv.upd_ymdhms, sauv.upd_eac, sauv.del_flag,
+    sau.push_id 
+    from s_app_user_village sauv, s_app_user sau
+    where sauv.village_id in (${villageIds})
+        AND sauv.del_flag='0'
+        AND sau.del_flag = '0'
+        AND sauv.user_id = sau.id
+  </select>
+  
+  <!-- 根据参数删除用户与小区关系 -->
+  <delete id="deleteAppUserVillage" parameterType="com.wooxun.geekdol.system.model.AppUserVillage" >
+    delete from s_app_user_village
+    where user_id = #{userId,jdbcType=BIGINT}
+     and village_id = #{villageId,jdbcType=BIGINT}
+     and village_type = #{villageType,jdbcType=CHAR}
+  </delete>
+  
+  <!-- 根据用户查询用户和小区 -->
+  <select id="selectAppUserVillageByUser" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.system.model.AppUserVillage" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_app_user_village
+    where user_id = #{userId,jdbcType=BIGINT}
+     and village_id = #{villageId,jdbcType=BIGINT}
+     and village_type = #{villageType,jdbcType=CHAR}
+     and del_flag = '0'
+     LIMIT 1
+  </select>
+</mapper>

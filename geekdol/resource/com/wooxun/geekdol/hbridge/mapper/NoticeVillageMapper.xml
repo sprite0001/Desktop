@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.NoticeVillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.NoticeVillage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="notice_id" property="noticeId" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, notice_id, village_id, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_notice_village
+    where id = #{id,jdbcType=BIGINT} AND del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_notice_village
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.NoticeVillage" >
+    insert into t_notice_village (id, notice_id, village_id, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{noticeId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.NoticeVillage" >
+    insert into t_notice_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="noticeId != null" >
+        notice_id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="noticeId != null" >
+        #{noticeId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.NoticeVillage" >
+    update t_notice_village
+    <set >
+      <if test="noticeId != null" >
+        notice_id = #{noticeId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.NoticeVillage" >
+    update t_notice_village
+    set notice_id = #{noticeId,jdbcType=BIGINT},
+      village_id = #{villageId,jdbcType=BIGINT},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 自定义查询语句开始 -->
+  <!-- 自定义搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="noticeId != null" >
+                AND notice_id = #{noticeId,jdbcType=BIGINT}
+            </if>
+            <if test="villageId != null" >
+                AND village_id = #{villageId,jdbcType=BIGINT}
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   <!-- 条件查询 -->
+  <select id="queryListByParam" parameterType="com.wooxun.geekdol.hbridge.vo.NoticeVillageVo" resultMap="BaseResultMap">
+    select * from t_notice_village
+    <include refid="searchWhere" />
+        order by id
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 条件查询,返回小区名 -->
+  <select id="queryListWithName" parameterType="com.wooxun.geekdol.hbridge.vo.NoticeVillageVo" resultType="com.wooxun.geekdol.hbridge.vo.NoticeVillageVo">
+    select t.notice_id noticeId,t.village_id villageId,t.ins_id insId,t.ins_ymdhms inYmdhms,
+    t.upd_id updId,t.upd_ymdhms updYmdhms,t.upd_eac updEac,t.del_flag delFlag,s.village_name villageName from t_notice_village t left join s_village s on t.village_id = s.village_id
+    where 1=1 
+    <if test="noticeId != null" >
+        AND t.notice_id = #{noticeId,jdbcType=BIGINT}
+    </if>
+    <if test="villageId != null" >
+        AND t.village_id = #{villageId,jdbcType=BIGINT}
+    </if>
+    AND t.del_flag='0'
+    AND s.status='0'
+    AND s.del_flag='0'
+    order by t.id
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 批量插入小区-公告关系表 -->
+  <insert id="insertList" useGeneratedKeys="true" parameterType="java.util.List">
+  <![CDATA[
+    insert into t_notice_village (notice_id, village_id,ins_id, ins_ymdhms, upd_eac,upd_id, upd_ymdhms,del_flag)  
+    values
+    ]]>
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (
+          #{item.noticeId,jdbcType=BIGINT}, #{item.villageId,jdbcType=BIGINT}, 
+          #{item.insId,jdbcType=BIGINT}, 
+          #{item.insYmdhms,jdbcType=TIMESTAMP}, #{item.updEac,jdbcType=BIGINT}, 
+          #{item.updId,jdbcType=BIGINT}, #{item.updYmdhms,jdbcType=TIMESTAMP}, #{item.delFlag,jdbcType=CHAR}
+        )
+    </foreach>  
+  </insert>
+  <!-- 根据公告ID删除所有此文章关联表 -->
+  <delete id="deleteForNoticeId" parameterType="java.lang.Long" >
+  delete from t_notice_village WHERE notice_id=#{noticeId,jdbcType=BIGINT}
+  </delete>
+</mapper>

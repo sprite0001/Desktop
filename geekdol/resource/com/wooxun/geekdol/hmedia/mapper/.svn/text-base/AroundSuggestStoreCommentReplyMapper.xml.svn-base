@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.AroundSuggestStoreCommentReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.AroundSuggestStoreCommentReply" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="around_suggest_store_comment_id" property="aroundSuggestStoreCommentId" jdbcType="BIGINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="illegal_status" property="illegalStatus" jdbcType="CHAR" />
+    <result column="view_number" property="viewNumber" jdbcType="INTEGER" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="illegal_number" property="illegalNumber" jdbcType="INTEGER" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <association property="appUser" column="ins_id" select="com.wooxun.geekdol.system.mapper.AppUserMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, around_suggest_store_comment_id, content, illegal_status, view_number, reply_number, 
+    illegal_number, opreater_ip, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_around_suggest_store_comment_r
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_around_suggest_store_comment_r
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.AroundSuggestStoreCommentReply" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_around_suggest_store_comment_r (id, around_suggest_store_comment_id, content, 
+      illegal_status, view_number, reply_number, 
+      illegal_number, opreater_ip, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{aroundSuggestStoreCommentId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{illegalStatus,jdbcType=CHAR}, #{viewNumber,jdbcType=INTEGER}, #{replyNumber,jdbcType=INTEGER}, 
+      #{illegalNumber,jdbcType=INTEGER}, #{opreaterIp,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.AroundSuggestStoreCommentReply" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_around_suggest_store_comment_r
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="aroundSuggestStoreCommentId != null" >
+        around_suggest_store_comment_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="illegalStatus != null" >
+        illegal_status,
+      </if>
+      <if test="viewNumber != null" >
+        view_number,
+      </if>
+      <if test="replyNumber != null" >
+        reply_number,
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number,
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="aroundSuggestStoreCommentId != null" >
+        #{aroundSuggestStoreCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalStatus != null" >
+        #{illegalStatus,jdbcType=CHAR},
+      </if>
+      <if test="viewNumber != null" >
+        #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="opreaterIp != null" >
+        #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.AroundSuggestStoreCommentReply" >
+    update m_around_suggest_store_comment_r
+    <set >
+      <if test="aroundSuggestStoreCommentId != null" >
+        around_suggest_store_comment_id = #{aroundSuggestStoreCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="illegalStatus != null" >
+        illegal_status = #{illegalStatus,jdbcType=CHAR},
+      </if>
+      <if test="viewNumber != null" >
+        view_number = #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        reply_number = #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.AroundSuggestStoreCommentReply" >
+    update m_around_suggest_store_comment_r
+    set around_suggest_store_comment_id = #{aroundSuggestStoreCommentId,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      illegal_status = #{illegalStatus,jdbcType=CHAR},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 根据本网格推荐周边店评论id的更新状态 -->
+  <update id="updateByAroundSuggestStoreCommentId" parameterType="com.wooxun.geekdol.hmedia.model.AroundSuggestStoreCommentReply" >
+    update m_around_suggest_store_comment_r
+    <set >
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = upd_eac + 1,
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where around_suggest_store_comment_id = #{aroundSuggestStoreCommentId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 查找符合条件的本网格推荐周边店评论的评论的分页数据 -->
+  <select id="selectAroundSuggestStoreCommentReplyList" parameterType="com.wooxun.geekdol.hmedia.vo.AroundSuggestStoreCommentReplyVo" resultType="com.wooxun.geekdol.hmedia.vo.AroundSuggestStoreCommentReplyVo">
+	SELECT a.id AS id, a.content AS content, a.illegal_status AS illegalStatus, 
+		a.opreater_ip AS opreaterIp, b.nick_name AS insName, ifnull(b.head_portrait,'') AS insHead, 
+		a.ins_id AS insId, a.ins_ymdhms AS insYmdhms, a.upd_id AS updId, a.upd_ymdhms AS updYmdhms, 
+		a.upd_eac AS updEac, a.del_flag AS delFlag
+	FROM m_around_suggest_store_comment_r a, s_app_user b 
+		WHERE a.around_suggest_store_comment_id = #{aroundSuggestStoreCommentId,jdbcType=BIGINT} 
+		AND a.ins_id = b.id 
+		AND a.del_flag = '0' 
+		AND b.del_flag = '0' 
+		<if test="illegalFlag==true" >
+	      AND a.illegal_status = '0'
+	    </if>
+		<if test="insName != null and insName.trim() != ''" >
+	      AND b.nick_name LIKE CONCAT('%',CONCAT(#{insName},'%'))
+	    </if>
+	    <if test="content != null and content.trim() != ''" >
+	      AND a.content LIKE CONCAT('%',CONCAT(#{content},'%'))
+	    </if>
+	    <if test="illegalStatus != null and illegalStatus.trim() != ''" >
+		  AND a.illegal_status = #{illegalStatus,jdbcType=CHAR}
+	    </if>
+	    ORDER BY a.ins_ymdhms DESC
+		<if test="pageFlag==true">
+			LIMIT #{startPage}, #{endPage}
+		</if>
+  </select>
+  
+  <!-- 查找符合条件的本网格推荐周边店评论的评论的总记录数 -->
+  <select id="selectAroundSuggestStoreCommentReplyListCount" parameterType="com.wooxun.geekdol.hmedia.vo.AroundSuggestStoreCommentReplyVo" resultType="java.lang.Long">
+	SELECT COUNT(1)
+	FROM m_around_suggest_store_comment_r a, s_app_user b 
+		WHERE a.around_suggest_store_comment_id = #{aroundSuggestStoreCommentId,jdbcType=BIGINT} 
+		AND a.ins_id = b.id 
+		AND a.del_flag = '0' 
+		AND b.del_flag = '0' 
+  	<if test="insName != null and insName.trim() != ''" >
+      AND b.nick_name LIKE CONCAT('%',CONCAT(#{insName},'%'))
+    </if>
+    <if test="content != null and content.trim() != ''" >
+      AND a.content LIKE CONCAT('%',CONCAT(#{content},'%'))
+    </if>
+    <if test="illegalStatus != null and illegalStatus.trim() != ''" >
+	  AND a.illegal_status = #{illegalStatus,jdbcType=CHAR}
+    </if>
+  </select>
+</mapper>

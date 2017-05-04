@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/Geekdol/!svn/ver/5375/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper
+END
+AdmNewsflashMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Geekdol/!svn/ver/5325/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/AdmNewsflashMapper.xml
+END
+IncorruptGovernmentCommentMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/Geekdol/!svn/ver/5109/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/IncorruptGovernmentCommentMapper.xml
+END
+IncorruptGovernmentCommentRMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/Geekdol/!svn/ver/5109/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/IncorruptGovernmentCommentRMapper.xml
+END
+IncorruptRecommendMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/Geekdol/!svn/ver/4658/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/IncorruptRecommendMapper.xml
+END
+CityDistrictNoticeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/Geekdol/!svn/ver/5359/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/CityDistrictNoticeMapper.xml
+END
+IncorruptCommentRecommendMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/Geekdol/!svn/ver/5375/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/IncorruptCommentRecommendMapper.xml
+END
+NetizenSecurityMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/Geekdol/!svn/ver/4599/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/NetizenSecurityMapper.xml
+END
+VillageNoticeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/5359/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/VillageNoticeMapper.xml
+END
+NetizenAcumenMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/4714/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/NetizenAcumenMapper.xml
+END
+NoticeVillageMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/4480/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/NoticeVillageMapper.xml
+END
+IncorruptGovernmentMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/Geekdol/!svn/ver/4459/source/backstage/geekdol/resource/com/wooxun/geekdol/hbridge/mapper/IncorruptGovernmentMapper.xml
+END

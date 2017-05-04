@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.SysDataMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.SysData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="lable" property="lable" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, value, lable, type, description, parent_id, remarks, ins_id, ins_ymdhms, upd_id, 
+    upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_sys_data
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_sys_data
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.SysData" useGeneratedKeys="true" keyProperty="id">
+    insert into s_sys_data (id, value, lable, 
+      type, description, parent_id, 
+      remarks, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{value,jdbcType=VARCHAR}, #{lable,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{remarks,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.SysData" >
+    insert into s_sys_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="lable != null" >
+        lable,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="lable != null" >
+        #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.SysData" >
+    update s_sys_data
+    <set >
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="lable != null" >
+        lable = #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.SysData" >
+    update s_sys_data
+    set value = #{value,jdbcType=VARCHAR},
+      lable = #{lable,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+    <!--自定义  -->
+    
+      <!-- 搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="lable != null and lable.trim()!=''" >
+                AND lable LIKE CONCAT(CONCAT('%', #{lable}),'%')
+            </if>
+            <if test="type != null and type.trim()!=''" >
+                AND type LIKE CONCAT(CONCAT('%', #{type}),'%')
+            </if>
+            <if test="description != null and description.trim()!=''" >
+                AND description LIKE CONCAT(CONCAT('%', #{description}),'%')
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   
+  <select id="querySysdataByParams" parameterType="com.wooxun.geekdol.system.model.SysData" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+    from s_sys_data
+    <include refid="searchWhere" />
+    order by type
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  
+  <select id="querySysdataByBean" parameterType="com.wooxun.geekdol.system.model.SysData" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+    from s_sys_data
+    <where>
+            <if test="lable != null and lable.trim()!=''" >
+                AND lable LIKE CONCAT(CONCAT('%', #{lable}),'%')
+            </if>
+            <if test="type != null and type.trim()!=''" >
+                AND type = #{type,jdbcType=VARCHAR}
+            </if>
+            AND del_flag='0'
+       </where>
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  
+  <select id="queryCountByParams" parameterType="com.wooxun.geekdol.system.vo.SysdataVo" resultType="java.lang.Long">
+    select 
+      count(*)
+    from s_sys_data
+    <include refid="searchWhere" />
+  </select>
+  
+  <select id="queryCountByYanzheng" parameterType="com.wooxun.geekdol.system.model.SysData" resultType="java.lang.Long">
+    select 
+      count(*)
+    from s_sys_data
+    <where>
+            <if test="type != null and type.trim()!=''" >
+                AND type = #{type,jdbcType=VARCHAR}
+            </if>
+            
+             <if test="value != null and value.trim()!=''" >
+                AND value = #{value,jdbcType=VARCHAR}
+             </if>
+            
+            AND del_flag='0'
+     </where>
+  </select>
+  
+  <!-- 根据类型查到所有的字典值  -->
+  <select id="querySysdataByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+    from s_sys_data
+    where del_flag='0' and type = #{type,jdbcType=VARCHAR}
+  </select>
+  <!-- 根据类型查到所有的字典表物流(不包括自取和配送)  -->
+  <select id="querySysdata" parameterType="com.wooxun.geekdol.system.vo.SysdataVo" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+    from s_sys_data
+    where del_flag='0' and type = #{type,jdbcType=VARCHAR}
+    <if test="deliveryModeList != null" >
+		AND value not IN 
+        <foreach item="item" index="index" collection="deliveryModeList" 
+                         open="(" separator="," close=")">
+                        #{item}                </foreach>
+      </if>
+  </select>
+  <!-- 根据类型与值查询对应单条数据 -->
+  <select id="selectSysDataByTypeAndValue" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from s_sys_data
+    where del_flag='0' and type = #{type,jdbcType=VARCHAR} and value = #{value,jdbcType=VARCHAR}
+  </select>
+</mapper>

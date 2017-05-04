@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.DistributionGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.DistributionGoods" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="distribution_id" property="distributionId" jdbcType="BIGINT" />
+    <result column="goods_classific_id" property="goodsClassificId" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="sell_price" property="sellPrice" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, distribution_id, goods_classific_id, goods_id, sell_price, status, ins_id, ins_ymdhms, 
+    upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_distribution_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_distribution_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoods" >
+    insert into j_distribution_goods (id, distribution_id, goods_classific_id, 
+      goods_id, sell_price, status, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{distributionId,jdbcType=BIGINT}, #{goodsClassificId,jdbcType=BIGINT}, 
+      #{goodsId,jdbcType=BIGINT}, #{sellPrice,jdbcType=DECIMAL}, #{status,jdbcType=CHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoods" >
+    insert into j_distribution_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="distributionId != null" >
+        distribution_id,
+      </if>
+      <if test="goodsClassificId != null" >
+        goods_classific_id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="distributionId != null" >
+        #{distributionId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsClassificId != null" >
+        #{goodsClassificId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoods" >
+    update j_distribution_goods
+    <set >
+      <if test="distributionId != null" >
+        distribution_id = #{distributionId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsClassificId != null" >
+        goods_classific_id = #{goodsClassificId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoods" >
+    update j_distribution_goods
+    set distribution_id = #{distributionId,jdbcType=BIGINT},
+      goods_classific_id = #{goodsClassificId,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      sell_price = #{sellPrice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 批量保存附件 -->
+  <insert id="insertBatch" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoods" >
+      insert into j_distribution_goods(distribution_id, 
+      goods_classific_id, goods_id, sell_price, status, ins_id, ins_ymdhms, 
+    	upd_id, upd_ymdhms, upd_eac, del_flag)
+      values 
+      <foreach collection="list" item="item" index="index" separator="," >  
+      (#{item.distributionId,jdbcType=BIGINT}, #{item.goodsClassificId,jdbcType=BIGINT}, 
+      #{item.goodsId,jdbcType=BIGINT}, #{item.sellPrice,jdbcType=DECIMAL}, #{item.status,jdbcType=CHAR}, #{item.insId,jdbcType=BIGINT}, 
+      #{item.insYmdhms,jdbcType=TIMESTAMP}, #{item.updId,jdbcType=BIGINT}, #{item.updYmdhms,jdbcType=TIMESTAMP}, 
+      #{item.updEac,jdbcType=BIGINT}, #{item.delFlag,jdbcType=CHAR})
+        </foreach>
+    </insert>
+    <!-- 根据商品查找所上架的信息 -->
+    <select id="selectByGoods" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    	select 
+    	<include refid="Base_Column_List" />
+    	from j_distribution_goods
+    	where goods_id = #{goodsId,jdbcType=BIGINT}
+    </select>
+    <!-- 禁用商品的时候，下架铺货的商品 -->
+    <update id="updateBatch" parameterType="java.util.List">
+      <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update j_distribution_goods 
+			<set>
+			  status = #{item.status,jdbcType=CHAR},
+			  upd_id = #{item.updId,jdbcType=BIGINT},
+      		  upd_ymdhms = #{item.updYmdhms,jdbcType=TIMESTAMP},
+      		  upd_eac = #{item.updEac,jdbcType=BIGINT}
+			</set>
+			where distribution_id = #{item.distributionId,jdbcType=BIGINT} and 
+			upd_eac = ( #{item.updEac,jdbcType=BIGINT} -1) 
+	 </foreach>
+   </update>
+   <!-- 根据商品id与铺货模块查找上架的信息 -->
+    <select id="selectByGoodsAndClassfic" parameterType="map" resultMap="BaseResultMap">
+    	select 
+    	 dg.* 
+    	from j_distribution_goods dg,
+    	j_distribution d,
+    	j_goods_classific gc
+    	where dg.goods_id = #{goodsId,jdbcType=BIGINT} 
+   		AND dg.distribution_id = d.id
+		AND d.classific_id = gc.id
+   		and gc.code = #{classicfic}
+   		and dg.del_flag = '0'
+    </select>
+    <!-- 即可送:列表总数查询 -->
+    <select id="queryCountByParmas" parameterType="com.wooxun.geekdol.geekstore.vo.DistributionGoodsVo" 
+    	resultType="java.lang.Long">
+    	SELECT
+			COUNT(dg.goods_id)
+		FROM
+			j_distribution_goods dg,
+			j_distribution d,
+			j_goods_classific gc,
+			j_goods g,
+			s_sys_data sd
+		<where>
+			dg.distribution_id = d.id
+			AND d.classific_id = gc.id
+			AND gc.`code` = #{classificCode}
+			AND dg.goods_id = g.id
+			AND dg.`status` = sd.`value`
+			AND sd.type = #{statusType}
+			AND dg.del_flag = '0'
+			<if test="goodsCode != null and goodsCode.trim() !=''">
+	  			AND g.goods_code LIKE CONCAT(CONCAT('%', #{goodsCode}),'%')
+	  		</if>
+	  		<if test="goodsName != null and goodsName.trim() !=''">
+	  			AND g.goods_name LIKE CONCAT(CONCAT('%', #{goodsName}),'%')
+	  		</if>
+	  		<if test="modelNumber != null and modelNumber.trim() !=''">
+	  			AND g.model_number LIKE CONCAT(CONCAT('%', #{modelNumber}),'%')
+	  		</if>
+	  		<if test="status != null and status.trim() !=''">
+	  			AND dg.`status` = #{status,jdbcType=CHAR}
+	  		</if>
+  		</where>
+    </select>
+    <select id="queryByParmas" parameterType="com.wooxun.geekdol.geekstore.vo.DistributionGoodsVo" 
+    	resultType="com.wooxun.geekdol.geekstore.vo.DistributionGoodsVo">
+    	SELECT
+			dg.goods_id as goodsId,
+			d.start_time as startTime,
+			d.end_time as endTime,
+			g.goods_code as goodsCode,
+			g.goods_name as goodsName,
+			g.brand as brand,
+			g.cost_price as costPrice,
+			g.original_price as originalPrice,
+			g.model_number as modelNumber,
+			g.launch_date AS launchDate,
+			dg.sell_price as sellPrice,
+			sd.lable as statusStr,
+			dg.`status`
+		FROM
+			j_distribution_goods dg,
+			j_distribution d,
+			j_goods_classific gc,
+			j_goods g,
+			s_sys_data sd
+		<where>
+			dg.distribution_id = d.id
+			AND d.classific_id = gc.id
+			AND gc.`code` = #{classificCode}
+			AND dg.goods_id = g.id
+			AND dg.`status` = sd.`value`
+			AND sd.type = #{statusType}
+			AND dg.del_flag = '0'
+			<if test="goodsCode != null and goodsCode.trim() !=''">
+	  			AND g.goods_code LIKE CONCAT(CONCAT('%', #{goodsCode}),'%')
+	  		</if>
+	  		<if test="goodsName != null and goodsName.trim() !=''">
+	  			AND g.goods_name LIKE CONCAT(CONCAT('%', #{goodsName}),'%')
+	  		</if>
+	  		<if test="modelNumber != null and modelNumber.trim() !=''">
+	  			AND g.model_number LIKE CONCAT(CONCAT('%', #{modelNumber}),'%')
+	  		</if>
+	  		<if test="status != null and status.trim() !=''">
+	  			AND dg.`status` = #{status,jdbcType=CHAR}
+	  		</if>
+  		</where>
+  		<if test="pageFlag==true">
+			LIMIT #{startPage}, #{endPage}
+		</if>
+    </select>
+</mapper>

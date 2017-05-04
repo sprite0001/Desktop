@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GrouponVillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.GrouponVillage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="groupon_id" property="grouponId" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <!-- 小区 -->
+    <association property="village" column="village_id" select="com.wooxun.geekdol.system.mapper.VillageMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupon_id, village_id
+  </sql>
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_groupon_village
+    where groupon_id = #{grouponId,jdbcType=BIGINT}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_groupon_village
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_groupon_village
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.GrouponVillage" >
+    insert into j_groupon_village (id, groupon_id, village_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{grouponId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.GrouponVillage" >
+    insert into j_groupon_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="grouponId != null" >
+        groupon_id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="grouponId != null" >
+        #{grouponId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.GrouponVillage" >
+    update j_groupon_village
+    <set >
+      <if test="grouponId != null" >
+        groupon_id = #{grouponId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.GrouponVillage" >
+    update j_groupon_village
+    set groupon_id = #{grouponId,jdbcType=BIGINT},
+      village_id = #{villageId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!--更新团购商品的时候，先根据团购商品id删除记录 -->
+  <delete id="deleteGrouponVillageByGrouponGoods" parameterType="java.lang.Long">
+  	delete from j_groupon_village where groupon_id = #{grouponId,jdbcType=BIGINT}
+  </delete>
+  <!-- 批量增加 -->
+  <insert id="insertBatch" parameterType="com.wooxun.geekdol.geekstore.model.GrouponVillage">
+  	insert into j_groupon_village (groupon_id, village_id)
+    values 
+    <foreach collection="list" item="item" index="index" separator="," >
+    (#{item.grouponId,jdbcType=BIGINT}, #{item.villageId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+</mapper>

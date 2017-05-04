@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GroupPurchaseCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.GroupPurchaseCode" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="order_code" property="orderCode" jdbcType="VARCHAR" />
+    <result column="serial_code" property="serialCode" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="confirm_code" property="confirmCode" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="effective_date" property="effectiveDate" jdbcType="TIMESTAMP" />
+    <result column="expiration_date" property="expirationDate" jdbcType="TIMESTAMP" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, order_code, serial_code, code, confirm_code, status, effective_date, 
+    expiration_date, ins_ymdhms, ins_id, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_group_purchase_code
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_group_purchase_code
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.GroupPurchaseCode" >
+    insert into j_group_purchase_code (id, order_id, order_code, 
+      serial_code, code, confirm_code, 
+      status, effective_date, expiration_date, 
+      ins_ymdhms, ins_id, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{orderCode,jdbcType=VARCHAR}, 
+      #{serialCode,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{confirmCode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{effectiveDate,jdbcType=TIMESTAMP}, #{expirationDate,jdbcType=TIMESTAMP}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{insId,jdbcType=BIGINT}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.GroupPurchaseCode" >
+    insert into j_group_purchase_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="serialCode != null" >
+        serial_code,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="confirmCode != null" >
+        confirm_code,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="effectiveDate != null" >
+        effective_date,
+      </if>
+      <if test="expirationDate != null" >
+        expiration_date,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialCode != null" >
+        #{serialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmCode != null" >
+        #{confirmCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="effectiveDate != null" >
+        #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationDate != null" >
+        #{expirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.GroupPurchaseCode" >
+    update j_group_purchase_code
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderCode != null" >
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialCode != null" >
+        serial_code = #{serialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmCode != null" >
+        confirm_code = #{confirmCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="effectiveDate != null" >
+        effective_date = #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationDate != null" >
+        expiration_date = #{expirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.GroupPurchaseCode" >
+    update j_group_purchase_code
+    set order_id = #{orderId,jdbcType=BIGINT},
+      order_code = #{orderCode,jdbcType=VARCHAR},
+      serial_code = #{serialCode,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      confirm_code = #{confirmCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      effective_date = #{effectiveDate,jdbcType=TIMESTAMP},
+      expiration_date = #{expirationDate,jdbcType=TIMESTAMP},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 自定义 -->
+  <!-- 验证团购码 -->
+  <select id="verificationCode"  parameterType="com.wooxun.geekdol.geekstore.model.GroupPurchaseCode"  resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_group_purchase_code
+    where del_flag = '0'
+    <if test="serialCode != null and serialCode.trim()!=''" >
+       and serial_code = #{serialCode,jdbcType=VARCHAR}
+      </if>
+      <if test="code != null and code.trim()!=''" >
+       and code = #{code,jdbcType=VARCHAR}
+      </if>
+      <if test="confirmCode != null and confirmCode.trim()!=''" >
+       and confirm_code = #{confirmCode,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null and status.trim()!=''" >
+       and status = #{status,jdbcType=CHAR}
+      </if>
+      <if test="orderId != null" >
+        and order_id = #{orderId,jdbcType=BIGINT}
+      </if>
+  </select>
+  
+  <select id="findCode"  parameterType="com.wooxun.geekdol.geekstore.model.GroupPurchaseCode"  resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_group_purchase_code
+    where del_flag = '0'
+      <if test="orderId != null" >
+        and order_id = #{orderId,jdbcType=BIGINT}
+      </if>
+  </select>
+</mapper>

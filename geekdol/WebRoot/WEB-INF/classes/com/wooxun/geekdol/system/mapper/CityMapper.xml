@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.CityMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.City" >
+    <id column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="ordering" property="ordering" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <!-- 省份 -->
+    <association column="province_id" property="province" select="com.wooxun.geekdol.system.mapper.ProvinceMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    city_id, province_id, city_name, city_code, ordering, status, ins_id, ins_ymdhms, 
+    upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_city
+    where city_id = #{cityId,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <select id="haEffectCity" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_city
+    where city_id = #{cityId,jdbcType=BIGINT} and status = #{status,jdbcType=CHAR} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_city
+    where city_id = #{cityId,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.City" useGeneratedKeys="true" keyProperty="cityId">
+    insert into s_city (city_id, province_id, city_name, 
+      city_code, ordering, status, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{cityId,jdbcType=BIGINT}, #{provinceId,jdbcType=BIGINT}, #{cityName,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{ordering,jdbcType=BIGINT}, #{status,jdbcType=CHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.City" >
+    insert into s_city
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.City" >
+    update s_city
+    <set >
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where city_id = #{cityId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.City" >
+    update s_city
+    set province_id = #{provinceId,jdbcType=BIGINT},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      ordering = #{ordering,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where city_id = #{cityId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  
+  
+   <!-- 自定义 -->
+   <!-- 根据条件查询所有的市信息 -->
+   <select id="findAll" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.system.vo.CityVo">
+    select 
+    <include refid="Base_Column_List" />
+    from s_city
+    <where>
+    <if test="cityName != null and cityName.trim()!=''" >
+     and city_name LIKE concat('%',concat(#{cityName},'%'))
+    </if>
+     <if test="provinceId != null and provinceId !=0" >
+     and  province_id = #{provinceId,jdbcType=BIGINT}
+     </if>
+     <if test="status != null and status !=''" >
+     and status = #{status,jdbcType=CHAR}
+     </if>     
+     and del_flag ='0'     
+     </where>
+     order by ordering,ins_ymdhms desc
+     <if test="pageFlag==true">
+		   LIMIT #{startPage}, #{endPage}
+	 </if>
+  </select>
+  <!-- 根据条件查询所有的市条数 -->
+   <select id="findAllCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.system.vo.CityVo">
+    select 
+    count(*)
+    from s_city
+    <where>
+    <if test="cityName != null and cityName.trim()!=''" >
+     and city_name LIKE concat('%',concat(#{cityName},'%'))
+    </if>
+     <if test="provinceId != null and provinceId !=0" >
+     and province_id = #{provinceId,jdbcType=BIGINT}
+     </if>
+     <if test="status != null and status !=''" >
+     and status = #{status,jdbcType=CHAR}
+     </if>
+     and del_flag ='0'
+     </where>
+  </select>
+  <!-- 公共Controller:根据省份查找省下的所有市  无分页-->
+  <select id="queryCityByProvice" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from s_city
+    where province_id = #{provinceId,jdbcType=BIGINT} AND del_flag = '0'
+    order by ordering
+  </select>
+  <!-- 公共Controller:根据省份查找省下的所有市(不包括禁用的)  无分页-->
+  <select id="findCity" parameterType="com.wooxun.geekdol.system.model.City" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from s_city
+    where province_id = #{provinceId,jdbcType=BIGINT} AND del_flag = '0'
+     <if test="status != null" >
+      and  status = #{status,jdbcType=CHAR}
+      </if>
+    order by ordering
+  </select>
+  <select id="findAllCity" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from s_city
+    where del_flag = '0'
+    order by ordering
+  </select>
+  
+  <!-- 根据省份id查找省下的所有市 -->
+  <select id="findByCityProviceId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from s_city
+    where province_id = #{provinceId,jdbcType=BIGINT} AND del_flag = '0'
+    order by ordering
+    <if test="pageFlag==true">
+    	LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  
+  
+  <!-- 条件查找所有市 -->
+  <select id="selectCity" parameterType="com.wooxun.geekdol.system.vo.CityVo" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+    from s_city
+    <where>
+    <if test="cityName != null and cityName.trim()!=''" >
+     and city_name LIKE concat('%',concat(#{cityName},'%'))
+    </if>
+     <if test="provinceId != null and provinceId !=0" >
+     and province_id = #{provinceId,jdbcType=BIGINT}
+     </if>
+     <if test="cityId != null and cityId !=0" >
+     and city_id = #{cityId,jdbcType=BIGINT}
+     </if>
+     <if test="status != null and status !=''" >
+     and status = #{status,jdbcType=CHAR}
+     </if>
+     and del_flag ='0'
+     </where>
+    order by ordering
+    <if test="pageFlag==true">
+        LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  
+  <!-- 根据用户id查找分配给此用户的所有数据 -->
+  <select id="findByUserId" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select 
+    	*
+    from s_city sc where 
+    <if test="cityId != null" >
+        sc.city_id = #{cityId}
+    </if>
+    <if test="cityId == null" >
+        sc.city_id in (SELECT sua.area_id FROM s_user_area sua WHERE sua.user_id = #{userId,jdbcType=BIGINT} and sua.del_flag =0 and sua.area_level = '02')
+    </if>
+    <if test="provinceId != null" >
+        AND sc.province_id = #{provinceId}
+    </if>
+    and sc.del_flag='0'
+  </select>
+  
+  <!-- 根据省份id查找省下的所有未被分配的可用的市 -->
+  <select id="findCityByProviceIdNoUser" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from s_city
+  	<where>
+    	<if test="provinceId != null and provinceId.trim()!=''" >
+        	AND province_id = #{provinceId,jdbcType=BIGINT}
+     	</if>
+	    AND del_flag = '0' and city_id not in (SELECT sua.area_id FROM s_user_area sua)
+    </where>
+  </select>
+  
+  <!-- 根据省份id查找省下的所有关联市的条数-->
+  <select id="findBycityProvinceIdCount" parameterType="com.wooxun.geekdol.system.model.City" resultType="java.lang.Long">
+  	select 
+    	count(*)
+    from s_city
+    where province_id = #{provinceId,jdbcType=BIGINT} AND del_flag = '0'
+    <if test="status != null" >
+      and  status = #{status,jdbcType=CHAR}
+      </if>
+  </select>
+  
+   <!-- 根据省ID和(市名称或市编码)来验证是否已经存在 -->
+  <select id="selectCityCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.system.model.City" >
+    select 
+    count(*)
+    from s_city
+    <where>
+    	<if test="cityName != null and cityName.trim()!=''" >
+        	AND city_name like CONCAT('%',CONCAT(#{cityName},'%'))
+     	</if>
+	     <if test="cityCode != null" >
+	        AND city_code = #{cityCode,jdbcType=VARCHAR}
+	     </if>
+	     <if test="provinceId != null" >
+	        AND province_id = #{provinceId,jdbcType=BIGINT}
+	     </if>
+	     <if test="cityId !=null">
+	     	AND city_id != #{cityId,jdbcType=BIGINT}
+	     </if>
+         <if test="status != null and status.trim()!=''" >
+            AND status = #{status,jdbcType=CHAR}
+         </if>
+	     AND del_flag='0'
+    </where>
+  </select>
+<!-- 根据多个市id查找所有市,排除删除和禁用的 -->
+<select id="selectCityByIds" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_city
+    where city_id in(${queryIds}) and del_flag = '0' and status = '0'
+</select>
+</mapper>

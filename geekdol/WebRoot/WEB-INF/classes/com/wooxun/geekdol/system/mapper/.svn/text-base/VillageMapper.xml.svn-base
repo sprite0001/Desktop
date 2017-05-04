@@ -1,0 +1,1012 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.VillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.Village" >
+    <id column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="county_id" property="countyId" jdbcType="BIGINT" />
+    <result column="community_id" property="communityId" jdbcType="BIGINT" />
+    <result column="house_holds" property="houseHolds" jdbcType="BIGINT" />
+    <result column="population" property="population" jdbcType="BIGINT" />
+    <result column="build_year" property="buildYear" jdbcType="VARCHAR" />
+    <result column="average_price" property="averagePrice" jdbcType="BIGINT" />
+    <result column="village_name" property="villageName" jdbcType="VARCHAR" />
+    <result column="village_address" property="villageAddress" jdbcType="VARCHAR" />
+    <result column="village_longitude" property="villageLongitude" jdbcType="VARCHAR" />
+    <result column="village_latitude" property="villageLatitude" jdbcType="VARCHAR" />
+    <result column="ordering" property="ordering" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <!-- 自定义 -->
+    <result column="kaidian" property="kaidian" />
+    <result column="store_name" property="storeName" />
+    
+     <!-- 省份 -->
+    <association column="province_id" property="province" select="com.wooxun.geekdol.system.mapper.ProvinceMapper.selectByPrimaryKey"></association>
+    <!-- 市 -->
+    <association column="city_id" property="city" select="com.wooxun.geekdol.system.mapper.CityMapper.selectByPrimaryKey"></association>
+    <!-- 区\县 -->
+    <association column="county_id" property="county" select="com.wooxun.geekdol.system.mapper.CountyMapper.selectByPrimaryKey"></association>
+     <!-- 社区 -->
+    <association column="community_id" property="community" select="com.wooxun.geekdol.system.mapper.CommunityMapper.selectByPrimaryKey"></association>
+    
+   
+  </resultMap>
+  <sql id="Base_Column_List" >
+    village_id, province_id, city_id, county_id, community_id, house_holds, population, 
+    build_year, average_price, village_name, village_address, village_longitude, village_latitude, 
+    ordering, status, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_village
+    where village_id = #{villageId,jdbcType=BIGINT} 
+    and del_flag = '0'
+  </select>
+  <!-- 贴心报关联的时候调用  -->
+   <select id="selectByPrimaryKeyGuanlian" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_village
+    where village_id = #{villageId,jdbcType=BIGINT} 
+    and del_flag = '0'
+    and status='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_village
+    where village_id = #{villageId,jdbcType=BIGINT} 
+    and del_flag = '0'
+    and status='0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.Village" useGeneratedKeys="true" keyProperty="villageId">
+    insert into s_village (village_id, province_id, city_id, 
+      county_id, community_id, house_holds, 
+      population, build_year, average_price, 
+      village_name, village_address, village_longitude, 
+      village_latitude, ordering, status, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{villageId,jdbcType=BIGINT}, #{provinceId,jdbcType=BIGINT}, #{cityId,jdbcType=BIGINT}, 
+      #{countyId,jdbcType=BIGINT}, #{communityId,jdbcType=BIGINT}, #{houseHolds,jdbcType=BIGINT}, 
+      #{population,jdbcType=BIGINT}, #{buildYear,jdbcType=VARCHAR}, #{averagePrice,jdbcType=BIGINT}, 
+      #{villageName,jdbcType=VARCHAR}, #{villageAddress,jdbcType=VARCHAR}, #{villageLongitude,jdbcType=VARCHAR}, 
+      #{villageLatitude,jdbcType=VARCHAR}, #{ordering,jdbcType=BIGINT}, #{status,jdbcType=CHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.Village" >
+    insert into s_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="countyId != null" >
+        county_id,
+      </if>
+      <if test="communityId != null" >
+        community_id,
+      </if>
+      <if test="houseHolds != null" >
+        house_holds,
+      </if>
+      <if test="population != null" >
+        population,
+      </if>
+      <if test="buildYear != null" >
+        build_year,
+      </if>
+      <if test="averagePrice != null" >
+        average_price,
+      </if>
+      <if test="villageName != null" >
+        village_name,
+      </if>
+      <if test="villageAddress != null" >
+        village_address,
+      </if>
+      <if test="villageLongitude != null" >
+        village_longitude,
+      </if>
+      <if test="villageLatitude != null" >
+        village_latitude,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="communityId != null" >
+        #{communityId,jdbcType=BIGINT},
+      </if>
+      <if test="houseHolds != null" >
+        #{houseHolds,jdbcType=BIGINT},
+      </if>
+      <if test="population != null" >
+        #{population,jdbcType=BIGINT},
+      </if>
+      <if test="buildYear != null" >
+        #{buildYear,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePrice != null" >
+        #{averagePrice,jdbcType=BIGINT},
+      </if>
+      <if test="villageName != null" >
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageAddress != null" >
+        #{villageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="villageLongitude != null" >
+        #{villageLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="villageLatitude != null" >
+        #{villageLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.Village" >
+    update s_village
+    <set >
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countyId != null" >
+        county_id = #{countyId,jdbcType=BIGINT},
+      </if>
+      <if test="communityId != null" >
+        community_id = #{communityId,jdbcType=BIGINT},
+      </if>
+      <if test="houseHolds != null" >
+        house_holds = #{houseHolds,jdbcType=BIGINT},
+      </if>
+      <if test="population != null" >
+        population = #{population,jdbcType=BIGINT},
+      </if>
+      <if test="buildYear != null" >
+        build_year = #{buildYear,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePrice != null" >
+        average_price = #{averagePrice,jdbcType=BIGINT},
+      </if>
+      <if test="villageName != null" >
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageAddress != null" >
+        village_address = #{villageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="villageLongitude != null" >
+        village_longitude = #{villageLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="villageLatitude != null" >
+        village_latitude = #{villageLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where village_id = #{villageId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.Village" >
+    update s_village
+    set province_id = #{provinceId,jdbcType=BIGINT},
+      city_id = #{cityId,jdbcType=BIGINT},
+      county_id = #{countyId,jdbcType=BIGINT},
+      community_id = #{communityId,jdbcType=BIGINT},
+      house_holds = #{houseHolds,jdbcType=BIGINT},
+      population = #{population,jdbcType=BIGINT},
+      build_year = #{buildYear,jdbcType=VARCHAR},
+      average_price = #{averagePrice,jdbcType=BIGINT},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      village_address = #{villageAddress,jdbcType=VARCHAR},
+      village_longitude = #{villageLongitude,jdbcType=VARCHAR},
+      village_latitude = #{villageLatitude,jdbcType=VARCHAR},
+      ordering = #{ordering,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where village_id = #{villageId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+    <!--************************************** 自定义 **************************************-->
+  
+    <select id="queryVillageByParams" parameterType="com.wooxun.geekdol.system.vo.VillageVo" resultMap="BaseResultMap">
+        SELECT a.* FROM
+        (SELECT
+            v.*, (
+                CASE
+                WHEN (
+                    sv.store_id IS NULL
+                    OR sv.store_id = ''
+                ) THEN
+                    0
+                ELSE
+                    1
+                END
+            ) AS kaidian
+        FROM
+            s_village v
+                LEFT JOIN j_cooperation_store_village sv
+        ON v.village_id = sv.village_id) a
+        
+    <where>
+    
+        <if test="kaidian != null and kaidian.trim()!=''" >
+            AND a.kaidian = #{kaidian}
+        </if>
+    
+        <if test="provinceId != null and provinceId!=0" >
+            AND a.province_id = #{provinceId,jdbcType=BIGINT}
+        </if>
+         <if test="cityId != null and cityId!=0" >
+            AND a.city_id = #{cityId,jdbcType=BIGINT}
+        </if>
+         <if test="countyId != null and countyId!=0" >
+            AND a.county_id = #{countyId,jdbcType=BIGINT}
+        </if>
+         <if test="communityId != null and communityId!=0" >
+            AND a.community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+         
+         <if test="villageName != null and villageName.trim()!=''" >
+            AND a.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+        </if>
+         <if test="villageAddress != null and villageAddress.trim()!=''" >
+            AND a.village_address LIKE CONCAT(CONCAT('%', #{villageAddress}),'%')
+        </if>
+         <if test="status != null and status !=''" >
+                and status = #{status,jdbcType=CHAR}
+              </if>
+         AND a.del_flag='0'
+    </where>
+    order by a.ordering,a.ins_ymdhms desc
+    
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+         
+  </select>
+  
+  <select id="queryCountByParams" parameterType="com.wooxun.geekdol.system.vo.VillageVo" resultType="java.lang.Long">
+  SELECT count(*) FROM
+        (SELECT
+            v.*, (
+                CASE
+                WHEN (
+                    sv.store_id IS NULL
+                    OR sv.store_id = ''
+                ) THEN
+                    '0'
+                ELSE
+                    '1'
+                END
+            ) AS kaidian
+        FROM
+            s_village v
+                LEFT JOIN j_cooperation_store_village sv
+        ON v.village_id = sv.village_id) a
+        
+    <where>
+    
+        <if test="kaidian != null and kaidian.trim()!=''" >
+            AND a.kaidian = #{kaidian}
+        </if>
+    
+        <if test="provinceId != null and provinceId!=0" >
+            AND a.province_id = #{provinceId,jdbcType=BIGINT}
+        </if>
+         <if test="cityId != null and cityId!=0" >
+            AND a.city_id = #{cityId,jdbcType=BIGINT}
+        </if>
+         <if test="countyId != null and countyId!=0" >
+            AND a.county_id = #{countyId,jdbcType=BIGINT}
+        </if>
+         <if test="communityId != null and communityId!=0" >
+            AND a.community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+         
+         <if test="villageName != null and villageName.trim()!=''" >
+            AND a.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+        </if>
+         <if test="villageAddress != null and villageAddress.trim()!=''" >
+            AND a.village_address LIKE CONCAT(CONCAT('%', #{villageAddress}),'%')
+        </if>
+         <if test="status != null and status !=''" >
+                and status = #{status,jdbcType=CHAR}
+              </if>
+         AND a.del_flag='0'
+    </where>
+  </select>
+  <!-- 查找有效的小区数量 -->
+  <select id="findEffectVillage" resultType="java.lang.Long"
+     parameterType="com.wooxun.geekdol.system.vo.VillageVo">
+    SELECT COUNT(village_id) FROM s_village
+    <where>
+        AND del_flag='0' 
+        <if test="status != null and status.trim()!=''">
+            AND status = #{status,jdbcType=CHAR}
+        </if>
+        <if test="communityId != null and communityId != 0">
+            AND community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+    </where>
+  </select>
+   <!-- 判断相同的社区下面是否有相同的小区  -->
+  <select id="findVillageByParams" parameterType="com.wooxun.geekdol.system.model.Village" resultMap="BaseResultMap">
+      select 
+      <include refid="Base_Column_List" />
+      from  s_village
+    <where>
+    
+         <if test="communityId != null and communityId!=0" >
+            AND community_id = #{communityId,jdbcType=BIGINT}
+         </if>
+         
+         <if test="villageName != null and villageName.trim()!=''" >
+            AND village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+         </if>
+         AND del_flag='0'
+    </where>
+  </select>
+  
+  <!-- 根据经纬度查询范围内的小区 -->
+  <select id="selectByLongAndLat" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List" />
+          FROM s_village where village_longitude &gt;=#{longitudeBegin} and village_longitude &lt;=#{longitudeEnd} 
+          and village_latitude &gt;=#{latitudeBegin} and village_latitude &lt;=#{latitudeEnd} and del_flag='0' and status = '0'
+  </select>
+  
+  <!-- 判断小区是不是开过店 如果开过点铺则不能删除 -->
+  <select id="validationVillageIsopen" parameterType="com.wooxun.geekdol.system.model.Village" resultMap="BaseResultMap">
+        SELECT a.* FROM
+        (SELECT
+            v.*, (
+                CASE
+                WHEN (
+                    sv.store_id IS NULL
+                    OR sv.store_id = ''
+                ) THEN
+                    0
+                ELSE
+                    1
+                END
+            ) AS kaidian
+        FROM
+            s_village v
+                LEFT JOIN j_cooperation_store_village sv
+        ON v.village_id = sv.village_id) a
+        
+    <where>
+         AND a.kaidian = '1'
+        <if test="villageId != null and villageId!=0" >
+            AND a.village_id = #{villageId,jdbcType=BIGINT}
+        </if>
+         AND a.del_flag='0'
+    </where>
+    order by a.ordering
+  </select>
+  
+  <!-- 小区查询 begin -->
+  <select id="queryQuartersByParams" parameterType="com.wooxun.geekdol.system.vo.QuartersVo" resultMap="BaseResultMap">
+    SELECT a.* FROM
+        (SELECT vs.*, cs.store_name FROM(
+            SELECT
+                v.*, (
+                    CASE
+                    WHEN (
+                        sv.store_id IS NULL
+                        OR sv.store_id = ''
+                    ) THEN
+                        0
+                    ELSE
+                        1
+                    END
+                ) AS kaidian,
+                sv.store_id
+            FROM
+                s_village v
+            LEFT JOIN j_cooperation_store_village sv ON v.village_id = sv.village_id
+        ) vs
+    LEFT JOIN j_cooperation_store cs ON vs.store_id = cs.id
+    AND cs.del_flag = '0') a
+    <where>
+        <if test="kaidian != null and kaidian.trim()!=''" >
+            AND a.kaidian = #{kaidian}
+        </if>
+        <if test="provinceId != null and provinceId!=0" >
+            AND a.province_id = #{provinceId,jdbcType=BIGINT}
+        </if>
+         <if test="cityId != null and cityId!=0" >
+            AND a.city_id = #{cityId,jdbcType=BIGINT}
+        </if>
+         <if test="countyId != null and countyId!=0" >
+            AND a.county_id = #{countyId,jdbcType=BIGINT}
+        </if>
+         <if test="communityId != null and communityId!=0" >
+            AND a.community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+         
+         <if test="villageName != null and villageName.trim()!=''" >
+            AND a.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+        </if>
+         <if test="villageAddress != null and villageAddress.trim()!=''" >
+            AND a.village_address LIKE CONCAT(CONCAT('%', #{villageAddress}),'%')
+        </if>
+         AND a.del_flag='0'
+    </where>
+    order by a.ordering
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 根据社区/街道/办事处 ID和小区名查询所有未分配的可用的小区-->
+  <select id="selectByCountyIdNoUser" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+    from s_village
+  <where>
+        <if test="villageName != null and villageName.trim()!=''" >
+            AND village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+        </if>
+        <if test="communityId != null" >
+            AND community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+        <if test="provinceId != null" >
+            AND province_id = #{provinceId,jdbcType=BIGINT}
+        </if>
+        <if test="cityId != null" >
+            AND city_id = #{cityId,jdbcType=BIGINT}
+        </if>
+        <if test="countyId != null" >
+            AND county_id = #{countyId,jdbcType=BIGINT}
+        </if>
+        AND del_flag = '0' AND status = '0' and village_id not in (SELECT sua.area_id FROM s_user_area sua where sua.user_id = #{userId,jdbcType=BIGINT})
+  </where>
+    order by ordering
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  <!-- 根据社区/街道/办事处 ID和小区名查询所有小区-->
+  <select id="selectByCountyId" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+      from s_village
+      <where>
+            <if test="villageName != null and villageName.trim()!=''" >
+                AND village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+            </if>
+            <if test="communityId != null" >
+                AND community_id = #{communityId,jdbcType=BIGINT}
+            </if>
+        <if test="status != null and status !=''" >
+            and status = #{status,jdbcType=CHAR}
+        </if>
+            AND del_flag = '0'
+      </where>
+  </select>
+  
+  <!-- 根据用户id查找分配给此用户的所有数据 -->
+  <select id="findByUserId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        sc.*
+        FROM
+            s_village sc,
+            s_user_area sua
+        WHERE
+        sua.user_id = #{userId,jdbcType=BIGINT}
+        <if test="villageName != null and villageName.trim()!=''" >
+            AND sc.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+        </if>
+        <if test="communityId != null" >
+            AND sc.community_id = #{communityId}
+        </if>
+        AND sua.area_level = '05'
+        AND sc.del_flag = '0'
+        AND sua.del_flag = '0'
+        and sc.village_id=sua.area_id
+        and sc.status='0'
+  </select>
+  
+  <!-- 根据用户id查找分配给此用户的所有数据 -->
+  <select id="selectByUserId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        sc.*
+        FROM
+            s_village sc,
+            s_user_area sua
+        WHERE
+        sua.user_id = #{userId,jdbcType=BIGINT}
+        <if test="villageName != null and villageName.trim()!=''" >
+            AND sc.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+        </if>
+        <if test="communityId != null" >
+            AND sc.community_id = #{communityId}
+        </if>
+        <if test="status != null" >
+            and sc.status=#{status}
+        </if>
+        AND sua.area_level = '05'
+        AND sc.del_flag = '0'
+        AND sua.del_flag = '0'
+        and sc.village_id=sua.area_id
+  </select>
+  
+  <select id="queryQuartersCountByParams" parameterType="com.wooxun.geekdol.system.vo.QuartersVo" resultType="java.lang.Long">
+    SELECT count(*) FROM
+        (SELECT vs.* FROM(
+            SELECT
+                v.*, (
+                    CASE
+                    WHEN (
+                        sv.store_id IS NULL
+                        OR sv.store_id = ''
+                    ) THEN
+                        0
+                    ELSE
+                        1
+                    END
+                ) AS kaidian,
+                sv.store_id
+            FROM
+                s_village v
+            LEFT JOIN j_cooperation_store_village sv ON v.village_id = sv.village_id
+        ) vs
+    LEFT JOIN j_cooperation_store cs ON vs.store_id = cs.id
+    AND cs.del_flag = '0') a
+    <where>
+        <if test="kaidian != null and kaidian.trim()!=''" >
+            AND a.kaidian = #{kaidian}
+        </if>
+        <if test="provinceId != null and provinceId!=0" >
+            AND a.province_id = #{provinceId,jdbcType=BIGINT}
+        </if>
+         <if test="cityId != null and cityId!=0" >
+            AND a.city_id = #{cityId,jdbcType=BIGINT}
+        </if>
+         <if test="countyId != null and countyId!=0" >
+            AND a.county_id = #{countyId,jdbcType=BIGINT}
+        </if>
+         <if test="communityId != null and communityId!=0" >
+            AND a.community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+        <if test="villageName != null and villageName.trim()!=''" >
+            AND a.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+        </if>
+         <if test="villageAddress != null and villageAddress.trim()!=''" >
+            AND a.village_address LIKE CONCAT(CONCAT('%', #{villageAddress}),'%')
+        </if>
+         AND a.del_flag='0'
+    </where>
+  </select>
+  <!-- 小区查询 end -->
+  <!-- 公共方法：查询社区下的所有小区，非分页 -->
+  <select id="queryVillageByCommuity" parameterType="com.wooxun.geekdol.system.vo.VillageVo" resultMap="BaseResultMap">
+    SELECT * from s_village
+    <where>
+         <if test="communityId != null and communityId!=0" >
+            AND community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+        <if test="cityId != null and cityId!=0" >
+            AND city_id = #{cityId,jdbcType=BIGINT}
+        </if>
+         AND del_flag='0'
+    </where>
+    order by ordering
+  </select>
+  <!-- 查询没有合作店管辖的小区 -->
+  <select id="queryVillageHasNoCooperationStore" parameterType="com.wooxun.geekdol.system.vo.VillageVo" 
+        resultType="com.wooxun.geekdol.system.vo.VillageVo">
+        select * from (SELECT
+            a.village_id as villageId,
+            a.village_name as villageName,
+            a.ordering,
+            (
+                CASE
+                WHEN (
+                    b.store_id IS NULL
+                    OR b.store_id = ''
+                ) THEN
+                    0
+                ELSE
+                    1
+                END
+            ) AS kaidian
+        FROM
+            (
+                SELECT
+                    village.village_id,
+                    village.village_name,
+                    village.ordering
+                FROM
+                    s_village village,
+                    s_user_area ua
+                    <where>
+                        <if test="userId != null and userId != 0" >
+                            AND ua.user_id = #{userId,jdbcType=BIGINT}
+                        </if>
+                        <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '01'" >
+                            AND village.province_id = ua.area_id
+                        </if>
+                        <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '02'" >
+                            AND village.city_id = ua.area_id
+                        </if>
+                        <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '03'" >
+                            AND village.county_id = ua.area_id
+                        </if>
+                        <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '04'" >
+                            AND village.community_id = ua.area_id
+                        </if>
+                        <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '05'" >
+                            AND village.village_id = ua.area_id
+                        </if>
+                         AND village.del_flag='0'
+                    </where>
+            ) a
+        LEFT JOIN (
+            SELECT
+                village_id,
+                store_id
+            FROM
+                j_cooperation_store_village
+        ) b ON a.village_id = b.village_id ) c
+        where c.kaidian = 0
+        order by c.ordering 
+  </select>
+  <!-- 铺货、推荐产品的时候，查找有效的合作店小区 -->
+  <select id="queryVillageHasCooperationStore" parameterType="com.wooxun.geekdol.system.vo.VillageVo" 
+        resultType="com.wooxun.geekdol.system.vo.VillageVo">
+    SELECT
+        village.village_id as villageId,
+        village.village_name as villageName
+    FROM
+        (select v.village_id,v.village_name from s_village v,s_user_area ua 
+            <where>
+                <if test="userId != null and userId != 0" >
+                    AND ua.user_id = #{userId,jdbcType=BIGINT}
+                </if>
+                <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '01'" >
+                    AND v.province_id = ua.area_id
+                </if>
+                <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '02'" >
+                    AND v.city_id = ua.area_id
+                </if>
+                <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '03'" >
+                    AND v.county_id = ua.area_id
+                </if>
+                <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '04'" >
+                    AND v.community_id = ua.area_id
+                </if>
+                <if test="areaLevel != null and areaLevel.trim() != '' and areaLevel.trim() == '05'" >
+                    AND v.village_id = ua.area_id
+                </if>
+                 AND v.del_flag='0'
+            </where>
+        ) village,
+        j_cooperation_store_village sv
+    WHERE village.village_id = sv.village_id
+  </select>
+  <!-- 查询周边店所不属于的小区 -->
+  <select id="selectVillageNoAroundStoreByVillageId" parameterType="map" resultMap="BaseResultMap">
+        SELECT * FROM (
+            SELECT
+                <include refid="Base_Column_List" />
+              FROM s_village 
+              <if test="villageTempList.size() > 0" >
+                  where village_id IN
+                          <foreach item="item1" index="index" collection="villageTempList" 
+                                 open="(" separator="," close=")">
+                                #{item1.villageId}
+                        </foreach>
+              </if>
+        )t 
+        <if test="aroundStoreVillageList.size() > 0" >
+            where t.village_id NOT IN
+                      <foreach item="item2" index="index" collection="aroundStoreVillageList" 
+                             open="(" separator="," close=")">
+                            #{item2.villageId}
+                    </foreach>
+        </if>
+  </select>
+  
+  <!-- 根据用户查询小区 -->
+  <select id="selectVillageNoAroundStoreByUser" parameterType="java.util.List" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List" />
+          FROM s_village 
+          <if test="list.size() > 0" >
+              where village_id IN
+                      <foreach item="item" index="index" collection="list" 
+                             open="(" separator="," close=")">
+                            #{item.villageId}
+                    </foreach>
+          </if>
+  </select>
+  
+  <!-- 查询周边店所属于的小区 -->
+  <select id="selectVillageAroundStoreByVillageId" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List" />
+          FROM s_village 
+          <if test="list.size() > 0" >
+              where village_id IN
+                      <foreach item="item" index="index" collection="list" 
+                             open="(" separator="," close=")">
+                            #{item.villageId}
+                    </foreach>
+          </if>
+  </select>
+  
+  <!-- 根据不同的级别查询所属的小区 -->
+  <select id="selectVillageByDiffentLevel" parameterType="com.wooxun.geekdol.system.vo.VillageVo" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List" />
+          FROM s_village
+    <where>
+        <if test="provinceId != null and provinceId!=0" >
+            AND province_id = #{provinceId,jdbcType=BIGINT}
+        </if>
+         <if test="cityId != null and cityId!=0" >
+            AND city_id = #{cityId,jdbcType=BIGINT}
+        </if>
+         <if test="countyId != null and countyId!=0" >
+            AND county_id = #{countyId,jdbcType=BIGINT}
+        </if>
+         <if test="communityId != null and communityId!=0" >
+            AND community_id = #{communityId,jdbcType=BIGINT}
+        </if>
+         AND del_flag='0'
+         order by ordering
+         LIMIT 1
+    </where>
+  </select>
+
+  
+  <!-- 广告管理   新增时查询用户对应的所有小区 -->  
+   <select id="selectAll" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+        *
+    from s_user_area u,s_village v
+    where u.user_id=#{userId}
+     and u.del_flag='0'
+     and v.del_flag='0'
+     and u.area_level='05'
+     and u.area_id=v.village_id
+  </select>
+
+  
+    <!-- 公共方法：根据贴心报id查到对应的小区 -->
+  <select id="selectVillageByIntimateNewsId" parameterType="java.lang.Long" resultType="java.lang.String">
+    select GROUP_CONCAT(a.village_name) from s_village a,m_intimate_new_village b ,m_intimate_new c 
+    <where>
+         AND c.id = #{intimateNewsId,jdbcType=BIGINT}
+         and b.intimate_new_id=c.id
+         and b.village_id=a.village_id
+         AND a.del_flag='0'
+         and c.del_flag='0'
+         GROUP BY c.id
+    </where>
+  </select>
+  
+  <!-- 根据活动汇id查到对应的小区 -->
+  <select id="selectVillageByActivityCollectionId" parameterType="java.lang.Long" resultType="java.lang.String">
+    select GROUP_CONCAT(a.village_name) from s_village a,m_activity_collection_village b ,m_activity_collection c 
+    <where>
+         AND c.id = #{activityCollectionId,jdbcType=BIGINT}
+         and b.activity_collection_id=c.id
+         and b.village_id=a.village_id
+         AND a.del_flag='0'
+         and c.del_flag='0'
+         GROUP BY c.id
+    </where>
+  </select>
+
+<!-- 根据区id查找所拥有的小区 -->
+<select id="selectVillageByCountyId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_village
+    where county_id = #{countyId,jdbcType=BIGINT} and del_flag = '0'
+</select>
+<!-- 根据多个小区id查找所有小区,排除删除和禁用的 -->
+<select id="selectVillageByIds" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_village
+    where village_id in(${queryIds}) and del_flag = '0' and status = '0'
+</select>
+ 
+  <!-- App随心拍列表:小区查询 -->
+  <select id="queryVillageList" resultType="java.util.Map"
+  	parameterType="com.wooxun.geekdol.system.vo.VillageVo">
+  	SELECT al.village_id as villageId,
+			al.village_name as villageName,
+			al.village_longitude as longitude,
+			al.village_latitude as latitude,
+			al.village_type as villageType
+	from(
+		SELECT
+			a.village_id,
+			s.village_name,
+			s.village_longitude,
+			s.village_latitude,
+			a.village_type
+		FROM
+			(
+				SELECT
+					village_id,
+					village_type
+				FROM
+					s_app_user_village
+				WHERE
+					del_flag = '0'
+				AND user_id = #{userId,jdbcType=BIGINT}
+				ORDER BY
+					village_type DESC
+			) a
+		LEFT JOIN s_village s ON a.village_id = s.village_id
+		UNION 
+		SELECT
+			village_id,
+			village_name,
+			village_longitude,
+			village_latitude,
+			'' AS village_type
+		FROM
+			s_village
+		WHERE
+			province_id = (
+				SELECT
+					province_id
+				FROM
+					s_village village
+				WHERE
+					village.village_id = #{villageId,jdbcType=BIGINT}
+				AND del_flag = '0'
+				AND `status` = '0'
+			)
+		AND del_flag = '0'
+		AND `status` = '0'
+	) al
+	<where>
+		<if test="villageName != null and villageName.trim()!=''">
+			and al.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+		</if>
+	</where>
+	<if test="pageFlag==true">
+	   LIMIT #{startPage}, #{endPage}
+	</if>
+  </select>
+  <!-- 查询某人的常驻小区 -->
+  <select id="queryByUserIdAndVillageType" parameterType="com.wooxun.geekdol.system.vo.VillageVo"
+  	resultType="com.wooxun.geekdol.system.vo.VillageVo">
+  	SELECT SV.village_id as villageId,SV.province_id as provinceId,
+  	SV.city_id as cityId,SV.county_id as countyId,SV.community_id as communityId,SV.village_name as villageName,
+		SV.village_longitude AS villageLongitude,SV.village_latitude as villageLatitude
+	FROM
+		s_village SV,
+		s_app_user_village UV
+	WHERE
+		SV.village_id = UV.village_id
+	AND SV.del_flag = '0'
+	AND UV.del_flag = '0'
+	AND UV.village_type = #{villageType,jdbcType=CHAR}
+	AND UV.user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <!-- 查询某人的常驻小区 -->
+  <select id="selectByUserIdAndVillageType" parameterType="com.wooxun.geekdol.system.vo.VillageVo"
+    resultMap="BaseResultMap">
+    SELECT SV.*
+    FROM
+        s_village SV,
+        s_app_user_village UV
+    WHERE
+        SV.village_id = UV.village_id
+    AND SV.del_flag = '0'
+    AND UV.del_flag = '0'
+    AND UV.village_type = #{villageType,jdbcType=CHAR}
+    AND UV.user_id = #{userId,jdbcType=BIGINT}
+  </select>
+</mapper>

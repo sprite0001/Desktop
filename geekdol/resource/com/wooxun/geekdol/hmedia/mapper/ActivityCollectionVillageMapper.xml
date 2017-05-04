@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.ActivityCollectionVillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.ActivityCollectionVillage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="activity_collection_id" property="activityCollectionId" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <!-- 根据小区id查到 -->
+    <association property="village" column="village_id" select="com.wooxun.geekdol.system.mapper.VillageMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, activity_collection_id, village_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_activity_collection_village
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_activity_collection_village
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.ActivityCollectionVillage" >
+    insert into m_activity_collection_village (id, activity_collection_id, village_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{activityCollectionId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.ActivityCollectionVillage" >
+    insert into m_activity_collection_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activityCollectionId != null" >
+        activity_collection_id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityCollectionId != null" >
+        #{activityCollectionId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.ActivityCollectionVillage" >
+    update m_activity_collection_village
+    <set >
+      <if test="activityCollectionId != null" >
+        activity_collection_id = #{activityCollectionId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.ActivityCollectionVillage" >
+    update m_activity_collection_village
+    set activity_collection_id = #{activityCollectionId,jdbcType=BIGINT},
+      village_id = #{villageId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+                           <!--   自定义                         -->
+  
+   <!-- 批量保存活动汇小区关系表 -->
+  <insert id="insertBatch" parameterType="com.wooxun.geekdol.hmedia.model.ActivityCollectionVillage" >
+      insert into m_activity_collection_village (activity_collection_id, 
+      village_id)
+      values 
+       <foreach collection="list" item="item" index="index" separator="," >  
+       (#{item.activityCollectionId,jdbcType=BIGINT}, 
+       #{item.villageId,jdbcType=BIGINT})
+       </foreach>
+      
+    </insert>
+    
+    <!-- 根据活动汇id查找相关的小区  -->
+    <select id="selectActivityCollectionVillageByActivityCollectionId" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_activity_collection_village
+    where activity_collection_id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 修改活动汇的时候,根据活动汇id删除关系表所有相关的数据 -->
+  <delete id="deleteByActivityCollectionId" parameterType="java.lang.Long">
+    delete from m_activity_collection_village
+    where activity_collection_id = #{activityCollectionId,jdbcType=BIGINT}
+  </delete>
+</mapper>

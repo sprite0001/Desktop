@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.CommonPhoneMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.CommonPhone" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="phone_type" property="phoneType" jdbcType="CHAR" />
+    <result column="ordering" property="ordering" jdbcType="INTEGER" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, phone_number, phone_type, ordering, ins_id, ins_ymdhms, upd_id, upd_ymdhms, 
+    upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_common_phone
+    where id = #{id,jdbcType=BIGINT}
+     and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_common_phone
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.CommonPhone" >
+    insert into m_common_phone (id, name, phone_number, 
+      phone_type, ordering, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{phoneType,jdbcType=CHAR}, #{ordering,jdbcType=INTEGER}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.CommonPhone" useGeneratedKeys="true" keyProperty="id">
+    insert into m_common_phone
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="phoneType != null" >
+        phone_type,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null" >
+        #{phoneType,jdbcType=CHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.CommonPhone" >
+    update m_common_phone
+    <set>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null" >
+        phone_type = #{phoneType,jdbcType=CHAR},
+      </if>
+       
+        ordering = #{ordering,jdbcType=INTEGER},
+       
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.CommonPhone" >
+    update m_common_phone
+    set name = #{name,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      phone_type = #{phoneType,jdbcType=CHAR},
+      ordering = #{ordering,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+   <!-- 根据页面查询条件显示列表 -->
+    <select id="findAll" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.hmedia.vo.CommonPhoneVo">
+      SELECT
+        <include refid="Base_Column_List"/>
+      FROM m_common_phone
+      <where>
+            <if test="name!=null and name.trim()!=''">
+                and name like CONCAT(CONCAT('%',#{name}),'%')
+            </if>
+            <if test="phoneNumber!=null and phoneNumber.trim()!=''">
+                and phone_number like CONCAT(CONCAT('%',#{phoneNumber}),'%')
+            </if>
+            <if test="phoneType!=null and phoneType.trim()!=''">
+                and phone_type = #{phoneType,jdbcType=CHAR}
+            </if>
+                AND del_flag='0'
+               order by ordering
+            <if test="pageFlag==true">
+              LIMIT #{startPage}, #{endPage}
+            </if>
+       </where>
+     </select>
+     
+    <!-- 根据页面查询条件显示列表分页计数 -->
+    <select id="findAllCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.hmedia.vo.CommonPhoneVo">
+     SELECT
+     COUNT(id)
+    FROM m_common_phone
+      <where>
+            <if test="name!=null and name.trim()!=''">
+                and name like CONCAT(CONCAT('%',#{name}),'%')
+            </if>
+            <if test="phoneNumber!=null and phoneNumber.trim()!=''">
+                and phone_number like CONCAT(CONCAT('%',#{phoneNumber}),'%')
+            </if>
+            <if test="phoneType!=null and phoneType.trim()!=''">
+                and phone_type = #{phoneType,jdbcType=CHAR}
+            </if>
+                AND del_flag='0'
+            <if test="pageFlag==true">
+              LIMIT #{startPage}, #{endPage}
+            </if>
+       </where>
+    </select>  
+    
+     <!-- 新增操作时判断是否已有该常用号码  返回新增常用号码查询数量 -->
+    <select id="findCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.hmedia.model.CommonPhone">
+     SELECT
+     COUNT(id)
+     FROM m_common_phone
+      <where>              
+            <if test="phoneNumber!=null and phoneNumber.trim()!=''">
+                and phone_number =#{phoneNumber} 
+            </if>
+                and del_flag='0'
+      </where>
+    </select>    
+    
+    
+    <!-- app接口用 查询常用电话列表--> 
+    <select id="findCommonPhone" parameterType="java.lang.Long" resultType="com.wooxun.geekdol.hmedia.vo.AppCommonPhoneVo">
+       select 
+       name as name,
+       phone_number as phoneNumber
+       from m_common_phone
+       where del_flag='0'
+        order by ordering
+    </select>    
+    
+</mapper>

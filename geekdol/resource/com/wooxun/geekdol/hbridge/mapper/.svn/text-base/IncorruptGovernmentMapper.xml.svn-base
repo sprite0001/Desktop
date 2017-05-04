@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.IncorruptGovernmentMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.IncorruptGovernment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="message_time" property="messageTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="content_from" property="contentFrom" jdbcType="VARCHAR" />
+    <result column="publish_status" property="publishStatus" jdbcType="CHAR" />
+    <result column="publish_person_id" property="publishPersonId" jdbcType="BIGINT" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="view_number" property="viewNumber" jdbcType="INTEGER" />
+    <result column="likes_number" property="likesNumber" jdbcType="INTEGER" />
+    <result column="hate_number" property="hateNumber" jdbcType="INTEGER" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="illegal_number" property="illegalNumber" jdbcType="INTEGER" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.hbridge.model.IncorruptGovernment" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, message_time, type, pic, content_from, publish_status, publish_person_id, 
+    publish_time, view_number, likes_number, hate_number, reply_number, illegal_number, 
+    ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from m_incorrupt_government
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  
+  <!-- 风清气正数据详情查找 -->
+  <select id="findById" parameterType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentVo" 
+  	resultType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentVo">
+	select a.*,sd.lable as publishStatusStr,ssd.lable as typeStr from
+	(select ig.id, ig.title, ig.message_time as messageTime, ig.type,
+	ig.publish_status as publishStatus,
+	ig.publish_person_id as
+	publishPersonId, ig.publish_time as publishTime, ig.view_number as
+	viewNumber, su.user_name as publishPerson,ig.pic, ig.content_from as contentFrom,
+	ig.likes_number as likesNumber, ig.hate_number as hateNumber, ig.reply_number as
+	replyNumber, ig.illegal_number as illegalNumber, ig.content,ig.upd_eac as updEac,ig.del_flag
+	from
+	m_incorrupt_government ig left join security_user su
+	ON ig.publish_person_id = su.id) a,
+	s_sys_data sd,
+	s_sys_data ssd
+	where
+	a.publishStatus = sd.`value`
+	AND a.type = ssd.`value`
+	AND ssd.type = #{typeType,jdbcType=CHAR}
+	AND sd.type = #{publishStatusType,jdbcType=CHAR}
+	AND a.id = #{id,jdbcType=BIGINT}
+	AND a.del_flag = '0'
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_incorrupt_government
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernment" >
+    insert into m_incorrupt_government (id, title, message_time, 
+      type, pic, content_from, 
+      publish_status, publish_person_id, publish_time, 
+      view_number, likes_number, hate_number, 
+      reply_number, illegal_number, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{messageTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{contentFrom,jdbcType=VARCHAR}, 
+      #{publishStatus,jdbcType=CHAR}, #{publishPersonId,jdbcType=BIGINT}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{viewNumber,jdbcType=INTEGER}, #{likesNumber,jdbcType=INTEGER}, #{hateNumber,jdbcType=INTEGER}, 
+      #{replyNumber,jdbcType=INTEGER}, #{illegalNumber,jdbcType=INTEGER}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernment" useGeneratedKeys="true" keyProperty="id">
+    insert into m_incorrupt_government
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="messageTime != null" >
+        message_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="contentFrom != null" >
+        content_from,
+      </if>
+      <if test="publishStatus != null" >
+        publish_status,
+      </if>
+      <if test="publishPersonId != null" >
+        publish_person_id,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="viewNumber != null" >
+        view_number,
+      </if>
+      <if test="likesNumber != null" >
+        likes_number,
+      </if>
+      <if test="hateNumber != null" >
+        hate_number,
+      </if>
+      <if test="replyNumber != null" >
+        reply_number,
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="messageTime != null" >
+        #{messageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="contentFrom != null" >
+        #{contentFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="publishStatus != null" >
+        #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="publishPersonId != null" >
+        #{publishPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewNumber != null" >
+        #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="likesNumber != null" >
+        #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernment" >
+    update m_incorrupt_government
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="messageTime != null" >
+        message_time = #{messageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="contentFrom != null" >
+        content_from = #{contentFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="publishStatus != null" >
+        publish_status = #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="publishPersonId != null" >
+        publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewNumber != null" >
+        view_number = #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="likesNumber != null" >
+        likes_number = #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        hate_number = #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        reply_number = #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernment" >
+    update m_incorrupt_government
+    set title = #{title,jdbcType=VARCHAR},
+      message_time = #{messageTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      content_from = #{contentFrom,jdbcType=VARCHAR},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      hate_number = #{hateNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.IncorruptGovernment" >
+    update m_incorrupt_government
+    set title = #{title,jdbcType=VARCHAR},
+      message_time = #{messageTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      content_from = #{contentFrom,jdbcType=VARCHAR},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      hate_number = #{hateNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 风清气正列表总数查询-->
+  <select id="findIncorruptGovernmentCount" resultType="java.lang.Long"
+  	parameterType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentVo">
+  	SELECT COUNT(ig.id) FROM (
+  		select id,publish_person_id from m_incorrupt_government where del_flag = '0'
+	  	<if test="title != null and title.trim()!=''">
+			and title LIKE CONCAT(CONCAT('%', #{title}),'%')
+		</if>
+		<if test="type != null and type.trim() != ''">
+			and type = #{type,jdbcType=VARCHAR}
+		</if>
+		<if test="publishStartTime != null and publishStartTime.trim()!=''">
+			<![CDATA[ and DATE_FORMAT(publish_time, '%Y%m%d%H%i%s') >= DATE_FORMAT(#{publishStartTime}, '%Y%m%d%H%i%s') ]]>
+		</if>
+		<if test="publishEndTime != null and publishEndTime.trim()!=''">
+			<![CDATA[ and DATE_FORMAT(publish_time, '%Y%m%d%H%i%s') <= DATE_FORMAT(#{publishEndTime}, '%Y%m%d%H%i%s') ]]>
+		</if>
+		<if test="publishStatus != null and publishStatus.trim()!=''">
+			and publish_status = #{publishStatus,jdbcType=CHAR}
+		</if>
+  	) ig 
+  	LEFT JOIN (SELECT * FROM security_user 
+  	<where>
+  		<if test="publishPerson != null and publishPerson.trim()!=''">
+			and user_name LIKE CONCAT(CONCAT('%', #{publishPerson}),'%')
+		</if>
+		and del_flag = '0'
+  	</where>) su
+  	ON
+	ig.publish_person_id = su.id
+  </select>
+  <!-- 风清气正列表查询-->
+  <select id="findIncorruptGovernment" parameterType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentVo"
+  	resultType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentVo">
+  	SELECT
+		a.id,
+		a.title,
+		sd.lable as publishStatusStr,
+		ssd.lable as typeStr,
+		a.user_name as publishPerson,
+		a.publish_time as publishTime,
+		a.publish_status as publishStatus,
+		a.view_number as viewNumber
+	FROM
+		(SELECT
+			ig.id,
+			ig.title,
+			su.user_name,
+			ig.publish_time,
+			ig.view_number,
+			ig.publish_status,
+			ig.type,
+			ig.ins_ymdhms
+		FROM
+			(select * from m_incorrupt_government where del_flag = '0') ig
+		LEFT JOIN security_user su 
+		ON ig.publish_person_id = su.id
+		) a,
+		s_sys_data sd,
+		s_sys_data ssd
+	<where>
+		<if test="title != null and title.trim()!=''">
+			and a.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+		</if>
+		<if test="publishPerson != null and publishPerson.trim()!=''">
+			and a.user_name LIKE CONCAT(CONCAT('%', #{publishPerson}),'%')
+		</if>
+		<if test="type != null and type.trim() != ''">
+			and a.type = #{type,jdbcType=VARCHAR}
+		</if>
+		<if test="publishStartTime != null and publishStartTime.trim()!=''">
+			<![CDATA[ and DATE_FORMAT(a.publish_time, '%Y%m%d%H%i%s') >= DATE_FORMAT(#{publishStartTime}, '%Y%m%d%H%i%s') ]]>
+		</if>
+		<if test="publishEndTime != null and publishEndTime.trim()!=''">
+			<![CDATA[ and DATE_FORMAT(a.publish_time, '%Y%m%d%H%i%s') <= DATE_FORMAT(#{publishEndTime}, '%Y%m%d%H%i%s') ]]>
+		</if>
+		<if test="publishStatus != null and publishStatus.trim()!=''">
+			and a.publish_status = #{publishStatus,jdbcType=CHAR}
+		</if>
+		AND a.publish_status = sd.`value`
+		AND a.type = ssd.`value`
+		AND ssd.type = #{typeType,jdbcType=CHAR}
+		AND sd.type = #{publishStatusType,jdbcType=CHAR}
+		ORDER BY a.publish_status DESC,a.publish_time DESC,a.ins_ymdhms DESC
+		<if test="pageFlag==true">
+		   LIMIT #{startPage}, #{endPage}
+		</if>
+	</where>
+  </select>
+  <!-- 手机端获取风清气正列表数据 -->
+  <select id="queryListByParam" resultType="java.util.Map"
+  		 parameterType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentVo">
+  	SELECT
+		IG.id,
+		IG.title,
+		IFNULL(IG.pic,'null') as pic,
+		IG.publish_time AS publishTime,
+		SD.lable as typeStr
+	FROM
+		m_incorrupt_government IG,
+		s_sys_data SD
+	<where>
+		IG.type = SD.`value`
+		AND SD.type = #{typeType,jdbcType=CHAR}
+		<if test="type != null and type.trim()!=''">
+			AND IG.type = #{type,jdbcType=VARCHAR}
+		</if>
+		<if test="publishStatus != null and publishStatus.trim()!=''">
+			AND IG.publish_status = #{publishStatus,jdbcType=CHAR}
+		</if>
+		<if test="title != null and title.trim()!=''">
+			AND IG.title LIKE CONCAT(CONCAT('%', #{title}),'%')
+		</if>
+		AND IG.DEL_FLAG = '0'
+	</where>		
+	<choose>
+		<when test="orderBy != null and orderBy == '01'">
+			ORDER BY IG.view_number DESC
+		</when>
+		<when test="orderBy != null and orderBy == '02'">
+			ORDER BY IG.reply_number DESC
+		</when>
+		<otherwise>
+			ORDER BY IG.publish_time DESC
+		</otherwise>
+	</choose>
+	<if test="pageFlag==true">
+	   LIMIT #{startPage}, #{endPage}
+	</if>
+  </select>
+  <!-- 热门推荐 -->
+  <select id="queryHotListByParam" resultType="java.util.Map"
+  		 parameterType="com.wooxun.geekdol.hbridge.vo.IncorruptGovernmentVo">
+  	SELECT
+		IG.id,
+		IG.title,
+		IFNULL(IG.pic,'null') as pic,
+		IG.publish_time AS publishTime,
+		SD.lable as typeStr
+	FROM
+		m_incorrupt_government IG,
+		s_sys_data SD
+	<where>
+		IG.type = SD.`value`
+		AND SD.type = #{typeType,jdbcType=CHAR}
+		<if test="publishStatus != null and publishStatus.trim()!=''">
+			AND IG.publish_status = #{publishStatus,jdbcType=CHAR}
+		</if>
+		AND IG.id != #{id,jdbcType=BIGINT}
+		AND IG.DEL_FLAG = '0'
+	</where>		
+		ORDER BY IG.view_number DESC
+	<if test="pageFlag==true">
+	   LIMIT #{startPage}, #{endPage}
+	</if>
+  </select>
+</mapper>

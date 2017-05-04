@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/Geekdol/!svn/ver/5375/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper
+END
+IncorruptGovernmentMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/Geekdol/!svn/ver/4231/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper/IncorruptGovernmentMapper.java
+END
+AdmNewsflashMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/Geekdol/!svn/ver/3790/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper/AdmNewsflashMapper.java
+END
+IncorruptGovernmentCommentMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/Geekdol/!svn/ver/5109/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper/IncorruptGovernmentCommentMapper.java
+END
+IncorruptGovernmentCommentRMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/Geekdol/!svn/ver/5109/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper/IncorruptGovernmentCommentRMapper.java
+END
+IncorruptRecommendMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/4658/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper/IncorruptRecommendMapper.java
+END
+IncorruptCommentRecommendMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/Geekdol/!svn/ver/5375/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper/IncorruptCommentRecommendMapper.java
+END
+NetizenSecurityMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Geekdol/!svn/ver/4271/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper/NetizenSecurityMapper.java
+END
+NetizenAcumenMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/Geekdol/!svn/ver/4075/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/mapper/NetizenAcumenMapper.java
+END

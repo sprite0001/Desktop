@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"> 
+		<property name="securityManager" ref="securityManager"/> 
+		<property name="loginUrl" value="/login"/> 
+	    <property name="successUrl" value="/main/index"/> 
+        <property name="filters">
+	        <map>
+	       		<entry key="authc" value-ref="captchaFormAuthenticationFilter"/>
+	            <entry key="user" value-ref="dWZUserFilter"/>
+	        </map>
+        </property>
+		<property name="filterChainDefinitions"> 
+            <value>
+            	/Captcha.jpg = anon
+                /static/** = anon
+                /login/repasswd = anon
+                /login/repasswd/reset = anon
+                /login = authc
+                /logout = logout
+                /** = user
+            </value>  
+		</property> 
+	</bean>
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"> 
+		<property name="realm" ref="myShiroRealm"/> 
+		<property name="cacheManager" ref="shiroEhcacheManager" />
+	</bean> 
+	
+	<!-- 用户授权信息Cache, 采用EhCache -->
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:ehcache/ehcache-shiro.xml"/>
+	</bean>
+	
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/> 
+	
+	<bean id="captchaFormAuthenticationFilter" class="com.soft863.dolphin.shiro.CaptchaFormAuthenticationFilter"/>
+	<bean id="dWZUserFilter" class="com.soft863.dolphin.shiro.DWZUserFilter"/>
+	
+	<bean id="myShiroRealm" class="com.wooxun.geekdol.shiro.MyShiroRealm">
+		<property name="imageCaptchaService" ref="captchaService"/>
+		<!-- 是否使用验证码 -->
+		<property name="useCaptcha" value="false"/>
+		<!-- 使用MD5验证密码 -->
+		<property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"/>
+            </bean>
+        </property>
+	</bean>
+	
+
+
+</beans>

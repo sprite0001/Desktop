@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/aroundStore
+END
+aroundstoreCommentReply.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/aroundStore/aroundstoreCommentReply.jsp
+END
+aroundstoreComment.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/aroundStore/aroundstoreComment.jsp
+END
+aroundstoreEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Geekdol/!svn/ver/4278/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/aroundStore/aroundstoreEdit.jsp
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/aroundStore/list.jsp
+END
+aroundstoreAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/3739/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/aroundStore/aroundstoreAdd.jsp
+END
+villageSelect.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/3697/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/aroundStore/villageSelect.jsp
+END
+countySuggest.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/4160/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/aroundStore/countySuggest.jsp
+END

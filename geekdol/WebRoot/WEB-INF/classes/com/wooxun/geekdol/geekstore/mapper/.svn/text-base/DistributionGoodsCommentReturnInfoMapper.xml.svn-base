@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.DistributionGoodsCommentReturnInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.DistributionGoodsCommentReturnInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="comment_id" property="commentId" jdbcType="BIGINT" />
+    <result column="comment_return_info" property="commentReturnInfo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="opreater" property="opreater" jdbcType="BIGINT" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="discuss_time" property="discussTime" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, comment_id, comment_return_info, status, opreater, opreater_ip, discuss_time, 
+    ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_distribution_goods_comment_return_info
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_distribution_goods_comment_return_info
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoodsCommentReturnInfo" >
+    insert into j_distribution_goods_comment_return_info (id, comment_id, comment_return_info, 
+      status, opreater, opreater_ip, 
+      discuss_time, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag)
+    values (#{id,jdbcType=BIGINT}, #{commentId,jdbcType=BIGINT}, #{commentReturnInfo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=CHAR}, #{opreater,jdbcType=BIGINT}, #{opreaterIp,jdbcType=VARCHAR}, 
+      #{discussTime,jdbcType=TIMESTAMP}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoodsCommentReturnInfo" >
+    insert into j_distribution_goods_comment_return_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="commentReturnInfo != null" >
+        comment_return_info,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="opreater != null" >
+        opreater,
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip,
+      </if>
+      <if test="discussTime != null" >
+        discuss_time,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=BIGINT},
+      </if>
+      <if test="commentReturnInfo != null" >
+        #{commentReturnInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="opreater != null" >
+        #{opreater,jdbcType=BIGINT},
+      </if>
+      <if test="opreaterIp != null" >
+        #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="discussTime != null" >
+        #{discussTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoodsCommentReturnInfo" >
+    update j_distribution_goods_comment_return_info
+    <set >
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=BIGINT},
+      </if>
+      <if test="commentReturnInfo != null" >
+        comment_return_info = #{commentReturnInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="opreater != null" >
+        opreater = #{opreater,jdbcType=BIGINT},
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="discussTime != null" >
+        discuss_time = #{discussTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+      and del_flag = '0'
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.DistributionGoodsCommentReturnInfo" >
+    update j_distribution_goods_comment_return_info
+    set comment_id = #{commentId,jdbcType=BIGINT},
+      comment_return_info = #{commentReturnInfo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      opreater = #{opreater,jdbcType=BIGINT},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      discuss_time = #{discussTime,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+      and del_flag = '0'
+  </update>
+  
+  <!-- 根据评论人ID以及条件查看所有回复人的数据 -->
+  <select id="commentReturninfo" parameterType="com.wooxun.geekdol.geekstore.vo.DistributionGoodsCommentReturnInfoVo" resultType="com.wooxun.geekdol.geekstore.vo.DistributionGoodsCommentReturnInfoVo" >
+    select i.id,
+   s.real_name as realName,i.opreater_ip as opreaterIp,i.comment_return_info as commentReturnInfo,
+   i.status as status,i.ins_ymdhms as insYmdhms,i.discuss_time as discussTime
+    from j_distribution_goods_comment_return_info i,s_app_user s where 
+    i.opreater = s.id
+    and i.comment_id = #{commentId,jdbcType=BIGINT} and i.del_flag = '0'
+    <if test="commentReturnInfo != null and commentReturnInfo.trim()!=''" >
+      and  i.comment_return_info like CONCAT('%',CONCAT(#{commentReturnInfo},'%'))
+      </if>
+      <if test="status != null and status !=''" >
+       and i.status = #{status,jdbcType=CHAR}
+      </if>
+      <if test="realName != null and realName.trim()!=''" >
+      and  s.real_name like CONCAT('%',CONCAT(#{realName},'%'))
+      </if>
+      order by i.discuss_time desc
+  </select>
+  
+   <!-- 根据评论人ID查询回复人的回复数 以及违规数-->
+  <select id="findReturnInfoCount" parameterType="com.wooxun.geekdol.geekstore.vo.DistributionGoodsCommentReturnInfoVo" resultType="java.lang.Long" >
+    select 
+   count(*)
+    from j_distribution_goods_comment_return_info where 
+     comment_id = #{commentId,jdbcType=BIGINT}
+     and del_flag = '0'
+    <if test="status != null and status.trim()!=''" >
+      and  status = #{status,jdbcType=CHAR}
+      </if>
+  </select>
+    <!-- 根据评论删除回复 -->
+  <delete id="deleteBycommentId" parameterType="java.lang.Long">
+    delete from j_distribution_goods_comment_return_info
+    where comment_id = #{commentId,jdbcType=BIGINT}
+    and del_flag = '0'
+  </delete>
+</mapper>

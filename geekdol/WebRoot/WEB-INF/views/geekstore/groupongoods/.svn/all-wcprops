@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/groupongoods
+END
+grouponcommentView.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/groupongoods/grouponcommentView.jsp
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/groupongoods/list.jsp
+END
+grouponGoodsEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/groupongoods/grouponGoodsEdit.jsp
+END
+commentReturnInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/groupongoods/commentReturnInfo.jsp
+END
+grouponGoodsAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/groupongoods/grouponGoodsAdd.jsp
+END

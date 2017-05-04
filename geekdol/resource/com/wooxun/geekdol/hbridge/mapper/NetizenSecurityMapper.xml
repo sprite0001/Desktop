@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.NetizenSecurityMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.NetizenSecurity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="news_time" property="newsTime" jdbcType="TIMESTAMP" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="views_number" property="viewsNumber" jdbcType="INTEGER" />
+    <result column="publish_person_id" property="publishPersonId" jdbcType="BIGINT" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="publish_status" property="publishStatus" jdbcType="CHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.hbridge.model.NetizenSecurity" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, news_time, summary, source, views_number, picture, publish_person_id, publish_time, 
+    publish_status, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from m_netizen_security
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_netizen_security
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.NetizenSecurity" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_netizen_security (id, title, news_time, 
+      summary, source, views_number, 
+      publish_person_id, publish_time, publish_status, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag, 
+      content, picture)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{newsTime,jdbcType=TIMESTAMP}, 
+      #{summary,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{viewsNumber,jdbcType=INTEGER}, 
+      #{publishPersonId,jdbcType=BIGINT}, #{publishTime,jdbcType=TIMESTAMP}, #{publishStatus,jdbcType=CHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR}, #{picture,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.NetizenSecurity" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_netizen_security
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="newsTime != null" >
+        news_time,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="viewsNumber != null" >
+        views_number,
+      </if>
+      <if test="publishPersonId != null" >
+        publish_person_id,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="publishStatus != null" >
+        publish_status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null" >
+        #{newsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="viewsNumber != null" >
+        #{viewsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="publishPersonId != null" >
+        #{publishPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.NetizenSecurity" >
+    update m_netizen_security
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null" >
+        news_time = #{newsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="viewsNumber != null" >
+        views_number = #{viewsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="publishPersonId != null" >
+        publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        publish_status = #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.hbridge.model.NetizenSecurity" >
+    update m_netizen_security
+    set title = #{title,jdbcType=VARCHAR},
+      news_time = #{newsTime,jdbcType=TIMESTAMP},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      views_number = #{viewsNumber,jdbcType=INTEGER},
+      publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      picture = #{picture,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.NetizenSecurity" >
+    update m_netizen_security
+    set title = #{title,jdbcType=VARCHAR},
+      news_time = #{newsTime,jdbcType=TIMESTAMP},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      views_number = #{viewsNumber,jdbcType=INTEGER},
+      publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      picture = #{picture,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 更新网安报相关参数 -->
+  <update id="updateNetizenSecurityAnyParam" parameterType="com.wooxun.geekdol.hbridge.model.NetizenSecurity" >
+    update m_netizen_security
+    <set >
+    	publish_person_id = #{publishPersonId,jdbcType=BIGINT},
+    	publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTime != null" >
+        news_time = #{newsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="viewsNumber != null" >
+        views_number = #{viewsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="publishStatus != null" >
+        publish_status = #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 根据网安报参数查询网安报个数 -->
+  <select id="selectNetizenSecurityCountByParam" parameterType="com.wooxun.geekdol.hbridge.vo.NetizenSecurityVo" resultType="java.lang.Long">
+  SELECT COUNT(1)
+  FROM m_netizen_security ns 
+  	LEFT JOIN security_user su ON ns.publish_person_id = su.id AND su.del_flag = '0'
+  	WHERE ns.del_flag = '0' 
+  	<if test="title != null and title.trim() != ''" >
+	  AND ns.title LIKE CONCAT('%',#{title},'%')
+    </if>
+  	<if test="startTime != null and startTime.trim() != ''">
+  	  AND DATE_FORMAT(ns.news_time,'%Y-%m-%d') &gt;= DATE_FORMAT(#{startTime},'%Y-%m-%d')
+  	</if>
+  	<if test="endTime != null and endTime.trim() != ''">
+  	  AND DATE_FORMAT(ns.news_time,'%Y-%m-%d') &lt;= DATE_FORMAT(#{endTime},'%Y-%m-%d')
+  	</if>
+  	<if test="publishStatus != null and publishStatus.trim() != ''" >
+	  AND ns.publish_status = #{publishStatus,jdbcType=CHAR}
+    </if>
+  </select>
+  
+  <!-- 根据网安报参数查询网安报列表 -->
+  <select id="selectNetizenSecurityListByParam" parameterType="com.wooxun.geekdol.hbridge.vo.NetizenSecurityVo" resultType="com.wooxun.geekdol.hbridge.vo.NetizenSecurityVo">
+  SELECT ns.id, ns.title, ns.news_time AS newsTime, ns.summary, ns.source, 
+  	ns.views_number AS viewsNumber, ns.publish_person_id AS publishPersonId, 
+  	ns.publish_time AS publishTime, ns.publish_status AS publishStatus, ns.content,
+  	ns.ins_id AS insId, ns.ins_ymdhms AS insYmdhms, ns.upd_id AS updId, 
+  	ns.upd_ymdhms AS updYmdhms, ns.upd_eac AS updEac, ns.del_flag AS delFlag, 
+  	ns.picture, su.real_name AS publishPersonName
+  FROM m_netizen_security ns 
+  	LEFT JOIN security_user su ON ns.publish_person_id = su.id AND su.del_flag = '0'
+  	WHERE ns.del_flag = '0' 
+  	<if test="title != null and title.trim() != ''" >
+	  AND ns.title LIKE CONCAT('%',#{title},'%')
+    </if>
+  	<if test="startTime != null and startTime.trim() != ''">
+  	  AND DATE_FORMAT(ns.news_time,'%Y-%m-%d') &gt;= DATE_FORMAT(#{startTime},'%Y-%m-%d')
+  	</if>
+  	<if test="endTime != null and endTime.trim() != ''">
+  	  AND DATE_FORMAT(ns.news_time,'%Y-%m-%d') &lt;= DATE_FORMAT(#{endTime},'%Y-%m-%d')
+  	</if>
+  	<if test="publishStatus != null and publishStatus.trim() != ''" >
+	  AND ns.publish_status = #{publishStatus,jdbcType=CHAR}
+    </if>
+    ORDER BY ns.publish_time DESC, ns.upd_ymdhms DESC
+    <if test="pageFlag==true">
+		LIMIT #{startPage}, #{endPage}
+	</if>
+  </select>
+  
+  <!-- 根据网安报参数查询网安报推荐列表 -->
+  <select id="selectHotNetizenSecurityListByParam" parameterType="com.wooxun.geekdol.hbridge.vo.NetizenSecurityVo" resultType="com.wooxun.geekdol.hbridge.vo.NetizenSecurityVo">
+  SELECT ns.id, ns.title, ns.news_time AS newsTime, ns.summary, ns.source, 
+  	ns.views_number AS viewsNumber, ns.publish_person_id AS publishPersonId, 
+  	ns.publish_time AS publishTime, ns.publish_status AS publishStatus, ns.content,
+  	ns.ins_id AS insId, ns.ins_ymdhms AS insYmdhms, ns.upd_id AS updId, 
+  	ns.upd_ymdhms AS updYmdhms, ns.upd_eac AS updEac, ns.del_flag AS delFlag, 
+  	ns.picture, su.real_name AS publishPersonName
+  FROM m_netizen_security ns 
+  	LEFT JOIN security_user su ON ns.publish_person_id = su.id AND su.del_flag = '0'
+  	WHERE ns.del_flag = '0' 
+  	  AND ns.id &lt;&gt; #{id,jdbcType=BIGINT}
+  	<if test="title != null and title.trim() != ''" >
+	  AND ns.title LIKE CONCAT('%',#{title},'%')
+    </if>
+	  AND ns.publish_status = #{publishStatus,jdbcType=CHAR}
+    ORDER BY ns.views_number DESC
+		LIMIT #{startPage}, #{endPage}
+  </select>
+  
+</mapper>

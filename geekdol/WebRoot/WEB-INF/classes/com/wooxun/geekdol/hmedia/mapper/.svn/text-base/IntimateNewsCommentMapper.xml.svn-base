@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.IntimateNewsCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.IntimateNewsComment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="in_id" property="inId" jdbcType="BIGINT" />
+    <result column="illegal_status" property="illegalStatus" jdbcType="CHAR" />
+    <result column="likes_number" property="likesNumber" jdbcType="INTEGER" />
+    <result column="hate_number" property="hateNumber" jdbcType="INTEGER" />
+    <result column="view_number" property="viewNumber" jdbcType="INTEGER" />
+    <result column="reply_number" property="replyNumber" jdbcType="INTEGER" />
+    <result column="illegal_number" property="illegalNumber" jdbcType="INTEGER" />
+    <result column="opreater_ip" property="opreaterIp" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <association property="appUser" column="ins_id" select="com.wooxun.geekdol.system.mapper.AppUserMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.hmedia.model.IntimateNewsComment" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, in_id, illegal_status, likes_number, hate_number, view_number, reply_number, 
+    illegal_number, opreater_ip, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from m_intimate_new_comment
+    where id = #{id,jdbcType=BIGINT}
+     and del_flag = '0'
+     and illegal_status='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_intimate_new_comment
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsComment" >
+    insert into m_intimate_new_comment (id, in_id, illegal_status, 
+      likes_number, hate_number, view_number, 
+      reply_number, illegal_number, opreater_ip, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{inId,jdbcType=BIGINT}, #{illegalStatus,jdbcType=CHAR}, 
+      #{likesNumber,jdbcType=INTEGER}, #{hateNumber,jdbcType=INTEGER}, #{viewNumber,jdbcType=INTEGER}, 
+      #{replyNumber,jdbcType=INTEGER}, #{illegalNumber,jdbcType=INTEGER}, #{opreaterIp,jdbcType=VARCHAR}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsComment" >
+    insert into m_intimate_new_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="inId != null" >
+        in_id,
+      </if>
+      <if test="illegalStatus != null" >
+        illegal_status,
+      </if>
+      <if test="likesNumber != null" >
+        likes_number,
+      </if>
+      <if test="hateNumber != null" >
+        hate_number,
+      </if>
+      <if test="viewNumber != null" >
+        view_number,
+      </if>
+      <if test="replyNumber != null" >
+        reply_number,
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number,
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="inId != null" >
+        #{inId,jdbcType=BIGINT},
+      </if>
+      <if test="illegalStatus != null" >
+        #{illegalStatus,jdbcType=CHAR},
+      </if>
+      <if test="likesNumber != null" >
+        #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="opreaterIp != null" >
+        #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsComment" >
+    update m_intimate_new_comment
+    <set >
+      <if test="inId != null" >
+        in_id = #{inId,jdbcType=BIGINT},
+      </if>
+      <if test="illegalStatus != null" >
+        illegal_status = #{illegalStatus,jdbcType=CHAR},
+      </if>
+      <if test="likesNumber != null" >
+        likes_number = #{likesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="hateNumber != null" >
+        hate_number = #{hateNumber,jdbcType=INTEGER},
+      </if>
+      <if test="viewNumber != null" >
+        view_number = #{viewNumber,jdbcType=INTEGER},
+      </if>
+      <if test="replyNumber != null" >
+        reply_number = #{replyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="illegalNumber != null" >
+        illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      </if>
+      <if test="opreaterIp != null" >
+        opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsComment" >
+    update m_intimate_new_comment
+    set in_id = #{inId,jdbcType=BIGINT},
+      illegal_status = #{illegalStatus,jdbcType=CHAR},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      hate_number = #{hateNumber,jdbcType=INTEGER},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.IntimateNewsComment" >
+    update m_intimate_new_comment
+    set in_id = #{inId,jdbcType=BIGINT},
+      illegal_status = #{illegalStatus,jdbcType=CHAR},
+      likes_number = #{likesNumber,jdbcType=INTEGER},
+      hate_number = #{hateNumber,jdbcType=INTEGER},
+      view_number = #{viewNumber,jdbcType=INTEGER},
+      reply_number = #{replyNumber,jdbcType=INTEGER},
+      illegal_number = #{illegalNumber,jdbcType=INTEGER},
+      opreater_ip = #{opreaterIp,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+ <!-- 查询贴心报一级评论列表 -->
+  <select id="selectIntimateNewsCommentList" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsCommentVo" resultType="com.wooxun.geekdol.hmedia.vo.IntimateNewsCommentVo">
+    SELECT 
+    a.in_id as intimateNewsId,
+    a.id AS id, a.content AS content, a.illegal_status AS illegalStatus, 
+        a.opreater_ip AS opreaterIp, b.nick_name AS insName, 
+        concat_ws('/',a.likes_number, a.hate_number) AS likesOrhate, 
+        concat_ws('/',a.view_number,a.reply_number,a.illegal_number) AS viewReplyIllegalNumber, 
+        a.ins_id AS insId, a.ins_ymdhms AS insYmdhms, a.upd_id AS updId, a.upd_ymdhms AS updYmdhms, 
+        a.upd_eac AS updEac, a.del_flag AS delFlag
+    FROM m_intimate_new_comment a, s_app_user b 
+        WHERE a.in_id = #{intimateNewsId,jdbcType=BIGINT} 
+        AND a.ins_id = b.id 
+        AND a.del_flag = '0' 
+        AND b.del_flag = '0' 
+        and b.status='0'
+        <if test="insName != null and insName.trim() != ''" >
+          AND b.nick_name LIKE CONCAT('%',CONCAT(#{insName},'%'))
+        </if>
+        <if test="content != null and content.trim() != ''" >
+          AND a.content LIKE CONCAT('%',CONCAT(#{content},'%'))
+        </if>
+        <if test="illegalStatus != null and illegalStatus.trim() != ''" >
+          AND a.illegal_status = #{illegalStatus,jdbcType=CHAR}
+        </if>
+        <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+        </if>
+  </select>
+  
+  <!-- 查询贴心报一级评论数量 -->
+  <select id="selectIntimateNewsCommentListCount" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsCommentVo" resultType="java.lang.Long">
+    SELECT COUNT(1)
+    FROM m_intimate_new_comment a, s_app_user b 
+        WHERE a.in_id = #{intimateNewsId,jdbcType=BIGINT} 
+        AND a.ins_id = b.id 
+        AND a.del_flag = '0' 
+        AND b.del_flag = '0' 
+        and b.status='0' 
+    <if test="insName != null and insName.trim() != ''" >
+      AND b.nick_name LIKE CONCAT('%',CONCAT(#{insName},'%'))
+    </if>
+    <if test="content != null and content.trim() != ''" >
+      AND a.content LIKE CONCAT('%',CONCAT(#{content},'%'))
+    </if>
+    <if test="illegalStatus != null and illegalStatus.trim() != ''" >
+      AND a.illegal_status = #{illegalStatus,jdbcType=CHAR}
+    </if>
+  </select>
+ 
+ 
+ <!-- 查询贴心报一级评论详情 -->
+  <select id="selectIntimateNewsCommentDetail" parameterType="java.lang.Long" resultType="com.wooxun.geekdol.hmedia.vo.IntimateNewsCommentVo">
+    SELECT a.id AS id, a.content AS content, a.illegal_status AS illegalStatus, 
+        a.opreater_ip AS opreaterIp, b.nick_name AS insName, 
+        concat_ws('/',a.likes_number, a.hate_number) AS likesOrhate, 
+        concat_ws('/',a.view_number,a.reply_number,a.illegal_number) AS viewReplyIllegalNumber, 
+        a.ins_id AS insId, a.ins_ymdhms AS insYmdhms, a.upd_id AS updId, a.upd_ymdhms AS updYmdhms, 
+        a.upd_eac AS updEac, a.del_flag AS delFlag,a.in_id as intimateNewsId,a.illegal_number as illegalNumber
+    FROM m_intimate_new_comment a,s_app_user b
+        WHERE a.id = #{id,jdbcType=BIGINT} 
+        and a.ins_id=b.id
+        AND a.del_flag = '0' 
+  </select>
+  
+   <!-- app根据评论id查到评论 -->
+  <select id="findAppIntimateNewsCommentDetail" parameterType="java.lang.Long" resultType="com.wooxun.geekdol.hmedia.vo.IntimateNewsCommentVo">
+    SELECT a.id AS id, a.content AS content, a.illegal_status AS illegalStatus, 
+        a.opreater_ip AS opreaterIp,
+        a.likes_number as likesNumber,
+        a.hate_number as hateNumber,
+        a.view_number as viewNumber,
+        a.reply_number as replyNumber,
+        a.illegal_number as illegalNumber,
+        a.ins_id AS insId, a.ins_ymdhms AS insYmdhms, a.upd_id AS updId, a.upd_ymdhms AS updYmdhms, 
+        a.upd_eac AS updEac, a.del_flag AS delFlag
+    FROM m_intimate_new_comment a
+        WHERE a.id = #{id,jdbcType=BIGINT} 
+        AND a.del_flag = '0' 
+  </select>
+  
+  
+    <!-- app查找评论列表 -->
+  <select id="selectCommentList" parameterType="com.wooxun.geekdol.hmedia.vo.IntimateNewsCommentVo" resultMap="BaseResultMap">
+    select 
+    a.*
+    from 
+    m_intimate_new_comment a,
+    s_app_user b
+    where a.in_id = #{intimateNewsId,jdbcType=BIGINT}
+    and a.del_flag = '0'
+    <if test="illegalFlag==true" >
+      AND a.illegal_status = '0'
+    </if>
+    and a.ins_id=b.id
+    and b.status='0'
+    and b.del_flag='0'
+    order by a.ins_ymdhms desc
+    <if test="pageFlag==true">
+        LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  
+    <!-- app查找用户当天进行评论的列表 -->
+  <select id="selectIntimateNewsCommentByDay" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_intimate_new_comment
+    where in_id = #{intimateNewsId}
+    and del_flag = '0'
+    and ins_id = #{appUserId}
+    and #{startTime} &lt;= date_format(ins_ymdhms,'%Y-%m-%d %H:%i:%s')
+    and date_format(ins_ymdhms,'%Y-%m-%d %H:%i:%s') &lt;= #{endTime}
+  </select>
+  
+  <!-- app查找用户当天对贴心报一级评论进行过的点赞或倒赞记录 -->
+  <!-- <select id="selectCommentByDay" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_intimate_new_comment
+    where id = #{commentId}
+    and del_flag = '0'
+    and upd_id = #{appUserId}
+    and #{startTime} &lt;= date_format(upd_ymdhms,'%Y-%m-%d %H:%i:%s')
+    and date_format(upd_ymdhms,'%Y-%m-%d %H:%i:%s') &lt;= #{endTime}
+  </select> -->
+  
+</mapper>

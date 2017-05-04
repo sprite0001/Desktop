@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/Geekdol/!svn/ver/5359/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller
+END
+CityDistrictNoticeControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/Geekdol/!svn/ver/5359/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller/CityDistrictNoticeControl.java
+END
+StaffControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/3793/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller/StaffControl.java
+END
+VillageNoticeControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/5359/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller/VillageNoticeControl.java
+END
+NetizenSecurityController.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/Geekdol/!svn/ver/5077/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller/NetizenSecurityController.java
+END
+NetizenAcumenController.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/Geekdol/!svn/ver/5247/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller/NetizenAcumenController.java
+END
+StaffLevelControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Geekdol/!svn/ver/3793/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller/StaffLevelControl.java
+END
+AdmNewsflashControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/5072/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller/AdmNewsflashControl.java
+END
+IncorruptGovernmentController.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/Geekdol/!svn/ver/5109/source/backstage/geekdol/src/com/wooxun/geekdol/hbridge/controller/IncorruptGovernmentController.java
+END

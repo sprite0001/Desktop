@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.UserAreaMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.UserArea" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="area_level" property="areaLevel" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="village_name" property="villageName" jdbcType="CHAR" />
+    <association property="user" column="user_id" select="com.wooxun.geekdol.system.mapper.UserMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="com.wooxun.geekdol.system.vo.UserAreaVo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="area_level" property="areaLevel" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="village_name" property="villageName" jdbcType="CHAR" />
+    <association property="user" column="user_id" select="com.wooxun.geekdol.system.mapper.UserMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <!-- 基础字段 -->
+  <sql id="Base_Column_List" >
+    id, user_id, area_id, area_level, ins_id, ins_ymdhms, 
+    upd_eac, upd_ymdhms, upd_id, del_flag
+  </sql>
+  <!-- 根据主键获取数据 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_user_area
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <!-- 根据主键删除数据 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_user_area
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <!-- 插入数据 -->
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.UserArea" >
+    insert into s_user_area (id, user_id, area_id, 
+      area_level, ins_id, 
+      ins_ymdhms, upd_eac, 
+      upd_ymdhms, upd_id, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{areaId,jdbcType=BIGINT}, 
+      #{areaLevel,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.UserArea" >
+    insert into s_user_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaLevel != null" >
+        area_level,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaLevel != null" >
+        #{areaLevel,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.UserArea" >
+    update s_user_area
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaLevel != null" >
+        area_level = #{areaLevel,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.UserArea" >
+    update s_user_area
+    set user_id = #{userId,jdbcType=BIGINT},
+      area_id = #{areaId,jdbcType=BIGINT},
+      area_level = #{areaLevel,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+    <!-- 条件查询，查询列表 -->
+    <select id="selectList" parameterType="com.wooxun.geekdol.system.vo.UserAreaVo" resultMap="BaseResultMap">
+    select 
+    	u.*
+    from s_user_area u
+    <where>
+    	
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT}
+      </if>
+       <if test="areaId != null" >
+          AND u.area_id = #{areaId,jdbcType=BIGINT}
+      </if>
+      <if test="areaLevel != null and areaLevel.trim()!=''" >
+          AND u.area_level = #{areaLevel,jdbcType=CHAR}
+      </if>
+     	AND u.del_flag='0'
+    </where> 
+    	order by u.ins_ymdhms DESC
+	    <if test="pageFlag==true">
+			LIMIT #{startPage}, #{endPage}
+		</if>
+  </select>
+  <!-- 条件查询，查询符合条件的数量 -->
+   <select id="selectListCount" parameterType="com.wooxun.geekdol.system.vo.UserVo" resultType="java.lang.Long">
+    select 
+    count(*)
+    from s_user_area u
+    <where>
+    	
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT}
+      </if>
+       <if test="areaId != null" >
+          AND u.area_id = #{areaId,jdbcType=BIGINT}
+      </if>
+      <if test="areaLevel != null and areaLevel.trim()!=''" >
+          AND u.area_level = #{areaLevel,jdbcType=CHAR}
+      </if>
+        AND u.del_flag='0'
+    </where> 
+    	order by u.ins_ymdhms DESC
+  </select>
+  
+  <!-- 查询传入的区域ID是否有已被分配的区域 -->
+   <select id="selectIsManagerCount" parameterType="java.lang.String" resultType="java.lang.Long">
+    select 
+    count(*)
+    from s_user_area u where u.area_id in ("$areaIds") and u.del_flag='0'
+  </select>
+  
+  <!-- 批量插入用户区域关系表 -->
+  <insert id="insertList" useGeneratedKeys="true" parameterType="java.util.List">
+  <![CDATA[
+    insert into s_user_area (user_id,area_id,area_level,ins_id,ins_ymdhms,upd_eac,upd_id,upd_ymdhms,del_flag)   
+    values
+    ]]>
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (
+          #{item.userId,jdbcType=BIGINT}, #{item.areaId,jdbcType=BIGINT}, 
+	      #{item.areaLevel,jdbcType=CHAR}, #{item.insId,jdbcType=BIGINT}, 
+	      #{item.insYmdhms,jdbcType=TIMESTAMP}, #{item.updEac,jdbcType=BIGINT}, 
+	      #{item.updId,jdbcType=BIGINT}, #{item.updYmdhms,jdbcType=TIMESTAMP}, #{item.delFlag,jdbcType=CHAR}
+        )
+    </foreach>  
+  </insert> 
+  <!-- 批量删除用户区域关系表 -->
+  <delete id = "deleteList" parameterType = "java.util.List">  
+	    <foreach collection="list" item = "model" open="" separator=";" close="">
+	        <![CDATA[  
+	           delete from s_user_area where user_id = #{model.userId} and area_id=#{model.areaId} and area_level = #{model.areaLevel}
+	        ]]>
+	    </foreach>  
+  </delete>  
+  
+  <!-- 社区电话管理   广告管理   新增时查询用户对应的所有小区 -->  
+   <select id="selectAll" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+        *
+    from s_user_area u,s_village v
+    where u.user_id=#{userId}
+     and u.del_flag='0'
+     and v.del_flag='0'
+     and u.area_level='05'
+     and u.area_id=v.village_id
+  </select>
+  
+  <!-- 周边店管理：根据参数查询用户管理区域信息 -->  
+   <select id="selectUserAreaByParam" parameterType="map" resultType="com.wooxun.geekdol.system.model.UserArea">
+   SELECT t.id AS id, t.user_id AS userId, t.area_id AS areaId, t.area_level AS areaLevel, 
+   			t.ins_id AS insId, t.ins_ymdhms AS insYmdhms, t.upd_eac AS updEac, 
+   			t.upd_ymdhms AS updYmdhms, t.upd_id AS updId, t.del_flag AS delFlag, 
+	    	u.id "user.id", u.user_name "user.userName", u.real_name "user.realName", 
+	    	u.email "user.email", u.moblie "user.moblie", u.user_type "user.userType",
+	    	u.province_id "user.provinceId" u.city_id "user.cityId"
+		FROM ( SELECT
+				id, user_id, area_id, area_level, ins_id, ins_ymdhms, 
+		    	upd_eac, upd_ymdhms, upd_id, del_flag
+			FROM
+				s_user_area
+			WHERE
+				del_flag = '0'
+				AND area_level = #{areaLevel,jdbcType=CHAR}
+				<if test="hasSugUserList.size() > 0" >
+				AND user_id NOT IN
+					<foreach item="item1" index="index" collection="hasSugUserList" 
+		                     open="(" separator="," close=")">
+		                    #{item1.id}
+		            </foreach>
+				</if>
+				<if test="villageList.size() > 0" >
+				AND area_id IN
+					<foreach item="item2" index="index" collection="villageList" 
+		                     open="(" separator="," close=")">
+		                    #{item2.villageId}
+		            </foreach>
+				</if>
+				GROUP BY user_id 
+			) t, security_user_role t1, security_role t2 
+			inner join security_user u on t.user_id = u.id
+				WHERE 
+					t.user_id = t1.user_id
+					AND t1.role_id = t2.role_id
+					AND t2.name = #{roleName}
+  </select>
+  
+    <!-- 条件查询，查询列表，关联查询区域和用户表 -->
+    <select id="selectListAndAreaUser" parameterType="java.util.Map" resultMap="BaseResultMapVo">
+    select u.* from s_user_area u,security_user su 
+    <where>
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT} and su.id = u.user_id and su.status = '0' and su.del_flag = '0'
+      </if>
+      <if test="areaLevel != null and areaLevel.trim()!=''" >
+          <!-- 关联省份查询 -->
+          <if test="areaLevel == '01'" >
+           and u.area_level = '01' and u.area_id in(
+            select ar.province_id from s_province ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = u.area_id and u.area_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+          <!-- 关联市区查询 -->
+          <if test="areaLevel == '02'" >
+           and u.area_level = '02' and u.area_id in(
+            select ar.city_id from s_city ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+               <if test="cityId != null" >
+                   and ar.city_id = u.area_id and u.area_id = #{cityId,jdbcType=BIGINT}
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+          <!-- 关联县区查询 -->
+          <if test="areaLevel == '03'" >
+           and u.area_level = '03' and u.area_id in(
+            select ar.county_id from s_county ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+               <if test="cityId != null" >
+                   and ar.city_id = #{cityId,jdbcType=BIGINT}
+               </if>
+               <if test="countyId != null" >
+                   and ar.county_id = u.area_id and u.area_id = #{countyId,jdbcType=BIGINT}
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+          <!-- 关联社区查询 -->
+          <if test="areaLevel == '04'" >
+           and u.area_level = '04' and u.area_id in(
+            select ar.community_id from s_community ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+               <if test="cityId != null" >
+                   and ar.city_id = #{cityId,jdbcType=BIGINT}
+               </if>
+               <if test="countyId != null" >
+                   and ar.county_id = #{countyId,jdbcType=BIGINT}
+               </if>
+               <if test="communityId != null" >
+                   and ar.community_id = u.area_id and u.area_id = #{communityId,jdbcType=BIGINT}
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+          <!-- 关联小区查询 -->
+          <if test="areaLevel == '05'" >
+           and u.area_level = '05' and u.area_id in(
+            select ar.village_id from s_village ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+               <if test="cityId != null" >
+                   and ar.city_id = #{cityId,jdbcType=BIGINT}
+               </if>
+               <if test="countyId != null" >
+                   and ar.county_id = #{countyId,jdbcType=BIGINT}
+               </if>
+               <if test="communityId != null" >
+                   and ar.community_id = #{communityId,jdbcType=BIGINT}
+               </if>
+               <if test="villageName != null and villageName.trim()!=''" >
+                   and ar.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+      </if>
+        AND u.del_flag='0'
+    </where> 
+        order by u.ins_ymdhms DESC
+        <if test="pageFlag==true">
+            LIMIT #{startPage}, #{endPage}
+        </if>
+  </select>
+  
+  <!-- 条件查询，查询数量，关联查询区域和用户表 -->
+    <select id="selectCountAndAreaUser" parameterType="java.util.Map" resultType="java.lang.Long">
+    select count(*) from s_user_area u,security_user su 
+    <where>
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT} and su.id = u.user_id and su.status = '0' and su.del_flag = '0'
+      </if>
+      <if test="areaLevel != null and areaLevel.trim()!=''" >
+          <!-- 关联省份查询 -->
+          <if test="areaLevel == '01'" >
+          and u.area_id in(
+            select ar.province_id from s_province ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = u.area_id and u.area_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+          <!-- 关联市区查询 -->
+          <if test="areaLevel == '02'" >
+          and u.area_id in(
+            select ar.city_id from s_city ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+               <if test="cityId != null" >
+                   and ar.city_id = u.area_id and u.area_id = #{cityId,jdbcType=BIGINT}
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+          <!-- 关联县区查询 -->
+          <if test="areaLevel == '03'" >
+          and u.area_id in(
+            select ar.county_id from s_county ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+               <if test="cityId != null" >
+                   and ar.city_id = #{cityId,jdbcType=BIGINT}
+               </if>
+               <if test="countyId != null" >
+                   and ar.county_id = u.area_id and u.area_id = #{countyId,jdbcType=BIGINT}
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+          <!-- 关联社区查询 -->
+          <if test="areaLevel == '04'" >
+          and u.area_id in(
+            select ar.community_id from s_community ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+               <if test="cityId != null" >
+                   and ar.city_id = #{cityId,jdbcType=BIGINT}
+               </if>
+               <if test="countyId != null" >
+                   and ar.county_id = #{countyId,jdbcType=BIGINT}
+               </if>
+               <if test="communityId != null" >
+                   and ar.community_id = u.area_id and u.area_id = #{communityId,jdbcType=BIGINT}
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+          <!-- 关联小区查询 -->
+          <if test="areaLevel == '05'" >
+          and u.area_id in(
+            select ar.village_id from s_village ar where 1=1 
+               <if test="provinceId != null" >
+                   and ar.province_id = #{provinceId,jdbcType=BIGINT}
+               </if>
+               <if test="cityId != null" >
+                   and ar.city_id = #{cityId,jdbcType=BIGINT}
+               </if>
+               <if test="countyId != null" >
+                   and ar.county_id = #{countyId,jdbcType=BIGINT}
+               </if>
+               <if test="communityId != null" >
+                   and ar.community_id = #{communityId,jdbcType=BIGINT}
+               </if>
+               <if test="villageName != null and villageName.trim()!=''" >
+                   and ar.village_name LIKE CONCAT(CONCAT('%', #{villageName}),'%')
+               </if>
+                and ar.del_flag = '0'
+          )
+          </if>
+      </if>
+        AND u.del_flag='0'
+    </where> 
+    order by u.ins_ymdhms DESC
+  </select>
+  
+  <!-- 根据用户id查出所有管理的小区 -->
+  <select id="selectVillageByUserId" parameterType="java.util.Map" resultType="java.util.Map">
+    select u.*,ar.community_id,ar.province_id from s_user_area u,s_village ar
+    <where>
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="areaLevel != null and areaLevel.trim() != ''" >
+          AND u.area_level = #{areaLevel}
+      </if>
+      and u.area_id = ar.village_id and ar.status = '0' and ar.del_flag = '0'
+        AND u.del_flag='0'
+    </where> 
+        order by u.ins_ymdhms DESC
+  </select>
+  <!-- 根据用户id查出所有管理的社区 -->
+  <select id="selectCommunityByUserId" parameterType="java.util.Map" resultType="java.util.Map">
+    select u.*,ar.county_id from s_user_area u,s_community ar
+    <where>
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="areaLevel != null and areaLevel.trim() != ''" >
+          AND u.area_level = #{areaLevel}
+      </if>
+      and u.area_id = ar.community_id and ar.status = '0' and ar.del_flag = '0'
+        AND u.del_flag='0'
+    </where> 
+        order by u.ins_ymdhms DESC
+  </select>
+  <!-- 根据用户id查出所有管理的县区 -->
+  <select id="selectCountyByUserId" parameterType="java.util.Map" resultType="java.util.Map">
+    select u.*,ar.city_id from s_user_area u,s_county ar
+    <where>
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="areaLevel != null and areaLevel.trim() != ''" >
+          AND u.area_level = #{areaLevel}
+      </if>
+      and u.area_id = ar.county_id and ar.status = '0' and ar.del_flag = '0'
+        AND u.del_flag='0'
+    </where> 
+        order by u.ins_ymdhms DESC
+  </select>
+  <!-- 根据用户id查出所有管理的市 -->
+  <select id="selectCityByUserId" parameterType="java.util.Map" resultType="java.util.Map">
+    select u.*,ar.province_id from s_user_area u,s_city ar
+    <where>
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="areaLevel != null and areaLevel.trim() != ''" >
+          AND u.area_level = #{areaLevel}
+      </if>
+      and u.area_id = ar.city_id and ar.status = '0' and ar.del_flag = '0'
+        AND u.del_flag='0'
+    </where> 
+        order by u.ins_ymdhms DESC
+  </select>
+  <!-- 根据用户id查出所有管理的省 -->
+  <select id="selectProvinceByUserId" parameterType="java.util.Map" resultType="java.util.Map">
+    select u.*,ar.province_id from s_user_area u,s_province ar
+    <where>
+      <if test="userId != null" >
+          AND u.user_id = #{userId,jdbcType=BIGINT}
+      </if>
+      <if test="areaLevel != null and areaLevel.trim() != ''" >
+          AND u.area_level = #{areaLevel}
+      </if>
+      and u.area_id = ar.province_id and ar.status = '0' and ar.del_flag = '0'
+        AND u.del_flag='0'
+    </where> 
+        order by u.ins_ymdhms DESC
+  </select>
+</mapper>

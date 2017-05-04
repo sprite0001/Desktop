@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.CooperationApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.CooperationApplication" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="application_name" property="applicationName" jdbcType="VARCHAR" />
+    <result column="contact_number" property="contactNumber" jdbcType="VARCHAR" />
+    <result column="store_adress" property="storeAdress" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="DECIMAL" />
+    <result column="application_date" property="applicationDate" jdbcType="DATE" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, village_id, store_name, application_name, contact_number, store_adress, type_id, 
+    size, application_date, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_cooperation_application
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_cooperation_application
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.CooperationApplication" >
+    insert into j_cooperation_application (id, village_id, store_name, 
+      application_name, contact_number, store_adress, 
+      type_id, size, application_date, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag
+      )
+    values (#{id,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, #{storeName,jdbcType=VARCHAR}, 
+      #{applicationName,jdbcType=VARCHAR}, #{contactNumber,jdbcType=VARCHAR}, #{storeAdress,jdbcType=VARCHAR}, 
+      #{typeId,jdbcType=VARCHAR}, #{size,jdbcType=DECIMAL}, #{applicationDate,jdbcType=DATE}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.CooperationApplication" >
+    insert into j_cooperation_application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="applicationName != null" >
+        application_name,
+      </if>
+      <if test="contactNumber != null" >
+        contact_number,
+      </if>
+      <if test="storeAdress != null" >
+        store_adress,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="applicationDate != null" >
+        application_date,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationName != null" >
+        #{applicationName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null" >
+        #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAdress != null" >
+        #{storeAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=DECIMAL},
+      </if>
+      <if test="applicationDate != null" >
+        #{applicationDate,jdbcType=DATE},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.CooperationApplication" >
+    update j_cooperation_application
+    <set >
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationName != null" >
+        application_name = #{applicationName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null" >
+        contact_number = #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAdress != null" >
+        store_adress = #{storeAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=DECIMAL},
+      </if>
+      <if test="applicationDate != null" >
+        application_date = #{applicationDate,jdbcType=DATE},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.CooperationApplication" >
+    update j_cooperation_application
+    set village_id = #{villageId,jdbcType=BIGINT},
+      store_name = #{storeName,jdbcType=VARCHAR},
+      application_name = #{applicationName,jdbcType=VARCHAR},
+      contact_number = #{contactNumber,jdbcType=VARCHAR},
+      store_adress = #{storeAdress,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=VARCHAR},
+      size = #{size,jdbcType=DECIMAL},
+      application_date = #{applicationDate,jdbcType=DATE},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 系统设置-小区查询:申请列表查询 begin -->
+  <select id="findAllCooperationApplication" parameterType="com.wooxun.geekdol.geekstore.vo.CooperationApplicationVo" resultType="com.wooxun.geekdol.geekstore.vo.CooperationApplicationVo">
+	select ca.store_name as storeName, ca.application_name as
+	applicationName, ca.contact_number as contactNumber,
+	size,
+	ca.application_date as applicationDate,s.lable as typeName From
+	j_cooperation_application ca,s_sys_data s
+	where ca.del_flag = '0' and ca.type_id = s.value 
+	<if test="typeType != null and typeType.trim()!=''">
+		and s.type = #{typeType}
+	</if>
+	<if test="storeName != null and storeName.trim() != ''">
+		AND ca.store_name like CONCAT(CONCAT('%',#{storeName}),'%')
+	</if>
+	<if test="contactNumber != null and contactNumber.trim() != ''">
+		AND ca.contact_number like CONCAT(CONCAT('%',#{contactNumber}),'%')
+	</if>
+	<if test="applicationName != null and applicationName.trim() != ''">
+		AND ca.application_name like CONCAT(CONCAT('%',#{applicationName}),'%')
+	</if>
+	<if test="typeId != null and typeId.trim() != ''">
+		AND ca.type_id = #{typeId,jdbcType=VARCHAR}
+	</if>
+	<if test="villageId != null and villageId != 0">
+  		and ca.village_id = #{villageId,jdbcType=BIGINT}
+  	</if>
+  </select>
+  <select id="findAllCooperationApplicationCount" parameterType="com.wooxun.geekdol.geekstore.vo.CooperationApplicationVo" resultType="java.lang.Long">
+  	SELECT COUNT(CA.ID) FROM j_cooperation_application CA WHERE CA.del_flag = '0' 
+  	<if test="storeName != null and storeName.trim() != ''">
+  		AND CA.store_name like CONCAT(CONCAT('%',#{storeName}),'%')
+  	</if>
+  	<if test="contactNumber != null and contactNumber.trim() != ''">
+  		AND CA.contact_number like CONCAT(CONCAT('%',#{contactNumber}),'%')
+  	</if>
+  	<if test="applicationName != null and applicationName.trim() != ''">
+  		AND CA.application_name like CONCAT(CONCAT('%',#{applicationName}),'%')
+  	</if>
+  	<if test="typeId != null and typeId.trim() != ''">
+  		AND CA.type_id = #{typeId,jdbcType=VARCHAR}
+  	</if>
+  	<if test="villageId != null and villageId != 0">
+  		and ca.village_id = #{villageId,jdbcType=BIGINT}
+  	</if>
+  </select>
+  <!-- 系统设置-小区查询:申请列表查询 end -->
+  
+ <!-- 吉客店管理-合作店申请查询:申请列表查询 -->
+  <select id="findCooperationApplication" parameterType="com.wooxun.geekdol.geekstore.vo.CooperationApplicationVo" resultType="com.wooxun.geekdol.geekstore.vo.CooperationApplicationVo">
+	select ca.id as id,ca.store_name as storeName, ca.application_name as
+	applicationName, ca.contact_number as contactNumber,
+	size,v.village_name as villageName,ca.store_adress as storeAdress,
+	ca.application_date as applicationDate,s.lable as typeName From
+	j_cooperation_application ca,s_sys_data s,s_village v,
+	(
+	SELECT
+	village.village_id
+	FROM
+	s_village village,
+	s_user_area ua
+	WHERE
+	 ua.user_id = #{currentUserId,jdbcType=BIGINT}
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+		and ua.area_id = village.province_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+		and ua.area_id = village.city_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+		and ua.area_id = village.county_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+		and ua.area_id = village.community_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+		and ua.area_id = village.village_id
+	</if>
+	) svua
+	where ca.del_flag = '0' and ca.type_id = s.value and s.type = #{StoreType}
+	and v.village_id = ca.village_id
+	AND ca.village_id IN (svua.village_id)
+	<if test="villageName != null and villageName.trim() != ''">
+		AND v.village_name like CONCAT(CONCAT('%',#{villageName}),'%')
+	</if>
+	<if test="storeName != null and storeName.trim() != ''">
+		AND ca.store_name like CONCAT(CONCAT('%',#{storeName}),'%')
+	</if>
+	<if test="contactNumber != null and contactNumber.trim() != ''">
+		AND ca.contact_number like CONCAT(CONCAT('%',#{contactNumber}),'%')
+	</if>
+	<if test="applicationName != null and applicationName.trim() != ''">
+		AND ca.application_name like CONCAT(CONCAT('%',#{applicationName}),'%')
+	</if>
+	<if test="typeId != null and typeId.trim() != ''">
+		AND ca.type_id = #{typeId,jdbcType=VARCHAR}
+	</if>
+	order by ca.application_date desc
+	<if test="pageFlag==true">
+		   LIMIT #{startPage}, #{endPage}
+		 </if>
+  </select>
+  <!-- 吉客店管理-合作店申请查询:申请列表查询 总数-->
+  <select id="findCooperationApplicationCount" parameterType="com.wooxun.geekdol.geekstore.vo.CooperationApplicationVo" resultType="java.lang.Long">
+  	SELECT COUNT(CA.ID) FROM j_cooperation_application CA,s_village v,
+  	(
+	SELECT
+	village.village_id
+	FROM
+	s_village village,
+	s_user_area ua
+	WHERE
+	 ua.user_id = #{currentUserId,jdbcType=BIGINT}
+	 and village.del_flag = '0' and  ua.del_flag = '0'
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '01'">
+		and ua.area_id = village.province_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '02'">
+		and ua.area_id = village.city_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '03'">
+		and ua.area_id = village.county_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '04'">
+		and ua.area_id = village.community_id
+	</if>
+	<if test="areaLevel !=null and areaLevel.trim() != '' and areaLevel.trim() == '05'">
+		and ua.area_id = village.village_id
+	</if>
+	) svua
+  	 WHERE CA.del_flag = '0' 
+  	and v.village_id = CA.village_id
+  	AND CA.village_id IN (svua.village_id)
+  	<if test="villageName != null and villageName.trim() != ''">
+		AND v.village_name like CONCAT(CONCAT('%',#{villageName}),'%')
+	</if>
+  	<if test="storeName != null and storeName.trim() != ''">
+  		AND CA.store_name like CONCAT(CONCAT('%',#{storeName}),'%')
+  	</if>
+  	<if test="contactNumber != null and contactNumber.trim() != ''">
+  		AND CA.contact_number like CONCAT(CONCAT('%',#{contactNumber}),'%')
+  	</if>
+  	<if test="applicationName != null and applicationName.trim() != ''">
+  		AND CA.application_name like CONCAT(CONCAT('%',#{applicationName}),'%')
+  	</if>
+  	<if test="typeId != null and typeId.trim() != ''">
+  		AND CA.type_id = #{typeId,jdbcType=VARCHAR}
+  	</if>
+  </select> 
+  
+</mapper>

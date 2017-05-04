@@ -1,0 +1,107 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/Geekdol/!svn/ver/5285/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper
+END
+UserMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/4668/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/UserMapper.xml
+END
+AppUserMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/5285/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/AppUserMapper.xml
+END
+CountyMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/5161/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/CountyMapper.xml
+END
+VillageMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/5249/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/VillageMapper.xml
+END
+AppUserVillageMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/5089/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/AppUserVillageMapper.xml
+END
+CommunityMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/Geekdol/!svn/ver/5163/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/CommunityMapper.xml
+END
+ProvinceMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Geekdol/!svn/ver/5155/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/ProvinceMapper.xml
+END
+ModuleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/4563/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/ModuleMapper.xml
+END
+PermissionMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/Geekdol/!svn/ver/3970/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/PermissionMapper.xml
+END
+SendMessageMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/3741/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/SendMessageMapper.xml
+END
+UserRoleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Geekdol/!svn/ver/3733/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/UserRoleMapper.xml
+END
+RoleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/5082/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/RoleMapper.xml
+END
+AttachMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/4437/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/AttachMapper.xml
+END
+KeywordsMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Geekdol/!svn/ver/5082/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/KeywordsMapper.xml
+END
+UserAreaMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Geekdol/!svn/ver/5084/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/UserAreaMapper.xml
+END
+CityMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/5159/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/CityMapper.xml
+END
+SysDataMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/5013/source/backstage/geekdol/resource/com/wooxun/geekdol/system/mapper/SysDataMapper.xml
+END

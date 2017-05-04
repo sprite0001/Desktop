@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/Geekdol/!svn/ver/5385/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/activityCollection
+END
+activityCollectionList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/Geekdol/!svn/ver/5308/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/activityCollection/activityCollectionList.jsp
+END
+details.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/5334/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/activityCollection/details.jsp
+END
+baoming.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/5385/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/activityCollection/baoming.jsp
+END
+activityCollectionEditor.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/Geekdol/!svn/ver/5128/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/activityCollection/activityCollectionEditor.jsp
+END
+zhidingForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/4791/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/activityCollection/zhidingForm.jsp
+END
+activityCollectionAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/Geekdol/!svn/ver/5128/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/activityCollection/activityCollectionAdd.jsp
+END
+villageSelect.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Geekdol/!svn/ver/5128/source/backstage/geekdol/WebRoot/WEB-INF/views/hmedia/activityCollection/villageSelect.jsp
+END

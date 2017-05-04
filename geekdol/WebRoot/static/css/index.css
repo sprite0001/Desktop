@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0;
+    padding:0
+ }
+ .b_bg{
+	 background:url(../images/b_bg.png) repeat fixed;
+	 }
+/*中间内容开始*/
+.main{
+	height:422px;
+	width:477px;
+	background:#fff;
+	margin:0 auto;
+	margin-top:5%;
+	margin-bottom:5%;
+	border-radius:10px;
+	}
+.main_top{
+	background-color:#23ade5;
+	height:15%;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	
+	}
+.main_top_left{
+	height:70%;
+	width:77px;
+	background-color:#fff;
+	position:relative;
+	top:15%;
+	left:10px;
+	float:left;
+	}
+.main_top_left p{
+	color:#23ADE5;
+	text-align:center;
+	position:relative;
+	top:30%;
+	}
+.main_top_right{
+	float:left;
+	margin-left:20px;
+	}
+.main_top_right h1{
+	font-size:24px;
+	color:#fff;
+	margin-top:10px;
+	}	
+.main_top_right p{
+	color:#fff;
+	margin-left:45px;
+	}
+.center{
+	height:85%;
+	width:100%;
+	}
+.in_1{
+	height:50px;
+	width:65%;
+	margin:0 8%;
+	margin-top:30px;
+	border:1 solid #515151;
+	border-radius:10px;
+	outline:none;
+	background-image:url(../images/icon_yonghu.png);
+	background-repeat:no-repeat;
+	background-position:10px center;
+	padding-left:10%;
+	font-size:18px;
+	}
+.in_2{
+	height:50px;
+	width:65%;
+	margin:0 8%;
+	margin-top:30px;
+	border:1 solid #515151;
+	border-radius:10px;
+	outline:none;
+	background-image:url(../images/icon_password.png);
+	background-repeat:no-repeat;
+	background-position:10px center;
+	padding-left:10%;
+	font-size:18px;
+	}
+.in_3{
+	height:50px;
+	width:45%;
+	margin:0 0 0 8%;
+	margin-top:30px;
+	border:1 solid #515151;
+	border-radius:10px;
+	outline:none;
+	font-size:18px;
+	}
+img{
+	display:block;
+	margin:-55px 0 0 280px;
+	}
+.submit{
+	background:#23ade5;
+	border-radius:5px;
+	height:44px;
+	width:30%;
+	font-size:20px;
+	color:#fff;
+	margin-left:35%;
+	margin-top:30px;
+	}
+.wangji{
+	float:right;
+	}
+.wangji a{
+	text-decoration:none;
+	color:#666;
+	}
+/*中间内容结束*/
+/*底部内容开始*/
+.footer{
+	color:#fff;
+	font-size:16px;
+	font-family:"微软雅黑";
+	text-align:center;
+	margin-bottom:20px;
+	}
+.footer span{
+	font-style:italic;
+	font-size:18px;
+	margin-left:10px;
+	}
+/*底部内容结束*/

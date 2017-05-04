@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.NetizenAcumenMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.NetizenAcumen" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="ins_ip" property="insIp" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, source, reason, type, ins_ip, phone, ins_id, ins_ymdhms, upd_id, upd_ymdhms, 
+    upd_eac, del_flag, address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_netizen_acumen
+    where id = #{id,jdbcType=BIGINT} and del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_netizen_acumen
+    where id = #{id,jdbcType=BIGINT} and del_flag='0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.NetizenAcumen" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_netizen_acumen (id, title, source, 
+      reason, type, ins_ip, 
+      phone, ins_id, ins_ymdhms, 
+      upd_id, upd_ymdhms, upd_eac, 
+      del_flag, address)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{insIp,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, 
+      #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=CHAR}, #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.NetizenAcumen" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_netizen_acumen
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="insIp != null" >
+        ins_ip,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="insIp != null" >
+        #{insIp,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.NetizenAcumen" >
+    update m_netizen_acumen
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="insIp != null" >
+        ins_ip = #{insIp,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.NetizenAcumen" >
+    update m_netizen_acumen
+    set title = #{title,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      ins_ip = #{insIp,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 自定义查询 -->
+   <!-- 检索条件 -->
+    <sql id="searchWhere">
+        <where>
+            <if test="title!=null and title.trim()!=''">
+                and title like CONCAT(CONCAT('%',#{title}),'%') 
+            </if>
+            <if test="phone!=null and phone.trim()!=''">
+                and phone like CONCAT(CONCAT('%',#{phone}),'%') 
+            </if>
+            <if test="type!=null and type.trim()!=''">
+                and type like CONCAT(CONCAT('%',#{type}),'%') 
+            </if>
+            <if test="startTime != null and startTime.trim()!=''" >
+              <![CDATA[   and DATE_FORMAT(ins_ymdhms, '%Y-%m-%d')>=  DATE_FORMAT(#{startTime}, '%Y-%m-%d')   ]]>
+            </if>
+            <if test="endTime != null and endTime.trim()!=''" >
+              <![CDATA[   and DATE_FORMAT(ins_ymdhms, '%Y-%m-%d')<=  DATE_FORMAT(#{endTime}, '%Y-%m-%d')   ]]>
+            </if>  
+             AND del_flag='0'
+        </where>
+    </sql>
+  
+  <!-- 查询满足条件的网民法眼信息  -->
+  <select id="findAll" resultType="com.wooxun.geekdol.hbridge.vo.NetizenAcumenVo" parameterType="com.wooxun.geekdol.hbridge.vo.NetizenAcumenVo">
+    
+      SELECT
+       id as id, title as title,reason as reason,type as type,ins_ip as insIp,phone as phone,address as address,ins_ymdhms as insYmdhms
+      FROM m_netizen_acumen
+      <include refid="searchWhere" />
+      order by ins_ymdhms
+       <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+       </if>
+     </select>                              
+  
+  <!-- 查询满足条件的网民法眼信息数量  -->
+  <select id="findAllCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.hbridge.vo.NetizenAcumenVo">
+      SELECT
+        count(id)
+      FROM m_netizen_acumen
+      <include refid="searchWhere" />
+     </select>
+  
+   <!-- 逻辑删除网民法眼信息-->
+    <update id="deleteNetizenacumen" parameterType="com.wooxun.geekdol.hbridge.model.NetizenAcumen">
+     UPDATE 
+     m_netizen_acumen
+     SET
+     <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+     del_flag='1'
+     where
+     id = #{id,jdbcType=BIGINT}
+     and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+</mapper>

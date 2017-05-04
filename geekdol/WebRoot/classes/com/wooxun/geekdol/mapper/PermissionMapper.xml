@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wooxun.geekdol.mapper.PermissionMapper">
+	<resultMap id="BaseResultMap" type="com.soft863.dolphin.model.Permission">
+		<id column="PER_ID" property="perId" />
+		<result column="MODULE_ID" property="moduleId"/>
+		<result column="NAME" property="name"/>
+		<result column="VALUE" property="value" />
+		<result column="INS_YMDHMS" property="insYmdhms"/>
+		<result column="INS_ID" property="insId"/>
+		<result column="UPD_EAC" property="updEac"/>
+		<result column="UPD_YMDHMS" property="updYmdhms"/>
+		<result column="UPD_ID" property="updId"/>
+		<result column="DEL_FLAG" property="delFlag"/>
+		<association column="MODULE_ID" property="module" select="selectModule" />
+	</resultMap>
+	
+	<resultMap id="ModuleBaseResultMap" type="com.soft863.dolphin.model.Module">
+		<id column="MODULE_ID" property="moduleId" />
+		<result column="PARENT_ID" property="parentId"/>
+		<result column="NAME" property="name"/>
+		<result column="URL" property="url" />
+		<result column="ORDERING" property="ordering"/>
+		<result column="INS_YMDHMS" property="insYmdhms"/>
+		<result column="INS_ID" property="insId"/>
+		<result column="UPD_EAC" property="updEac"/>
+		<result column="UPD_YMDHMS" property="updYmdhms"/>
+		<result column="UPD_ID" property="updId"/>
+		<result column="DEL_FLAG" property="delFlag"/>
+	</resultMap>
+	
+	<!-- 表字段列表 -->
+	<sql id="Base_Column_List" >
+		PER_ID,MODULE_ID,NAME,VALUE,INS_YMDHMS,INS_ID,UPD_EAC,UPD_YMDHMS,UPD_ID,DEL_FLAG
+  	</sql>
+  	<!-- 检索条件 -->
+  	
+  	<!-- 表字段列表 -->
+	<sql id="Module_Base_Column_List" >
+		MODULE_ID,PARENT_ID,NAME,URL,ORDERING,INS_YMDHMS,INS_ID,UPD_EAC,UPD_YMDHMS,UPD_ID,DEL_FLAG
+  	</sql>
+
+  	<!-- ================================== 子查询 ====================================== -->
+  	<select id="selectModule" parameterType="java.lang.Long" resultMap="ModuleBaseResultMap">
+		SELECT 
+			<include refid="Module_Base_Column_List" />
+	    FROM security_module
+	    WHERE MODULE_ID = #{moduleId}
+	    and del_flag='0'
+	</select>
+</mapper>

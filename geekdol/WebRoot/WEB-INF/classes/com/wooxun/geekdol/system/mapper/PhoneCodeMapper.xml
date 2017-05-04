@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.PhoneCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.PhoneCode" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone, code, addtime, type, ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_phone_code
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_phone_code
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.PhoneCode" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_phone_code (id, phone, code, 
+      addtime, type, ip)
+    values (#{id,jdbcType=BIGINT}, #{phone,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{type,jdbcType=CHAR}, #{ip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.PhoneCode" useGeneratedKeys="true" keyProperty="id" >
+    insert into s_phone_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.PhoneCode" >
+    update s_phone_code
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.PhoneCode" >
+    update s_phone_code
+    set phone = #{phone,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=CHAR},
+      ip = #{ip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 查询验证码是否存在 -->
+  <select id="selectCountCode" resultType="java.lang.Integer" parameterType="map" >
+    SELECT COUNT(1)
+    	FROM s_phone_code
+    WHERE phone = #{phoneCode.phone,jdbcType=VARCHAR}
+    	AND code = #{phoneCode.code,jdbcType=VARCHAR}
+    	AND type = #{phoneCode.type,jdbcType=CHAR}
+    	AND TIMESTAMPDIFF(MINUTE, addtime, #{phoneCode.addtime,jdbcType=TIMESTAMP} ) &lt; #{minutes}
+  </select>
+  
+  <!-- 查询ip当天的验证码发送条数  -->
+  <select id="selectIpByDay" resultType="java.lang.Integer" parameterType="map" >
+    SELECT COUNT(1)
+    	FROM s_phone_code
+    WHERE ip = #{userIp}
+    	AND DATE_FORMAT(addtime, '%Y-%m-%d') = #{nowDate}
+  </select>
+  
+  <!-- 查询手机号当天的验证码发送条数 -->
+  <select id="selectPhoneByDay" resultType="java.lang.Integer" parameterType="map" >
+    SELECT COUNT(1)
+    	FROM s_phone_code
+    WHERE phone = #{moblie}
+    	AND DATE_FORMAT(addtime, '%Y-%m-%d') = #{nowDate}
+  </select>
+</mapper>

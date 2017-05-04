@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/Geekdol/!svn/ver/5390/source/backstage/geekdol/WebRoot/WEB-INF/views/system/user
+END
+add.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/Geekdol/!svn/ver/5390/source/backstage/geekdol/WebRoot/WEB-INF/views/system/user/add.jsp
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/Geekdol/!svn/ver/4737/source/backstage/geekdol/WebRoot/WEB-INF/views/system/user/list.jsp
+END
+villageList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/Geekdol/!svn/ver/5192/source/backstage/geekdol/WebRoot/WEB-INF/views/system/user/villageList.jsp
+END
+update.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/Geekdol/!svn/ver/5390/source/backstage/geekdol/WebRoot/WEB-INF/views/system/user/update.jsp
+END
+managerArea.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/Geekdol/!svn/ver/5192/source/backstage/geekdol/WebRoot/WEB-INF/views/system/user/managerArea.jsp
+END

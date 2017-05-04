@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.ActivityBaomingMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.ActivityBaoming" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="activity_collection_id" property="activityCollectionId" jdbcType="BIGINT" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <association property="activityCollection" column="activity_collection_id" select="com.wooxun.geekdol.hmedia.mapper.ActivityCollectionMapper.selectByPrimaryKey"></association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, ip, time, remark, activity_collection_id, ins_id, ins_ymdhms, upd_id, 
+    upd_ymdhms, upd_eac, del_flag,name,phone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_activity_baoming
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_activity_baoming
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.ActivityBaoming" >
+    insert into m_activity_baoming (id, user_id, ip, 
+      time, remark, activity_collection_id, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag,name,phone
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{ip,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{activityCollectionId,jdbcType=BIGINT}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR},#{name,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.ActivityBaoming" >
+    insert into m_activity_baoming
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="activityCollectionId != null" >
+        activity_collection_id,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="activityCollectionId != null" >
+        #{activityCollectionId,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+       <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.ActivityBaoming" >
+    update m_activity_baoming
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="activityCollectionId != null" >
+        activity_collection_id = #{activityCollectionId,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+       <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.ActivityBaoming" >
+    update m_activity_baoming
+    set user_id = #{userId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      activity_collection_id = #{activityCollectionId,jdbcType=BIGINT},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      name= #{name,jdbcType=VARCHAR},
+      phone= #{phone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <!-- 自定义查询  -->
+  
+    <!-- 根据活动vo查询出报名人  -->                              
+  <select id="queryActivityBaomingByParams" parameterType="com.wooxun.geekdol.hmedia.vo.ActivityBaomingVo" resultType="com.wooxun.geekdol.hmedia.vo.ActivityBaomingVo">
+     SELECT
+     a.id, 
+     a.time,
+     a.remark,
+     a.ip,
+     a.name,
+     a.phone
+     FROM
+     m_activity_baoming a,
+     m_activity_collection c
+     WHERE
+     1 = 1
+     
+    <if test="activityCollectionId != null and activityCollectionId != 0">
+       and c.id=#{activityCollectionId}
+    </if>
+    <if test="name != null and name.trim() != ''">
+       and a.name LIKE CONCAT('%',CONCAT(#{name},'%'))
+    </if>
+    <if test="phone != null and phone != 0">
+       and a.phone LIKE CONCAT('%',CONCAT(#{phone},'%'))
+    </if>
+    
+   and c.id=a.activity_collection_id
+   and a.del_flag='0'
+   and c.del_flag='0'
+     <if test="pageFlag==true">
+              LIMIT #{startPage}, #{endPage}
+     </if>
+  </select>
+  
+  <!-- 根据活动vo查询出报名人数 -->    
+  <select id="queryCountByParams" parameterType="com.wooxun.geekdol.hmedia.vo.ActivityBaomingVo" resultType="java.lang.Long">
+     SELECT
+     count(*)
+     FROM
+     m_activity_baoming a,
+     m_activity_collection c
+     WHERE
+     1 = 1
+     
+    <if test="activityCollectionId != null and activityCollectionId != 0">
+       and c.id=#{activityCollectionId}
+    </if>
+    <if test="name != null and name.trim() != ''">
+       and a.name LIKE CONCAT('%',CONCAT(#{name},'%'))
+    </if>
+    <if test="phone != null and phone != 0">
+       and a.phone LIKE CONCAT('%',CONCAT(#{phone},'%'))
+    </if>
+    
+   and c.id=a.activity_collection_id
+   and a.del_flag='0'
+   and c.del_flag='0'
+  </select>
+  
+   <!-- 同一小区统一活动汇下  报名手机号不能相同 -->
+   
+    <select id="selectByName" resultType="java.lang.Integer" parameterType="com.wooxun.geekdol.hmedia.vo.ActivityBaomingVo" >
+    select 
+    count(*)
+    from m_activity_baoming b, m_activity_collection_village m
+    where b.phone = #{phone}
+    and b.activity_collection_id=#{activityCollectionId}
+    and m.village_id=#{villageId}
+    and b.del_flag ='0'
+    and b.activity_collection_id=m.activity_collection_id
+  </select>
+  
+  <!-- 根据用户id查询活动信息 -->
+  <select id="selectActivityCollectionByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    	a.activity_collection_id
+    from m_activity_baoming a, s_app_user b 
+    where b.id = #{appUserId,jdbcType=BIGINT}
+    and a.phone = b.moblie
+    and a.del_flag='0'
+  </select>
+  
+</mapper>

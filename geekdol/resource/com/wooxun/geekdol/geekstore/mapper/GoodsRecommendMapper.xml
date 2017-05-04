@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.GoodsRecommendMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.GoodsRecommend" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="goods_id" property="goodsId" jdbcType="BIGINT" />
+    <result column="title_picture" property="titlePicture" jdbcType="VARCHAR" />
+    <result column="sub_tite" property="subTite" jdbcType="VARCHAR" />
+    <result column="ordering" property="ordering" jdbcType="BIGINT" />
+    <result column="preferential_price" property="preferentialPrice" jdbcType="DECIMAL" />
+    <result column="advertisement" property="advertisement" jdbcType="VARCHAR" />
+    <result column="distribution_id" property="distributionId" jdbcType="BIGINT" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goods_id, title_picture, sub_tite, ordering, preferential_price, advertisement, 
+    distribution_id, start_time, end_time, status, ins_id, ins_ymdhms, upd_id, upd_ymdhms, 
+    upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_goods_recommend
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+    and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_goods_recommend
+    where id = #{id,jdbcType=BIGINT}
+    and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommend" >
+    insert into j_goods_recommend (id, goods_id, title_picture, 
+      sub_tite, ordering, preferential_price, 
+      advertisement, distribution_id, start_time, 
+      end_time, status, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{titlePicture,jdbcType=VARCHAR}, 
+      #{subTite,jdbcType=VARCHAR}, #{ordering,jdbcType=BIGINT}, #{preferentialPrice,jdbcType=DECIMAL}, 
+      #{advertisement,jdbcType=VARCHAR}, #{distributionId,jdbcType=BIGINT}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommend" useGeneratedKeys="true" keyProperty="id">
+    insert into j_goods_recommend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="titlePicture != null" >
+        title_picture,
+      </if>
+      <if test="subTite != null" >
+        sub_tite,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="preferentialPrice != null" >
+        preferential_price,
+      </if>
+      <if test="advertisement != null" >
+        advertisement,
+      </if>
+      <if test="distributionId != null" >
+        distribution_id,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="titlePicture != null" >
+        #{titlePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="subTite != null" >
+        #{subTite,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="preferentialPrice != null" >
+        #{preferentialPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="advertisement != null" >
+        #{advertisement,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionId != null" >
+        #{distributionId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommend" >
+    update j_goods_recommend
+    <set >
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="titlePicture != null" >
+        title_picture = #{titlePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="subTite != null" >
+        sub_tite = #{subTite,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="preferentialPrice != null" >
+        preferential_price = #{preferentialPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="advertisement != null" >
+        advertisement = #{advertisement,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionId != null" >
+        distribution_id = #{distributionId,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+      and del_flag = '0'
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommend" >
+    update j_goods_recommend
+    set goods_id = #{goodsId,jdbcType=BIGINT},
+      title_picture = #{titlePicture,jdbcType=VARCHAR},
+      sub_tite = #{subTite,jdbcType=VARCHAR},
+      ordering = #{ordering,jdbcType=BIGINT},
+      preferential_price = #{preferentialPrice,jdbcType=DECIMAL},
+      advertisement = #{advertisement,jdbcType=VARCHAR},
+      distribution_id = #{distributionId,jdbcType=BIGINT},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+      and del_flag = '0'
+  </update>
+  <!-- 根据商品id查找铺货到新商品模块的产品 -->
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_goods_recommend
+    where goods_id = #{goodsId,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <update id="updateBatch" parameterType="java.util.List">
+  	<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update j_goods_recommend 
+			<set>
+			  status = #{item.status,jdbcType=CHAR},
+			  upd_id = #{item.updId,jdbcType=BIGINT},
+      		  upd_ymdhms = #{item.updYmdhms,jdbcType=TIMESTAMP},
+      		  upd_eac = #{item.updEac,jdbcType=BIGINT}
+			</set>
+			where goods_id = ${item.goodsId} and upd_eac = ( #{item.updEac,jdbcType=BIGINT} -1) 
+			and del_flag = '0'
+	 </foreach>
+  </update>
+  <!-- 根据条件查找对应的推荐产品 -->
+  <select id="queryByParams" parameterType="com.wooxun.geekdol.geekstore.model.GoodsRecommend" 
+  		resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from j_goods_recommend
+    <where>
+    	<if test="goodsId != null and goodsId !=0">
+    		and goods_id = #{goodsId,jdbcType=BIGINT}
+    	</if>
+    	<if test="status != null and status.trim()!=''">
+    		and status = #{status,jdbcType=CHAR}
+    	</if>
+    	and del_flag = '0'
+    </where>
+  </select>
+</mapper>

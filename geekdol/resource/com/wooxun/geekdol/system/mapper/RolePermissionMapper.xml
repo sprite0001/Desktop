@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wooxun.geekdol.system.mapper.RolePermissionMapper">
+	<resultMap id="BaseResultMap" type="com.soft863.dolphin.model.RolePermission">
+		<result column="ROLE_ID" property="roleId"/>
+		<result column="PER_ID" property="perId" />
+	</resultMap>
+	<!-- 表字段列表 -->
+	<sql id="Base_Column_List" >
+		ROLE_ID,PER_ID
+  	</sql>
+  	<!-- 检索条件 -->
+  	<sql id="searchWhere">
+	    <where>
+	    	<!-- 部门表的模糊查询条件 -->
+		    <if test="roleId!=null and roleId!=''">
+		        and ROLE_ID = #{roleId}
+		    </if>
+		    <if test="perId!=null and perId!=''">
+		        and PER_ID = #{perId}
+		    </if>
+	    </where>
+  	</sql>
+	
+	<insert id="insert" parameterType="com.soft863.dolphin.model.RolePermission">
+  		INSERT INTO security_role_permission
+  		(
+  			ROLE_ID, 
+			PER_ID
+		)
+  		VALUES(
+  			#{roleId,jdbcType=BIGINT},
+  			#{perId,jdbcType=BIGINT}
+  		)
+  	</insert>
+  	
+  	<delete id="delete" parameterType="com.soft863.dolphin.model.RolePermission">
+		DELETE FROM security_role_permission 
+		<include refid="searchWhere"/>
+	</delete>
+  	
+  	<delete id="deleteByRoleId" parameterType="java.lang.Long">
+		DELETE FROM security_role_permission WHERE ROLE_ID = #{roleId}
+	</delete>
+
+	<insert id="insertBatch" parameterType="com.soft863.dolphin.model.RolePermission" >
+	    insert into security_role_permission (role_id, per_id)
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," >  
+	    (#{item.roleId,jdbcType=BIGINT}, #{item.perId,jdbcType=BIGINT})
+	    </foreach>
+	  </insert>
+</mapper>

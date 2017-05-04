@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/Geekdol/!svn/ver/5008/source/backstage/geekdol/WebRoot/WEB-INF/views/system/appuser
+END
+appuserEditor.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/Geekdol/!svn/ver/4198/source/backstage/geekdol/WebRoot/WEB-INF/views/system/appuser/appuserEditor.jsp
+END
+appuserAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/Geekdol/!svn/ver/3677/source/backstage/geekdol/WebRoot/WEB-INF/views/system/appuser/appuserAdd.jsp
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/Geekdol/!svn/ver/5008/source/backstage/geekdol/WebRoot/WEB-INF/views/system/appuser/list.jsp
+END
+memberList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/system/appuser/memberList.jsp
+END

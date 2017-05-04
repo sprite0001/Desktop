@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/Geekdol/!svn/ver/5260/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper
+END
+AppUserMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/Geekdol/!svn/ver/5260/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/AppUserMapper.java
+END
+UserRoleMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/3734/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/UserRoleMapper.java
+END
+CountyMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/Geekdol/!svn/ver/5161/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/CountyMapper.java
+END
+VillageMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/Geekdol/!svn/ver/5249/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/VillageMapper.java
+END
+AppUserVillageMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/Geekdol/!svn/ver/4289/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/AppUserVillageMapper.java
+END
+CommunityMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/Geekdol/!svn/ver/5163/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/CommunityMapper.java
+END
+AttachMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/Geekdol/!svn/ver/4437/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/AttachMapper.java
+END
+ProvinceMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/5155/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/ProvinceMapper.java
+END
+KeywordsMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/3890/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/KeywordsMapper.java
+END
+UserAreaMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/4717/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/UserAreaMapper.java
+END
+SysDataMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/Geekdol/!svn/ver/4812/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/SysDataMapper.java
+END
+CityMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/Geekdol/!svn/ver/5159/source/backstage/geekdol/src/com/wooxun/geekdol/system/mapper/CityMapper.java
+END

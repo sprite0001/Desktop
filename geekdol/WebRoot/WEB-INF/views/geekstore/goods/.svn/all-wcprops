@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/goods
+END
+goodsAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/goods/goodsAdd.jsp
+END
+goodsSelectList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/goods/goodsSelectList.jsp
+END
+list.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/goods/list.jsp
+END
+distributionGoods.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/goods/distributionGoods.jsp
+END
+commentReturnInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/goods/commentReturnInfo.jsp
+END
+goodsComment.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/goods/goodsComment.jsp
+END
+goodsEdit.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/Geekdol/!svn/ver/4608/source/backstage/geekdol/WebRoot/WEB-INF/views/geekstore/goods/goodsEdit.jsp
+END

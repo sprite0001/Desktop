@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.CommunityPhoneMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.CommunityPhone" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="phone_type" property="phoneType" jdbcType="CHAR" />
+    <result column="ordering" property="ordering" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="city_id" property="cityId" jdbcType="BIGINT" />
+    <result column="country_id" property="countryId" jdbcType="BIGINT" />
+    <result column="community_id" property="communityId" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    <result column="village_name" property="villageName" jdbcType="CHAR" />
+    <!-- 省 -->
+    <association column="province_id" property="province" select="com.wooxun.geekdol.system.mapper.ProvinceMapper.selectByPrimaryKey"></association>
+    <!-- 市 -->
+    <association column="city_id" property="city" select="com.wooxun.geekdol.system.mapper.CityMapper.selectByPrimaryKey"></association>
+    <!-- 区-->
+    <association column="country_id" property="county" select="com.wooxun.geekdol.system.mapper.CountyMapper.selectByPrimaryKey"></association>
+    <!-- 社区-->
+    <association column="community_id" property="community" select="com.wooxun.geekdol.system.mapper.CommunityMapper.selectByPrimaryKey"></association>
+    <!-- 小区-->
+    <association column="village_id" property="village" select="com.wooxun.geekdol.system.mapper.VillageMapper.selectByPrimaryKey"></association>
+  
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, phone_number, phone_type, ordering, status, province_id, city_id, country_id, 
+    community_id, village_id, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_community_phone
+    where id = #{id,jdbcType=BIGINT}
+     and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_community_phone
+    where id = #{id,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.CommunityPhone" >
+    insert into m_community_phone (id, name, phone_number, 
+      phone_type, ordering, status, 
+      province_id, city_id, country_id, 
+      community_id, village_id, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{phoneType,jdbcType=CHAR}, #{ordering,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, 
+      #{provinceId,jdbcType=BIGINT}, #{cityId,jdbcType=BIGINT}, #{countryId,jdbcType=BIGINT}, 
+      #{communityId,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.CommunityPhone" useGeneratedKeys="true" keyProperty="id">
+    insert into m_community_phone
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="phoneType != null" >
+        phone_type,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="countryId != null" >
+        country_id,
+      </if>
+      <if test="communityId != null" >
+        community_id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null" >
+        #{phoneType,jdbcType=CHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="communityId != null" >
+        #{communityId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.CommunityPhone" >
+    update m_community_phone
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null" >
+        phone_type = #{phoneType,jdbcType=CHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="countryId != null" >
+        country_id = #{countryId,jdbcType=BIGINT},
+      </if>
+      <if test="communityId != null" >
+        community_id = #{communityId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.CommunityPhone" >
+    update m_community_phone
+    set name = #{name,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      phone_type = #{phoneType,jdbcType=CHAR},
+      ordering = #{ordering,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      province_id = #{provinceId,jdbcType=BIGINT},
+      city_id = #{cityId,jdbcType=BIGINT},
+      country_id = #{countryId,jdbcType=BIGINT},
+      community_id = #{communityId,jdbcType=BIGINT},
+      village_id = #{villageId,jdbcType=BIGINT},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+   
+  <!--************************************** 自定义 **************************************-->
+ 
+   <!-- 检索条件 -->
+    <sql id="searchWhere">
+        <where>
+            1=1
+            <!-- 行政区表的模糊查询条件 -->
+            <if test="provinceId!=null and provinceId!=0">
+                and mp.province_id = #{provinceId}
+            </if>
+            <if test="cityId!=null and cityId!=0">
+                and mp.city_id =#{cityId}
+            </if>
+             <if test="countyId!=null and countyId!=0">
+                and mp.country_id =#{countyId}
+            </if>
+            <if test="communityId!=null and communityId!=0">
+                and mp.community_id =#{communityId}
+            </if>
+            <if test="villageName!=null and villageName.trim()!=''">
+                and sv.village_name like CONCAT(CONCAT('%',#{villageName}),'%') 
+            </if>
+            <if test="phoneNumber!=null and phoneNumber.trim()!=''">
+                and mp.phone_number like CONCAT(CONCAT('%',#{phoneNumber}),'%') 
+            </if>
+        </where>
+    </sql>
+    
+     <!-- 根据页面查询条件显示列表 -->
+    <select id="findAll" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.hmedia.vo.CommunityPhoneVo">
+   SELECT
+    mp.*
+   FROM m_community_phone mp,s_village sv
+     where   1=1
+            <!-- 行政区表的模糊查询条件 -->
+            <if test="provinceId!=null and provinceId!=0">
+                and mp.province_id = #{provinceId}
+            </if>
+            <if test="cityId!=null and cityId!=0">
+                and mp.city_id =#{cityId}
+            </if>
+             <if test="countyId!=null and countyId!=0">
+                and mp.country_id =#{countyId}
+            </if>
+            <if test="communityId!=null and communityId!=0">
+                and mp.community_id =#{communityId}
+            </if>
+            <if test="villageName!=null and villageName.trim()!=''">
+                and sv.village_name like CONCAT(CONCAT('%',#{villageName}),'%') 
+            </if>
+            <if test="phoneNumber!=null and phoneNumber.trim()!=''">
+                and mp.phone_number like CONCAT(CONCAT('%',#{phoneNumber}),'%') 
+            </if>
+    and mp.del_flag='0'
+    and mp.del_flag='0'
+    and mp.village_id in(  
+     select 
+        sv.village_id 
+    from s_user_area u,s_village sv
+    where u.user_id=#{userId}
+     and u.del_flag='0'
+     and sv.del_flag='0'
+     and u.area_level='05'
+     and u.area_id=sv.village_id )
+  and mp.village_id=sv.village_id
+      order by mp.ordering
+      <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+       </if>
+     </select>
+     
+    <!-- 根据页面查询条件显示列表分页计数 -->
+    <select id="findAllCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.hmedia.vo.CommunityPhoneVo">
+    SELECT
+    count(mp.id)
+   FROM m_community_phone mp,s_village sv
+    where   1=1
+            <!-- 行政区表的模糊查询条件 -->
+            <if test="provinceId!=null and provinceId!=0">
+                and mp.province_id = #{provinceId}
+            </if>
+            <if test="cityId!=null and cityId!=0">
+                and mp.city_id =#{cityId}
+            </if>
+             <if test="countyId!=null and countyId!=0">
+                and mp.country_id =#{countyId}
+            </if>
+            <if test="communityId!=null and communityId!=0">
+                and mp.community_id =#{communityId}
+            </if>
+            <if test="villageName!=null and villageName.trim()!=''">
+                and sv.village_name like CONCAT(CONCAT('%',#{villageName}),'%') 
+            </if>
+            <if test="phoneNumber!=null and phoneNumber.trim()!=''">
+                and mp.phone_number like CONCAT(CONCAT('%',#{phoneNumber}),'%') 
+            </if>
+    and    mp.del_flag='0'
+    and mp.del_flag='0'
+    and mp.village_id in(  
+     select 
+        sv.village_id 
+    from s_user_area u,s_village sv
+    where u.user_id=#{userId}
+     and u.del_flag='0'
+     and sv.del_flag='0'
+     and u.area_level='05'
+     and u.area_id=sv.village_id )
+  and mp.village_id=sv.village_id
+      order by mp.ordering
+      <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+       </if>
+    </select> 
+    
+      <!-- 社区电话管理 禁用功能-->
+       <update id="disableCommunityPhone" parameterType="com.wooxun.geekdol.hmedia.model.CommunityPhone">
+     UPDATE 
+     m_community_phone
+     SET
+     <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+     status = '1'
+     where
+     id = #{id,jdbcType=BIGINT}
+     and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+    
+      <!-- 社区电话管理 启用功能-->
+       <update id="enableCommunityPhone" parameterType="com.wooxun.geekdol.hmedia.model.CommunityPhone">
+     UPDATE 
+     m_community_phone
+     SET
+     <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+     status = '0'
+     where
+     id = #{id,jdbcType=BIGINT}
+     and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+      <!-- 逻辑删除社区电话-->
+    <update id="deleteCommunityPhone" parameterType="com.wooxun.geekdol.hmedia.model.CommunityPhone">
+     UPDATE 
+     m_community_phone
+     SET
+     <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+     del_flag='1'
+     where
+     id = #{id,jdbcType=BIGINT}
+     and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+     <!-- 新增操作时判断是否已有该社区号码  返回新增社区号码查询数量 -->
+    <select id="findCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.hmedia.model.CommunityPhone">
+     SELECT
+     COUNT(id)
+     FROM m_community_phone
+      <where>              
+            <if test="phoneNumber!=null and phoneNumber.trim()!=''">
+                and phone_number =#{phoneNumber} 
+            </if>
+                and del_flag='0'
+      </where>
+    </select>   
+    
+    <!-- app接口用 根据小区id查询社区电话列表社区电话 --> 
+    <select id="findPhoneSQ" parameterType="java.lang.Long" resultType="com.wooxun.geekdol.hmedia.vo.AppCommunityPhoneVo">
+       select 
+       name as name,
+       phone_number as phoneNumber
+       from m_community_phone
+       where village_id = #{villageId,jdbcType=BIGINT}
+       and del_flag='0'
+       and status='0'
+       and phone_type='0'
+       order by ordering
+    </select>
+    
+    <!-- app接口用 根据小区id查询社区电话列表服务电话 --> 
+    <select id="findPhoneFW" parameterType="java.lang.Long" resultType="com.wooxun.geekdol.hmedia.vo.AppCommunityPhoneVo">
+       select 
+       name as name,
+       phone_number as phoneNumber
+       from m_community_phone
+       where village_id = #{villageId,jdbcType=BIGINT}
+       and del_flag='0'
+       and status='0'
+       and phone_type='1'
+       order by ordering
+    </select>
+</mapper>

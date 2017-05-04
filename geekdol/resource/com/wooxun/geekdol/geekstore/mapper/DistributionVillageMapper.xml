@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.geekstore.mapper.DistributionVillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.geekstore.model.DistributionVillage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    <result column="distribution_id" property="distributionId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, village_id, distribution_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from j_distribution_village
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from j_distribution_village
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.geekstore.model.DistributionVillage" >
+    insert into j_distribution_village (id, village_id, distribution_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{villageId,jdbcType=BIGINT}, #{distributionId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.geekstore.model.DistributionVillage" >
+    insert into j_distribution_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+      <if test="distributionId != null" >
+        distribution_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="distributionId != null" >
+        #{distributionId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.geekstore.model.DistributionVillage" >
+    update j_distribution_village
+    <set >
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+      <if test="distributionId != null" >
+        distribution_id = #{distributionId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.geekstore.model.DistributionVillage" >
+    update j_distribution_village
+    set village_id = #{villageId,jdbcType=BIGINT},
+      distribution_id = #{distributionId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!-- 批量保存附件 -->
+  <insert id="insertBatch" parameterType="com.wooxun.geekdol.geekstore.model.DistributionVillage" >
+     insert into j_distribution_village
+     (village_id, distribution_id)
+     values 
+     <foreach collection="list" item="item" index="index" separator="," >  
+     	(#{item.villageId,jdbcType=BIGINT}, #{item.distributionId,jdbcType=BIGINT})
+     </foreach>
+   </insert>
+</mapper>

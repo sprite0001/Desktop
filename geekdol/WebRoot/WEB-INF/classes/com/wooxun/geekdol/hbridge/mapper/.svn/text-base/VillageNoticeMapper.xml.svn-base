@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hbridge.mapper.VillageNoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hbridge.model.VillageNotice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="publish_user" property="publishUser" jdbcType="BIGINT" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="notice_time" property="noticeTime" jdbcType="TIMESTAMP" />
+    <result column="publish_status" property="publishStatus" jdbcType="CHAR" />
+    <result column="scanned_number" property="scannedNumber" jdbcType="BIGINT" />
+    <result column="top_flag" property="topFlag" jdbcType="CHAR" />
+    <result column="top_start" property="topStart" jdbcType="TIMESTAMP" />
+    <result column="top_end" property="topEnd" jdbcType="TIMESTAMP" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wooxun.geekdol.hbridge.model.VillageNotice" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, summary,source, publish_user, publish_time, notice_time, publish_status, scanned_number, 
+    top_flag, top_start, top_end, ins_id, ins_ymdhms, upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_village_notice
+    where id = #{id,jdbcType=BIGINT} AND del_flag='0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_village_notice
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hbridge.model.VillageNotice" >
+    insert into t_village_notice (id, title, summary, source
+      publish_user, publish_time, notice_time, 
+      publish_status, scanned_number, top_flag, 
+      top_start, top_end, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{publishUser,jdbcType=BIGINT}, #{publishTime,jdbcType=TIMESTAMP}, #{noticeTime,jdbcType=TIMESTAMP}, 
+      #{publishStatus,jdbcType=CHAR}, #{scannedNumber,jdbcType=BIGINT}, #{topFlag,jdbcType=CHAR}, 
+      #{topStart,jdbcType=TIMESTAMP}, #{topEnd,jdbcType=TIMESTAMP}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hbridge.model.VillageNotice" >
+    insert into t_village_notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="publishUser != null" >
+        publish_user,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="noticeTime != null" >
+        notice_time,
+      </if>
+      <if test="publishStatus != null" >
+        publish_status,
+      </if>
+      <if test="scannedNumber != null" >
+        scanned_number,
+      </if>
+      <if test="topFlag != null" >
+        top_flag,
+      </if>
+      <if test="topStart != null" >
+        top_start,
+      </if>
+      <if test="topEnd != null" >
+        top_end,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="publishUser != null" >
+        #{publishUser,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeTime != null" >
+        #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null" >
+        #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="scannedNumber != null" >
+        #{scannedNumber,jdbcType=BIGINT},
+      </if>
+      <if test="topFlag != null" >
+        #{topFlag,jdbcType=CHAR},
+      </if>
+      <if test="topStart != null" >
+        #{topStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topEnd != null" >
+        #{topEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hbridge.model.VillageNotice" >
+    update t_village_notice
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="publishUser != null" >
+        publish_user = #{publishUser,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeTime != null" >
+        notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null and publishStatus.trim()!=''" >
+        publish_status = #{publishStatus,jdbcType=CHAR},
+      </if>
+      <if test="scannedNumber != null" >
+        scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      </if>
+      <if test="topFlag != null" >
+        top_flag = #{topFlag,jdbcType=CHAR},
+      </if>
+      <if test="topStart != null" >
+        top_start = #{topStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topEnd != null" >
+        top_end = #{topEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wooxun.geekdol.hbridge.model.VillageNotice" >
+    update t_village_notice
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      publish_user = #{publishUser,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      top_flag = #{topFlag,jdbcType=CHAR},
+      top_start = #{topStart,jdbcType=TIMESTAMP},
+      top_end = #{topEnd,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hbridge.model.VillageNotice" >
+    update t_village_notice
+    set title = #{title,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      publish_user = #{publishUser,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      publish_status = #{publishStatus,jdbcType=CHAR},
+      scanned_number = #{scannedNumber,jdbcType=BIGINT},
+      top_flag = #{topFlag,jdbcType=CHAR},
+      top_start = #{topStart,jdbcType=TIMESTAMP},
+      top_end = #{topEnd,jdbcType=TIMESTAMP},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  
+  <!-- 自定义查询语句开始 -->
+  <!-- 自定义搜索条件 -->
+  <sql id="searchWhere">
+       <where>
+            <if test="title != null and title.trim()!=''" >
+                AND title LIKE CONCAT(CONCAT('%', #{title}),'%')
+            </if>
+            <if test="summary != null and summary.trim()!=''" >
+                AND summary LIKE CONCAT(CONCAT('%', #{summary}),'%')
+            </if>
+            <if test="source != null and source.trim()!=''" >
+                AND source LIKE CONCAT(CONCAT('%', #{source}),'%')
+            </if>
+            <if test="publishTimeBegin != null" >
+                AND publish_time &gt;= #{publishTimeBegin,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishTimeEnd != null" >
+                AND publish_time &lt;= #{publishTimeEnd,jdbcType=TIMESTAMP}
+            </if>
+            <if test="publishStatus != null and publishStatus.trim()!=''" >
+                AND publish_status = #{publishStatus,jdbcType=CHAR}
+            </if>
+            <if test="publishUser != null" >
+                AND publish_user = #{publishUser,jdbcType=BIGINT}
+            </if>
+            <if test="topFlag != null and topFlag.trim()!=''" >
+                AND top_flag = #{topFlag,jdbcType=CHAR}
+            </if>
+            <if test="villageId != null" >
+                AND id in(SELECT notice_id FROM t_notice_village WHERE village_id = #{villageId,jdbcType=BIGINT})
+            </if>
+            <if test="villageIds != null and villageIds.trim()!=''" >
+                AND id in(SELECT notice_id FROM t_notice_village WHERE village_id in (${villageIds}))
+            </if>
+            <if test="insId != null" >
+                AND ins_id = #{insId,jdbcType=BIGINT}
+            </if>
+            AND del_flag='0'
+       </where>
+   </sql>
+   <!-- 条件查询 -->
+  <select id="queryListByParam" parameterType="com.wooxun.geekdol.hbridge.vo.VillageNoticeVo" resultMap="BaseResultMap">
+    select * from t_village_notice
+    <include refid="searchWhere" />
+        order by top_flag desc, id
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+   <!-- 条件查询总条数 -->
+  <select id="queryCountByParam" parameterType="com.wooxun.geekdol.hbridge.vo.VillageNoticeVo" resultType="java.lang.Long">
+    select count(*) from t_village_notice
+    <include refid="searchWhere" />
+        order by id
+  </select>
+   <!-- 条件查询,按浏览量倒序排列 -->
+  <select id="queryListByParamOrder" parameterType="com.wooxun.geekdol.hbridge.vo.VillageNoticeVo" resultMap="BaseResultMap">
+    select * from t_village_notice
+    <include refid="searchWhere" />
+        <if test="outId != null" >
+            AND id != #{outId,jdbcType=BIGINT}
+        </if>
+        order by scanned_number desc
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  
+   <!-- 根据小区ID返回所有公告 -->
+  <select id="queryListByVillageId" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from t_village_notice where id in (select notice_id from t_notice_village where village_id = #{villageId}) 
+    and publish_status = #{publishStatus}
+    <if test="topFlag != null and topFlag.trim()!=''">
+      and top_flag = #{topFlag} 
+    </if>
+    <if test="title != null and title.trim()!=''" >
+        AND title LIKE CONCAT(CONCAT('%', #{title}),'%')
+    </if>
+    and del_flag='0' order by top_flag desc, publish_time desc 
+    <if test="pageFlag==true">
+      LIMIT #{startPage}, #{endPage}
+    </if>
+  </select>
+  
+  <!-- 插入新数据，并返回ID -->
+  <insert id="insertBackId" parameterType="com.wooxun.geekdol.hbridge.model.VillageNotice" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">  
+          SELECT LAST_INSERT_ID() AS ID  
+    </selectKey>  
+    insert into t_village_notice (id, title, summary, source,
+      notice_time, publish_status, publish_user,publish_time, scanned_number, 
+      top_flag, top_start, top_end, 
+      ins_id, ins_ymdhms, upd_id, 
+      upd_ymdhms, upd_eac, del_flag, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{noticeTime,jdbcType=TIMESTAMP}, #{publishStatus,jdbcType=CHAR}, #{publishUser,jdbcType=BIGINT}, #{publishTime,jdbcType=TIMESTAMP}, #{scannedNumber,jdbcType=BIGINT}, 
+      #{topFlag,jdbcType=CHAR}, #{topStart,jdbcType=TIMESTAMP}, #{topEnd,jdbcType=TIMESTAMP}, 
+      #{insId,jdbcType=BIGINT}, #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, 
+      #{updYmdhms,jdbcType=TIMESTAMP}, #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+</mapper>

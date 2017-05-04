@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.CountySuggestStoreTopersonMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.CountySuggestStoreToperson" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="county_suggest_store_id" property="countySuggestStoreId" jdbcType="BIGINT" />
+    <result column="handle_status" property="handleStatus" jdbcType="CHAR" />
+    <result column="handle_person_id" property="handlePersonId" jdbcType="BIGINT" />
+    <result column="handle_date" property="handleDate" jdbcType="TIMESTAMP" />
+    <result column="sug_person_id" property="sugPersonId" jdbcType="BIGINT" />
+    <result column="sug_to_person_id" property="sugToPersonId" jdbcType="BIGINT" />
+    <result column="suggest_flag" property="suggestFlag" jdbcType="CHAR" />
+    <result column="sug_date" property="sugDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, county_suggest_store_id, handle_status, handle_person_id, handle_date, sug_person_id, 
+    sug_to_person_id, suggest_flag, sug_date
+  </sql>
+  <sql id="Association_Column_List" >
+    csstp.id, csstp.county_suggest_store_id AS countySuggestStoreId, csstp.handle_status AS handleStatus, 
+    csstp.handle_person_id AS handlePersonId, csstp.handle_date AS handleDate, 
+    csstp.sug_person_id AS sugPersonId, csstp.sug_to_person_id AS sugToPersonId, 
+    csstp.suggest_flag AS suggestFlag, csstp.sug_date AS sugDate, 
+    u.id "user.id", u.user_name "user.userName", u.real_name "user.realName"
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_county_suggest_store_toperson
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_county_suggest_store_toperson
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.CountySuggestStoreToperson" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_county_suggest_store_toperson (id, county_suggest_store_id, handle_status, 
+      handle_person_id, handle_date, sug_person_id, 
+      sug_to_person_id, suggest_flag, sug_date)
+    values (#{id,jdbcType=BIGINT}, #{countySuggestStoreId,jdbcType=BIGINT}, #{handleStatus,jdbcType=CHAR}, 
+      #{handlePersonId,jdbcType=BIGINT}, #{handleDate,jdbcType=TIMESTAMP}, #{sugPersonId,jdbcType=BIGINT}, 
+      #{sugToPersonId,jdbcType=BIGINT}, #{suggestFlag,jdbcType=CHAR}, #{sugDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.CountySuggestStoreToperson" useGeneratedKeys="true" keyProperty="id" >
+    insert into m_county_suggest_store_toperson
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="countySuggestStoreId != null" >
+        county_suggest_store_id,
+      </if>
+      <if test="handleStatus != null" >
+        handle_status,
+      </if>
+      <if test="handlePersonId != null" >
+        handle_person_id,
+      </if>
+      <if test="handleDate != null" >
+        handle_date,
+      </if>
+      <if test="sugPersonId != null" >
+        sug_person_id,
+      </if>
+      <if test="sugToPersonId != null" >
+        sug_to_person_id,
+      </if>
+      <if test="suggestFlag != null" >
+        suggest_flag,
+      </if>
+      <if test="sugDate != null" >
+        sug_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="countySuggestStoreId != null" >
+        #{countySuggestStoreId,jdbcType=BIGINT},
+      </if>
+      <if test="handleStatus != null" >
+        #{handleStatus,jdbcType=CHAR},
+      </if>
+      <if test="handlePersonId != null" >
+        #{handlePersonId,jdbcType=BIGINT},
+      </if>
+      <if test="handleDate != null" >
+        #{handleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sugPersonId != null" >
+        #{sugPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="sugToPersonId != null" >
+        #{sugToPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="suggestFlag != null" >
+        #{suggestFlag,jdbcType=CHAR},
+      </if>
+      <if test="sugDate != null" >
+        #{sugDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.CountySuggestStoreToperson" >
+    update m_county_suggest_store_toperson
+    <set >
+      <if test="countySuggestStoreId != null" >
+        county_suggest_store_id = #{countySuggestStoreId,jdbcType=BIGINT},
+      </if>
+      <if test="handleStatus != null" >
+        handle_status = #{handleStatus,jdbcType=CHAR},
+      </if>
+      <if test="handlePersonId != null" >
+        handle_person_id = #{handlePersonId,jdbcType=BIGINT},
+      </if>
+      <if test="handleDate != null" >
+        handle_date = #{handleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sugPersonId != null" >
+        sug_person_id = #{sugPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="sugToPersonId != null" >
+        sug_to_person_id = #{sugToPersonId,jdbcType=BIGINT},
+      </if>
+      <if test="suggestFlag != null" >
+        suggest_flag = #{suggestFlag,jdbcType=CHAR},
+      </if>
+      <if test="sugDate != null" >
+        sug_date = #{sugDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.CountySuggestStoreToperson" >
+    update m_county_suggest_store_toperson
+    set county_suggest_store_id = #{countySuggestStoreId,jdbcType=BIGINT},
+      handle_status = #{handleStatus,jdbcType=CHAR},
+      handle_person_id = #{handlePersonId,jdbcType=BIGINT},
+      handle_date = #{handleDate,jdbcType=TIMESTAMP},
+      sug_person_id = #{sugPersonId,jdbcType=BIGINT},
+      sug_to_person_id = #{sugToPersonId,jdbcType=BIGINT},
+      suggest_flag = #{suggestFlag,jdbcType=CHAR},
+      sug_date = #{sugDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectBySourceId" resultType="com.wooxun.geekdol.hmedia.model.CountySuggestStoreToperson" parameterType="java.lang.Long" >
+    select 
+    <include refid="Association_Column_List" />
+    from m_county_suggest_store_toperson csstp
+    inner join security_user u on csstp.sug_to_person_id = u.id
+    where csstp.county_suggest_store_id = #{countySuggestStoreId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 批量插入本区推荐周边店与用户对应关系 -->
+  <insert id="insertBatch" parameterType="map">
+	insert into m_county_suggest_store_toperson
+	(county_suggest_store_id, handle_status, 
+	handle_person_id, handle_date, 
+	sug_person_id, sug_to_person_id, suggest_flag, sug_date)
+	values
+	<foreach collection="userIds" item="item" index="index" separator="," >
+		( #{countySuggestStoreToperson.countySuggestStoreId,jdbcType=BIGINT}, 
+		#{countySuggestStoreToperson.handleStatus,jdbcType=CHAR}, 
+		#{countySuggestStoreToperson.handlePersonId,jdbcType=BIGINT}, 
+		#{countySuggestStoreToperson.handleDate,jdbcType=TIMESTAMP}, 
+		#{countySuggestStoreToperson.sugPersonId,jdbcType=BIGINT}, 
+		#{item}, 
+		#{countySuggestStoreToperson.suggestFlag,jdbcType=CHAR}, 
+		#{countySuggestStoreToperson.sugDate,jdbcType=TIMESTAMP})
+	</foreach>
+  </insert>
+  
+  <!-- 本区推荐周边店管理：列表查询 -->
+  <select id="selectCountySuggestStoreList" parameterType="map" resultType="com.wooxun.geekdol.hmedia.vo.CountySuggestStoreTopersonVo">
+  SELECT
+		v.id AS id,
+		v.name AS name,
+		v.villageName AS villageName,
+		v1.lable AS storeTypeName,
+		v.real_name AS suggestPeople,
+		v.moblie AS suggestPeoplePhone,
+		v.sug_date AS sugDate,
+		v.handle_status AS handleStatus,
+		v.suggest_flag AS suggestFlag
+	FROM
+		(
+			SELECT
+				t.id,
+				t1.name,
+				(
+					SELECT
+						group_concat(d.village_name)
+					FROM
+						m_around_store_village c,
+						s_village d
+					WHERE
+						d.del_flag = '0'
+					AND c.village_id = d.village_id
+					AND c.around_store_id = t1.id
+					GROUP BY
+						c.around_store_id
+				) AS villageName,
+				t1.store_type,
+				t.real_name,
+				t.moblie,
+				t.sug_date,
+				t.handle_status,
+				t.suggest_flag
+			FROM
+				(
+					SELECT
+						a.id,
+						a.handle_status,
+						a.sug_date,
+						a.suggest_flag,
+						b.source_id,
+						b.suggest_type,
+						c.real_name,
+						c.moblie
+					FROM
+						m_county_suggest_store_toperson a,
+						m_county_suggest_store b,
+						security_user c
+					WHERE
+						b.del_flag = '0' 
+					AND c.del_flag = '0' 
+					AND	a.county_suggest_store_id = b.id
+					AND b.suggest_type = '1'
+					AND a.sug_person_id = c.id
+					<if test="flag == 0" >
+				      AND a.sug_to_person_id = #{countySuggestStoreTopersonVo.sugToPersonId,jdbcType=BIGINT}
+				      AND a.suggest_flag = '1'
+				    </if>
+				    <if test="flag == 1" >
+				      AND a.sug_person_id = #{countySuggestStoreTopersonVo.sugPersonId,jdbcType=BIGINT}
+				      <if test="countySuggestStoreTopersonVo.suggestFlag != null and countySuggestStoreTopersonVo.suggestFlag.trim() != ''" >
+					   AND a.suggest_flag = #{countySuggestStoreTopersonVo.suggestFlag,jdbcType=CHAR}
+				      </if>
+				    </if>
+				    <if test="countySuggestStoreTopersonVo.handleStatus != null and countySuggestStoreTopersonVo.handleStatus.trim() != ''" >
+					  AND a.handle_status = #{countySuggestStoreTopersonVo.handleStatus,jdbcType=CHAR}
+					  AND a.suggest_flag &lt;&gt; '0'
+				    </if>
+				) t,
+				m_around_store t1
+			WHERE
+				t.source_id = t1.id AND t1.del_flag = '0'
+				<if test="countySuggestStoreTopersonVo.name != null and countySuggestStoreTopersonVo.name.trim() != ''" >
+			      AND t1.name LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.name},'%'))
+			    </if>
+			    <if test="countySuggestStoreTopersonVo.storeType != null and countySuggestStoreTopersonVo.storeType.trim() != ''" >
+			      AND t1.store_type = #{countySuggestStoreTopersonVo.storeType,jdbcType=CHAR}
+			    </if>
+			    <if test="countySuggestStoreTopersonVo.suggestPeople != null and countySuggestStoreTopersonVo.suggestPeople.trim() != ''" >
+			      AND t1.concat LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.suggestPeople},'%'))
+			    </if>
+			    <if test="countySuggestStoreTopersonVo.suggestPeoplePhone != null and countySuggestStoreTopersonVo.suggestPeoplePhone.trim() != ''" >
+			      AND t1.concat_phone LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.suggestPeoplePhone},'%'))
+			    </if>
+			UNION ALL
+				SELECT
+					t.id,
+					t1.name,
+					(
+						SELECT
+							group_concat(d.village_name)
+						FROM
+							m_around_suggest_store_village c,
+							s_village d
+						WHERE
+							d.del_flag = '0'
+						AND c.village_id = d.village_id
+						AND c.around_suggest_store_id = t1.id
+						GROUP BY
+							c.around_suggest_store_id
+					) AS villageName,
+					t1.store_type,
+					t.real_name,
+					t.moblie,
+					t.sug_date,
+					t.handle_status,
+					t.suggest_flag
+				FROM
+					(
+						SELECT
+							a.id,
+							a.handle_status,
+							a.sug_date,
+							a.suggest_flag,
+							b.source_id,
+							b.suggest_type,
+							c.real_name,
+							c.moblie
+						FROM
+							m_county_suggest_store_toperson a,
+							m_county_suggest_store b,
+							security_user c
+						WHERE
+							b.del_flag = '0' 
+						AND c.del_flag = '0' 
+						AND	a.county_suggest_store_id = b.id
+						AND b.suggest_type = '2'
+						AND a.sug_person_id = c.id
+						<if test="flag == 0" >
+					      AND a.sug_to_person_id = #{countySuggestStoreTopersonVo.sugToPersonId,jdbcType=BIGINT}
+					      AND a.suggest_flag = '1'
+					    </if>
+					    <if test="flag == 1" >
+					      AND a.sug_person_id = #{countySuggestStoreTopersonVo.sugPersonId,jdbcType=BIGINT}
+					      <if test="countySuggestStoreTopersonVo.suggestFlag != null and countySuggestStoreTopersonVo.suggestFlag.trim() != ''" >
+						   AND a.suggest_flag = #{countySuggestStoreTopersonVo.suggestFlag,jdbcType=CHAR}
+					      </if>
+					    </if>
+					    <if test="countySuggestStoreTopersonVo.handleStatus != null and countySuggestStoreTopersonVo.handleStatus.trim() != ''" >
+						  AND a.handle_status = #{countySuggestStoreTopersonVo.handleStatus,jdbcType=CHAR}
+						  AND a.suggest_flag &lt;&gt; '0'
+					    </if>
+					) t,
+					m_around_suggest_store t1 
+				WHERE
+					t.source_id = t1.id AND t1.del_flag = '0'
+					<if test="countySuggestStoreTopersonVo.name != null and countySuggestStoreTopersonVo.name.trim() != ''" >
+				      AND t1.name LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.name},'%'))
+				    </if>
+				    <if test="countySuggestStoreTopersonVo.storeType != null and countySuggestStoreTopersonVo.storeType.trim() != ''" >
+				      AND t1.store_type = #{countySuggestStoreTopersonVo.storeType,jdbcType=CHAR}
+				    </if>
+				    <if test="countySuggestStoreTopersonVo.suggestPeople != null and countySuggestStoreTopersonVo.suggestPeople.trim() != ''" >
+				      AND t1.concat LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.suggestPeople},'%'))
+				    </if>
+				    <if test="countySuggestStoreTopersonVo.suggestPeoplePhone != null and countySuggestStoreTopersonVo.suggestPeoplePhone.trim() != ''" >
+				      AND t1.concat_phone LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.suggestPeoplePhone},'%'))
+				    </if>
+		) v
+	LEFT JOIN s_sys_data v1 ON v.store_type = v1.value AND v1.type = #{storeType} AND v1.del_flag = '0'
+	<if test="countySuggestStoreTopersonVo.villageName != null and countySuggestStoreTopersonVo.villageName.trim() != ''" >
+	  WHERE v.villageName LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.villageName},'%'))
+    </if>
+  ORDER BY
+		sugDate DESC
+	<if test="countySuggestStoreTopersonVo.pageFlag==true">
+		LIMIT #{countySuggestStoreTopersonVo.startPage}, #{countySuggestStoreTopersonVo.endPage}
+	</if>
+  </select>
+  
+  <!-- 本网格推荐周边店管理：总记录数查询 -->
+  <select id="selectCountySuggestStoreListCount" parameterType="map" resultType="java.lang.Long">
+	SELECT
+		COUNT(1)
+	FROM
+		(
+			SELECT
+				t.id,
+				t1.name,
+				(
+					SELECT
+						group_concat(d.village_name)
+					FROM
+						m_around_store_village c,
+						s_village d
+					WHERE
+						d.del_flag = '0'
+					AND c.village_id = d.village_id
+					AND c.around_store_id = t1.id
+					GROUP BY
+						c.around_store_id
+				) AS villageName,
+				t1.store_type,
+				t.real_name,
+				t.moblie,
+				t.sug_date,
+				t.handle_status,
+				t.suggest_flag
+			FROM
+				(
+					SELECT
+						a.id,
+						a.handle_status,
+						a.sug_date,
+						a.suggest_flag,
+						b.source_id,
+						b.suggest_type,
+						c.real_name,
+						c.moblie
+					FROM
+						m_county_suggest_store_toperson a,
+						m_county_suggest_store b,
+						security_user c
+					WHERE
+						b.del_flag = '0' 
+					AND c.del_flag = '0' 
+					AND	a.county_suggest_store_id = b.id
+					AND b.suggest_type = '1'
+					AND a.sug_person_id = c.id
+					<if test="flag == 0" >
+				      AND a.sug_to_person_id = #{countySuggestStoreTopersonVo.sugToPersonId,jdbcType=BIGINT}
+				      AND a.suggest_flag = '1'
+				    </if>
+				    <if test="flag == 1" >
+				      AND a.sug_person_id = #{countySuggestStoreTopersonVo.sugPersonId,jdbcType=BIGINT}
+				      <if test="countySuggestStoreTopersonVo.suggestFlag != null and countySuggestStoreTopersonVo.suggestFlag.trim() != ''" >
+					   AND a.suggest_flag = #{countySuggestStoreTopersonVo.suggestFlag,jdbcType=CHAR}
+				      </if>
+				    </if>
+				    <if test="countySuggestStoreTopersonVo.handleStatus != null and countySuggestStoreTopersonVo.handleStatus.trim() != ''" >
+					  AND a.handle_status = #{countySuggestStoreTopersonVo.handleStatus,jdbcType=CHAR}
+					  AND a.suggest_flag &lt;&gt; '0'
+				    </if>
+				) t,
+				m_around_store t1
+			WHERE
+				t.source_id = t1.id AND t1.del_flag = '0'
+				<if test="countySuggestStoreTopersonVo.name != null and countySuggestStoreTopersonVo.name.trim() != ''" >
+			      AND t1.name LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.name},'%'))
+			    </if>
+			    <if test="countySuggestStoreTopersonVo.storeType != null and countySuggestStoreTopersonVo.storeType.trim() != ''" >
+			      AND t1.store_type = #{countySuggestStoreTopersonVo.storeType,jdbcType=CHAR}
+			    </if>
+			    <if test="countySuggestStoreTopersonVo.suggestPeople != null and countySuggestStoreTopersonVo.suggestPeople.trim() != ''" >
+			      AND t1.concat LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.suggestPeople},'%'))
+			    </if>
+			    <if test="countySuggestStoreTopersonVo.suggestPeoplePhone != null and countySuggestStoreTopersonVo.suggestPeoplePhone.trim() != ''" >
+			      AND t1.concat_phone LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.suggestPeoplePhone},'%'))
+			    </if>
+			UNION ALL
+				SELECT
+					t.id,
+					t1.name,
+					(
+						SELECT
+							group_concat(d.village_name)
+						FROM
+							m_around_suggest_store_village c,
+							s_village d
+						WHERE
+							d.del_flag = '0'
+						AND c.village_id = d.village_id
+						AND c.around_suggest_store_id = t1.id
+						GROUP BY
+							c.around_suggest_store_id
+					) AS villageName,
+					t1.store_type,
+					t.real_name,
+					t.moblie,
+					t.sug_date,
+					t.handle_status,
+					t.suggest_flag
+				FROM
+					(
+						SELECT
+							a.id,
+							a.handle_status,
+							a.sug_date,
+							a.suggest_flag,
+							b.source_id,
+							b.suggest_type,
+							c.real_name,
+							c.moblie
+						FROM
+							m_county_suggest_store_toperson a,
+							m_county_suggest_store b,
+							security_user c
+						WHERE
+							b.del_flag = '0' 
+						AND c.del_flag = '0' 
+						AND	a.county_suggest_store_id = b.id
+						AND b.suggest_type = '2'
+						AND a.sug_person_id = c.id
+						<if test="flag == 0" >
+					      AND a.sug_to_person_id = #{countySuggestStoreTopersonVo.sugToPersonId,jdbcType=BIGINT}
+					      AND a.suggest_flag = '1'
+					    </if>
+					    <if test="flag == 1" >
+					      AND a.sug_person_id = #{countySuggestStoreTopersonVo.sugPersonId,jdbcType=BIGINT}
+					      <if test="countySuggestStoreTopersonVo.suggestFlag != null and countySuggestStoreTopersonVo.suggestFlag.trim() != ''" >
+						   AND a.suggest_flag = #{countySuggestStoreTopersonVo.suggestFlag,jdbcType=CHAR}
+					      </if>
+					    </if>
+					    <if test="countySuggestStoreTopersonVo.handleStatus != null and countySuggestStoreTopersonVo.handleStatus.trim() != ''" >
+						  AND a.handle_status = #{countySuggestStoreTopersonVo.handleStatus,jdbcType=CHAR}
+						  AND a.suggest_flag &lt;&gt; '0'
+					    </if>
+					) t,
+					m_around_suggest_store t1
+				WHERE
+					t.source_id = t1.id AND t1.del_flag = '0'
+					<if test="countySuggestStoreTopersonVo.name != null and countySuggestStoreTopersonVo.name.trim() != ''" >
+				      AND t1.name LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.name},'%'))
+				    </if>
+				    <if test="countySuggestStoreTopersonVo.storeType != null and countySuggestStoreTopersonVo.storeType.trim() != ''" >
+				      AND t1.store_type = #{countySuggestStoreTopersonVo.storeType,jdbcType=CHAR}
+				    </if>
+				    <if test="countySuggestStoreTopersonVo.suggestPeople != null and countySuggestStoreTopersonVo.suggestPeople.trim() != ''" >
+				      AND t1.concat LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.suggestPeople},'%'))
+				    </if>
+				    <if test="countySuggestStoreTopersonVo.suggestPeoplePhone != null and countySuggestStoreTopersonVo.suggestPeoplePhone.trim() != ''" >
+				      AND t1.concat_phone LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.suggestPeoplePhone},'%'))
+				    </if>
+		) v
+		<if test="countySuggestStoreTopersonVo.villageName != null and countySuggestStoreTopersonVo.villageName.trim() != ''" >
+		  WHERE v.villageName LIKE CONCAT('%',CONCAT(#{countySuggestStoreTopersonVo.villageName},'%'))
+	    </if>
+	ORDER BY
+		v.sug_date DESC
+  </select>
+</mapper>

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/Geekdol/!svn/ver/5392/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service
+END
+HeartBeatService.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Geekdol/!svn/ver/4908/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/HeartBeatService.java
+END
+HeartBeatCommentService.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/4966/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/HeartBeatCommentService.java
+END
+HeartCommentReplyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/Geekdol/!svn/ver/4966/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/HeartCommentReplyService.java
+END
+HeartBeatUserVillageService.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/Geekdol/!svn/ver/4671/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/HeartBeatUserVillageService.java
+END
+HeartBeatLikeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/Geekdol/!svn/ver/4832/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/HeartBeatLikeService.java
+END
+PositionService.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Geekdol/!svn/ver/4915/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/PositionService.java
+END
+IntimateNewsCommentRecommendService.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/Geekdol/!svn/ver/5392/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/IntimateNewsCommentRecommendService.java
+END
+AdvertService.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Geekdol/!svn/ver/4915/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/AdvertService.java
+END
+IntimateNewsService.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/Geekdol/!svn/ver/5392/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/IntimateNewsService.java
+END
+ActivityCollectionService.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/Geekdol/!svn/ver/3580/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/ActivityCollectionService.java
+END
+HeartBeatReportService.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/Geekdol/!svn/ver/4925/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/HeartBeatReportService.java
+END
+IntimateNewsLikeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/Geekdol/!svn/ver/5367/source/backstage/geekdol/src/com/wooxun/geekdol/hmedia/service/IntimateNewsLikeService.java
+END

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.IntimateVillageMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.IntimateVillage" >
+    <id column="intimate_new_village_id" property="intimateNewVillageId" jdbcType="BIGINT" />
+    <result column="intimate_new_id" property="intimateNewId" jdbcType="BIGINT" />
+    <result column="village_id" property="villageId" jdbcType="BIGINT" />
+    
+    <association property="village" column="village_id" select="com.wooxun.geekdol.system.mapper.VillageMapper.selectByPrimaryKeyGuanlian"></association>
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    intimate_new_village_id, intimate_new_id, village_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_intimate_new_village
+    where intimate_new_village_id = #{intimateNewVillageId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from m_intimate_new_village
+    where intimate_new_village_id = #{intimateNewVillageId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.IntimateVillage" >
+    insert into m_intimate_new_village (intimate_new_village_id, intimate_new_id, 
+      village_id)
+    values (#{intimateNewVillageId,jdbcType=BIGINT}, #{intimateNewId,jdbcType=BIGINT}, 
+      #{villageId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.IntimateVillage" >
+    insert into m_intimate_new_village
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="intimateNewVillageId != null" >
+        intimate_new_village_id,
+      </if>
+      <if test="intimateNewId != null" >
+        intimate_new_id,
+      </if>
+      <if test="villageId != null" >
+        village_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="intimateNewVillageId != null" >
+        #{intimateNewVillageId,jdbcType=BIGINT},
+      </if>
+      <if test="intimateNewId != null" >
+        #{intimateNewId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        #{villageId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.IntimateVillage" >
+    update m_intimate_new_village
+    <set >
+      <if test="intimateNewId != null" >
+        intimate_new_id = #{intimateNewId,jdbcType=BIGINT},
+      </if>
+      <if test="villageId != null" >
+        village_id = #{villageId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where intimate_new_village_id = #{intimateNewVillageId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.IntimateVillage" >
+    update m_intimate_new_village
+    set intimate_new_id = #{intimateNewId,jdbcType=BIGINT},
+      village_id = #{villageId,jdbcType=BIGINT}
+    where intimate_new_village_id = #{intimateNewVillageId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+    <!-- 批量保存贴心报小区关系表 -->
+  <insert id="insertBatch" parameterType="com.wooxun.geekdol.hmedia.model.IntimateVillage" >
+      insert into m_intimate_new_village (intimate_new_id, 
+      village_id)
+      values 
+       <foreach collection="list" item="item" index="index" separator="," >  
+       (#{item.intimateNewId,jdbcType=BIGINT}, 
+       #{item.villageId,jdbcType=BIGINT})
+       </foreach>
+      
+    </insert>
+    
+    <!-- 根据贴心报id查找相关的小区  -->
+    <select id="selectIntimateVillageByIntimateNewsId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from m_intimate_new_village
+    where intimate_new_id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 修改贴心报的时候,根据贴心报id删除关系表所有相关的数据 -->
+  <delete id="deleteByIntimateNewsId" parameterType="java.lang.Long">
+    delete from m_intimate_new_village
+    where intimate_new_id = #{intimateVillageId,jdbcType=BIGINT}
+  </delete>
+    
+</mapper>

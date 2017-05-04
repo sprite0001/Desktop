@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.hmedia.mapper.PositionMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.hmedia.model.Position" >
+    <id column="position_id" property="positionId" jdbcType="BIGINT" />
+    <result column="position_code" property="positionCode" jdbcType="VARCHAR" />
+    <result column="module_code" property="moduleCode" jdbcType="CHAR" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    position_id, position_code, module_code, position_name, remark, ins_id, ins_ymdhms, 
+    upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from g_position
+    where position_id = #{positionId,jdbcType=BIGINT}
+     and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from g_position
+    where position_id = #{positionId,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.hmedia.model.Position" >
+    insert into g_position (position_id, position_code, module_code, 
+      position_name, remark, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{positionId,jdbcType=BIGINT}, #{positionCode,jdbcType=VARCHAR}, #{moduleCode,jdbcType=CHAR}, 
+      #{positionName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.hmedia.model.Position" useGeneratedKeys="true" keyProperty="positionId">
+    insert into g_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        position_id,
+      </if>
+      <if test="positionCode != null" >
+        position_code,
+      </if>
+      <if test="moduleCode != null" >
+        module_code,
+      </if>
+      <if test="positionName != null" >
+        position_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="positionCode != null" >
+        #{positionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleCode != null" >
+        #{moduleCode,jdbcType=CHAR},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.hmedia.model.Position" >
+    update g_position
+    <set >
+      <if test="positionCode != null" >
+        position_code = #{positionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleCode != null" >
+        module_code = #{moduleCode,jdbcType=CHAR},
+      </if>
+      <if test="positionName != null" >
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where position_id = #{positionId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.hmedia.model.Position" >
+    update g_position
+    set position_code = #{positionCode,jdbcType=VARCHAR},
+      module_code = #{moduleCode,jdbcType=CHAR},
+      position_name = #{positionName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where position_id = #{positionId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!--************************************** 自定义 **************************************-->
+    
+  <!-- 根据页面查询条件显示列表 -->
+    <select id="findAll" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.hmedia.vo.PositionVo">
+      SELECT
+        <include refid="Base_Column_List"/>
+      FROM g_position
+      <where>
+            <if test="moduleCode!=null and moduleCode.trim()!=''">
+                and module_code = #{moduleCode,jdbcType=CHAR}
+            </if>
+            <if test="positionCode!=null and positionCode.trim()!=''">
+                and position_code like CONCAT(CONCAT('%',#{positionCode}),'%')
+            </if>
+            <if test="positionName!=null and positionName.trim()!=''">
+                and position_name like CONCAT(CONCAT('%',#{positionName}),'%')
+            </if>
+                AND del_flag='0'
+            <if test="pageFlag==true">
+              LIMIT #{startPage}, #{endPage}
+            </if>
+       </where>
+     </select>
+     
+    <!-- 根据页面查询条件显示列表分页计数 -->
+    <select id="findAllCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.hmedia.vo.PositionVo">
+     SELECT
+     COUNT(position_id)
+    FROM g_position
+       <where>
+            <if test="moduleCode!=null and moduleCode.trim()!=''">
+                and module_code = #{moduleCode,jdbcType=CHAR}
+            </if>
+            <if test="positionCode!=null and positionCode.trim()!=''">
+                and position_code like CONCAT(CONCAT('%',#{positionCode}),'%')
+            </if>
+            <if test="positionName!=null and positionName.trim()!=''">
+                and position_name like CONCAT(CONCAT('%',#{positionName}),'%')
+            </if>
+                AND del_flag='0'
+            <if test="pageFlag==true">
+              LIMIT #{startPage}, #{endPage}
+            </if>
+       </where>
+    </select> 
+    
+      <!-- 新增操作时判断是否已有该编码  返回新增编码查询数量 -->
+    <select id="findCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.hmedia.model.Position">
+     SELECT
+     COUNT(position_id)
+     FROM g_position
+      <where>              
+            <if test="positionCode!=null and positionCode.trim()!=''">
+                and position_code =#{positionCode} 
+            </if>
+                and del_flag='0'
+      </where>
+    </select>     
+    
+        <!-- 逻辑删除位置管理信息-->
+    <update id="deletePosition" parameterType="com.wooxun.geekdol.hmedia.model.Position">
+     UPDATE 
+     g_position
+     SET
+     <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+     del_flag='1'
+     where
+     position_id = #{positionId,jdbcType=BIGINT}
+     and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+    </update>
+    
+    <!-- 查找广告编码是否存在 -->
+  <select id="findPositionCode" resultType="java.lang.Integer" parameterType="map" >
+    select 
+    count(1)
+    from g_position
+    where position_code = #{positionCode}
+    <if test="id != null" >
+        AND position_id != #{id,jdbcType=BIGINT}
+     </if>
+    and del_flag = '0'
+  </select>
+     
+</mapper>

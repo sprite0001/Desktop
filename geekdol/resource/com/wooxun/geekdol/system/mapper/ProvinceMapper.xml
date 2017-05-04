@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wooxun.geekdol.system.mapper.ProvinceMapper" >
+  <resultMap id="BaseResultMap" type="com.wooxun.geekdol.system.model.Province" >
+    <id column="province_id" property="provinceId" jdbcType="BIGINT" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="ordering" property="ordering" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="ins_id" property="insId" jdbcType="BIGINT" />
+    <result column="ins_ymdhms" property="insYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_id" property="updId" jdbcType="BIGINT" />
+    <result column="upd_ymdhms" property="updYmdhms" jdbcType="TIMESTAMP" />
+    <result column="upd_eac" property="updEac" jdbcType="BIGINT" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    province_id, province_name, province_code, ordering, status, ins_id, ins_ymdhms, 
+    upd_id, upd_ymdhms, upd_eac, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_province
+    where province_id = #{provinceId,jdbcType=BIGINT} and del_flag = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from s_province
+    where province_id = #{provinceId,jdbcType=BIGINT} and del_flag = '0'
+  </delete>
+  <insert id="insert" parameterType="com.wooxun.geekdol.system.model.Province" useGeneratedKeys="true" keyProperty="provinceId">
+    insert into s_province (province_id, province_name, province_code, 
+      ordering, status, ins_id, 
+      ins_ymdhms, upd_id, upd_ymdhms, 
+      upd_eac, del_flag)
+    values (#{provinceId,jdbcType=BIGINT}, #{provinceName,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{ordering,jdbcType=BIGINT}, #{status,jdbcType=CHAR}, #{insId,jdbcType=BIGINT}, 
+      #{insYmdhms,jdbcType=TIMESTAMP}, #{updId,jdbcType=BIGINT}, #{updYmdhms,jdbcType=TIMESTAMP}, 
+      #{updEac,jdbcType=BIGINT}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wooxun.geekdol.system.model.Province" >
+    insert into s_province
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insId != null" >
+        ins_id,
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms,
+      </if>
+      <if test="updId != null" >
+        upd_id,
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms,
+      </if>
+      <if test="updEac != null" >
+        upd_eac,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wooxun.geekdol.system.model.Province" >
+    update s_province
+    <set >
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where province_id = #{provinceId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKeySelectiveAndOrder" parameterType="com.wooxun.geekdol.system.model.Province" >
+    update s_province
+    <set >
+    ordering = #{ordering,jdbcType=BIGINT},
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="insId != null" >
+        ins_id = #{insId,jdbcType=BIGINT},
+      </if>
+      <if test="insYmdhms != null" >
+        ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updId != null" >
+        upd_id = #{updId,jdbcType=BIGINT},
+      </if>
+      <if test="updYmdhms != null" >
+        upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updEac != null" >
+        upd_eac = #{updEac,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where province_id = #{provinceId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wooxun.geekdol.system.model.Province" >
+    update s_province
+    set province_name = #{provinceName,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      ordering = #{ordering,jdbcType=BIGINT},
+      status = #{status,jdbcType=CHAR},
+      ins_id = #{insId,jdbcType=BIGINT},
+      ins_ymdhms = #{insYmdhms,jdbcType=TIMESTAMP},
+      upd_id = #{updId,jdbcType=BIGINT},
+      upd_ymdhms = #{updYmdhms,jdbcType=TIMESTAMP},
+      upd_eac = #{updEac,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where province_id = #{provinceId,jdbcType=BIGINT}
+      and upd_eac =  ( #{updEac,jdbcType=BIGINT} -1) 
+  </update>
+  
+  <!--************************************** 自定义 **************************************-->
+  
+  <!-- 根据页面查询条件显示列表 -->
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.system.vo.ProvinceQueryVo" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_province
+    <where>
+    	<if test="provinceName != null and provinceName.trim()!=''" >
+        	AND province_name like CONCAT('%',CONCAT(#{provinceName},'%'))
+     	</if>
+	     <if test="status != null and status.trim()!=''" >
+	        AND status = #{status,jdbcType=CHAR}
+	     </if>	
+         <if test="provinceId != null" >
+            AND province_id = #{provinceId,jdbcType=BIGINT}
+         </if>       
+	     AND del_flag='0'
+    </where>
+    order by ordering,ins_ymdhms desc
+    <if test="pageFlag==true">
+		LIMIT #{startPage}, #{endPage}
+	 </if>
+  </select>
+  
+  <!-- 查找没有禁用的所有省份 -->
+  <select id="findProvince" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.system.vo.ProvinceQueryVo" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_province
+    <where>
+	     <if test="status != null and status.trim()!=''" >
+	        AND status = #{status,jdbcType=CHAR}
+	     </if>	     
+	     AND del_flag='0'
+    </where>
+  </select>
+  <!-- 查询未分配给用户的可用省份 -->
+  <select id="selectListNoUser" resultMap="BaseResultMap" parameterType="com.wooxun.geekdol.system.vo.ProvinceQueryVo" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_province
+	     where status = '0' AND del_flag='0' and province_id not in (SELECT sua.area_id FROM s_user_area sua)
+  </select>
+  <!-- 根据页面查询条件显示列表分页计数 -->
+  <select id="selectListCount" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.system.vo.ProvinceQueryVo" >
+    select 
+    count(*)
+    from s_province
+    <where>
+    	<if test="provinceName != null and provinceName.trim()!=''" >
+        	AND province_name like CONCAT('%',CONCAT(#{provinceName},'%'))
+     	</if>
+	     <if test="status != null and status.trim()!=''" >
+	        AND status = #{status,jdbcType=CHAR}
+	     </if>
+         <if test="provinceId != null" >
+            AND province_id = #{provinceId,jdbcType=BIGINT}
+         </if>  
+	     AND del_flag='0'
+    </where>
+  </select>
+  
+  <!-- 根据省名称或省编码来验证是否已经存在 -->
+  <select id="selectProvince" resultType="java.lang.Long" parameterType="com.wooxun.geekdol.system.model.Province" >
+    select 
+    count(*)
+    from s_province
+    <where>
+    	<if test="provinceName != null and provinceName.trim()!=''" >
+        	AND province_name like CONCAT('%',CONCAT(#{provinceName},'%'))
+     	</if>
+	     <if test="provinceCode != null and provinceCode.trim()!=''" >
+	        AND province_code = #{provinceCode,jdbcType=VARCHAR}
+	     </if>
+	     <if test="provinceId != null" >
+	        AND province_id != #{provinceId,jdbcType=BIGINT}
+	     </if>
+	     AND del_flag='0'
+    </where>
+  </select>  
+  
+  <!-- 查找省名字是否存在 -->
+  <select id="findProvinceName" resultType="java.lang.Integer" parameterType="map" >
+    select 
+    count(1)
+    from s_province
+    where province_name like CONCAT('%',CONCAT(#{provinceName},'%'))
+    <if test="id != null" >
+        AND province_id != #{id,jdbcType=BIGINT}
+     </if>
+    and del_flag = '0'
+  </select>
+  <!-- 根据省id与状态查找可用省份 -->
+  <select id="hasEffectProvince" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from s_province
+    where province_id = #{provinceId,jdbcType=BIGINT} 
+    and status = #{status,jdbcType=CHAR}
+    and del_flag = '0'
+  </select>
+</mapper>
