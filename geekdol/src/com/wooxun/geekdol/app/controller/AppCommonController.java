@@ -1,4 +1,4 @@
-package com.wooxun.geekdol.app.controller;
+﻿package com.wooxun.geekdol.app.controller;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -61,7 +61,7 @@ import com.wooxun.geekdol.system.vo.VillageVo;
  * @Title
  * @Description 手机端共通方法
  * @version 1.0.0
- * @Author QZG
+ * @Author HDL
  * @CreateDate 2016年7月23日
  * @param
  * @see
